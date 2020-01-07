@@ -11,6 +11,7 @@ import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItem;
 import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemCheckbox;
 import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemRadioButton;
 import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemSeparator;
+import io.github.mmm.ui.fx.widget.panel.FxFactoryFormPanel;
 import io.github.mmm.ui.fx.widget.panel.FxFactoryHorizontalPanel;
 import io.github.mmm.ui.fx.widget.panel.FxFactoryTabPanel;
 import io.github.mmm.ui.fx.widget.panel.FxFactoryVerticalPanel;
@@ -36,6 +37,7 @@ module io.github.mmm.ui.fx {
   provides UiSingleWidgetFactoryNative with //
       FxFactoryButton, //
       FxFactoryCheckbox, //
+      FxFactoryFormPanel, //
       FxFactoryLabel, //
       FxFactoryHorizontalPanel, //
       FxFactoryMenu, //

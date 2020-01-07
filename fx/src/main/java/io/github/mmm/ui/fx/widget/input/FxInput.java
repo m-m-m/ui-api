@@ -3,6 +3,7 @@
 package io.github.mmm.ui.fx.widget.input;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.datatype.UiFlagMode;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.fx.widget.FxActiveWidget;
 import io.github.mmm.ui.fx.widget.FxLabel;
@@ -82,8 +83,28 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
       if (this.fieldLabel != null) {
         this.fieldLabelWidget.setLabel(this.fieldLabel);
       }
+      doSetVisibleState(this.fieldLabelWidget, doGetVisibleState(this));
+      doSetEnabledState(this.fieldLabelWidget, doGetEnabledState(this));
     }
     return this.fieldLabelWidget;
+  }
+
+  @Override
+  public void setVisible(boolean visible, UiFlagMode flagMode) {
+
+    super.setVisible(visible, flagMode);
+    if (this.fieldLabelWidget != null) {
+      this.fieldLabelWidget.setVisible(visible, flagMode);
+    }
+  }
+
+  @Override
+  public void setEnabled(boolean enabled, UiFlagMode flagMode) {
+
+    super.setEnabled(enabled, flagMode);
+    if (this.fieldLabelWidget != null) {
+      this.fieldLabelWidget.setEnabled(enabled, flagMode);
+    }
   }
 
   @Override

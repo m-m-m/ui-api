@@ -99,12 +99,34 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   public void setVisible(boolean visible, UiFlagMode flagMode) {
 
     requireNotDisposed();
-    long newState = flagMode.set(this.visibleState, visible);
-    if (newState == this.visibleState) {
+    doSetVisibleState(flagMode.set(this.visibleState, visible));
+  }
+
+  /**
+   * @param visible {@code true} to show this widget (in case its parent is also visible), {@code false} to hide this
+   *        widget.
+   */
+  protected abstract void setVisibleNative(boolean visible);
+
+  /**
+   * @param widget the {@link AbstractUiNativeWidget}.
+   * @return the internal {@link #isVisible(UiFlagMode) visible state} of the given {@code widget}.
+   */
+  protected static final long doGetVisibleState(AbstractUiNativeWidget widget) {
+
+    return widget.visibleState;
+  }
+
+  /**
+   * @param state new value of {@link #doGetVisibleState(AbstractUiNativeWidget)}.
+   */
+  protected final void doSetVisibleState(long state) {
+
+    if (state == this.visibleState) {
       return;
     }
     boolean oldNativeVisible = (this.visibleState == 0);
-    this.visibleState = newState;
+    this.visibleState = state;
     boolean nativeVisible = (this.visibleState == 0);
     if ((oldNativeVisible == nativeVisible)) {
       return;
@@ -120,10 +142,13 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   /**
-   * @param visible {@code true} to show this widget (in case its parent is also visible), {@code false} to hide this
-   *        widget.
+   * @param widget the {@link AbstractUiNativeWidget}.
+   * @param state new value of {@link #doGetVisibleState(AbstractUiNativeWidget)} of the given {@code widget}.
    */
-  protected abstract void setVisibleNative(boolean visible);
+  protected static final void doSetVisibleState(AbstractUiNativeWidget widget, long state) {
+
+    widget.doSetVisibleState(state);
+  }
 
   @Override
   public boolean isEnabled(UiFlagMode flagMode) {
@@ -145,12 +170,34 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   public void setEnabled(boolean enabled, UiFlagMode flagMode) {
 
     requireNotDisposed();
-    long newState = flagMode.set(this.enabledState, enabled);
-    if (newState == this.enabledState) {
+    doSetEnabledState(flagMode.set(this.enabledState, enabled));
+  }
+
+  /**
+   * @param enabled the new {@link #isEnabled() enabled state}. Use {@code true} to enable and {@code false} to disable
+   *        this widget.
+   */
+  protected abstract void setEnabledNative(boolean enabled);
+
+  /**
+   * @param widget the {@link AbstractUiNativeWidget}.
+   * @return the internal {@link #isEnabled(UiFlagMode) enabled state} of the given {@code widget}.
+   */
+  protected static final long doGetEnabledState(AbstractUiNativeWidget widget) {
+
+    return widget.enabledState;
+  }
+
+  /**
+   * @param state new value of {@link #doGetEnabledState(AbstractUiNativeWidget)}.
+   */
+  protected final void doSetEnabledState(long state) {
+
+    if (state == this.enabledState) {
       return;
     }
     boolean oldNativeEnabled = (this.enabledState == 0);
-    this.enabledState = newState;
+    this.enabledState = state;
     boolean nativeEnabled = (this.enabledState == 0);
     if ((oldNativeEnabled == nativeEnabled)) {
       return;
@@ -166,10 +213,13 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   /**
-   * @param enabled the new {@link #isEnabled() enabled state}. Use {@code true} to enable and {@code false} to disable
-   *        this widget.
+   * @param widget the {@link AbstractUiNativeWidget}.
+   * @param state new value of {@link #doGetEnabledState(AbstractUiNativeWidget)} of the given {@code widget}.
    */
-  protected abstract void setEnabledNative(boolean enabled);
+  protected static final void doSetEnabledState(AbstractUiNativeWidget widget, long state) {
+
+    widget.doSetEnabledState(state);
+  }
 
   @Override
   public void addListener(UiEventListener listener, boolean weak) {

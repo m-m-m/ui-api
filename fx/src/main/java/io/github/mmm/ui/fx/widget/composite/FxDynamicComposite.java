@@ -34,7 +34,6 @@ public abstract class FxDynamicComposite<W extends Pane, C extends UiWidget> ext
     setParent(child, this);
     this.nativeWidget.getChildren().add(getNode(child));
     this.children.add(index, child);
-    setParent(child, this);
   }
 
   @Override

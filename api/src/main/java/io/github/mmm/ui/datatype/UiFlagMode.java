@@ -79,6 +79,9 @@ public class UiFlagMode {
    */
   public boolean isSet(long status) {
 
+    if (this.mask == 0) {
+      return status == 0;
+    }
     return ((status | this.mask) == status);
   }
 

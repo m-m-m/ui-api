@@ -9,6 +9,11 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.input.UiCheckbox;
+import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.ui.widget.input.UiPasswordInput;
+import io.github.mmm.ui.widget.input.UiTextArea;
+import io.github.mmm.ui.widget.input.UiTextInput;
+import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.widget.panel.UiTabPanel;
 import io.github.mmm.ui.widget.panel.UiVerticalPanel;
@@ -23,6 +28,12 @@ import io.github.mmm.ui.widget.window.UiMainWindow;
  * @since 1.0.0
  */
 public interface UiContext {
+
+  /**
+   * @return the {@link UiMainWindow} running this application. It will hold the {@link UiMainWindow#getMenuBar() menu
+   *         bar} and should be the main entry point to your application for end-users.
+   */
+  UiMainWindow getMainWindow();
 
   /**
    * @param <W> type of the {@link UiNativeWidget} to create.
@@ -60,6 +71,42 @@ public interface UiContext {
     UiCheckbox widget = create(UiCheckbox.class);
     widget.setLabel(label);
     widget.setFieldLabel(label);
+    return widget;
+  }
+
+  /**
+   * @param label the {@link UiTextInput#getFieldLabel() label}.
+   * @return the new widget instance.
+   */
+  default UiTextInput createTextInput(String label) {
+
+    UiTextInput widget = create(UiTextInput.class);
+    widget.setFieldLabel(label);
+    // widget.setPlaceholder(label);
+    return widget;
+  }
+
+  /**
+   * @param label the {@link UiPasswordInput#getFieldLabel() label}.
+   * @return the new widget instance.
+   */
+  default UiPasswordInput createPasswordInput(String label) {
+
+    UiPasswordInput widget = create(UiPasswordInput.class);
+    widget.setFieldLabel(label);
+    // widget.setPlaceholder(label);
+    return widget;
+  }
+
+  /**
+   * @param label the {@link UiTextArea#getFieldLabel() label}.
+   * @return the new widget instance.
+   */
+  default UiTextArea createTextArea(String label) {
+
+    UiTextArea widget = create(UiTextArea.class);
+    widget.setFieldLabel(label);
+    // widget.setPlaceholder(label);
     return widget;
   }
 
@@ -104,10 +151,17 @@ public interface UiContext {
   }
 
   /**
-   * @return the {@link UiMainWindow} running this application. It will hold the {@link UiMainWindow#getMenuBar() menu
-   *         bar} and should be the main entry point to your application for end-users.
+   * @param inputs the {@link UiInput} widgets to {@link UiFormPanel#addChild(UiInput) add}.
+   * @return the new widget instance.
    */
-  UiMainWindow getMainWindow();
+  default UiFormPanel createFormPanel(UiInput<?>... inputs) {
+
+    UiFormPanel widget = create(UiFormPanel.class);
+    for (UiInput<?> input : inputs) {
+      widget.addChild(input);
+    }
+    return widget;
+  }
 
   // /**
   // * This method gets the {@link UiDisplay} e.g. to read the current screen resolution.
