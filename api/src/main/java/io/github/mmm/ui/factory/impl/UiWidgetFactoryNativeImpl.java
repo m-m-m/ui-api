@@ -46,10 +46,13 @@ public class UiWidgetFactoryNativeImpl implements UiWidgetFactoryNative {
 
   @SuppressWarnings("unchecked")
   @Override
-  public <W extends UiNativeWidget> W create(Class<W> widgetInterface, UiContext context) {
+  public <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required, UiContext context) {
 
     UiSingleWidgetFactoryNative<?> factory = this.factoryMap.get(widgetInterface);
     if (factory == null) {
+      if (!required) {
+        return null;
+      }
       throw new UnsupportedOperationException(widgetInterface.getName());
     }
     return (W) factory.create(context);

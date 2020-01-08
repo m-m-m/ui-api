@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.input;
 
+import io.github.mmm.ui.datatype.UiFlagMode;
 import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.UiAtomicWidget;
 import io.github.mmm.ui.widget.UiLabel;
@@ -37,6 +38,46 @@ public abstract interface UiInput<V> extends UiValuedWidget<V>, UiActiveWidget, 
    * @return the {@link UiLabel} of this input field.
    */
   UiLabel getFieldLabelWidget();
+
+  /**
+   * @return {@code true} if this input widget is editable (value can be edited by the end-user similar if not
+   *         {@link #isEnabled() enabled} but typically without visual differences such as grayed out), {@code false}
+   *         otherwise.
+   */
+  default boolean isEditable() {
+
+    return isEnabled(UiFlagMode.READ_ONLY);
+  }
+
+  /**
+   * <b>ATTENTION:</b> {@link #isReadOnly() read-only} and {@link #isEditable() editable} are not independent states.
+   * Setting to read-only and then setting to editable can have undesired effects. Therefore avoid to mix using both
+   * states if possible.
+   *
+   * @param editable the new value of {@link #isEditable()}.
+   */
+  default void setEditable(boolean editable) {
+
+    setEnabled(editable, UiFlagMode.READ_ONLY);
+  }
+
+  /**
+   * @return {@code true} if this input widget is read-only (value can not be edited by the user and is displayed as
+   *         view only like a label), {@code false} otherwise.
+   */
+  default boolean isReadOnly() {
+
+    return isEditable();
+  }
+
+  /**
+   * @param readOnly the new value of {@link #isReadOnly()}.
+   * @see #setEditable(boolean)
+   */
+  default void setReadOnly(boolean readOnly) {
+
+    setEditable(readOnly);
+  }
 
   /**
    * @return the validation error text or {@code null} for no error.

@@ -48,4 +48,16 @@ public abstract class FxTextualInput<W extends TextInputControl> extends FxInput
     this.nativeWidget.setText(value);
   }
 
+  @Override
+  public boolean isEditable() {
+
+    return this.nativeWidget.isEditable();
+  }
+
+  @Override
+  public void setEditable(boolean editable) {
+
+    this.nativeWidget.setEditable(editable);
+  }
+
 }

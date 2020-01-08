@@ -18,6 +18,7 @@ import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.widget.panel.UiTabPanel;
 import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 import io.github.mmm.ui.widget.window.UiMainWindow;
+import io.github.mmm.value.ReadableTypedValue;
 
 /**
  * Context and central API of the user-interface (UI). UIs consist of many smaller components that should be easy to
@@ -41,7 +42,63 @@ public interface UiContext {
    *        {@link UiNativeWidget}.class itself.
    * @return the new {@link UiNativeWidget}.
    */
-  <W extends UiNativeWidget> W create(Class<W> widgetInterface);
+  default <W extends UiNativeWidget> W create(Class<W> widgetInterface) {
+
+    return create(widgetInterface, true);
+  }
+
+  /**
+   * @param <W> type of the {@link UiNativeWidget} to create.
+   * @param widgetInterface is the interface reflecting the {@link UiNativeWidget} to create. Shall not be
+   *        {@link UiNativeWidget}.class itself.
+   * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryNative} has to be registered
+   *        for the given {@code widgetInterface}, {@code false} otherwise.
+   * @return the new {@link UiNativeWidget}. May be {@code null} if {@code required} is {@code false}.
+   */
+  <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required);
+
+  /**
+   * @param <V> type of the {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
+   * @param datatype the {@link Class} reflecting the
+   *        {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
+   * @return the {@link UiInput} for the given {@code datatype}.
+   */
+  default <V> UiInput<V> createInput(Class<V> datatype) {
+
+    return createInput(datatype, true);
+  }
+
+  /**
+   * @param <V> type of the {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
+   * @param datatype the {@link Class} reflecting the
+   *        {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
+   * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype} has to be
+   *        registered for the given {@code datatype}, {@code false} otherwise.
+   * @return the {@link UiInput} for the given {@code datatype}. May be {@code null} if {@code required} is
+   *         {@code false}.
+   */
+  <V> UiInput<V> createInput(Class<V> datatype, boolean required);
+
+  /**
+   * @param <V> type of the {@link ReadableTypedValue property}.
+   * @param property the {@link Class} reflecting the {@link ReadableTypedValue property}.
+   * @return the {@link UiInput} for the given {@code property}.
+   */
+  default <V> UiInput<V> createInput(ReadableTypedValue<V> property) {
+
+    return createInput(property, true);
+  }
+
+  /**
+   * @param <V> type of the {@link ReadableTypedValue property}.
+   * @param property the {@link Class} reflecting the {@link ReadableTypedValue property}.
+   * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryProperty} or
+   *        {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype} has to be registered for the given
+   *        {@code property}, {@code false} otherwise.
+   * @return the {@link UiInput} for the given {@code property}. May be {@code null} if {@code required} is
+   *         {@code false}.
+   */
+  <V> UiInput<V> createInput(ReadableTypedValue<V> property, boolean required);
 
   /**
    * Creates a new {@link UiButton}.

@@ -6,6 +6,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.spi.widget.AbstractUiNativeWidgetWrapper;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.custom.UiCustomWidget;
+import javafx.css.PseudoClass;
 import javafx.scene.Node;
 
 /**
@@ -15,6 +16,18 @@ import javafx.scene.Node;
  * @since 1.0.0
  */
 public abstract class FxWidgetObject<W> extends AbstractUiNativeWidgetWrapper<W> {
+
+  /**
+   * {@link PseudoClass} if JavaFx widget gets
+   * {@link io.github.mmm.ui.fx.widget.input.FxInput#setValidationFailure(String) invalid}.
+   */
+  public static final PseudoClass CLASS_INVALID = PseudoClass.getPseudoClass("invalid");
+
+  /**
+   * {@link PseudoClass} if JavaFx widget gets {@link io.github.mmm.ui.fx.widget.input.FxInput#setReadOnly(boolean)
+   * read-only}.
+   */
+  public static final PseudoClass CLASS_READ_ONLY = PseudoClass.getPseudoClass("read-only");
 
   /** @see #getNativeWidget() */
   protected final W nativeWidget;

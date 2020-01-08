@@ -68,7 +68,7 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
 
   /**
    * @return {@code true} if enabled, {@code false} if disabled (end-user cannot interact with this widget or its
-   *         children).
+   *         children and active widgets are visually grayed out).
    */
   default boolean isEnabled() {
 

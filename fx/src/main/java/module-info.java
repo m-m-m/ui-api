@@ -30,6 +30,9 @@ module io.github.mmm.ui.fx {
 
   requires transitive io.github.mmm.ui;
 
+  // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
+  requires transitive io.github.mmm.value;
+
   requires transitive javafx.controls;
 
   requires javafx.web;

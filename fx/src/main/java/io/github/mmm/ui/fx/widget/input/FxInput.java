@@ -13,7 +13,6 @@ import io.github.mmm.ui.widget.input.UiTextInput;
 import io.github.mmm.validation.ValidationResult;
 import io.github.mmm.validation.Validator;
 import javafx.beans.value.ObservableValue;
-import javafx.css.PseudoClass;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 
@@ -25,9 +24,6 @@ import javafx.scene.control.TextField;
  * @since 1.0.0
  */
 public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> implements UiInput<V> {
-
-  /** {@link PseudoClass} if {@link Control} gets invalid. */
-  public static final PseudoClass CLASS_INVALID = PseudoClass.getPseudoClass("invalid");
 
   private String fieldLabel;
 
@@ -84,7 +80,10 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
         this.fieldLabelWidget.setLabel(this.fieldLabel);
       }
       doSetVisibleState(this.fieldLabelWidget, doGetVisibleState(this));
-      doSetEnabledState(this.fieldLabelWidget, doGetEnabledState(this));
+      String id = getId();
+      if (id != null) {
+        this.fieldLabelWidget.setId(id + "_label");
+      }
     }
     return this.fieldLabelWidget;
   }
@@ -99,12 +98,16 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
   }
 
   @Override
-  public void setEnabled(boolean enabled, UiFlagMode flagMode) {
+  public boolean isReadOnly() {
 
-    super.setEnabled(enabled, flagMode);
-    if (this.fieldLabelWidget != null) {
-      this.fieldLabelWidget.setEnabled(enabled, flagMode);
-    }
+    return this.nativeWidget.getPseudoClassStates().contains(CLASS_READ_ONLY) && isEditable();
+  }
+
+  @Override
+  public void setReadOnly(boolean readOnly) {
+
+    setEditable(readOnly);
+    this.nativeWidget.pseudoClassStateChanged(CLASS_READ_ONLY, readOnly);
   }
 
   @Override

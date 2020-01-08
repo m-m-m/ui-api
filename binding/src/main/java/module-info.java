@@ -9,7 +9,7 @@ module io.github.mmm.ui.binding {
 
   requires transitive io.github.mmm.ui;
 
-  requires transitive io.github.mmm.property;
+  requires transitive io.github.mmm.entity.bean;
 
   exports io.github.mmm.ui.binding;
 

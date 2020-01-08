@@ -18,4 +18,11 @@ public interface UiSingleWidgetFactoryNative<W extends UiNativeWidget> extends U
    */
   Class<W> getWidgetInterface();
 
+  /**
+   * @see UiWidgetFactoryNative#create(Class, boolean, UiContext)
+   * @see UiContext#create(Class)
+   */
+  @Override
+  W create(UiContext context);
+
 }

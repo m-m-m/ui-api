@@ -21,5 +21,9 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-validation</artifactId>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-value</artifactId>
+    </dependency>
   </dependencies>
 </project>

@@ -32,6 +32,12 @@ public class UiFlagMode {
    */
   public static final UiFlagMode AUTHORIZATION = new UiFlagMode(8);
 
+  /**
+   * {@link UiFlagMode} for {@link io.github.mmm.ui.widget.input.UiInput#isReadOnly() read-only} if not natively
+   * supported.
+   */
+  public static final UiFlagMode READ_ONLY = new UiFlagMode(4096);
+
   /** {@link UiFlagMode} to {@link #set(long, boolean) set} all flags at once. */
   public static final UiFlagMode ALL = new UiFlagMode(-1);
 

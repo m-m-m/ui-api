@@ -1,3 +1,4 @@
+import io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype;
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 
 /*
@@ -13,6 +14,8 @@ module io.github.mmm.ui {
   requires transitive io.github.mmm.event;
 
   requires transitive io.github.mmm.validation;
+
+  requires transitive io.github.mmm.value;
 
   exports io.github.mmm.ui;
 
@@ -45,4 +48,6 @@ module io.github.mmm.ui {
   exports io.github.mmm.ui.widget.window;
 
   uses UiSingleWidgetFactoryNative;
+
+  uses UiSingleWidgetFactoryDatatype;
 }

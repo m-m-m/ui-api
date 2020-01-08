@@ -7,8 +7,8 @@ import io.github.mmm.ui.factory.impl.UiWidgetFactoryNativeImpl;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
- * Interface for a factory used to {@link #create(Class, UiContext) create} {@link UiNativeWidget native widgets}.
- * API-Users should typically use {@link io.github.mmm.ui.UiContext#create(Class)} instead.
+ * Interface for a factory used to {@link #create(Class, boolean, UiContext) create} {@link UiNativeWidget native
+ * widgets}. API-Users should typically use {@link io.github.mmm.ui.UiContext#create(Class)} instead.
  *
  * @since 1.0.0
  */
@@ -18,10 +18,14 @@ public abstract interface UiWidgetFactoryNative {
    * @param <W> type of the {@link UiNativeWidget} to create.
    * @param widgetInterface is the interface reflecting the {@link UiNativeWidget} to create. Shall not be
    *        {@link UiNativeWidget}.class itself.
+   * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype} has to be
+   *        registered for the given {@code datatype}, {@code false} otherwise.
    * @param context the {@link UiContext}.
    * @return the new {@link UiNativeWidget}.
+   * @see UiContext#create(Class)
+   * @see UiSingleWidgetFactoryNative#create(UiContext)
    */
-  <W extends UiNativeWidget> W create(Class<W> widgetInterface, UiContext context);
+  <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required, UiContext context);
 
   /**
    * @return the instance of this interface.
