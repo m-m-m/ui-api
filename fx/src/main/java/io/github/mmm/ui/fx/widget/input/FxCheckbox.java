@@ -44,15 +44,15 @@ public class FxCheckbox extends FxInput<CheckBox, Boolean> implements UiCheckbox
   }
 
   @Override
-  public boolean isSelected() {
+  public Boolean getValue() {
 
-    return this.nativeWidget.isSelected();
+    return Boolean.valueOf(this.nativeWidget.isSelected());
   }
 
   @Override
-  public void setSelected(boolean selected) {
+  public void setValueNative(Boolean selected) {
 
-    this.nativeWidget.setSelected(selected);
+    this.nativeWidget.setSelected(Boolean.TRUE.equals(selected));
   }
 
 }

@@ -24,15 +24,15 @@ public class FxMenuItemRadioButton extends FxAbstractMenuItem<RadioMenuItem> imp
   }
 
   @Override
-  public boolean isSelected() {
+  public Boolean getValue() {
 
-    return this.nativeWidget.isSelected();
+    return Boolean.valueOf(this.nativeWidget.isSelected());
   }
 
   @Override
-  public void setSelected(boolean checked) {
+  public void setValue(Boolean checked) {
 
-    this.nativeWidget.setSelected(checked);
+    this.nativeWidget.setSelected(Boolean.TRUE.equals(checked));
   }
 
 }

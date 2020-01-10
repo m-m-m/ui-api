@@ -13,8 +13,12 @@ import io.github.mmm.ui.event.UiEventType;
 import io.github.mmm.ui.event.UiHideEvent;
 import io.github.mmm.ui.event.UiShowEvent;
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiComposite;
+import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.ui.widget.window.UiAbstractWindow;
+import io.github.mmm.validation.ValidationResult;
+import io.github.mmm.validation.Validator;
 
 /**
  * Abstract base implementation of {@link UiNativeWidget}.
@@ -32,6 +36,8 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   private long visibleState;
 
   private long enabledState;
+
+  private Boolean readOnlyFixed;
 
   /**
    * The constructor.
@@ -219,6 +225,85 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   protected static final void doSetEnabledState(AbstractUiNativeWidget widget, long state) {
 
     widget.doSetEnabledState(state);
+  }
+
+  @Override
+  public boolean isReadOnly() {
+
+    if (this.readOnlyFixed != null) {
+      return this.readOnlyFixed.booleanValue();
+    }
+    return isReadOnlyNative();
+  }
+
+  /**
+   * @return the native {@link #isReadOnly() read-only mode}.
+   */
+  protected abstract boolean isReadOnlyNative();
+
+  @Override
+  public void setReadOnly(boolean readOnly) {
+
+    if (this.readOnlyFixed == null) {
+      setReadOnlyNative(readOnly);
+      if (this instanceof UiComposite) {
+        UiComposite<?> composite = (UiComposite<?>) this;
+        int childCount = composite.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+          UiWidget child = composite.getChild(i);
+          child.setReadOnly(readOnly);
+        }
+      }
+    }
+  }
+
+  /**
+   * @param readOnly the new value of {@link #isReadOnlyNative()}.
+   */
+  protected abstract void setReadOnlyNative(boolean readOnly);
+
+  @Override
+  public Boolean getReadOnlyFixed() {
+
+    return this.readOnlyFixed;
+  }
+
+  @Override
+  public void setReadOnlyFixed(Boolean readOnlyFixed) {
+
+    this.readOnlyFixed = readOnlyFixed;
+    if (readOnlyFixed != null) {
+      setReadOnlyNative(readOnlyFixed.booleanValue());
+    }
+  }
+
+  @Override
+  public boolean validate() {
+
+    boolean valid = true;
+    if (this instanceof UiValidatableWidget) {
+      validate((UiValidatableWidget<?>) this);
+    }
+    if (this instanceof UiComposite) {
+      UiComposite<?> composite = (UiComposite<?>) this;
+      int childCount = composite.getChildCount();
+      for (int i = 0; i < childCount; i++) {
+        UiWidget child = composite.getChild(i);
+        if (!child.validate()) {
+          valid = false;
+        }
+      }
+    }
+    return valid;
+  }
+
+  private <V> void validate(UiValidatableWidget<V> widget) {
+
+    V value = widget.getValue();
+    Validator<? super V> validator = widget.getValidator();
+    ValidationResult result = validator.validate(value, widget.getId());
+    String validationFailure = result.getLocalizedMessage(this.context.getLocale());
+    widget.setValidationFailure(validationFailure);
   }
 
   @Override

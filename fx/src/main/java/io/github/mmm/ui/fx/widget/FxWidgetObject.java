@@ -62,4 +62,15 @@ public abstract class FxWidgetObject<W> extends AbstractUiNativeWidgetWrapper<W>
     return ((FxWidgetNode<?>) widget).getNativeWidget();
   }
 
+  @Override
+  protected boolean isReadOnlyNative() {
+
+    return true;
+  }
+
+  @Override
+  protected void setReadOnlyNative(boolean readOnly) {
+
+  }
+
 }

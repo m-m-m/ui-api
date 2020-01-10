@@ -42,7 +42,7 @@ public abstract class FxTextualInput<W extends TextInputControl> extends FxInput
   }
 
   @Override
-  public void setValue(String value) {
+  public void setValueNative(String value) {
 
     setProgrammaticEventType(UiValueChangeEvent.TYPE);
     this.nativeWidget.setText(value);
@@ -58,6 +58,18 @@ public abstract class FxTextualInput<W extends TextInputControl> extends FxInput
   public void setEditable(boolean editable) {
 
     this.nativeWidget.setEditable(editable);
+  }
+
+  @Override
+  public String getPlaceholder() {
+
+    return this.nativeWidget.getPromptText();
+  }
+
+  @Override
+  public void setPlaceholder(String placeholder) {
+
+    this.nativeWidget.setPromptText(placeholder);
   }
 
 }

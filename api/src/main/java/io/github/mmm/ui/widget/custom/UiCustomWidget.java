@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiFlagMode;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
@@ -23,7 +22,7 @@ import io.github.mmm.ui.widget.composite.UiComposite;
 public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidget {
 
   /** @see #getDelegate() */
-  private final W delegate;
+  protected final W delegate;
 
   /** @see #initialize() */
   private boolean initialized;
@@ -31,12 +30,11 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   /**
    * The constructor.
    *
-   * @param context is the {@link #getContext() context}.
    * @param delegate is the {@link #getDelegate() delegate}.
    */
-  public UiCustomWidget(UiContext context, W delegate) {
+  public UiCustomWidget(W delegate) {
 
-    super(context);
+    super(delegate.getContext());
     this.delegate = delegate;
   }
 
@@ -59,6 +57,32 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   protected static final <T extends UiWidget> T getDelegate(UiCustomWidget<T> customWidget) {
 
     return customWidget.getDelegate();
+  }
+
+  /**
+   * This method initializes this widget. It is automatically called from {@link #setParent(UiComposite)} so
+   * initialization is performed before the widget is actually attached to the screen for the first time. The first call
+   * of this method delegates to {@link #doInitialize()}. Further calls of this method will have no effect. <br>
+   * <b>ATTENTION:</b><br>
+   * You should not call this method directly unless you are absolutely aware of what you are doing.
+   */
+  protected final void initialize() {
+
+    if (!this.initialized) {
+      doInitialize();
+      this.initialized = true;
+    }
+  }
+
+  /**
+   * This method is called from {@link #initialize()} but only if called for the first time. You may override this
+   * method to add additional initialization logic. Then do not forget the <code>super</code> call. <br>
+   * <b>ATTENTION:</b><br>
+   * Never call this method directly.
+   */
+  protected void doInitialize() {
+
+    // nothing by default...
   }
 
   // --- delegation methods ---
@@ -129,30 +153,28 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
     this.delegate.setId(id);
   }
 
-  /**
-   * This method initializes this widget. It is automatically called from {@link #setParent(UiComposite)} so
-   * initialization is performed before the widget is actually attached to the screen for the first time. The first call
-   * of this method delegates to {@link #doInitialize()}. Further calls of this method will have no effect. <br>
-   * <b>ATTENTION:</b><br>
-   * You should not call this method directly unless you are absolutely aware of what you are doing.
-   */
-  protected final void initialize() {
+  @Override
+  public boolean isReadOnly() {
 
-    if (!this.initialized) {
-      doInitialize();
-      this.initialized = true;
-    }
+    return this.delegate.isReadOnly();
   }
 
-  /**
-   * This method is called from {@link #initialize()} but only if called for the first time. You may override this
-   * method to add additional initialization logic. Then do not forget the <code>super</code> call. <br>
-   * <b>ATTENTION:</b><br>
-   * Never call this method directly.
-   */
-  protected void doInitialize() {
+  @Override
+  public void setReadOnly(boolean readOnly) {
 
-    // nothing by default...
+    this.delegate.setReadOnly(readOnly);
+  }
+
+  @Override
+  public Boolean getReadOnlyFixed() {
+
+    return this.delegate.getReadOnlyFixed();
+  }
+
+  @Override
+  public void setReadOnlyFixed(Boolean readOnlyFixed) {
+
+    this.delegate.setReadOnlyFixed(readOnlyFixed);
   }
 
 }

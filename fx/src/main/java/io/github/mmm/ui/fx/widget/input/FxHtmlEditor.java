@@ -30,16 +30,17 @@ public class FxHtmlEditor extends FxInput<HTMLEditor, String> implements UiHtmlE
   }
 
   @Override
-  public void setValue(String value) {
+  public void setValueNative(String value) {
 
     this.nativeWidget.setHtmlText(value);
   }
 
-  // @Override
-  // public void setEditable(boolean editable) {
+  @Override
+  protected void setReadOnlyNative(boolean readOnly) {
 
-  // TODO not supported by JavaFx
-  // it seems we need to add a parent node as container and switch child between HTMLEditor and WebView
-  // }
+    // not supported by JavaFx
+    // it seems we need to add a parent node as container and switch child between HTMLEditor and WebView
+    super.setReadOnlyNative(readOnly);
+  }
 
 }

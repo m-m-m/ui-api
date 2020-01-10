@@ -10,7 +10,6 @@ import io.github.mmm.ui.fx.widget.FxLabel;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.input.UiTextInput;
-import io.github.mmm.validation.ValidationResult;
 import io.github.mmm.validation.Validator;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Control;
@@ -25,13 +24,17 @@ import javafx.scene.control.TextField;
  */
 public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> implements UiInput<V> {
 
-  private String fieldLabel;
+  private String name;
 
-  private FxLabel fieldLabelWidget;
+  private FxLabel nameWidget;
 
   private String validationFailure;
 
   private Validator<? super V> validator;
+
+  private V originalValue;
+
+  private boolean modified;
 
   /**
    * The constructor.
@@ -46,68 +49,67 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
   }
 
   @Override
-  public String getFieldLabel() {
+  public String getName() {
 
-    if (this.fieldLabelWidget == null) {
-      return this.fieldLabel;
+    if (this.nameWidget == null) {
+      return this.name;
     } else {
-      return this.fieldLabelWidget.getLabel();
+      return this.nameWidget.getLabel();
     }
   }
 
   @Override
-  public void setFieldLabel(String label) {
+  public void setName(String name) {
 
-    if (this.fieldLabelWidget == null) {
-      this.fieldLabel = label;
+    if (this.nameWidget == null) {
+      this.name = name;
     } else {
-      this.fieldLabelWidget.setLabel(label);
+      this.nameWidget.setLabel(name);
     }
   }
 
   @Override
-  public boolean hasFieldLabelWidget() {
+  public boolean hasNameWidget() {
 
-    return (this.fieldLabelWidget != null);
+    return (this.nameWidget != null);
   }
 
   @Override
-  public UiLabel getFieldLabelWidget() {
+  public UiLabel getNameWidget() {
 
-    if (this.fieldLabelWidget == null) {
-      this.fieldLabelWidget = new FxLabel(this.context);
-      if (this.fieldLabel != null) {
-        this.fieldLabelWidget.setLabel(this.fieldLabel);
+    if (this.nameWidget == null) {
+      this.nameWidget = new FxLabel(this.context);
+      if (this.name != null) {
+        this.nameWidget.setLabel(this.name);
       }
-      doSetVisibleState(this.fieldLabelWidget, doGetVisibleState(this));
+      doSetVisibleState(this.nameWidget, doGetVisibleState(this));
       String id = getId();
       if (id != null) {
-        this.fieldLabelWidget.setId(id + "_label");
+        this.nameWidget.setId(id + "_label");
       }
     }
-    return this.fieldLabelWidget;
+    return this.nameWidget;
   }
 
   @Override
   public void setVisible(boolean visible, UiFlagMode flagMode) {
 
     super.setVisible(visible, flagMode);
-    if (this.fieldLabelWidget != null) {
-      this.fieldLabelWidget.setVisible(visible, flagMode);
+    if (this.nameWidget != null) {
+      this.nameWidget.setVisible(visible, flagMode);
     }
   }
 
   @Override
-  public boolean isReadOnly() {
+  public V getOriginalValue() {
 
-    return this.nativeWidget.getPseudoClassStates().contains(CLASS_READ_ONLY) && isEditable();
+    return this.originalValue;
   }
 
   @Override
-  public void setReadOnly(boolean readOnly) {
+  public void setOriginalValue(V originalValue) {
 
-    setEditable(readOnly);
-    this.nativeWidget.pseudoClassStateChanged(CLASS_READ_ONLY, readOnly);
+    this.originalValue = originalValue;
   }
 
   @Override
@@ -146,22 +148,33 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
     }
   }
 
-  /**
-   * Performs a validation and updates the {@link #getValidationFailure() validation failure message}.
-   */
-  public void validate() {
+  @Override
+  public boolean isModified() {
 
-    ValidationResult validationResult = this.validator.validate(getValue());
-    String message = validationResult.getLocalizedMessage();
-    setValidationFailure(message);
+    return this.modified;
   }
 
   @Override
-  protected void onFocusChanged(boolean focusGain) {
+  public void setValue(V value) {
 
-    validate();
-    super.onFocusChanged(focusGain);
+    this.modified = false;
+    setOriginalValue(value);
+    setProgrammaticEventType(UiValueChangeEvent.TYPE);
+    setValueNative(value);
   }
+
+  @Override
+  public void setValueForUser(V value) {
+
+    this.modified = true;
+    setProgrammaticEventType(UiValueChangeEvent.TYPE);
+    setValueNative(value);
+  }
+
+  /**
+   * @param value the new {@link #getValue() value} to set in the native widget.
+   */
+  protected abstract void setValueNative(V value);
 
   /**
    * @param observable the observable (property) that changed.
@@ -170,7 +183,18 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
    */
   protected void onValueChange(ObservableValue<? extends V> observable, V oldValue, V newValue) {
 
-    fireEvent(new UiValueChangeEvent(this, getProgrammaticEventType() == UiValueChangeEvent.TYPE));
+    boolean programmatic = getProgrammaticEventType() == UiValueChangeEvent.TYPE;
+    if (!programmatic) {
+      this.modified = true;
+    }
+    fireEvent(new UiValueChangeEvent(this, programmatic));
+  }
+
+  @Override
+  protected void onFocusChanged(boolean focusGain) {
+
+    validate();
+    super.onFocusChanged(focusGain);
   }
 
 }

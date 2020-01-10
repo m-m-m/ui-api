@@ -5,7 +5,7 @@ package io.github.mmm.ui.fx.widget.panel;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.fx.widget.composite.FxDynamicComposite;
 import io.github.mmm.ui.widget.UiLabel;
-import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 import javafx.scene.layout.VBox;
@@ -15,7 +15,9 @@ import javafx.scene.layout.VBox;
  *
  * @since 1.0.0
  */
-public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiInput<?>> implements UiFormPanel {
+public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiAbstractInput<?>> implements UiFormPanel {
+
+  private String validationFailure;
 
   /**
    * The constructor.
@@ -28,14 +30,14 @@ public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiInput<?>
   }
 
   @Override
-  public void addChild(UiInput<?> child, int index) {
+  public void addChild(UiAbstractInput<?> child, int index) {
 
     int rows = this.children.size();
     if ((index < 0) || (index > rows)) {
       throw new IllegalArgumentException(Integer.toString(index));
     }
     setParent(child, this);
-    UiLabel label = child.getFieldLabelWidget();
+    UiLabel label = child.getNameWidget();
     if (index == rows) {
       this.nativeWidget.addRow(index, getNode(label), getNode(child));
     } else if (index < rows) {
@@ -45,7 +47,7 @@ public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiInput<?>
   }
 
   @Override
-  public boolean removeChild(UiInput<?> child) {
+  public boolean removeChild(UiAbstractInput<?> child) {
 
     int index = this.children.indexOf(child);
     if (index < 0) {
@@ -56,12 +58,31 @@ public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiInput<?>
   }
 
   @Override
-  public UiInput<?> removeChild(int index) {
+  public UiAbstractInput<?> removeChild(int index) {
 
-    UiInput<?> child = this.children.remove(index);
+    UiAbstractInput<?> child = this.children.remove(index);
     this.nativeWidget.removeRow(index);
     setParent(child, null);
     return child;
+  }
+
+  @Override
+  public String getValidationFailure() {
+
+    return this.validationFailure;
+  }
+
+  @Override
+  public void setValidationFailure(String validationFailure) {
+
+    boolean invalid = !isEmpty(validationFailure);
+    if (invalid) {
+      this.validationFailure = validationFailure;
+    } else {
+      this.validationFailure = null;
+    }
+    // TODO apply validationFailure to widget!
+    this.nativeWidget.pseudoClassStateChanged(CLASS_INVALID, invalid);
   }
 
 }

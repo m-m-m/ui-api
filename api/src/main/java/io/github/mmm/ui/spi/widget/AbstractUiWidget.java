@@ -49,4 +49,16 @@ public abstract class AbstractUiWidget extends AbstractEventSource<UiEvent, UiEv
     ((AbstractUiWidget) widget).setParent(parent);
   }
 
+  /**
+   * Null-safe variant of {@link String#isEmpty()} for convenience.
+   *
+   * @param value the {@link String} to check.
+   * @return {@code true} if the given {@link String} is {@code null} or {@link String#isEmpty() empty}, {@code false}
+   *         otherwise.
+   */
+  protected static boolean isEmpty(String value) {
+
+    return (value == null) || value.isEmpty();
+  }
+
 }

@@ -12,7 +12,7 @@ import io.github.mmm.ui.widget.value.UiAbstractRadioButton;
  * <pre>
  * <input type="radio" title="tooltip">Label</input>
  * </pre>
- * 
+ *
  * In most cases you should use {@link UiRadioButtonChoice} instead.
  *
  * @since 1.0.0

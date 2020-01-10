@@ -23,15 +23,18 @@ public enum UiPropagation {
   /** Only {@link io.github.mmm.ui.widget.UiWidget#isEnabled() enabled} property is propagated. */
   ENABLED,
 
-  /** All hierarchical properties are propagated. */
-  ALL;
+  /**
+   * Both {@link io.github.mmm.ui.widget.UiWidget#isVisible() visible} and
+   * {@link io.github.mmm.ui.widget.UiWidget#isEnabled() enabled} are propagated.
+   */
+  VISIBLE_AND_ENABLED;
 
   /**
    * @return {@code true} if visible state is propagated, {@code false} otherwise.
    */
   public boolean isVisible() {
 
-    return (this == VISIBLE) || (this == ALL);
+    return (this == VISIBLE) || (this == VISIBLE_AND_ENABLED);
   }
 
   /**
@@ -39,7 +42,7 @@ public enum UiPropagation {
    */
   public boolean isEnabled() {
 
-    return (this == ENABLED) || (this == ALL);
+    return (this == ENABLED) || (this == VISIBLE_AND_ENABLED);
   }
 
   /**

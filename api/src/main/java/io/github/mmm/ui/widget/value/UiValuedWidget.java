@@ -19,6 +19,8 @@ public interface UiValuedWidget<V> extends UiWidget {
 
   /**
    * @param value the value to set.
+   * @see UiValidatableWidget#getOriginalValue()
+   * @see #isModified()
    */
   void setValue(V value);
 

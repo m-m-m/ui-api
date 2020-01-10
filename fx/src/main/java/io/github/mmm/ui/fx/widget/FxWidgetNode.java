@@ -43,4 +43,16 @@ public abstract class FxWidgetNode<W extends Node> extends FxWidgetStyleable<W> 
     this.nativeWidget.setDisable(!enabled);
   }
 
+  @Override
+  protected boolean isReadOnlyNative() {
+
+    return this.nativeWidget.getPseudoClassStates().contains(CLASS_READ_ONLY);
+  }
+
+  @Override
+  protected void setReadOnlyNative(boolean readOnly) {
+
+    this.nativeWidget.pseudoClassStateChanged(CLASS_READ_ONLY, readOnly);
+  }
+
 }

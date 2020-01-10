@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi;
 
+import java.util.Locale;
+
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.factory.UiWidgetFactoryNative;
@@ -22,6 +24,8 @@ public abstract class AbstractUiContext implements UiContext {
   private final UiWidgetFactoryDatatype datatypeFactory;
 
   private final UiWidgetFactoryProperty propertyFactory;
+
+  private Locale locale;
 
   /**
    * The constructor.
@@ -45,6 +49,24 @@ public abstract class AbstractUiContext implements UiContext {
     this.nativeFactory = nativeFactory;
     this.datatypeFactory = datatypeFactory;
     this.propertyFactory = propertyFactory;
+    this.locale = Locale.getDefault();
+  }
+
+  @Override
+  public Locale getLocale() {
+
+    return this.locale;
+  }
+
+  /**
+   * @param locale new value of {@link #getLocale()}.
+   */
+  public void setLocale(Locale locale) {
+
+    if (locale == null) {
+      locale = Locale.ROOT;
+    }
+    this.locale = locale;
   }
 
   @Override

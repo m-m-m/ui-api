@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui;
 
+import java.util.Locale;
+
 import io.github.mmm.ui.event.UiClickEventListener;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.UiLabel;
@@ -35,6 +37,48 @@ public interface UiContext {
    *         bar} and should be the main entry point to your application for end-users.
    */
   UiMainWindow getMainWindow();
+
+  /**
+   * @return the {@link Locale} of the current user.
+   */
+  Locale getLocale();
+
+  // /**
+  // * This method gets the {@link UiDisplay} e.g. to read the current screen resolution.
+  // *
+  // * @return the {@link UiDisplay}.
+  // */
+  // UiDisplay getDisplay();
+  //
+  // /**
+  // * @return the {@link UiDispatcher}.
+  // */
+  // UiDispatcher getDispatcher();
+
+  // /**
+  // * This method gets the {@link UiWidgetFactory} that is used to create {@link io.github.mmm.ui.widget.UiWidget}s.
+  // *
+  // * @return the {@link UiWidgetFactory}.
+  // */
+  // UiWidgetFactory getWidgetFactory();
+
+  // /**
+  // * @return the instance of {@link UiPopupHelper}.
+  // */
+  // UiPopupHelper getPopupHelper();
+
+  // /**
+  // * This method gets the {@link UiConfiguration} for this factory. It is intended to be read by
+  // * {@link net.sf.mmm.client.ui.api.widget.UiWidget} implementations to configure their look and feel.
+  // *
+  // * @return the {@link UiConfiguration}.
+  // */
+  // UiConfiguration getConfiguration();
+
+  // /**
+  // * @return the instance of {@link RoleFactory}.
+  // */
+  // RoleFactory getRoleFactory();
 
   /**
    * @param <W> type of the {@link UiNativeWidget} to create.
@@ -127,42 +171,42 @@ public interface UiContext {
 
     UiCheckbox widget = create(UiCheckbox.class);
     widget.setLabel(label);
-    widget.setFieldLabel(label);
+    widget.setName(label);
     return widget;
   }
 
   /**
-   * @param label the {@link UiTextInput#getFieldLabel() label}.
+   * @param label the {@link UiTextInput#getName() label}.
    * @return the new widget instance.
    */
   default UiTextInput createTextInput(String label) {
 
     UiTextInput widget = create(UiTextInput.class);
-    widget.setFieldLabel(label);
+    widget.setName(label);
     // widget.setPlaceholder(label);
     return widget;
   }
 
   /**
-   * @param label the {@link UiPasswordInput#getFieldLabel() label}.
+   * @param label the {@link UiPasswordInput#getName() label}.
    * @return the new widget instance.
    */
   default UiPasswordInput createPasswordInput(String label) {
 
     UiPasswordInput widget = create(UiPasswordInput.class);
-    widget.setFieldLabel(label);
+    widget.setName(label);
     // widget.setPlaceholder(label);
     return widget;
   }
 
   /**
-   * @param label the {@link UiTextArea#getFieldLabel() label}.
+   * @param label the {@link UiTextArea#getName() label}.
    * @return the new widget instance.
    */
   default UiTextArea createTextArea(String label) {
 
     UiTextArea widget = create(UiTextArea.class);
-    widget.setFieldLabel(label);
+    widget.setName(label);
     // widget.setPlaceholder(label);
     return widget;
   }
@@ -219,42 +263,5 @@ public interface UiContext {
     }
     return widget;
   }
-
-  // /**
-  // * This method gets the {@link UiDisplay} e.g. to read the current screen resolution.
-  // *
-  // * @return the {@link UiDisplay}.
-  // */
-  // UiDisplay getDisplay();
-  //
-  // /**
-  // * @return the {@link UiDispatcher}.
-  // */
-  // UiDispatcher getDispatcher();
-
-  // /**
-  // * This method gets the {@link UiWidgetFactory} that is used to create {@link io.github.mmm.ui.widget.UiWidget}s.
-  // *
-  // * @return the {@link UiWidgetFactory}.
-  // */
-  // UiWidgetFactory getWidgetFactory();
-
-  // /**
-  // * @return the instance of {@link UiPopupHelper}.
-  // */
-  // UiPopupHelper getPopupHelper();
-
-  // /**
-  // * This method gets the {@link UiConfiguration} for this factory. It is intended to be read by
-  // * {@link net.sf.mmm.client.ui.api.widget.UiWidget} implementations to configure their look and feel.
-  // *
-  // * @return the {@link UiConfiguration}.
-  // */
-  // UiConfiguration getConfiguration();
-
-  // /**
-  // * @return the instance of {@link RoleFactory}.
-  // */
-  // RoleFactory getRoleFactory();
 
 }

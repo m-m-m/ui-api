@@ -4,13 +4,16 @@ package io.github.mmm.ui.binding;
 
 import io.github.mmm.bean.ReadableBean;
 import io.github.mmm.bean.WritableBean;
+import io.github.mmm.bean.property.ReadableBeanProperty;
 import io.github.mmm.entity.id.Id;
 import io.github.mmm.entity.link.Link;
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.property.WritableProperty;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiValueChangeEvent;
+import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiResponsiveColumnPanel;
 import io.github.mmm.validation.Validator;
@@ -29,6 +32,19 @@ public class UiBinding {
     super();
   }
 
+  public <B extends ReadableBean> UiResponsiveColumnPanel/* <B> */ createEditor(B bean, UiContext context) {
+
+    return createEditor(bean, context, 2);
+  }
+
+  public <B extends ReadableBean> UiResponsiveColumnPanel/* <B> */ createEditor(B bean, UiContext context,
+      int columns) {
+
+    UiResponsiveColumnPanel panel = context.create(UiResponsiveColumnPanel.class);
+    bindBean(bean, panel, columns);
+    return panel;
+  }
+
   /**
    * @param bean the {@link ReadableBean} to bind.
    * @param panel the {@link UiResponsiveColumnPanel} where to add the input widgets.
@@ -39,11 +55,14 @@ public class UiBinding {
     UiContext context = panel.getContext();
     UiFormPanel mainForm = null;
     for (ReadableProperty<?> property : bean.getProperties()) {
+      UiAbstractInput<?> input = null;
       Class<?> valueClass = property.getValueClass();
-      if (WritableBean.class.isAssignableFrom(valueClass)) {
-        // TODO
-      } else if (isBindableValueClass(valueClass)) {
-        UiInput<?> input = createByProperty(property, context, bean);
+      if (property instanceof ReadableBeanProperty) {
+        input = createFormGroup((ReadableBeanProperty<?>) property, context);
+      } else if (isBindableValueClass(valueClass)) { // TODO use Predicate
+        input = createInput(property, context, bean);
+      }
+      if (input != null) {
         if (mainForm == null) {
           mainForm = context.createFormPanel();
           panel.addChild(mainForm);
@@ -51,6 +70,22 @@ public class UiBinding {
         mainForm.addChild(input);
       }
     }
+  }
+
+  /**
+   * @param bean
+   * @param context
+   * @return
+   */
+  protected <B extends WritableBean> UiFormGroup<B> createFormGroup(ReadableBeanProperty<B> beanProperty,
+      UiContext context) {
+
+    WritableBean bean = beanProperty.get();
+    if (bean == null) {
+      return null;
+    }
+    UiFormGroup<B> formGroup = null;
+    return formGroup;
   }
 
   /**
@@ -77,7 +112,7 @@ public class UiBinding {
    *        {@link WritableProperty#getName() property name} is not specific enough).
    * @return the {@link UiInput} widget for the given {@link ReadableProperty property}.
    */
-  public <V> UiInput<V> createByProperty(ReadableProperty<V> property, UiContext context, Object source) {
+  public <V> UiInput<V> createInput(ReadableProperty<V> property, UiContext context, Object source) {
 
     UiInput<V> input = context.createInput(property);
     input.setId(createId(property, source));
@@ -98,10 +133,11 @@ public class UiBinding {
     Validator<? super V> validator = property.getMetadata().getValidator();
     input.setValidator(validator);
     String label = localizeLabel(input.getContext(), property, source);
-    input.setFieldLabel(createFieldLabel(label, validator.isMandatory(), property, source));
+    input.setName(createFieldLabel(label, validator.isMandatory(), property, source));
     boolean readOnly = property.isReadOnly();
-    input.setReadOnly(readOnly);
-    if (!readOnly) {
+    if (readOnly) {
+      input.setReadOnlyFixed(Boolean.TRUE);
+    } else {
       final WritableProperty<V> writableProperty = (WritableProperty<V>) property;
       input.addListener((e) -> {
         if (e.getType() == UiValueChangeEvent.TYPE) {

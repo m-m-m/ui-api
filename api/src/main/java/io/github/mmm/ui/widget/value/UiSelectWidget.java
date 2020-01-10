@@ -15,23 +15,17 @@ public abstract interface UiSelectWidget extends UiValuedWidget<Boolean>, UiActi
   /**
    * @return {@code true} if this option is selected (checked or active option), {@code false} otherwise.
    */
-  boolean isSelected();
+  default boolean isSelected() {
+
+    return Boolean.TRUE.equals(getValue());
+  }
 
   /**
    * @param selected the new value of {@link #isSelected()}.
    */
-  void setSelected(boolean selected);
+  default void setSelected(boolean selected) {
 
-  @Override
-  default Boolean getValue() {
-
-    return Boolean.valueOf(isSelected());
-  }
-
-  @Override
-  default void setValue(Boolean value) {
-
-    setSelected(Boolean.TRUE.equals(value));
+    setValue(Boolean.valueOf(selected));
   }
 
 }

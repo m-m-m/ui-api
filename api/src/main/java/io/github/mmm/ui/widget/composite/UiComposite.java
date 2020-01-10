@@ -77,12 +77,52 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
   /**
    * @return the {@link UiPropagation} indicating which properties of this {@link UiComposite} are propagated to the
    *         {@link #getChild(int) children}. A composite might be fully virtual and do not have a corresponding native
-   *         widget. In such case it would return {@link UiPropagation#ALL} and if it get hidden or disabled, it has to
-   *         propagate such state changes to their children.
+   *         widget. In such case it would return {@link UiPropagation#VISIBLE_AND_ENABLED} and if it get hidden or
+   *         disabled, it has to propagate such state changes to their children.
    */
   default UiPropagation getPropagation() {
 
     return UiPropagation.NONE;
+  }
+
+  @Override
+  default boolean setFocused() {
+
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      C child = getChild(i);
+      if (child.setFocused()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  default boolean isValid() {
+
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      C child = getChild(i);
+      if (!child.isValid()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @Override
+  default boolean validate() {
+
+    boolean valid = true;
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      C child = getChild(i);
+      if (!child.validate()) {
+        valid = false;
+      }
+    }
+    return valid;
   }
 
 }

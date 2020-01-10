@@ -2,9 +2,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget;
 
+import io.github.mmm.ui.widget.composite.UiComposite;
+
 /**
- * This is the interface for a {@link UiRegularWidget regular widget} that can be {@link #setFocused() focused} and
- * allows to {@link #setAccessKey(char) assign an access-key}.
+ * {@link UiWidget} that is <em>active</em> so it can be {@link #setFocused() focused} and allows to
+ * {@link #setAccessKey(char) assign an access-key}. If a {@link UiComposite} is active it will delegate focus and
+ * access-key to the first active child.
  *
  * @since 1.0.0
  */
@@ -27,22 +30,5 @@ public interface UiActiveWidget extends UiWidget {
    * @param accessKey is the new value of {@link #getAccessKey()}. Use {@link #ACCESS_KEY_NONE} to unset.
    */
   void setAccessKey(char accessKey);
-
-  /**
-   * @return {@code true} if this widget currently has the focus (the cursor is placed in the widget e.g. a text input
-   *         and it will receive keyboard events), {@code false} otherwise.
-   */
-  boolean isFocused();
-
-  /**
-   * This method sets the {@link #isFocused() focus} to this widget. <br>
-   * <b>NOTE:</b><br>
-   * You can only set the focus. To actually remove it, you need to set it in a different widget.
-   *
-   * @return {@code true} if the focus has been set successfully, {@code false} otherwise. You can normally ignore the
-   *         result. It is only relevant for composite widgets such as panels, that delegate the call recursively and
-   *         may not contain any child that can take the focus.
-   */
-  boolean setFocused();
 
 }

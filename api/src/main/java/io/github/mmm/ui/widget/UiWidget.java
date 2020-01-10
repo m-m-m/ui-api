@@ -134,6 +134,112 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   void setVisible(boolean visible, UiFlagMode flagMode);
 
   /**
+   * @return {@code true} if this input widget is read-only (value can not be edited by the user and is displayed as
+   *         view only like a label), {@code false} otherwise.
+   */
+  default boolean isReadOnly() {
+
+    return true;
+  }
+
+  /**
+   * Switches this widget between view (read-only {@code true}) and edit (read-only {@code false}) mode. This may also
+   * have effects such that a {@link io.github.mmm.ui.widget.panel.UiButtonPanel} is showing a "Save" button only in
+   * edit mode, while it shows a "Edit" button in view mode that switches to edit mode.<br>
+   * A {@link io.github.mmm.ui.widget.composite.UiComposite} will propagate the read-only state to all its children when
+   * this method is called. Please note that several widgets such as {@link UiLabel} are always read-only. In such case
+   * this method will have no effect.
+   *
+   * @param readOnly the new value of {@link #isReadOnly()}.
+   */
+  void setReadOnly(boolean readOnly);
+
+  /**
+   * @return the fixed {@link #isReadOnly() read-only mode} or {@code null} if not fixed.
+   */
+  Boolean getReadOnlyFixed();
+
+  /**
+   * Sets a fixed {@link #isReadOnly() read-only} mode. If not {@code null} the {@link #isReadOnly() read-only mode}
+   * will be set to that value and further invocations of {@link #setReadOnly(boolean)} have no effect unless this
+   * method is called again with a value of {@code null}. Use this method for a widget (e.g. a
+   * {@link io.github.mmm.ui.widget.input.UiInput}) that should always be read-only. Unlike
+   * {@link #setReadOnly(boolean)} this method is not recursive and will not propagate to child widgets.
+   *
+   * @param readOnlyFixed the new value of {@link #getReadOnlyFixed()}. May be {@code null} to reset.
+   */
+  void setReadOnlyFixed(Boolean readOnlyFixed);
+
+  /**
+   * @return {@code true} if this widget is {@link UiActiveWidget active} and currently has the focus (the cursor is
+   *         placed in the widget e.g. a text input and it will receive keyboard events), {@code false} otherwise.
+   */
+  default boolean isFocused() {
+
+    return false;
+  }
+
+  /**
+   * This method sets the {@link #isFocused() focus} to this widget. In case of a
+   * {@link io.github.mmm.ui.widget.composite.UiComposite} it will set the focus to the first child capable of taking
+   * the focus.<br>
+   * <b>NOTE:</b><br>
+   * You can only set the focus. To actually remove it, you need to set it in a different widget.
+   *
+   * @return {@code true} if the focus has been set successfully, {@code false} otherwise. You can normally ignore the
+   *         result. It is only relevant for composite widgets such as panels, that delegate the call recursively and
+   *         may not contain any child that can take the focus.
+   */
+  default boolean setFocused() {
+
+    return false;
+  }
+
+  /**
+   * @return {@code true} if valid (no {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getValidationFailure()
+   *         validation failure} is present), {@code false} otherwise. A
+   *         {@link io.github.mmm.ui.widget.composite.UiComposite} is only valid if all its children are valid
+   *         (recursive check). An {@link UiAtomicWidget atomic widget} that does not implement
+   *         {@link io.github.mmm.ui.widget.value.UiValidatableWidget} will always return {@code true} here.
+   * @see io.github.mmm.ui.widget.value.UiValidatableWidget
+   * @see #validate()
+   */
+  default boolean isValid() {
+
+    return true;
+  }
+
+  /**
+   * Triggers a validation of this widget (including all potential
+   * {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}). This will update the
+   * {@link #isValid() valid state} and {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getValidationFailure()
+   * failure message} of all involved widgets. For an immutable widget (e.g. a {@link UiLabel}) this method will have no
+   * effect and immediately returns {@code true}.
+   *
+   * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
+   *         widget and all its potential {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}
+   *         have been successfully validated, {@code false} otherwise.
+   * @see io.github.mmm.ui.widget.value.UiValidatableWidget
+   * @see #isValid()
+   */
+  boolean validate();
+
+  /**
+   * @return {@code true} if the value has been <em>modified</em> by the end-user via the UI since it has been
+   *         {@link io.github.mmm.ui.widget.value.UiValuedWidget#setValue(Object) set programmatically}, {@code false}
+   *         otherwise. A modified widget is also called <em>dirty</em>. A {@link UiComposite} is modified if one of its
+   *         {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children} are modified. An immutable
+   *         widget (e.g. a {@link UiLabel}) will always return {@code false} here.<br>
+   *         <b>ATTENTION:</b> If the end-user changes value of this widget via the UI then changes it back to its
+   *         {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getOriginalValue() original value} it may still
+   *         remain {@link #isModified() modified}.
+   */
+  default boolean isModified() {
+
+    return false;
+  }
+
+  /**
    * @return the parent of this widget or {@code null} if not attached to the UI or if this is a root widget (e.g.
    *         {@link io.github.mmm.ui.widget.window.UiMainWindow}).
    */

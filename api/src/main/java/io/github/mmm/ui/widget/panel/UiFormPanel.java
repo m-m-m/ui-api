@@ -5,6 +5,8 @@ package io.github.mmm.ui.widget.panel;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.widget.composite.UiFailureComposite;
+import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
 
 /**
@@ -13,6 +15,7 @@ import io.github.mmm.ui.widget.input.UiInput;
  *
  * @since 1.0.0
  */
-public interface UiFormPanel extends UiDynamicComposite<UiInput<?>>, UiRegularWidget, UiNativeWidget {
+public interface UiFormPanel extends UiDynamicComposite<UiAbstractInput<?>>, UiFailureComposite<UiAbstractInput<?>>,
+    UiRegularWidget, UiNativeWidget {
 
 }
