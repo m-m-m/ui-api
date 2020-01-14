@@ -1,5 +1,6 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype;
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.factory.UiSingleWidgetFactoryProperty;
 
 /*
  * Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
@@ -50,4 +51,6 @@ module io.github.mmm.ui {
   uses UiSingleWidgetFactoryNative;
 
   uses UiSingleWidgetFactoryDatatype;
+
+  uses UiSingleWidgetFactoryProperty;
 }

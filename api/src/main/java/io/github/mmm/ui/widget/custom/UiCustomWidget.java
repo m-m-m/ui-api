@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.datatype.UiFlagMode;
+import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
 import io.github.mmm.ui.widget.UiWidget;
@@ -112,25 +112,25 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   }
 
   @Override
-  public boolean isVisible(UiFlagMode flagMode) {
+  public boolean isVisible(BitMask flagMode) {
 
     return this.delegate.isVisible(flagMode);
   }
 
   @Override
-  public void setVisible(boolean visible, UiFlagMode flagMode) {
+  public void setVisible(boolean visible, BitMask flagMode) {
 
     this.delegate.setVisible(visible, flagMode);
   }
 
   @Override
-  public boolean isEnabled(UiFlagMode flagMode) {
+  public boolean isEnabled(BitMask flagMode) {
 
     return this.delegate.isEnabled(flagMode);
   }
 
   @Override
-  public void setEnabled(boolean enabled, UiFlagMode flagMode) {
+  public void setEnabled(boolean enabled, BitMask flagMode) {
 
     this.delegate.setEnabled(enabled, flagMode);
   }

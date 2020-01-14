@@ -23,7 +23,7 @@
   <modules>
     <module>api</module>
     <module>binding</module>
-    <module>fx</module>
+    <module>impl</module>
   </modules>
 
   <dependencyManagement>

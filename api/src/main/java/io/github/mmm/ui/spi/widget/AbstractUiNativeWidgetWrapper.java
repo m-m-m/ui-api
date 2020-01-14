@@ -10,7 +10,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 /**
  * Abstract base implementation of {@link UiNativeWidget} implementing {@link #getStyles()}.
  *
- * @param <W> type of the {@link #getNativeWidget() widget}.
+ * @param <W> type of the {@link #getWidget() widget}.
  * @since 1.0.0
  */
 public abstract class AbstractUiNativeWidgetWrapper<W> extends AbstractUiNativeWidget

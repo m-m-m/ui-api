@@ -14,7 +14,7 @@ You can write portable UI code that can run
 
 * as native JavaFx application
 * as web-app in the browser
-* ...in the future we might implement more alternatives such as SWT
+* ...in the future we might implement more alternatives such as android or SWT
 
 For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui/module-summary.html[documnetation].
 
@@ -76,4 +76,28 @@ Maven Dependency:
 Module Dependency:
 ```java
   requires transitive io.github.mmm.ui.fx;
+```
+
+== mmm-ui-tvm
+
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-tvm.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
+image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui.tvm/module-summary.html"]
+
+The module `mmm-ui-tvm` provides the implementation of the UI API for the web using TeaVM.
+Your code gets compiled to JavaScript that runs in any modern web-browser.
+See the JavaDoc link for further details.
+
+=== Usage
+
+Maven Dependency:
+```xml
+<dependency>
+  <groupId>io.github.m-m-m</groupId>
+  <artifactId>mmm-ui-tvm</artifactId>
+</dependency>
+```
+
+Module Dependency:
+```java
+  requires transitive io.github.mmm.ui.tvm;
 ```

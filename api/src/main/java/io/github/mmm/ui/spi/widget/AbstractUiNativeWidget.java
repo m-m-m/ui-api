@@ -3,7 +3,9 @@
 package io.github.mmm.ui.spi.widget;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiFlagMode;
+import io.github.mmm.ui.datatype.BitFlag;
+import io.github.mmm.ui.datatype.BitMask;
+import io.github.mmm.ui.datatype.BitValueBoolean;
 import io.github.mmm.ui.datatype.UiPropagation;
 import io.github.mmm.ui.event.UiDisableEvent;
 import io.github.mmm.ui.event.UiEnableEvent;
@@ -27,17 +29,21 @@ import io.github.mmm.validation.Validator;
  */
 public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements UiNativeWidget {
 
+  private static final BitFlag READ_ONLY = BitFlag.B00;
+
+  private static final BitValueBoolean READ_ONLY_FIXED = BitValueBoolean.ofBoolean(1);
+
   private UiComposite<?> parent;
 
   private boolean handlersRegistered;
 
   private UiEventType programmaticEventType;
 
-  private long visibleState;
+  private int visibleState;
 
-  private long enabledState;
+  private int enabledState;
 
-  private Boolean readOnlyFixed;
+  private int readOnlyState;
 
   /**
    * The constructor.
@@ -86,9 +92,9 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   @Override
-  public boolean isVisible(UiFlagMode flagMode) {
+  public boolean isVisible(BitMask mask) {
 
-    if (flagMode == null) {
+    if (mask == null) {
       if (this.visibleState != 0) {
         return false;
       }
@@ -98,14 +104,14 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
         return this.parent.isVisible(null);
       }
     }
-    return flagMode.isSet(this.visibleState);
+    return mask.getFlag(this.visibleState);
   }
 
   @Override
-  public void setVisible(boolean visible, UiFlagMode flagMode) {
+  public void setVisible(boolean visible, BitMask mask) {
 
     requireNotDisposed();
-    doSetVisibleState(flagMode.set(this.visibleState, visible));
+    doSetVisibleState(mask.setFlag(this.visibleState, visible));
   }
 
   /**
@@ -116,9 +122,9 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
 
   /**
    * @param widget the {@link AbstractUiNativeWidget}.
-   * @return the internal {@link #isVisible(UiFlagMode) visible state} of the given {@code widget}.
+   * @return the internal {@link #isVisible(BitMask) visible state} of the given {@code widget}.
    */
-  protected static final long doGetVisibleState(AbstractUiNativeWidget widget) {
+  protected static final int doGetVisibleState(AbstractUiNativeWidget widget) {
 
     return widget.visibleState;
   }
@@ -126,7 +132,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   /**
    * @param state new value of {@link #doGetVisibleState(AbstractUiNativeWidget)}.
    */
-  protected final void doSetVisibleState(long state) {
+  protected final void doSetVisibleState(int state) {
 
     if (state == this.visibleState) {
       return;
@@ -151,15 +157,15 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
    * @param widget the {@link AbstractUiNativeWidget}.
    * @param state new value of {@link #doGetVisibleState(AbstractUiNativeWidget)} of the given {@code widget}.
    */
-  protected static final void doSetVisibleState(AbstractUiNativeWidget widget, long state) {
+  protected static final void doSetVisibleState(AbstractUiNativeWidget widget, int state) {
 
     widget.doSetVisibleState(state);
   }
 
   @Override
-  public boolean isEnabled(UiFlagMode flagMode) {
+  public boolean isEnabled(BitMask mask) {
 
-    if (flagMode == null) {
+    if (mask == null) {
       if (this.enabledState != 0) {
         return false;
       }
@@ -169,14 +175,14 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
         return this.parent.isEnabled(null);
       }
     }
-    return flagMode.isSet(this.enabledState);
+    return mask.getFlag(this.enabledState);
   }
 
   @Override
-  public void setEnabled(boolean enabled, UiFlagMode flagMode) {
+  public void setEnabled(boolean enabled, BitMask mask) {
 
     requireNotDisposed();
-    doSetEnabledState(flagMode.set(this.enabledState, enabled));
+    doSetEnabledState(mask.setFlag(this.enabledState, enabled));
   }
 
   /**
@@ -187,9 +193,9 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
 
   /**
    * @param widget the {@link AbstractUiNativeWidget}.
-   * @return the internal {@link #isEnabled(UiFlagMode) enabled state} of the given {@code widget}.
+   * @return the internal {@link #isEnabled(BitMask) enabled state} of the given {@code widget}.
    */
-  protected static final long doGetEnabledState(AbstractUiNativeWidget widget) {
+  protected static final int doGetEnabledState(AbstractUiNativeWidget widget) {
 
     return widget.enabledState;
   }
@@ -197,7 +203,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   /**
    * @param state new value of {@link #doGetEnabledState(AbstractUiNativeWidget)}.
    */
-  protected final void doSetEnabledState(long state) {
+  protected final void doSetEnabledState(int state) {
 
     if (state == this.enabledState) {
       return;
@@ -222,7 +228,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
    * @param widget the {@link AbstractUiNativeWidget}.
    * @param state new value of {@link #doGetEnabledState(AbstractUiNativeWidget)} of the given {@code widget}.
    */
-  protected static final void doSetEnabledState(AbstractUiNativeWidget widget, long state) {
+  protected static final void doSetEnabledState(AbstractUiNativeWidget widget, int state) {
 
     widget.doSetEnabledState(state);
   }
@@ -230,21 +236,23 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   @Override
   public boolean isReadOnly() {
 
-    if (this.readOnlyFixed != null) {
-      return this.readOnlyFixed.booleanValue();
+    Boolean readOnlyFixed = READ_ONLY_FIXED.getBoolean(this.readOnlyState);
+    if (readOnlyFixed != null) {
+      return readOnlyFixed.booleanValue();
     }
-    return isReadOnlyNative();
+    return READ_ONLY.getFlag(this.readOnlyState);
   }
-
-  /**
-   * @return the native {@link #isReadOnly() read-only mode}.
-   */
-  protected abstract boolean isReadOnlyNative();
 
   @Override
   public void setReadOnly(boolean readOnly) {
 
-    if (this.readOnlyFixed == null) {
+    int newReadOnly = READ_ONLY.setFlag(this.readOnlyState, readOnly);
+    if (newReadOnly == this.readOnlyState) {
+      return;
+    }
+    this.readOnlyState = newReadOnly;
+    Boolean readOnlyFixed = READ_ONLY_FIXED.getBoolean(this.readOnlyState);
+    if (readOnlyFixed == null) {
       setReadOnlyNative(readOnly);
       if (this instanceof UiComposite) {
         UiComposite<?> composite = (UiComposite<?>) this;
@@ -258,22 +266,28 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   /**
-   * @param readOnly the new value of {@link #isReadOnlyNative()}.
+   * @param readOnly the new value of {@link #isReadOnly()}.
    */
   protected abstract void setReadOnlyNative(boolean readOnly);
 
   @Override
   public Boolean getReadOnlyFixed() {
 
-    return this.readOnlyFixed;
+    return READ_ONLY_FIXED.getBoolean(this.readOnlyState);
   }
 
   @Override
   public void setReadOnlyFixed(Boolean readOnlyFixed) {
 
-    this.readOnlyFixed = readOnlyFixed;
-    if (readOnlyFixed != null) {
-      setReadOnlyNative(readOnlyFixed.booleanValue());
+    int newState = READ_ONLY_FIXED.setBoolean(this.readOnlyState, readOnlyFixed);
+    if (newState == this.readOnlyState) {
+      return;
+    }
+    boolean oldReadOnly = isReadOnly();
+    this.readOnlyState = newState;
+    boolean newReadOnly = isReadOnly();
+    if (oldReadOnly != newReadOnly) {
+      setReadOnlyNative(newReadOnly);
     }
   }
 
@@ -351,7 +365,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   @Override
   public final boolean isDisposed() {
 
-    return (this.enabledState == -1L);
+    return (this.enabledState == -1);
   }
 
   /**
@@ -373,8 +387,8 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
       return;
     }
     doDispose();
-    this.enabledState = -1L;
-    this.visibleState = -1L;
+    this.enabledState = -1;
+    this.visibleState = -1;
     this.parent = null;
   }
 

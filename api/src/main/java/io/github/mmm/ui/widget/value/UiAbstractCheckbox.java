@@ -3,6 +3,7 @@
 package io.github.mmm.ui.widget.value;
 
 import io.github.mmm.ui.widget.UiLabelledWidget;
+import io.github.mmm.ui.widget.UiSelectWidget;
 import io.github.mmm.ui.widget.input.UiInput;
 
 /**

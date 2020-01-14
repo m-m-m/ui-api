@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui;
 
+import java.util.List;
 import java.util.Locale;
 
 import io.github.mmm.ui.event.UiClickEventListener;
@@ -10,9 +11,12 @@ import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.button.UiButton;
+import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiCheckbox;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.input.UiPasswordInput;
+import io.github.mmm.ui.widget.input.UiRadioButton;
+import io.github.mmm.ui.widget.input.UiRadioChoice;
 import io.github.mmm.ui.widget.input.UiTextArea;
 import io.github.mmm.ui.widget.input.UiTextInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
@@ -79,6 +83,11 @@ public interface UiContext {
   // * @return the instance of {@link RoleFactory}.
   // */
   // RoleFactory getRoleFactory();
+
+  /**
+   * @return a new {@link UiToggleGroup} instance.
+   */
+  UiToggleGroup createToggleGroup();
 
   /**
    * @param <W> type of the {@link UiNativeWidget} to create.
@@ -176,6 +185,63 @@ public interface UiContext {
   }
 
   /**
+   * @param label the {@link UiRadioButton#getLabel() label}.
+   * @return the new widget instance.
+   */
+  default UiRadioButton createRadioButton(String label) {
+
+    UiRadioButton widget = create(UiRadioButton.class);
+    widget.setLabel(label);
+    widget.setName(label);
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @param label the {@link UiRadioChoice#getName() label}.
+   * @param options the {@link UiRadioChoice#setOptions(List) options}.
+   * @return the new widget instance.
+   */
+  @SuppressWarnings("unchecked")
+  default <V> UiRadioChoice<V> createRadioChoice(String label, List<V> options) {
+
+    UiRadioChoice<V> widget = create(UiRadioChoice.class);
+    widget.setName(label);
+    widget.setOptions(options);
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @param label the {@link UiRadioChoice#getName() label}.
+   * @param options the {@link UiRadioChoice#setOptions(Object...) options}.
+   * @return the new widget instance.
+   */
+  @SuppressWarnings("unchecked")
+  default <V> UiRadioChoice<V> createRadioChoice(String label, V... options) {
+
+    UiRadioChoice<V> widget = create(UiRadioChoice.class);
+    widget.setName(label);
+    widget.setOptions(options);
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @param label the {@link UiRadioChoice#getName() label}.
+   * @param enumOptions the {@link Class} reflecting an {@link Enum} defining the options.
+   * @return the new widget instance.
+   */
+  @SuppressWarnings("unchecked")
+  default <V extends Enum<?>> UiRadioChoice<V> createRadioChoiceByEnum(String label, Class<V> enumOptions) {
+
+    UiRadioChoice<V> widget = create(UiRadioChoice.class);
+    widget.setName(label);
+    widget.setOptions(enumOptions.getEnumConstants());
+    return widget;
+  }
+
+  /**
    * @param label the {@link UiTextInput#getName() label}.
    * @return the new widget instance.
    */
@@ -252,13 +318,13 @@ public interface UiContext {
   }
 
   /**
-   * @param inputs the {@link UiInput} widgets to {@link UiFormPanel#addChild(UiInput) add}.
+   * @param inputs the {@link UiInput} widgets to {@link UiFormPanel#addChild(UiAbstractInput) add}.
    * @return the new widget instance.
    */
-  default UiFormPanel createFormPanel(UiInput<?>... inputs) {
+  default UiFormPanel createFormPanel(UiAbstractInput<?>... inputs) {
 
     UiFormPanel widget = create(UiFormPanel.class);
-    for (UiInput<?> input : inputs) {
+    for (UiAbstractInput<?> input : inputs) {
       widget.addChild(input);
     }
     return widget;

@@ -58,17 +58,17 @@ public enum UiPropagation {
     }
     boolean enabled = true;
     if (newPropagation.isEnabled()) {
-      enabled = parent.isEnabled(UiFlagMode.ANY);
+      enabled = parent.isEnabled(UiEnabledFlags.ANY);
     }
     if (isEnabled() || !enabled) {
-      widget.setEnabled(enabled, UiFlagMode.PARENT);
+      widget.setEnabled(enabled, UiEnabledFlags.PARENT);
     }
     boolean visible = true;
     if (newPropagation.isVisible()) {
-      visible = parent.isVisible(UiFlagMode.ANY);
+      visible = parent.isVisible(UiVisibleFlags.ANY);
     }
     if (isVisible() || !visible) {
-      widget.setVisible(visible, UiFlagMode.PARENT);
+      widget.setVisible(visible, UiVisibleFlags.PARENT);
     }
   }
 

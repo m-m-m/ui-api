@@ -4,8 +4,10 @@ package io.github.mmm.ui.widget;
 
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiFlagMode;
+import io.github.mmm.ui.datatype.BitMask;
+import io.github.mmm.ui.datatype.UiEnabledFlags;
 import io.github.mmm.ui.datatype.UiStyles;
+import io.github.mmm.ui.datatype.UiVisibleFlags;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.composite.UiComposite;
@@ -40,9 +42,8 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    * 7.6. It is recommended to use IDs of the form <code>[a-zA-Z][a-zA-Z0-9_$]*</code>. Invalid IDs (e.g. containing
    * colon, hash or period) are not accepted to prevent you from later having problems with CSS selectors.
    *
-   * @see #ID_SEPARATOR
-   *
    * @return the ID of this object.
+   * @see #ID_SEPARATOR
    */
   String getId();
 
@@ -53,6 +54,8 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    * See JavaDoc of {@link #getId()} for the syntax constraints of IDs.
    *
    * @param id is the new {@link #getId() ID} for the object.
+   * @see #getId()
+   * @see #ID_SEPARATOR
    */
   void setId(String id);
 
@@ -76,12 +79,12 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   }
 
   /**
-   * @param flagMode the {@link UiFlagMode} to check the enabled state of. May be {@code null} to check all modes
-   *        including the {@link #getParent() parent} widget.
+   * @param mask the {@link BitMask} to check the enabled state of. See {@link UiEnabledFlags} for available options.
+   *        May be {@code null} to check all modes including the {@link #getParent() parent} widget.
    * @return {@code true} if enabled, {@code false} if disabled (end-user cannot interact with this widget or its
    *         children).
    */
-  boolean isEnabled(UiFlagMode flagMode);
+  boolean isEnabled(BitMask mask);
 
   /**
    * @param enabled the new {@link #isEnabled() enabled state}. Use {@code true} to enable and {@code false} to disable
@@ -89,19 +92,20 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    */
   default void setEnabled(boolean enabled) {
 
-    setEnabled(enabled, UiFlagMode.DEFAULT);
+    setEnabled(enabled, UiEnabledFlags.DEFAULT);
   }
 
   /**
    * @param enabled the new {@link #isEnabled() enabled state}. Use {@code true} to enable and {@code false} to disable
    *        this widget.
-   * @param flagMode the {@link UiFlagMode} to modify.
+   * @param mask the {@link BitMask} to apply. See {@link UiEnabledFlags} for available options.
+   * @see #setEnabled(boolean)
    */
-  void setEnabled(boolean enabled, UiFlagMode flagMode);
+  void setEnabled(boolean enabled, BitMask mask);
 
   /**
    * @return {@code true} if visible, {@code false} if hidden.
-   * @see #isVisible(UiFlagMode)
+   * @see #isVisible(BitMask)
    */
   default boolean isVisible() {
 
@@ -109,11 +113,11 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   }
 
   /**
-   * @param flagMode the {@link UiFlagMode} to check the visibility of. May be {@code null} to check all modes including
-   *        the {@link #getParent() parent} widget.
+   * @param mask the {@link BitMask} to check the visibility of. See {@link UiVisibleFlags} for available options. May
+   *        be {@code null} to check all modes including the {@link #getParent() parent} widget.
    * @return {@code true} if visible, {@code false} if hidden.
    */
-  boolean isVisible(UiFlagMode flagMode);
+  boolean isVisible(BitMask mask);
 
   /**
    * @param visible {@code true} to show this widget (in case its parent is also visible), {@code false} to hide this
@@ -122,16 +126,16 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    */
   default void setVisible(boolean visible) {
 
-    setVisible(visible, UiFlagMode.DEFAULT);
+    setVisible(visible, UiVisibleFlags.DEFAULT);
   }
 
   /**
    * @param visible {@code true} to show this widget (in case its parent is also visible), {@code false} to hide this
    *        widget.
-   * @param flagMode the {@link UiFlagMode} to modify.
+   * @param mask the {@link BitMask} to apply. See {@link UiVisibleFlags} for available options.
    * @see #isVisible()
    */
-  void setVisible(boolean visible, UiFlagMode flagMode);
+  void setVisible(boolean visible, BitMask mask);
 
   /**
    * @return {@code true} if this input widget is read-only (value can not be edited by the user and is displayed as
