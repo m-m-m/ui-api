@@ -14,8 +14,7 @@ import io.github.mmm.value.ReadableTypedValue;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public class UiWidgetFactoryPropertyImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryProperty>
+public class UiWidgetFactoryPropertyImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryProperty<?>>
     implements UiWidgetFactoryProperty {
 
   /** The singleton instance. */
@@ -24,13 +23,15 @@ public class UiWidgetFactoryPropertyImpl extends AbstractUiWidgetFactory<UiSingl
   /**
    * The constructor.
    */
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public UiWidgetFactoryPropertyImpl() {
 
-    super(UiSingleWidgetFactoryProperty.class);
+    super((Class) UiSingleWidgetFactoryProperty.class);
   }
 
   @Override
-  public <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType, boolean required, UiContext context) {
+  public <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType, boolean required,
+      UiContext context) {
 
     return createForType(propertyType, required, context);
   }

@@ -23,8 +23,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public class TvmWidgetFactoryNative extends AbstractUiWidgetFactory<UiSingleWidgetFactoryNative>
+public class TvmWidgetFactoryNative extends AbstractUiWidgetFactory<UiSingleWidgetFactoryNative<?>>
     implements UiWidgetFactoryNative {
 
   /**

@@ -13,8 +13,7 @@ import io.github.mmm.ui.widget.input.UiInput;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public class UiWidgetFactoryDatatypeImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryDatatype>
+public class UiWidgetFactoryDatatypeImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryDatatype<?>>
     implements UiWidgetFactoryDatatype {
 
   /** The singleton instance. */
@@ -23,9 +22,10 @@ public class UiWidgetFactoryDatatypeImpl extends AbstractUiWidgetFactory<UiSingl
   /**
    * The constructor.
    */
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public UiWidgetFactoryDatatypeImpl() {
 
-    super(UiSingleWidgetFactoryDatatype.class);
+    super((Class) UiSingleWidgetFactoryDatatype.class);
   }
 
   @Override

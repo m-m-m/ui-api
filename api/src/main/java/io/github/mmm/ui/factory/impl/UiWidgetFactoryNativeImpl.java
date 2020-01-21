@@ -13,8 +13,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  *
  * @since 1.0.0
  */
-@SuppressWarnings("rawtypes")
-public class UiWidgetFactoryNativeImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryNative>
+public class UiWidgetFactoryNativeImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryNative<?>>
     implements UiWidgetFactoryNative {
 
   /** The singleton instance. */
@@ -23,9 +22,10 @@ public class UiWidgetFactoryNativeImpl extends AbstractUiWidgetFactory<UiSingleW
   /**
    * The constructor.
    */
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public UiWidgetFactoryNativeImpl() {
 
-    super(UiSingleWidgetFactoryNative.class);
+    super((Class) UiSingleWidgetFactoryNative.class);
   }
 
   @Override
