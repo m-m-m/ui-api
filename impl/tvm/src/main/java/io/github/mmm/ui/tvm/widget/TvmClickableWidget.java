@@ -7,26 +7,26 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiClickEvent;
-import io.github.mmm.ui.widget.UiClickableWidget;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithClick;
 
 /**
- * Implementation of {@link io.github.mmm.ui.widget.UiClickableWidget} for TeaVM.
+ * Implementation of {@link io.github.mmm.ui.widget.attribute.UiWidgetWithClick} for TeaVM.
  *
  * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
 public abstract class TvmClickableWidget<W extends HTMLElement> extends TvmActiveWidget<W>
-    implements UiClickableWidget {
+    implements UiWidgetWithClick {
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param nativeWidget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmClickableWidget(UiContext context, W nativeWidget) {
+  public TvmClickableWidget(UiContext context, W widget) {
 
-    super(context, nativeWidget);
+    super(context, widget);
   }
 
   @Override

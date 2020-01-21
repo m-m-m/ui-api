@@ -7,9 +7,9 @@ import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
- * Factory for {@link UiInput} for a single {@link #getProperty() property}.
+ * Factory for {@link UiInput} for a single {@link #getType() property}.
  *
- * @param <V> is the generic type of the {@link #getProperty() property}.
+ * @param <V> is the generic type of the {@link #getType() property}.
  *
  * @since 1.0.0
  */
@@ -18,7 +18,8 @@ public interface UiSingleWidgetFactoryProperty<V> extends UiSingleWidgetFactory<
   /**
    * @return the class reflecting the {@link ReadableTypedValue property}.
    */
-  Class<? extends ReadableTypedValue<V>> getProperty();
+  @Override
+  Class<? extends ReadableTypedValue<V>> getType();
 
   /**
    * @see UiWidgetFactoryDatatype#create(Class, boolean, UiContext)

@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.input.UiPasswordInput;
 public class FxFactoryPasswordInput implements UiSingleWidgetFactoryNative<UiPasswordInput> {
 
   @Override
-  public Class<UiPasswordInput> getWidgetInterface() {
+  public Class<UiPasswordInput> getType() {
 
     return UiPasswordInput.class;
   }

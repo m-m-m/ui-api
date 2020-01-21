@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.menu.UiMenuItemSeparator;
 public class FxFactoryMenuItemSeparator implements UiSingleWidgetFactoryNative<UiMenuItemSeparator> {
 
   @Override
-  public Class<UiMenuItemSeparator> getWidgetInterface() {
+  public Class<UiMenuItemSeparator> getType() {
 
     return UiMenuItemSeparator.class;
   }

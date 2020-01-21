@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.UiLabel;
 public class FxFactoryLabel implements UiSingleWidgetFactoryNative<UiLabel> {
 
   @Override
-  public Class<UiLabel> getWidgetInterface() {
+  public Class<UiLabel> getType() {
 
     return UiLabel.class;
   }

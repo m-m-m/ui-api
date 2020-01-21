@@ -3,9 +3,8 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.JSBody;
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
-import org.teavm.jso.dom.html.HTMLInputElement;
+import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.BitMask;
@@ -23,7 +22,7 @@ import io.github.mmm.validation.Validator;
  * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmInput<V, W extends HTMLInputElement> extends TvmActiveWidget<W> implements UiInput<V> {
+public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget<W> implements UiInput<V> {
 
   private String name;
 
@@ -41,12 +40,11 @@ public abstract class TvmInput<V, W extends HTMLInputElement> extends TvmActiveW
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param type the {@link HTMLInputElement#getType() type} of the input.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmInput(UiContext context, String type) {
+  public TvmInput(UiContext context, W widget) {
 
-    super(context, Window.current().getDocument().createElement("input").cast());
-    this.widget.setType(type);
+    super(context, widget);
   }
 
   @Override
@@ -127,18 +125,6 @@ public abstract class TvmInput<V, W extends HTMLInputElement> extends TvmActiveW
   }
 
   @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    this.widget.setDisabled(!enabled);
-  }
-
-  @Override
-  protected void setReadOnlyNative(boolean readOnly) {
-
-    this.widget.setReadOnly(readOnly);
-  }
-
-  @Override
   public V getOriginalValue() {
 
     return this.originalValue;
@@ -211,6 +197,16 @@ public abstract class TvmInput<V, W extends HTMLInputElement> extends TvmActiveW
   protected abstract void setValueNative(V value);
 
   @Override
+  protected void onFocusGain(Event event) {
+
+    super.onFocusGain(event);
+    if (this.validationFailure != null) {
+      // TODO update tvm version
+      // this.widget.reportValidity();
+    }
+  }
+
+  @Override
   protected void onFocusLoss(Event event) {
 
     validate();
@@ -218,5 +214,5 @@ public abstract class TvmInput<V, W extends HTMLInputElement> extends TvmActiveW
   }
 
   @JSBody(params = { "input", "value" }, script = "input.setCustomValidity(value);")
-  private static native void setCustomValidity(HTMLInputElement input, String value);
+  private static native void setCustomValidity(HTMLElement input, String value);
 }

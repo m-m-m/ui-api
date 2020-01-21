@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.menu.UiMenuItem;
 public class FxFactoryMenuItem implements UiSingleWidgetFactoryNative<UiMenuItem> {
 
   @Override
-  public Class<UiMenuItem> getWidgetInterface() {
+  public Class<UiMenuItem> getType() {
 
     return UiMenuItem.class;
   }

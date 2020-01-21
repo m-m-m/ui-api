@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.window.UiPopup;
 public class FxFactoryPopup implements UiSingleWidgetFactoryNative<UiPopup> {
 
   @Override
-  public Class<UiPopup> getWidgetInterface() {
+  public Class<UiPopup> getType() {
 
     return UiPopup.class;
   }

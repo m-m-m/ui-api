@@ -121,7 +121,11 @@ public abstract class FxAbstractWindow<W extends Stage> extends FxWidgetObject<W
   @Override
   public String getTitle() {
 
-    return this.widget.getTitle();
+    String title = this.widget.getTitle();
+    if (title == null) {
+      title = "";
+    }
+    return title;
   }
 
   @Override
@@ -188,21 +192,26 @@ public abstract class FxAbstractWindow<W extends Stage> extends FxWidgetObject<W
   }
 
   @Override
-  public double getPositionX() {
+  public double getX() {
 
     return this.widget.getX();
   }
 
   @Override
-  public double getPositionY() {
+  public void setX(double x) {
+
+    this.widget.setX(x);
+  }
+
+  @Override
+  public double getY() {
 
     return this.widget.getY();
   }
 
   @Override
-  public void setPosition(double x, double y) {
+  public void setY(double y) {
 
-    this.widget.setX(x);
     this.widget.setY(y);
   }
 

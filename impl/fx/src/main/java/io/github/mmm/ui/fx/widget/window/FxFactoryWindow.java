@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.window.UiWindow;
 public class FxFactoryWindow implements UiSingleWidgetFactoryNative<UiWindow> {
 
   @Override
-  public Class<UiWindow> getWidgetInterface() {
+  public Class<UiWindow> getType() {
 
     return UiWindow.class;
   }

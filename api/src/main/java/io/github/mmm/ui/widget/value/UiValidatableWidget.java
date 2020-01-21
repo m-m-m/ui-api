@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.value;
 
-import io.github.mmm.ui.widget.UiFailureWidget;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.validation.Validator;
 
 /**
@@ -11,7 +11,7 @@ import io.github.mmm.validation.Validator;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract interface UiValidatableWidget<V> extends UiValuedWidget<V>, UiFailureWidget {
+public abstract interface UiValidatableWidget<V> extends UiValuedWidget<V>, UiWidgetWithValidationFailure {
 
   /**
    * Set both the {@link #getValue() value} and the {@link #getOriginalValue() original value} to the given argument.

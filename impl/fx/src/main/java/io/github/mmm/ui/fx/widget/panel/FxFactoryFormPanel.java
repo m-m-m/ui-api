@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.panel.UiFormPanel;
 public class FxFactoryFormPanel implements UiSingleWidgetFactoryNative<UiFormPanel> {
 
   @Override
-  public Class<UiFormPanel> getWidgetInterface() {
+  public Class<UiFormPanel> getType() {
 
     return UiFormPanel.class;
   }

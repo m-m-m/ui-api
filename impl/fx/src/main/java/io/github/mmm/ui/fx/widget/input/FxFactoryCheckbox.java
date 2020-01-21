@@ -15,7 +15,7 @@ import io.github.mmm.ui.widget.input.UiCheckbox;
 public class FxFactoryCheckbox implements UiSingleWidgetFactoryNative<UiCheckbox> {
 
   @Override
-  public Class<UiCheckbox> getWidgetInterface() {
+  public Class<UiCheckbox> getType() {
 
     return UiCheckbox.class;
   }

@@ -20,7 +20,7 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmWidgetHtmlElement(UiContext context, W widget) {
 

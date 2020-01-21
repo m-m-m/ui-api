@@ -10,11 +10,9 @@ import io.github.mmm.ui.widget.input.UiTextualInput;
 /**
  * Implementation of {@link UiTextualInput} using TeaVM.
  *
- * @param <W> type of {@link #getWidget() TeaVM widget}.
  * @since 1.0.0
  */
-public abstract class TvmTextualInput<W extends HTMLInputElement> extends TvmInput<String, W>
-    implements UiTextualInput {
+public abstract class TvmTextualInput extends TvmHtmlInput<String> implements UiTextualInput {
 
   private String placeholder;
 
@@ -27,6 +25,17 @@ public abstract class TvmTextualInput<W extends HTMLInputElement> extends TvmInp
   public TvmTextualInput(UiContext context, String type) {
 
     super(context, type);
+  }
+
+  /**
+   * The constructor.
+   *
+   * @param context the {@link #getContext() context}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
+   */
+  public TvmTextualInput(UiContext context, HTMLInputElement widget) {
+
+    super(context, widget);
   }
 
   @Override

@@ -1,7 +1,8 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget;
+package io.github.mmm.ui.widget.attribute;
 
+import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.value.UiValuedWidget;
 
@@ -10,7 +11,7 @@ import io.github.mmm.ui.widget.value.UiValuedWidget;
  *
  * @since 1.0.0
  */
-public abstract interface UiSelectWidget extends UiValuedWidget<Boolean>, UiActiveWidget {
+public abstract interface UiWidgetWithSelection extends UiValuedWidget<Boolean>, UiActiveWidget {
 
   /**
    * @return {@code true} if this option is selected (checked or active option), {@code false} otherwise.

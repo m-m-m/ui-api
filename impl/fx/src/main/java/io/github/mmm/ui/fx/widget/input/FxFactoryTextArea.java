@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.input.UiTextArea;
 public class FxFactoryTextArea implements UiSingleWidgetFactoryNative<UiTextArea> {
 
   @Override
-  public Class<UiTextArea> getWidgetInterface() {
+  public Class<UiTextArea> getType() {
 
     return UiTextArea.class;
   }

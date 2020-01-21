@@ -20,7 +20,7 @@ public enum UiLengthUnit {
   /** Unit for <em>em</em> meaning a factor relative to the current font-size. */
   EM("em", "font-size");
 
-  /** @see #getValue() */
+  /** @see #getArgb() */
   private final String key;
 
   /** @see #toString() */
@@ -29,7 +29,7 @@ public enum UiLengthUnit {
   /**
    * The constructor.
    *
-   * @param value - see {@link #getValue()}.
+   * @param value - see {@link #getArgb()}.
    * @param title - see {@link #toString()}.
    */
   private UiLengthUnit(String value, String title) {

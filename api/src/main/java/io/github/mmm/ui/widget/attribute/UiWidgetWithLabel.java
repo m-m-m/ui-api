@@ -1,13 +1,15 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget;
+package io.github.mmm.ui.widget.attribute;
+
+import io.github.mmm.ui.widget.UiWidget;
 
 /**
- * {@link UiWidget} that has a label.
+ * {@link UiWidget} that has a {@link #getLabel() label}.
  *
  * @since 1.0.0
  */
-public interface UiLabelledWidget extends UiWidget {
+public interface UiWidgetWithLabel extends UiWidget {
 
   /**
    * @return the label text of this widget. Will be the empty string if no label has been set. A label is some text that

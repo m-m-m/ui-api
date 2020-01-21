@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.button.UiButton;
 public class TvmFactoryButton implements UiSingleWidgetFactoryNative<UiButton> {
 
   @Override
-  public Class<UiButton> getWidgetInterface() {
+  public Class<UiButton> getType() {
 
     return UiButton.class;
   }

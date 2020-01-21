@@ -16,8 +16,8 @@ import io.github.mmm.ui.widget.input.UiInput;
 public abstract interface UiWidgetFactoryDatatype {
 
   /**
-   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
-   * @param datatype is the {@link Class} reflecting the {@link UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
+   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
+   * @param datatype is the {@link Class} reflecting the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
    * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype} has to be
    *        registered for the given {@code datatype}, {@code false} otherwise.
    * @param context the {@link UiContext}.

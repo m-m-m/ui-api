@@ -3,6 +3,7 @@
 package io.github.mmm.ui.widget.input;
 
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.validation.string.ValidatorPasswordConfirmation;
 
 /**
  * {@link UiTextualInput} for a password input.<br>
@@ -15,5 +16,15 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  * @since 1.0.0
  */
 public interface UiPasswordInput extends UiTextualInput, UiNativeWidget {
+
+  /**
+   * @return a new {@link UiPasswordInput} requiring a confirmation of the password.
+   */
+  default UiPasswordInput createConfirmationInput() {
+
+    UiPasswordInput confirmation = getContext().createPasswordInput(getName());
+    confirmation.setValidator(new ValidatorPasswordConfirmation(() -> getValue()));
+    return confirmation;
+  }
 
 }

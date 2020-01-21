@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.composite.UiTab;
 public class FxFactoryTab implements UiSingleWidgetFactoryNative<UiTab> {
 
   @Override
-  public Class<UiTab> getWidgetInterface() {
+  public Class<UiTab> getType() {
 
     return UiTab.class;
   }

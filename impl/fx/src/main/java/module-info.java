@@ -14,9 +14,9 @@ import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemCheckbox;
 import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemRadioButton;
 import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemSeparator;
 import io.github.mmm.ui.fx.widget.panel.FxFactoryFormPanel;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryVerticalPanel;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryTabPanel;
 import io.github.mmm.ui.fx.widget.panel.FxFactoryHorizontalPanel;
+import io.github.mmm.ui.fx.widget.panel.FxFactoryTabPanel;
+import io.github.mmm.ui.fx.widget.panel.FxFactoryVerticalPanel;
 import io.github.mmm.ui.fx.widget.window.FxFactoryPopup;
 import io.github.mmm.ui.fx.widget.window.FxFactoryWindow;
 
@@ -34,6 +34,9 @@ module io.github.mmm.ui.fx {
 
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.value;
+
+  // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
+  requires transitive io.github.mmm.validation.main;
 
   requires transitive javafx.controls;
 

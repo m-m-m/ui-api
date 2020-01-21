@@ -23,7 +23,7 @@ public abstract interface UiMainWindow extends UiAbstractWindow {
 
   /**
    * @return {@code true} if the {@link #setPosition(double, double) position} of {@link UiAbstractWindow windows} is
-   *         absolute (on {@link net.sf.mmm.client.ui.api.UiDisplay}), {@code false} if relative to this main window
+   *         absolute (on {@link UiScreen.sf.mmm.client.ui.api.UiDisplay}), {@code false} if relative to this main window
    *         (MDI mode).
    */
   boolean isWindowPositionAbsolute();

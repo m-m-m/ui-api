@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.menu.UiMenuItemRadioButton;
 public class FxFactoryMenuItemRadioButton implements UiSingleWidgetFactoryNative<UiMenuItemRadioButton> {
 
   @Override
-  public Class<UiMenuItemRadioButton> getWidgetInterface() {
+  public Class<UiMenuItemRadioButton> getType() {
 
     return UiMenuItemRadioButton.class;
   }

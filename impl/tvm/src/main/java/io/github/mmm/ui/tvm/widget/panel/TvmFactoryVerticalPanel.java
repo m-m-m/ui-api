@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 public class TvmFactoryVerticalPanel implements UiSingleWidgetFactoryNative<UiVerticalPanel> {
 
   @Override
-  public Class<UiVerticalPanel> getWidgetInterface() {
+  public Class<UiVerticalPanel> getType() {
 
     return UiVerticalPanel.class;
   }

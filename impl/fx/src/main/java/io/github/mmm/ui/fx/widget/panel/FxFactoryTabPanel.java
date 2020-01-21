@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.panel.UiTabPanel;
 public class FxFactoryTabPanel implements UiSingleWidgetFactoryNative<UiTabPanel> {
 
   @Override
-  public Class<UiTabPanel> getWidgetInterface() {
+  public Class<UiTabPanel> getType() {
 
     return UiTabPanel.class;
   }

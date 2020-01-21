@@ -14,23 +14,31 @@ module io.github.mmm.ui {
 
   requires transitive io.github.mmm.event;
 
-  requires transitive io.github.mmm.validation;
+  requires transitive io.github.mmm.validation.main;
 
   requires transitive io.github.mmm.value;
 
   exports io.github.mmm.ui;
 
+  exports io.github.mmm.ui.attribute;
+
   exports io.github.mmm.ui.datatype;
 
   exports io.github.mmm.ui.event;
+
+  exports io.github.mmm.ui.event.action;
 
   exports io.github.mmm.ui.factory;
 
   exports io.github.mmm.ui.spi;
 
+  exports io.github.mmm.ui.spi.factory;
+
   exports io.github.mmm.ui.spi.widget;
 
   exports io.github.mmm.ui.widget;
+
+  exports io.github.mmm.ui.widget.attribute;
 
   exports io.github.mmm.ui.widget.button;
 
@@ -39,6 +47,8 @@ module io.github.mmm.ui {
   exports io.github.mmm.ui.widget.custom;
 
   exports io.github.mmm.ui.widget.input;
+
+  exports io.github.mmm.ui.widget.media;
 
   exports io.github.mmm.ui.widget.menu;
 

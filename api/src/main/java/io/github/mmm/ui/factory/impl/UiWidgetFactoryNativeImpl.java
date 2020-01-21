@@ -2,60 +2,36 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.factory.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ServiceLoader;
-
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.factory.UiWidgetFactoryNative;
+import io.github.mmm.ui.spi.factory.AbstractUiWidgetFactory;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
  * Implementation of {@link UiWidgetFactoryNative}.
+ *
+ * @since 1.0.0
  */
-public class UiWidgetFactoryNativeImpl implements UiWidgetFactoryNative {
+@SuppressWarnings("rawtypes")
+public class UiWidgetFactoryNativeImpl extends AbstractUiWidgetFactory<UiSingleWidgetFactoryNative>
+    implements UiWidgetFactoryNative {
 
   /** The singleton instance. */
   public static final UiWidgetFactoryNativeImpl INSTANCE = new UiWidgetFactoryNativeImpl();
 
-  private final Map<Class<? extends UiNativeWidget>, UiSingleWidgetFactoryNative<?>> factoryMap;
-
   /**
    * The constructor.
    */
-  @SuppressWarnings("rawtypes")
   public UiWidgetFactoryNativeImpl() {
 
-    super();
-    this.factoryMap = new HashMap<>();
-    ServiceLoader<UiSingleWidgetFactoryNative> serviceLoader = ServiceLoader.load(UiSingleWidgetFactoryNative.class);
-    for (UiSingleWidgetFactoryNative<?> factory : serviceLoader) {
-      registerFactory(factory);
-    }
+    super(UiSingleWidgetFactoryNative.class);
   }
 
-  private void registerFactory(UiSingleWidgetFactoryNative<?> factory) {
-
-    UiSingleWidgetFactoryNative<?> duplicate = this.factoryMap.putIfAbsent(factory.getWidgetInterface(), factory);
-    if (duplicate != null) {
-      throw new IllegalStateException("Duplicate factory " + factory.getClass().getName() + " and "
-          + duplicate.getClass().getName() + " for " + factory.getWidgetInterface().getName());
-    }
-  }
-
-  @SuppressWarnings("unchecked")
   @Override
   public <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required, UiContext context) {
 
-    UiSingleWidgetFactoryNative<?> factory = this.factoryMap.get(widgetInterface);
-    if (factory == null) {
-      if (!required) {
-        return null;
-      }
-      throw new UnsupportedOperationException(widgetInterface.getName());
-    }
-    return (W) factory.create(context);
+    return createForType(widgetInterface, required, context);
   }
 
 }

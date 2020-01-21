@@ -2,8 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.dom.html.HTMLInputElement;
-
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.input.UiTextInput;
 
@@ -12,7 +10,7 @@ import io.github.mmm.ui.widget.input.UiTextInput;
  *
  * @since 1.0.0
  */
-public class TvmTextInput extends TvmTextualInput<HTMLInputElement> implements UiTextInput {
+public class TvmTextInput extends TvmTextualInput implements UiTextInput {
 
   /**
    * The constructor.

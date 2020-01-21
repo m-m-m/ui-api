@@ -56,7 +56,7 @@ public abstract class AbstractUiWidget extends AbstractEventSource<UiEvent, UiEv
    * @return {@code true} if the given {@link String} is {@code null} or {@link String#isEmpty() empty}, {@code false}
    *         otherwise.
    */
-  protected static boolean isEmpty(String value) {
+  public static boolean isEmpty(String value) {
 
     return (value == null) || value.isEmpty();
   }

@@ -4,8 +4,8 @@ package io.github.mmm.ui.widget.menu;
 
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
-import io.github.mmm.ui.widget.UiLabelledWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
@@ -17,7 +17,7 @@ import io.github.mmm.ui.widget.composite.UiDynamicComposite;
  * @since 1.0.0
  */
 public interface UiMenu
-    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, UiLabelledWidget, UiNativeWidget {
+    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, UiWidgetWithLabel, UiNativeWidget {
 
   /**
    * @param label the {@link UiMenuItem#getLabel() label} of the {@link UiMenuItem} to create.

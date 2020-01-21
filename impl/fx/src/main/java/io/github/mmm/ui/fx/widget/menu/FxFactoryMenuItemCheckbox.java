@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.menu.UiMenuItemCheckbox;
 public class FxFactoryMenuItemCheckbox implements UiSingleWidgetFactoryNative<UiMenuItemCheckbox> {
 
   @Override
-  public Class<UiMenuItemCheckbox> getWidgetInterface() {
+  public Class<UiMenuItemCheckbox> getType() {
 
     return UiMenuItemCheckbox.class;
   }

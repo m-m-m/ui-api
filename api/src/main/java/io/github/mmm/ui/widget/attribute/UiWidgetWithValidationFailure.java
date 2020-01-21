@@ -1,13 +1,15 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget;
+package io.github.mmm.ui.widget.attribute;
+
+import io.github.mmm.ui.widget.UiWidget;
 
 /**
  * {@link UiWidget} with {@link #getValidationFailure() validation failure}.
  *
  * @since 1.0.0
  */
-public abstract interface UiFailureWidget extends UiWidget {
+public abstract interface UiWidgetWithValidationFailure extends UiWidget {
 
   @Override
   default boolean isValid() {

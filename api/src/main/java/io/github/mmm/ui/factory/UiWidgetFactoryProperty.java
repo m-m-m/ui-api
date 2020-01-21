@@ -16,8 +16,8 @@ import io.github.mmm.value.ReadableTypedValue;
 public abstract interface UiWidgetFactoryProperty {
 
   /**
-   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getDatatype() datatype}.
-   * @param property is the {@link Class} reflecting the {@link UiSingleWidgetFactoryProperty#getProperty() property}.
+   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
+   * @param propertyType is the {@link Class} reflecting the {@link UiSingleWidgetFactoryProperty#getType() property}.
    * @param required {@code true} if a {@link io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype} has to be
    *        registered for the given {@code datatype}, {@code false} otherwise.
    * @param context the {@link UiContext}.
@@ -25,7 +25,7 @@ public abstract interface UiWidgetFactoryProperty {
    * @see UiContext#createInput(ReadableTypedValue, boolean)
    * @see UiSingleWidgetFactoryProperty#create(UiContext)
    */
-  <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> property, boolean required, UiContext context);
+  <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType, boolean required, UiContext context);
 
   /**
    * @return the instance of this interface.

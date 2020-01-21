@@ -22,4 +22,9 @@ public interface UiSingleWidgetFactory<W extends UiWidget> {
    */
   W create(UiContext context);
 
+  /**
+   * @return the {@link Class} this factory is responsible for.
+   */
+  Class<?> getType();
+
 }

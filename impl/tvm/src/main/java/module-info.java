@@ -1,7 +1,14 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.tvm.widget.TvmFactoryLabel;
 import io.github.mmm.ui.tvm.widget.button.TvmFactoryButton;
 import io.github.mmm.ui.tvm.widget.input.TvmFactoryCheckbox;
+import io.github.mmm.ui.tvm.widget.input.TvmFactoryPasswordInput;
+import io.github.mmm.ui.tvm.widget.input.TvmFactoryRadioButton;
+import io.github.mmm.ui.tvm.widget.input.TvmFactoryTextArea;
 import io.github.mmm.ui.tvm.widget.input.TvmFactoryTextInput;
+import io.github.mmm.ui.tvm.widget.media.TvmFactoryAudioPlayer;
+import io.github.mmm.ui.tvm.widget.media.TvmFactoryMediaPlayer;
+import io.github.mmm.ui.tvm.widget.media.TvmFactoryVideoPlayer;
 import io.github.mmm.ui.tvm.widget.panel.TvmFactoryVerticalPanel;
 
 /*
@@ -19,28 +26,35 @@ module io.github.mmm.ui.tvm {
   // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
   requires transitive io.github.mmm.value;
 
+  // TODO bug in JPMS or Eclipse as this is already a transitive dependency of ui
+  requires transitive io.github.mmm.validation;
+
   requires teavm.jso;
 
   requires teavm.jso.apis;
 
   provides UiSingleWidgetFactoryNative with //
+      TvmFactoryAudioPlayer, //
       TvmFactoryButton, //
       TvmFactoryCheckbox, //
       // TvmFactoryFormPanel, //
-      // TvmFactoryLabel, //
+      TvmFactoryLabel, //
       // TvmFactoryHorizontalPanel, //
+      TvmFactoryMediaPlayer, //
       // TvmFactoryMenu, //
       // TvmFactoryMenuItem, //
       // TvmFactoryMenuItemCheckbox, //
       // TvmFactoryMenuItemRadioButton, //
       // TvmFactoryMenuItemSeparator, //
-      // TvmFactoryPasswordInput, //
+      TvmFactoryPasswordInput, //
       // TvmFactoryPopup, //
+      TvmFactoryRadioButton, //
       // TvmFactoryTab, //
       // TvmFactoryTabPanel, //
       TvmFactoryTextInput, //
-      // TvmFactoryTextArea, //
-      TvmFactoryVerticalPanel //
+      TvmFactoryTextArea, //
+      TvmFactoryVerticalPanel, //
+      TvmFactoryVideoPlayer //
   // TvmFactoryWindow
   ;
 

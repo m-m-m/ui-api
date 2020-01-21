@@ -11,18 +11,29 @@ import io.github.mmm.ui.UiToggleGroup;
  */
 public class TvmToggleGroup implements UiToggleGroup {
 
+  private static int counter = 1;
+
+  private final String name;
+
   /**
    * The constructor.
    */
   public TvmToggleGroup() {
 
     super();
+    this.name = "radio" + counter++;
   }
 
   @Override
-  public Object getGroup() {
+  public String getGroup() {
 
-    return this;
+    return this.name;
+  }
+
+  @Override
+  public String toString() {
+
+    return this.name;
   }
 
 }

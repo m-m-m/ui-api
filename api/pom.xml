@@ -19,7 +19,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-validation</artifactId>
+      <artifactId>mmm-validation-main</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

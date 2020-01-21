@@ -25,7 +25,7 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmWidgetJsObject(UiContext context, W widget) {
 
@@ -48,6 +48,18 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   @Override
   protected void setReadOnlyNative(boolean readOnly) {
 
+  }
+
+  /**
+   * @param node the {@link Node} to remove all children from.
+   */
+  protected static void removeAllChildren(Node node) {
+
+    Node firstChild = node.getFirstChild();
+    while (firstChild != null) {
+      node.removeChild(firstChild);
+      firstChild = node.getFirstChild();
+    }
   }
 
   /**

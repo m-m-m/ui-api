@@ -51,6 +51,7 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
     this.body = widget.getDocument().getBody();
     this.content = new TvmVerticalPanel(context);
     this.body.appendChild(this.content.getTopWidget());
+    this.title = "";
   }
 
   @Override
@@ -68,26 +69,35 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   @Override
   public void setTitle(String title) {
 
+    if (title == null) {
+      title = "";
+    }
     this.title = title;
     this.widget.getDocument().getHead().setTitle(title);
   }
 
   @Override
-  public double getPositionX() {
+  public double getX() {
 
     return this.widget.getScreenX();
   }
 
   @Override
-  public double getPositionY() {
+  public double getY() {
 
     return this.widget.getScreenY();
   }
 
   @Override
-  public void setPosition(double x, double y) {
+  public void setX(double x) {
 
-    // not supported
+    // moving browser window is not supported
+  }
+
+  @Override
+  public void setY(double y) {
+
+    // moving browser window is not supported
   }
 
   @Override

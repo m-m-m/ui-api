@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.input.UiTextInput;
 public class TvmFactoryTextInput implements UiSingleWidgetFactoryNative<UiTextInput> {
 
   @Override
-  public Class<UiTextInput> getWidgetInterface() {
+  public Class<UiTextInput> getType() {
 
     return UiTextInput.class;
   }

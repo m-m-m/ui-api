@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
 public class FxFactoryHorizontalPanel implements UiSingleWidgetFactoryNative<UiHorizontalPanel> {
 
   @Override
-  public Class<UiHorizontalPanel> getWidgetInterface() {
+  public Class<UiHorizontalPanel> getType() {
 
     return UiHorizontalPanel.class;
   }

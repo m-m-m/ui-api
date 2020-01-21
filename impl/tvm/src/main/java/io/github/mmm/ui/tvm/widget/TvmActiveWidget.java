@@ -25,11 +25,11 @@ public abstract class TvmActiveWidget<W extends HTMLElement> extends TvmWidgetHt
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param nativeWidget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmActiveWidget(UiContext context, W nativeWidget) {
+  public TvmActiveWidget(UiContext context, W widget) {
 
-    super(context, nativeWidget);
+    super(context, widget);
     this.accessKey = ACCESS_KEY_NONE;
   }
 

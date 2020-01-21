@@ -4,18 +4,17 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.input.UiCheckbox;
 
 /**
- * {@link UiSingleWidgetFactoryNative} for {@link UiButton}.
+ * {@link UiSingleWidgetFactoryNative} for {@link UiCheckbox}.
  *
  * @since 1.0.0
  */
 public class TvmFactoryCheckbox implements UiSingleWidgetFactoryNative<UiCheckbox> {
 
   @Override
-  public Class<UiCheckbox> getWidgetInterface() {
+  public Class<UiCheckbox> getType() {
 
     return UiCheckbox.class;
   }

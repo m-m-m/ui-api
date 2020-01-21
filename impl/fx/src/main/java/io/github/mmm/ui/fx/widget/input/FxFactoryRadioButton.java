@@ -14,7 +14,7 @@ import io.github.mmm.ui.widget.input.UiRadioButton;
 public class FxFactoryRadioButton implements UiSingleWidgetFactoryNative<UiRadioButton> {
 
   @Override
-  public Class<UiRadioButton> getWidgetInterface() {
+  public Class<UiRadioButton> getType() {
 
     return UiRadioButton.class;
   }

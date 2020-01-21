@@ -15,7 +15,7 @@ import io.github.mmm.ui.widget.input.UiRadioChoice;
 public class FxFactoryRadioChoice implements UiSingleWidgetFactoryNative<UiRadioChoice> {
 
   @Override
-  public Class<UiRadioChoice> getWidgetInterface() {
+  public Class<UiRadioChoice> getType() {
 
     return UiRadioChoice.class;
   }
