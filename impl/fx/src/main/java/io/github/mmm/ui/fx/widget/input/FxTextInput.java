@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
  *
  * @since 1.0.0
  */
-public class FxTextInput extends FxTextualInput<TextField> implements UiTextInput {
+public class FxTextInput extends FxStringInput<TextField> implements UiTextInput {
 
   /**
    * The constructor.

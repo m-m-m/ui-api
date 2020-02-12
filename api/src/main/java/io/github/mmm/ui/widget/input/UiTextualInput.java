@@ -6,24 +6,24 @@ import io.github.mmm.ui.widget.UiRegularWidget;
 
 /**
  * Abstract {@link UiRegularWidget} for textual input.
+ *
+ * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
+ * @since 1.0.0
  */
-public abstract interface UiTextualInput extends UiInput<String> {
+public abstract interface UiTextualInput<V> extends UiInput<V> {
 
-  // /**
-  // * @return {@code true} if this input widget is editable (value can be edited by the end-user similar if not
-  // * {@link #isEnabled() enabled} but typically without visual differences such as grayed out), {@code false}
-  // * otherwise.
-  // */
-  // boolean isEditable();
-  //
-  // /**
-  // * <b>ATTENTION:</b> {@link #isReadOnly() read-only} and {@link #isEditable() editable} are not independent states.
-  // * Setting to read-only and then setting to editable can have undesired effects. Therefore avoid to mix using both
-  // * states if possible.
-  // *
-  // * @param editable the new value of {@link #isEditable()}.
-  // */
-  // void setEditable(boolean editable);
+  /**
+   * @return the plain text entered by the end-user. Most likely the same as {@link #getValue() value} but if the value
+   *         type is not {@link String} (e.g. for {@link UiComboBox}) this gives direct access to the {@link String} as
+   *         entered by the end-user (even in case it is not a valid option). This can be useful in a combo-box in case
+   *         {@link #getValue() value} is undefined to accept the text as a new option (e.g. for a tag).
+   */
+  String getText();
+
+  /**
+   * @param text the raw {@link #getText() text} to enter into this widget.
+   */
+  void setText(String text);
 
   /**
    * @return the placeholder text that is displayed if the input text field is blank. Will be the empty string if not

@@ -6,13 +6,11 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiClickEvent;
 import io.github.mmm.ui.fx.widget.FxWidgetStyleable;
 import io.github.mmm.ui.widget.menu.UiAbstractActiveMenuItem;
-import io.github.mmm.ui.widget.menu.UiMenuItem;
 import io.github.mmm.ui.widget.menu.UiMenuItemSeparator;
-import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
 
 /**
- * Implementation of {@link UiMenuItem} using JavaFx {@link MenuItem}.
+ * Implementation of {@link UiAbstractActiveMenuItem} using JavaFx {@link MenuItem}.
  *
  * @param <W> type of {@link #getWidget() JavaFx widget}.
  * @since 1.0.0
@@ -38,11 +36,6 @@ public abstract class FxAbstractMenuItem<W extends MenuItem> extends FxWidgetSty
     if (!(this instanceof UiMenuItemSeparator)) {
       this.widget.setOnAction(this::onAction);
     }
-  }
-
-  private void onAction(ActionEvent event) {
-
-    fireEvent(new UiClickEvent(this, false));
   }
 
   @Override

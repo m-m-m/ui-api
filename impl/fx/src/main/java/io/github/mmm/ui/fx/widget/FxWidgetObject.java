@@ -3,10 +3,18 @@
 package io.github.mmm.ui.fx.widget;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.event.UiClickEvent;
+import io.github.mmm.ui.event.UiEvent;
+import io.github.mmm.ui.event.UiFocusGainEvent;
+import io.github.mmm.ui.event.UiFocusLossEvent;
+import io.github.mmm.ui.event.UiHideEvent;
+import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.spi.widget.AbstractUiNativeWidgetWrapper;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.custom.UiCustomWidget;
+import javafx.beans.value.ObservableValue;
 import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
 /**
@@ -65,6 +73,72 @@ public abstract class FxWidgetObject<W> extends AbstractUiNativeWidgetWrapper<W>
   @Override
   protected void setReadOnlyNative(boolean readOnly) {
 
+  }
+
+  /**
+   * @param event the {@link ActionEvent}.
+   */
+  protected void onAction(ActionEvent event) {
+
+    fireEvent(new UiClickEvent(this, false));
+  }
+
+  /**
+   * @param observable the observable (property) that changed.
+   * @param oldValue the old value.
+   * @param newValue the new value.
+   */
+  protected void onFocusChange(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+    onFocusChanged(Boolean.TRUE.equals(newValue));
+  }
+
+  /**
+   * @param focusGain {@code true} if the focus was gained, {@code false} otherwise (focus has been lost).
+   */
+  protected void onFocusChanged(boolean focusGain) {
+
+    UiEvent event;
+    if (focusGain) {
+      event = UiFocusGainEvent.of(this, getProgrammaticEventType());
+    } else {
+      event = UiFocusLossEvent.of(this, getProgrammaticEventType());
+      validate();
+    }
+    fireEvent(event);
+  }
+
+  /**
+   * @param <V> type of the value.
+   * @param observable the observable (property) that changed.
+   * @param oldValue the old value.
+   * @param newValue the new value.
+   */
+  protected <V> void onValueChange(ObservableValue<? extends V> observable, V oldValue, V newValue) {
+
+    boolean programmatic = getProgrammaticEventType() == UiValueChangeEvent.TYPE;
+    if (!programmatic) {
+      onValueChangedByUser();
+    }
+    fireEvent(new UiValueChangeEvent(this, programmatic));
+  }
+
+  /**
+   * Called from {@link #onValueChange(ObservableValue, Object, Object)} if triggered by end-user.
+   */
+  protected void onValueChangedByUser() {
+
+  }
+
+  /**
+   * @param observable the observable (property) that changed.
+   * @param oldValue the old value.
+   * @param newValue the new value.
+   */
+  protected void onClose(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+    boolean programmatic = getProgrammaticEventType() == UiHideEvent.TYPE;
+    fireEvent(new UiHideEvent(this, programmatic));
   }
 
 }

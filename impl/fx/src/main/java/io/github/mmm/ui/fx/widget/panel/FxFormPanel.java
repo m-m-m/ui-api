@@ -78,11 +78,12 @@ public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiAbstract
     boolean invalid = !isEmpty(validationFailure);
     if (invalid) {
       this.validationFailure = validationFailure;
+      getStyles().add(STYLE_INVALID);
     } else {
       this.validationFailure = null;
+      getStyles().remove(STYLE_INVALID);
     }
     // TODO apply validationFailure to widget!
-    this.widget.pseudoClassStateChanged(CLASS_INVALID, invalid);
   }
 
 }

@@ -10,7 +10,7 @@ import io.github.mmm.ui.widget.input.UiTextInput;
  *
  * @since 1.0.0
  */
-public class TvmTextInput extends TvmTextualInput implements UiTextInput {
+public class TvmTextInput extends TvmStringInput implements UiTextInput {
 
   /**
    * The constructor.

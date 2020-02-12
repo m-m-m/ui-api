@@ -323,15 +323,24 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   @Override
   public void addListener(UiEventListener listener, boolean weak) {
 
-    if (!this.handlersRegistered) {
-      registerHandlers();
-      this.handlersRegistered = true;
-    }
+    ensureHandlers();
     super.addListener(listener, weak);
   }
 
   /**
-   * Registers the according handlers to the underlying native widget.
+   * Ensures that the event handlers (adapters) are {@link #registerHandlers() registered}.
+   */
+  protected void ensureHandlers() {
+
+    if (!this.handlersRegistered) {
+      registerHandlers();
+      this.handlersRegistered = true;
+    }
+  }
+
+  /**
+   * Registers the according handlers to the underlying native widget. Never call manually, only via
+   * {@link #ensureHandlers()}.
    */
   protected void registerHandlers() {
 

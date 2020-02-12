@@ -28,12 +28,6 @@ public abstract class FxClickableWidget<W extends Control> extends FxActiveWidge
   }
 
   @Override
-  protected void registerHandlers() {
-
-    super.registerHandlers();
-  }
-
-  @Override
   public void click() {
 
     fireEvent(new UiClickEvent(this, true));

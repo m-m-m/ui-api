@@ -1,6 +1,7 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.tvm.widget.TvmFactoryLabel;
 import io.github.mmm.ui.tvm.widget.button.TvmFactoryButton;
+import io.github.mmm.ui.tvm.widget.composite.TvmFactoryTab;
 import io.github.mmm.ui.tvm.widget.input.TvmFactoryCheckbox;
 import io.github.mmm.ui.tvm.widget.input.TvmFactoryPasswordInput;
 import io.github.mmm.ui.tvm.widget.input.TvmFactoryRadioButton;
@@ -9,6 +10,11 @@ import io.github.mmm.ui.tvm.widget.input.TvmFactoryTextInput;
 import io.github.mmm.ui.tvm.widget.media.TvmFactoryAudioPlayer;
 import io.github.mmm.ui.tvm.widget.media.TvmFactoryMediaPlayer;
 import io.github.mmm.ui.tvm.widget.media.TvmFactoryVideoPlayer;
+import io.github.mmm.ui.tvm.widget.menu.TvmFactoryMenu;
+import io.github.mmm.ui.tvm.widget.menu.TvmFactoryMenuItem;
+import io.github.mmm.ui.tvm.widget.panel.TvmFactoryFormPanel;
+import io.github.mmm.ui.tvm.widget.panel.TvmFactoryHorizontalPanel;
+import io.github.mmm.ui.tvm.widget.panel.TvmFactoryTabPanel;
 import io.github.mmm.ui.tvm.widget.panel.TvmFactoryVerticalPanel;
 
 /*
@@ -37,20 +43,20 @@ module io.github.mmm.ui.tvm {
       TvmFactoryAudioPlayer, //
       TvmFactoryButton, //
       TvmFactoryCheckbox, //
-      // TvmFactoryFormPanel, //
+      TvmFactoryFormPanel, //
       TvmFactoryLabel, //
-      // TvmFactoryHorizontalPanel, //
+      TvmFactoryHorizontalPanel, //
       TvmFactoryMediaPlayer, //
-      // TvmFactoryMenu, //
-      // TvmFactoryMenuItem, //
+      TvmFactoryMenu, //
+      TvmFactoryMenuItem, //
       // TvmFactoryMenuItemCheckbox, //
       // TvmFactoryMenuItemRadioButton, //
       // TvmFactoryMenuItemSeparator, //
       TvmFactoryPasswordInput, //
       // TvmFactoryPopup, //
       TvmFactoryRadioButton, //
-      // TvmFactoryTab, //
-      // TvmFactoryTabPanel, //
+      TvmFactoryTab, //
+      TvmFactoryTabPanel, //
       TvmFactoryTextInput, //
       TvmFactoryTextArea, //
       TvmFactoryVerticalPanel, //

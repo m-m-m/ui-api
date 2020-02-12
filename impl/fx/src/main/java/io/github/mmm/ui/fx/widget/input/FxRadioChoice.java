@@ -30,7 +30,7 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
 
   private final HBox topWidget;
 
-  private final List<RadioButton> buttons;
+  private final List<RadioButton> radios;
 
   private List<V> options;
 
@@ -49,16 +49,23 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
     this.widget.setText("uninitialized");
     this.topWidget = new HBox();
     this.topWidget.getChildren().add(this.widget);
-    this.buttons = new ArrayList<>();
-    this.buttons.add(this.widget);
+    this.radios = new ArrayList<>();
+    this.radios.add(this.widget);
     this.options = Collections.emptyList();
     this.formatter = ToStringFormatter.get();
   }
 
   @Override
+  protected void registerHandlers() {
+
+    super.registerHandlers();
+    this.group.selectedToggleProperty().addListener(this::onValueChange);
+  }
+
+  @Override
   protected void setEnabledNative(boolean enabled) {
 
-    for (RadioButton rb : this.buttons) {
+    for (RadioButton rb : this.radios) {
       rb.setDisable(!enabled);
     }
   }
@@ -79,14 +86,14 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
     int optionCount = options.size();
     ensureRadioButtonCount(optionCount);
     ObservableList<Node> children = this.topWidget.getChildren();
-    List<RadioButton> rbs = this.buttons;
-    if (optionCount < this.buttons.size()) {
-      rbs = this.buttons.subList(0, optionCount);
+    List<RadioButton> rbs = this.radios;
+    if (optionCount < this.radios.size()) {
+      rbs = this.radios.subList(0, optionCount);
     }
     children.setAll(rbs);
     for (int i = 0; i < optionCount; i++) {
       V option = options.get(i);
-      RadioButton rb = this.buttons.get(i);
+      RadioButton rb = this.radios.get(i);
       rb.setUserData(option);
       rb.setText(this.formatter.apply(option));
     }
@@ -94,10 +101,11 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
 
   private void ensureRadioButtonCount(int count) {
 
-    for (int i = this.buttons.size(); i < count; i++) {
+    for (int i = this.radios.size(); i < count; i++) {
       RadioButton rb = new RadioButton();
       rb.setToggleGroup(this.group);
-      this.buttons.add(rb);
+      rb.focusedProperty().addListener(this::onFocusChange);
+      this.radios.add(rb);
     }
   }
 
@@ -115,7 +123,7 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
     int size = this.options.size();
     for (int i = 0; i < size; i++) {
       if (this.options.get(i) == value) {
-        this.buttons.get(i).setSelected(true);
+        this.radios.get(i).setSelected(true);
       }
     }
   }
@@ -140,13 +148,6 @@ public class FxRadioChoice<V> extends FxInput<RadioButton, V> implements UiRadio
   public Node getTopWidget() {
 
     return this.topWidget;
-  }
-
-  @Override
-  protected void registerHandlers() {
-
-    super.registerHandlers();
-    this.widget.setOnAction(this::onAction);
   }
 
 }

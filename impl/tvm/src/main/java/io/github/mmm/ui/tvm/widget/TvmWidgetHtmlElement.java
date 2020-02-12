@@ -77,7 +77,12 @@ public abstract class TvmWidgetHtmlElement<W extends HTMLElement> extends TvmWid
 
   protected void setTextContent(String text) {
 
+    setTextContent(this.widget, text);
+  }
+
+  protected static void setTextContent(HTMLElement element, String text) {
+
     // TODO: Workaround for #455/#456
-    this.widget.appendChild(this.widget.getOwnerDocument().createTextNode(text));
+    element.appendChild(element.getOwnerDocument().createTextNode(text));
   }
 }

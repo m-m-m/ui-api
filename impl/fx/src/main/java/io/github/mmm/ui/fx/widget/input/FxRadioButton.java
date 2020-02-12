@@ -31,7 +31,7 @@ public class FxRadioButton extends FxInput<RadioButton, Boolean> implements UiRa
   protected void registerHandlers() {
 
     super.registerHandlers();
-
+    this.widget.selectedProperty().addListener(this::onValueChange);
     this.widget.setOnAction(this::onAction);
   }
 

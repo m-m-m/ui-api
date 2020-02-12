@@ -3,29 +3,27 @@
 package io.github.mmm.ui.tvm.widget.input;
 
 import org.teavm.jso.browser.Window;
-import org.teavm.jso.dom.html.HTMLInputElement;
+import org.teavm.jso.dom.html.HTMLSelectElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.input.UiInput;
 
 /**
- * Implementation of {@link UiInput} using TeaVM based on {@link HTMLInputElement}.
+ * Implementation of {@link UiInput} using TeaVM based on {@link HTMLSelectElement}.
  *
  * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
+public abstract class TvmHtmlSelect<V> extends TvmInput<V, HTMLSelectElement> {
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param type the {@link HTMLInputElement#getType() type} of the input.
    */
-  public TvmHtmlInput(UiContext context, String type) {
+  public TvmHtmlSelect(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("input").cast());
-    this.widget.setType(type);
+    super(context, Window.current().getDocument().createElement("select").cast());
   }
 
   /**
@@ -34,7 +32,7 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
    * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmHtmlInput(UiContext context, HTMLInputElement widget) {
+  public TvmHtmlSelect(UiContext context, HTMLSelectElement widget) {
 
     super(context, widget);
   }

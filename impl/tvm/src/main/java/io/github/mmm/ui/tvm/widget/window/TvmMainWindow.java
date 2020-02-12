@@ -9,6 +9,7 @@ import org.teavm.jso.dom.html.HTMLBodyElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiLength;
+import io.github.mmm.ui.tvm.widget.menu.TvmMenuBar;
 import io.github.mmm.ui.tvm.widget.panel.TvmVerticalPanel;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
@@ -24,6 +25,8 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   private final HTMLBodyElement body;
 
   private final TvmVerticalPanel content;
+
+  private TvmMenuBar menuBar;
 
   private String id;
 
@@ -240,8 +243,11 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
   @Override
   public UiMenuBar getMenuBar() {
 
-    // TODO Auto-generated method stub
-    return null;
+    if (this.menuBar == null) {
+      this.menuBar = new TvmMenuBar(this.context);
+      insertFirst(this.body, this.menuBar.getTopWidget());
+    }
+    return this.menuBar;
   }
 
   @Override

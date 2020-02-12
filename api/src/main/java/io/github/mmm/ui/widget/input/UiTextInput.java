@@ -5,13 +5,13 @@ package io.github.mmm.ui.widget.input;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
- * {@link UiTextualInput} for a single-line text input. <br>
+ * {@link UiStringInput} for a single-line text input. <br>
  * Example:
- * 
+ *
  * <pre>
  * <input type="text" placeholder="placeholder" title="tooltip"/>
  * </pre>
  */
-public interface UiTextInput extends UiTextualInput, UiNativeWidget {
+public interface UiTextInput extends UiStringInput, UiNativeWidget {
 
 }

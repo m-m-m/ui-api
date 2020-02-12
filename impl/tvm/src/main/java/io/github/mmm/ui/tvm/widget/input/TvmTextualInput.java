@@ -10,9 +10,10 @@ import io.github.mmm.ui.widget.input.UiTextualInput;
 /**
  * Implementation of {@link UiTextualInput} using TeaVM.
  *
+ * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmTextualInput extends TvmHtmlInput<String> implements UiTextualInput {
+public abstract class TvmTextualInput<V> extends TvmHtmlInput<V> implements UiTextualInput<V> {
 
   private String placeholder;
 
@@ -39,13 +40,13 @@ public abstract class TvmTextualInput extends TvmHtmlInput<String> implements Ui
   }
 
   @Override
-  public String getValue() {
+  public String getText() {
 
     return this.widget.getValue();
   }
 
   @Override
-  protected void setValueNative(String value) {
+  public void setText(String value) {
 
     this.widget.setValue(value);
   }

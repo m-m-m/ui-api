@@ -28,6 +28,7 @@ public class FxCheckbox extends FxInput<CheckBox, Boolean> implements UiCheckbox
   protected void registerHandlers() {
 
     super.registerHandlers();
+    this.widget.selectedProperty().addListener(this::onValueChange);
     this.widget.setOnAction(this::onAction);
   }
 

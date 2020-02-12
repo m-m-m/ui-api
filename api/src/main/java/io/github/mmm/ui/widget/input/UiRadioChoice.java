@@ -22,7 +22,10 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  * a reasonable initial value as default. However, it is often better to force the end-user to make his choice. As
  * {@code null} is not a good choice in most cases you typically want to
  * {@link #setValidator(io.github.mmm.validation.Validator) set a validator} that is
- * {@link io.github.mmm.validation.Validator#isMandatory() mandatory} then.
+ * {@link io.github.mmm.validation.Validator#isMandatory() mandatory} then. <br>
+ * <b>NOTICE:</b> Depending on the implementation you may receive a focus loss event immediately followed by a focus
+ * gain event in case the end-user changes focus from one option to another. However, other implementations may not send
+ * events in this case.
  *
  * @param <V> type of the {@link #getValue() value} and {@link #getOptions() option}.
  * @since 1.0.0

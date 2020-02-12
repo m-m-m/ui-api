@@ -6,6 +6,7 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 
 /**
@@ -13,16 +14,16 @@ import io.github.mmm.ui.widget.panel.UiVerticalPanel;
  *
  * @since 1.0.0
  */
-public class TvmVerticalPanel extends TvmDynamicPanel<HTMLElement> implements UiVerticalPanel {
+public class TvmHorizontalPanel extends TvmDynamicPanel<HTMLElement> implements UiHorizontalPanel {
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
    */
-  public TvmVerticalPanel(UiContext context) {
+  public TvmHorizontalPanel(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("ui-vpanel"));
+    super(context, Window.current().getDocument().createElement("ui-hpanel"));
   }
 
   /**
@@ -31,7 +32,7 @@ public class TvmVerticalPanel extends TvmDynamicPanel<HTMLElement> implements Ui
    * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() JavaFx widget}.
    */
-  public TvmVerticalPanel(UiContext context, HTMLElement widget) {
+  public TvmHorizontalPanel(UiContext context, HTMLElement widget) {
 
     super(context, widget);
   }

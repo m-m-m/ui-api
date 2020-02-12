@@ -4,14 +4,13 @@ package io.github.mmm.ui.tvm.widget.input;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.input.UiPasswordInput;
-import io.github.mmm.ui.widget.input.UiTextInput;
 
 /**
- * Implementation of {@link UiTextInput} using TeaVM.
+ * Implementation of {@link UiPasswordInput} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmPasswordInput extends TvmTextualInput implements UiPasswordInput {
+public class TvmPasswordInput extends TvmStringInput implements UiPasswordInput {
 
   /**
    * The constructor.

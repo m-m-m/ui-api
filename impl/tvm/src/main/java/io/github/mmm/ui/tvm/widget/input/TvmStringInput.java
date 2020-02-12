@@ -2,19 +2,17 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.ui.widget.input.UiStringInput;
 
 /**
- * Implementation of {@link UiInput} using TeaVM based on {@link HTMLInputElement}.
+ * Implementation of {@link UiStringInput} using TeaVM.
  *
- * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
+public abstract class TvmStringInput extends TvmTextualInput<String> implements UiStringInput {
 
   /**
    * The constructor.
@@ -22,10 +20,9 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
    * @param context the {@link #getContext() context}.
    * @param type the {@link HTMLInputElement#getType() type} of the input.
    */
-  public TvmHtmlInput(UiContext context, String type) {
+  public TvmStringInput(UiContext context, String type) {
 
-    super(context, Window.current().getDocument().createElement("input").cast());
-    this.widget.setType(type);
+    super(context, type);
   }
 
   /**
@@ -34,15 +31,21 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
    * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmHtmlInput(UiContext context, HTMLInputElement widget) {
+  public TvmStringInput(UiContext context, HTMLInputElement widget) {
 
     super(context, widget);
   }
 
   @Override
-  protected void setEnabledNative(boolean enabled) {
+  public String getValue() {
 
-    this.widget.setDisabled(!enabled);
+    return this.widget.getValue();
+  }
+
+  @Override
+  protected void setValueNative(String value) {
+
+    this.widget.setValue(value);
   }
 
 }

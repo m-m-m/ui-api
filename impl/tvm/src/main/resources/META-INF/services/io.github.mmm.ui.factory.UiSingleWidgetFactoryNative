@@ -1,4 +1,13 @@
-TvmFactoryButton
-TvmFactoryCheckbox
-TvmFactoryTextInput
-TvmFactoryVerticalPanel
+io.github.mmm.ui.tvm.widget.button.TvmFactoryButton
+io.github.mmm.ui.tvm.widget.composite.TvmFactoryTab
+io.github.mmm.ui.tvm.widget.input.TvmFactoryCheckbox
+io.github.mmm.ui.tvm.widget.input.TvmFactoryTextInput
+io.github.mmm.ui.tvm.widget.input.TvmFactoryComboBoxDataList
+io.github.mmm.ui.tvm.widget.input.TvmFactoryRadioButton
+io.github.mmm.ui.tvm.widget.input.TvmFactoryRadioChoice
+io.github.mmm.ui.tvm.widget.menu.TvmFactoryMenu
+io.github.mmm.ui.tvm.widget.menu.TvmFactoryMenuItem
+io.github.mmm.ui.tvm.widget.panel.TvmFactoryFormPanel
+io.github.mmm.ui.tvm.widget.panel.TvmFactoryHorizontalPanel
+io.github.mmm.ui.tvm.widget.panel.TvmFactoryTabPanel
+io.github.mmm.ui.tvm.widget.panel.TvmFactoryVerticalPanel

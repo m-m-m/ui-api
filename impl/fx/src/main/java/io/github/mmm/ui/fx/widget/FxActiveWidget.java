@@ -3,13 +3,8 @@
 package io.github.mmm.ui.fx.widget;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiClickEvent;
-import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiFocusGainEvent;
-import io.github.mmm.ui.event.UiFocusLossEvent;
 import io.github.mmm.ui.widget.UiActiveWidget;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Control;
 
 /**
@@ -36,33 +31,6 @@ public abstract class FxActiveWidget<W extends Control> extends FxWidgetControl<
 
     super.registerHandlers();
     this.widget.focusedProperty().addListener(this::onFocusChange);
-  }
-
-  private void onFocusChange(ObservableValue<? extends Boolean> property, Boolean oldValue, Boolean newValue) {
-
-    onFocusChanged(Boolean.TRUE.equals(newValue));
-  }
-
-  /**
-   * @param event the {@link ActionEvent}.
-   */
-  protected void onAction(ActionEvent event) {
-
-    fireEvent(new UiClickEvent(this, false));
-  }
-
-  /**
-   * @param focusGain {@code true} if the focus was gained, {@code false} otherwise (focus has been lost).
-   */
-  protected void onFocusChanged(boolean focusGain) {
-
-    UiEvent event;
-    if (focusGain) {
-      event = UiFocusGainEvent.of(this, getProgrammaticEventType());
-    } else {
-      event = UiFocusLossEvent.of(this, getProgrammaticEventType());
-    }
-    fireEvent(event);
   }
 
   @Override

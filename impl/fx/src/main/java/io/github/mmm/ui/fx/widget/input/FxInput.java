@@ -10,7 +10,6 @@ import io.github.mmm.ui.fx.widget.FxLabel;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Control;
 
 /**
@@ -174,27 +173,11 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
    */
   protected abstract void setValueNative(V value);
 
-  /**
-   * @param observable the observable (property) that changed.
-   * @param oldValue the old value.
-   * @param newValue the new value.
-   */
-  protected void onValueChange(ObservableValue<? extends V> observable, V oldValue, V newValue) {
-
-    boolean programmatic = getProgrammaticEventType() == UiValueChangeEvent.TYPE;
-    if (!programmatic) {
-      this.modified = true;
-    }
-    fireEvent(new UiValueChangeEvent(this, programmatic));
-  }
-
   @Override
-  protected void onFocusChanged(boolean focusGain) {
+  protected void onValueChangedByUser() {
 
-    if (!focusGain) {
-      validate();
-    }
-    super.onFocusChanged(focusGain);
+    super.onValueChangedByUser();
+    this.modified = true;
   }
 
 }

@@ -11,7 +11,7 @@ import javafx.scene.control.TextArea;
  *
  * @since 1.0.0
  */
-public class FxTextArea extends FxTextualInput<TextArea> implements UiTextArea {
+public class FxTextArea extends FxStringInput<TextArea> implements UiTextArea {
 
   /**
    * The constructor.

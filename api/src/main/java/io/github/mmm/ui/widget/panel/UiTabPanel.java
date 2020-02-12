@@ -20,7 +20,10 @@ import io.github.mmm.ui.widget.composite.UiTab;
 public interface UiTabPanel extends UiSwitchComposite<UiTab>, UiRegularWidget, UiNativeWidget {
 
   /**
-   * Adds the given {@link UiRegularWidget} as new tab (and the end of all existing tabs).
+   * Adds the given {@link UiRegularWidget} as new tab (and the end of all existing tabs).<br>
+   * <b>IMPORTANT:</b> In case you {@link UiTab#setClosable(boolean) make} the {@link UiTab} {@link UiTab#isClosable()
+   * closable}, it will remove itself as {@link #getChild(int) child} from this {@link UiTabPanel} when the end-user
+   * closes it.
    *
    * @param child is the {@link UiRegularWidget} to add.
    * @param label is the label that will be displayed to identify the tab.

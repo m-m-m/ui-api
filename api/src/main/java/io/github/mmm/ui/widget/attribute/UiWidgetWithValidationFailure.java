@@ -11,6 +11,9 @@ import io.github.mmm.ui.widget.UiWidget;
  */
 public abstract interface UiWidgetWithValidationFailure extends UiWidget {
 
+  /** Custom style to mark entire panels as invalid that have no {@code invalid} pseudo-class. */
+  String STYLE_INVALID = "invalid";
+
   @Override
   default boolean isValid() {
 

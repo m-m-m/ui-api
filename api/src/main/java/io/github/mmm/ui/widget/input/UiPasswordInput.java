@@ -6,7 +6,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.validation.string.ValidatorPasswordConfirmation;
 
 /**
- * {@link UiTextualInput} for a password input.<br>
+ * {@link UiStringInput} for a password input.<br>
  * Example:
  *
  * <pre>
@@ -15,7 +15,7 @@ import io.github.mmm.validation.string.ValidatorPasswordConfirmation;
  *
  * @since 1.0.0
  */
-public interface UiPasswordInput extends UiTextualInput, UiNativeWidget {
+public interface UiPasswordInput extends UiStringInput, UiNativeWidget {
 
   /**
    * @return a new {@link UiPasswordInput} requiring a confirmation of the password.

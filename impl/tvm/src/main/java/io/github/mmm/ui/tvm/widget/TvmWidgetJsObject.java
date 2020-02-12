@@ -74,4 +74,45 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     return ((TvmWidgetHtmlElement<?>) uiWidget).getTopWidget();
   }
 
+  /**
+   * @param parent the parent {@link Node}.
+   * @param child the child {@link Node} to insert as first child.
+   */
+  protected static void insertFirst(Node parent, Node child) {
+
+    Node firstChild = parent.getFirstChild();
+    if (firstChild == null) {
+      parent.appendChild(child);
+    } else {
+      parent.insertBefore(child, firstChild);
+    }
+  }
+
+  /**
+   * @param parent the parent {@link Node}.
+   * @param child the child {@link Node} to insert as child at the given index.
+   * @param index the position to insert the {@code child} at.
+   */
+  protected static void insertAt(Node parent, Node child, int index) {
+
+    if (index == 0) {
+      insertFirst(parent, child);
+    }
+    int i = 0;
+    Node node = parent.getFirstChild();
+    while ((node != null) && (i < index)) {
+      node = node.getNextSibling();
+      i++;
+    }
+    if (node == null) {
+      if (i == index) {
+        parent.appendChild(child);
+      } else {
+        throw new IndexOutOfBoundsException(index);
+      }
+    } else {
+      parent.insertBefore(child, node);
+    }
+  }
+
 }

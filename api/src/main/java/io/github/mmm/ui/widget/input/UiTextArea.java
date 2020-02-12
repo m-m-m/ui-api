@@ -5,13 +5,13 @@ package io.github.mmm.ui.widget.input;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
- * {@link UiTextualInput} for a multi-line text area.<br>
+ * {@link UiStringInput} for a multi-line text area.<br>
  * Example:
  *
  * <pre>
  * <textarea placeholder="placeholder"></textarea>
  * </pre>
  */
-public interface UiTextArea extends UiTextualInput, UiNativeWidget {
+public interface UiTextArea extends UiStringInput, UiNativeWidget {
 
 }

@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
  *
  * @since 1.0.0
  */
-public class FxPasswordInput extends FxTextualInput<PasswordField> implements UiPasswordInput {
+public class FxPasswordInput extends FxStringInput<PasswordField> implements UiPasswordInput {
 
   /**
    * The constructor.

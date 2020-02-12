@@ -6,7 +6,10 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.fx.widget.FxWidgetStyleable;
 import io.github.mmm.ui.fx.widget.panel.FxTabPanel;
 import io.github.mmm.ui.widget.UiRegularWidget;
+import io.github.mmm.ui.widget.composite.UiComposite;
 import io.github.mmm.ui.widget.composite.UiTab;
+import io.github.mmm.ui.widget.panel.UiTabPanel;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Tab;
 
 /**
@@ -36,10 +39,34 @@ public class FxTab extends FxWidgetStyleable<Tab> implements UiTab {
   }
 
   @Override
+  protected void registerHandlers() {
+
+    super.registerHandlers();
+    this.widget.closableProperty().addListener(this::onClose);
+  }
+
+  @Override
+  protected void onClose(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+    super.onClose(observable, oldValue, newValue);
+    UiComposite<?> parent = getParent();
+    if (parent != null) {
+      ((UiTabPanel) parent).removeChild(this);
+    }
+  }
+
+  @Override
   public void setChild(UiRegularWidget child) {
 
+    if (child == this.child) {
+      return;
+    }
+    if (this.child != null) {
+      setParent(this.child, null);
+    }
     this.widget.setContent(getTopNode(child));
     this.child = child;
+    setParent(child, this);
   }
 
   @Override
@@ -119,6 +146,9 @@ public class FxTab extends FxWidgetStyleable<Tab> implements UiTab {
   public void setClosable(boolean closable) {
 
     this.widget.setClosable(closable);
+    if (closable) {
+      ensureHandlers();
+    }
   }
 
   /**

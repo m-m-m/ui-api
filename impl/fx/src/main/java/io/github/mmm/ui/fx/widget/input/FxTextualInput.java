@@ -3,19 +3,18 @@
 package io.github.mmm.ui.fx.widget.input;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiValueChangeEvent;
-import io.github.mmm.ui.widget.input.UiTextInput;
 import io.github.mmm.ui.widget.input.UiTextualInput;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 
 /**
- * Implementation of {@link UiTextInput} using JavaFx {@link TextField}.
+ * Implementation of {@link UiTextualInput} using JavaFx {@link TextField}.
  *
  * @param <W> type of {@link #getWidget() JavaFx widget}.
+ * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class FxTextualInput<W extends TextInputControl> extends FxInput<W, String> implements UiTextualInput {
+public abstract class FxTextualInput<W extends TextInputControl, V> extends FxInput<W, V> implements UiTextualInput<V> {
 
   /**
    * The constructor.
@@ -26,26 +25,6 @@ public abstract class FxTextualInput<W extends TextInputControl> extends FxInput
   public FxTextualInput(UiContext context, W nativeWidget) {
 
     super(context, nativeWidget);
-  }
-
-  @Override
-  protected void registerHandlers() {
-
-    super.registerHandlers();
-    this.widget.textProperty().addListener(this::onValueChange);
-  }
-
-  @Override
-  public String getValue() {
-
-    return this.widget.getText();
-  }
-
-  @Override
-  public void setValueNative(String value) {
-
-    setProgrammaticEventType(UiValueChangeEvent.TYPE);
-    this.widget.setText(value);
   }
 
   @Override
