@@ -9,6 +9,7 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiEnabledFlags;
+import io.github.mmm.ui.datatype.UiVisibleFlags;
 import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.tvm.widget.composite.TvmTab;
 import io.github.mmm.ui.widget.composite.UiTab;
@@ -45,20 +46,55 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
     switch (keyEvent.getKeyCode()) {
       case 37: // arrow left
       case 38: // arrow up
-        int previous = this.selectedTabIndex - 1;
-        if (previous < 0) {
-          previous = this.children.size() - 1;
-        }
-        setActiveChildIndex(previous);
+        selectPreviousTab();
         break;
       case 39: // arrow right
       case 40: // arrow down
-        int next = this.selectedTabIndex + 1;
-        if (next >= this.children.size()) {
-          next = 0;
-        }
-        setActiveChildIndex(next);
+        selectNextTab();
         break;
+    }
+  }
+
+  /**
+   * Selects the next {@link UiTab}.
+   */
+  public void selectNextTab() {
+
+    selectTab(true);
+  }
+
+  /**
+   * Selects the previous {@link UiTab}.
+   */
+  public void selectPreviousTab() {
+
+    selectTab(false);
+  }
+
+  private void selectTab(boolean next) {
+
+    int tabIndex = this.selectedTabIndex;
+    int size = this.children.size();
+    while (true) {
+      if (next) {
+        tabIndex++;
+        if (tabIndex >= size) {
+          tabIndex = 0;
+        }
+      } else {
+        tabIndex--;
+        if (tabIndex < 0) {
+          tabIndex = size - 1;
+        }
+      }
+      if (tabIndex == this.selectedTabIndex) {
+        return; // no other (visible) tab
+      }
+      UiTab tab = this.children.get(tabIndex);
+      if (tab.isVisible(UiVisibleFlags.ALL)) {
+        setActiveChild(tab, tabIndex);
+        return;
+      }
     }
   }
 
@@ -71,9 +107,14 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
   @Override
   public void addChild(UiTab child, int index) {
 
+    int size = this.children.size();
     super.addChild(child, index);
     TvmTab tab = (TvmTab) child;
     this.topWidget.appendChild(tab.getSectionWidget());
+    if (size == 0) {
+      tab.setSelected(true, false);
+      this.selectedTabIndex = index; // = 0
+    }
   }
 
   @Override
@@ -127,13 +168,15 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
 
   private void setActiveChild(UiTab tab, int index) {
 
+    if (this.selectedTabIndex == index) {
+      return;
+    }
     UiTab previousTab = getChild(this.selectedTabIndex);
     if (previousTab != null) {
-      ((TvmTab) tab).setSelected(false);
+      ((TvmTab) previousTab).setSelected(false);
     }
     this.selectedTabIndex = index;
     ((TvmTab) tab).setSelected(true);
-    UiTabPanel.super.setActiveChildIndex(index);
   }
 
   @Override

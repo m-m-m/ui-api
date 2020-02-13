@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
@@ -19,6 +18,8 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiW
 
   private final HTMLElement topWidget;
 
+  private final HTMLElement labelWidget;
+
   private String label;
 
   /**
@@ -30,9 +31,18 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiW
   public TvmLabelledInput(UiContext context, String type) {
 
     super(context, type);
-    this.topWidget = Window.current().getDocument().createElement("label");
+    this.topWidget = newDiv();
+    this.labelWidget = newLabel();
     this.topWidget.appendChild(this.widget);
+    this.topWidget.appendChild(this.labelWidget);
     this.label = "";
+  }
+
+  @Override
+  public void setId(String id) {
+
+    super.setId(id);
+    this.labelWidget.setAttribute("for", id);
   }
 
   @Override
@@ -54,7 +64,7 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiW
       label = "";
     }
     this.label = label;
-    setTextContent(label);
+    setTextContent(this.labelWidget, label);
   }
 
 }

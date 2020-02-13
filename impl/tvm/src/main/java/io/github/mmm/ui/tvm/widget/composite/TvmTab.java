@@ -3,12 +3,15 @@
 package io.github.mmm.ui.tvm.widget.composite;
 
 import org.teavm.jso.browser.Window;
+import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.tvm.widget.panel.TvmTabPanel;
 import io.github.mmm.ui.widget.UiRegularWidget;
+import io.github.mmm.ui.widget.composite.UiComposite;
 import io.github.mmm.ui.widget.composite.UiTab;
 
 /**
@@ -28,6 +31,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   private boolean closable;
 
+  private boolean selected;
+
   /**
    * The constructor.
    *
@@ -35,7 +40,7 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
    */
   public TvmTab(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("button").cast());
+    super(context, newButton());
     this.widget.setAttribute("aria-role", "tab");
     HTMLDocument document = Window.current().getDocument();
     this.labelWidget = document.createElement("label");
@@ -43,6 +48,27 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.label = "";
     this.closable = false;
     this.sectionWidget = document.createElement("section");
+    setSelected(false);
+    this.widget.addEventListener("click", this::onClick);
+  }
+
+  private TvmTabPanel getTabPanel() {
+
+    UiComposite<?> parent = getParent();
+    if (parent instanceof TvmTabPanel) {
+      return (TvmTabPanel) parent;
+    }
+    return null;
+  }
+
+  @Override
+  protected void onClick(Event event) {
+
+    super.onClick(event);
+    TvmTabPanel tabPanel = getTabPanel();
+    if (tabPanel != null) {
+      tabPanel.setActiveChild(this);
+    }
   }
 
   /**
@@ -126,14 +152,44 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.widget.setDisabled(!enabled);
   }
 
+  @Override
+  protected void setVisibleNative(boolean visible) {
+
+    super.setVisibleNative(visible);
+    if (visible) {
+
+    } else {
+      this.sectionWidget.setAttribute(ATR_ARIA_HIDDEN, "true");
+      if (this.selected) {
+        TvmTabPanel tabPanel = getTabPanel();
+        if (tabPanel != null) {
+          tabPanel.selectPreviousTab();
+        }
+      }
+    }
+  }
+
   /**
    * @param selected {@code true} to set this tab selected, {@code false} for deselected.
    */
   public void setSelected(boolean selected) {
 
-    this.widget.setAttribute("tabindex", selected ? "0" : "-1");
-    this.widget.setAttribute("aria-selected", Boolean.toString(selected));
-    this.sectionWidget.setAttribute("aria-hidden", Boolean.toString(!selected));
+    setSelected(selected, selected);
+  }
+
+  /**
+   * @param selected {@code true} to set this tab selected, {@code false} for deselected.
+   * @param focus {@code true} to focus this tab, {@code false} otherwise.
+   */
+  public void setSelected(boolean selected, boolean focus) {
+
+    this.widget.setAttribute(ATR_TABINDEX, selected ? "0" : "-1");
+    this.widget.setAttribute(ATR_ARIA_SELECTED, Boolean.toString(selected));
+    this.sectionWidget.setAttribute(ATR_ARIA_HIDDEN, Boolean.toString(!selected));
+    this.selected = selected;
+    if (focus) {
+      this.widget.focus();
+    }
   }
 
 }

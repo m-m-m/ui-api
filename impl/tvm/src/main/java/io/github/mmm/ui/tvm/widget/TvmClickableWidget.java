@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget;
 
-import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
@@ -34,14 +33,6 @@ public abstract class TvmClickableWidget<W extends HTMLElement> extends TvmActiv
 
     super.registerHandlers();
     this.widget.addEventListener("click", this::onClick);
-  }
-
-  /**
-   * @param event the click {@link Event}.
-   */
-  protected void onClick(Event event) {
-
-    fireEvent(new UiClickEvent(this, false));
   }
 
   @Override

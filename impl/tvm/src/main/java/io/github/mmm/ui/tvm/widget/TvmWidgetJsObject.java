@@ -3,9 +3,18 @@
 package io.github.mmm.ui.tvm.widget;
 
 import org.teavm.jso.JSObject;
+import org.teavm.jso.browser.Window;
+import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.html.HTMLButtonElement;
+import org.teavm.jso.dom.html.HTMLElement;
+import org.teavm.jso.dom.html.HTMLInputElement;
+import org.teavm.jso.dom.html.HTMLSelectElement;
+import org.teavm.jso.dom.html.HTMLTextAreaElement;
+import org.teavm.jso.dom.xml.Document;
 import org.teavm.jso.dom.xml.Node;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.event.UiClickEvent;
 import io.github.mmm.ui.spi.widget.AbstractUiNativeWidgetWrapper;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.custom.UiCustomWidget;
@@ -17,6 +26,18 @@ import io.github.mmm.ui.widget.custom.UiCustomWidget;
  * @since 1.0.0
  */
 public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNativeWidgetWrapper<W> {
+
+  /** The owner {@link Document} of the HTML. */
+  protected static final Document DOC = Window.current().getDocument();
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_HIDDEN = "aria-hidden";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ARIA_SELECTED = "aria-selected";
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_TABINDEX = "tabindex";
 
   /** @see #getWidget() */
   protected final W widget;
@@ -48,6 +69,14 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   @Override
   protected void setReadOnlyNative(boolean readOnly) {
 
+  }
+
+  /**
+   * @param event the click {@link Event}.
+   */
+  protected void onClick(Event event) {
+
+    fireEvent(new UiClickEvent(this, false));
   }
 
   /**
@@ -113,6 +142,82 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
     } else {
       parent.insertBefore(child, node);
     }
+  }
+
+  /**
+   * @return a new {@link HTMLButtonElement}.
+   */
+  protected static HTMLButtonElement newButton() {
+
+    return DOC.createElement("button").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLInputElement}.
+   */
+  protected static HTMLInputElement newInput() {
+
+    return DOC.createElement("input").cast();
+  }
+
+  /**
+   * @param type the {@link HTMLInputElement#getType() input type}.
+   * @return a new {@link HTMLInputElement}.
+   */
+  protected static HTMLInputElement newInput(String type) {
+
+    HTMLInputElement input = newInput();
+    input.setType(type);
+    return input;
+  }
+
+  /**
+   * @return a new {@link HTMLTextAreaElement}.
+   */
+  protected static HTMLTextAreaElement newTextArea() {
+
+    return DOC.createElement("textarea").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLSelectElement}.
+   */
+  protected static HTMLSelectElement newSelect() {
+
+    return DOC.createElement("select").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement label element}.
+   */
+  protected static HTMLElement newLabel() {
+
+    return DOC.createElement("label").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement div element}.
+   */
+  protected static HTMLElement newDiv() {
+
+    return DOC.createElement("div").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement span element}.
+   */
+  protected static HTMLElement newSpan() {
+
+    return DOC.createElement("span").cast();
+  }
+
+  /**
+   * @param tag the {@link HTMLElement#getTagName() tag name}.
+   * @return a new {@link HTMLElement div element}.
+   */
+  protected static HTMLElement newElement(String tag) {
+
+    return DOC.createElement(tag).cast();
   }
 
 }

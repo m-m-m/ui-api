@@ -53,8 +53,15 @@ public class TvmMainWindow extends TvmAbstractWindow<Window> implements UiMainWi
     super(context, widget);
     this.body = widget.getDocument().getBody();
     this.content = new TvmVerticalPanel(context);
+    setParent(this.content, this);
     this.body.appendChild(this.content.getTopWidget());
     this.title = "";
+  }
+
+  @Override
+  protected boolean isVisibleWithoutRoot() {
+
+    return true;
   }
 
   @Override

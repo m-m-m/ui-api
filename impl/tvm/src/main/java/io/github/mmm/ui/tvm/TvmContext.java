@@ -31,7 +31,7 @@ public class TvmContext extends AbstractUiContext {
    */
   public TvmContext() {
 
-    super(new TvmWidgetFactoryNative(), null, null);
+    // super(new TvmWidgetFactoryNative(), null, null);
     this.mainWindow = new TvmMainWindow(this);
     this.screen = new TvmScreen();
     this.dispatcher = new TvmDispatcher();

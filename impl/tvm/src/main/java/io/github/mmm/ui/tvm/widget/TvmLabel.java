@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
@@ -24,7 +23,7 @@ public class TvmLabel extends TvmWidgetHtmlElement<HTMLElement> implements UiLab
    */
   public TvmLabel(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("label"));
+    super(context, newLabel());
   }
 
   @Override

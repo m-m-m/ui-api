@@ -64,6 +64,12 @@ public abstract class FxAbstractWindow<W extends Stage> extends FxWidgetObject<W
     widget.setScene(this.scene);
   }
 
+  @Override
+  protected boolean isVisibleWithoutRoot() {
+
+    return true;
+  }
+
   /**
    * @return {@code true} to use a {@link ScrollPane} and allow the content to scroll, {@code false} otherwise.
    */

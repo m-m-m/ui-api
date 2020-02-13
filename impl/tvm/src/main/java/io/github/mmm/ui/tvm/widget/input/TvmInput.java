@@ -45,6 +45,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   public TvmInput(UiContext context, W widget) {
 
     super(context, widget);
+    this.validator = Validator.none();
   }
 
   @Override

@@ -99,12 +99,21 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
         return false;
       }
       if (this.parent == null) {
-        return false;
+        return isVisibleWithoutRoot();
       } else {
         return this.parent.isVisible(null);
       }
     }
     return mask.getFlag(this.visibleState);
+  }
+
+  /**
+   * @return {@code true} if this is a root widget (e.g. UiMainWindow) that is visible without a parent, {@code false}
+   *         otherwise.
+   */
+  protected boolean isVisibleWithoutRoot() {
+
+    return false;
   }
 
   @Override

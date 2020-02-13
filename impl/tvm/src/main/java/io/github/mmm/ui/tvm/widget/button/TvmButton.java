@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.button;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 
 import io.github.mmm.ui.UiContext;
@@ -23,7 +22,7 @@ public class TvmButton extends TvmClickableWidget<HTMLButtonElement> implements 
    */
   public TvmButton(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("button").cast());
+    super(context, newButton());
   }
 
   @Override

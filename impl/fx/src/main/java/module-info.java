@@ -1,24 +1,24 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.fx.widget.FxFactoryButton;
-import io.github.mmm.ui.fx.widget.FxFactoryLabel;
-import io.github.mmm.ui.fx.widget.composite.FxFactoryTab;
-import io.github.mmm.ui.fx.widget.input.FxFactoryCheckbox;
-import io.github.mmm.ui.fx.widget.input.FxFactoryPasswordInput;
-import io.github.mmm.ui.fx.widget.input.FxFactoryRadioButton;
-import io.github.mmm.ui.fx.widget.input.FxFactoryRadioChoice;
-import io.github.mmm.ui.fx.widget.input.FxFactoryTextArea;
-import io.github.mmm.ui.fx.widget.input.FxFactoryTextInput;
-import io.github.mmm.ui.fx.widget.menu.FxFactoryMenu;
-import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItem;
-import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemCheckbox;
-import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemRadioButton;
-import io.github.mmm.ui.fx.widget.menu.FxFactoryMenuItemSeparator;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryFormPanel;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryHorizontalPanel;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryTabPanel;
-import io.github.mmm.ui.fx.widget.panel.FxFactoryVerticalPanel;
-import io.github.mmm.ui.fx.widget.window.FxFactoryPopup;
-import io.github.mmm.ui.fx.widget.window.FxFactoryWindow;
+import io.github.mmm.ui.fx.factory.FxFactoryButton;
+import io.github.mmm.ui.fx.factory.FxFactoryCheckbox;
+import io.github.mmm.ui.fx.factory.FxFactoryFormPanel;
+import io.github.mmm.ui.fx.factory.FxFactoryHorizontalPanel;
+import io.github.mmm.ui.fx.factory.FxFactoryLabel;
+import io.github.mmm.ui.fx.factory.FxFactoryMenu;
+import io.github.mmm.ui.fx.factory.FxFactoryMenuItem;
+import io.github.mmm.ui.fx.factory.FxFactoryMenuItemCheckbox;
+import io.github.mmm.ui.fx.factory.FxFactoryMenuItemRadioButton;
+import io.github.mmm.ui.fx.factory.FxFactoryMenuItemSeparator;
+import io.github.mmm.ui.fx.factory.FxFactoryPasswordInput;
+import io.github.mmm.ui.fx.factory.FxFactoryPopup;
+import io.github.mmm.ui.fx.factory.FxFactoryRadioButton;
+import io.github.mmm.ui.fx.factory.FxFactoryRadioChoice;
+import io.github.mmm.ui.fx.factory.FxFactoryTab;
+import io.github.mmm.ui.fx.factory.FxFactoryTabPanel;
+import io.github.mmm.ui.fx.factory.FxFactoryTextArea;
+import io.github.mmm.ui.fx.factory.FxFactoryTextInput;
+import io.github.mmm.ui.fx.factory.FxFactoryVerticalPanel;
+import io.github.mmm.ui.fx.factory.FxFactoryWindow;
 
 /*
  * Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0

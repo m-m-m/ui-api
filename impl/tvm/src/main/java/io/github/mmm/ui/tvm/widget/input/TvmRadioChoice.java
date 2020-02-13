@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-import org.teavm.jso.browser.Window;
-import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
@@ -31,7 +29,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
   private List<V> options;
 
-  private final List<HTMLInputElement> radios;
+  private final List<RadioButton> radios;
 
   private Function<V, String> formatter;
 
@@ -42,15 +40,13 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
    */
   public TvmRadioChoice(UiContext context) {
 
-    super(context, "radio");
-    HTMLDocument document = Window.current().getDocument();
-    this.topWidget = document.createElement("div");
-    String radioId = "tvm-radio-" + counter++;
-    this.widget.setName(radioId);
+    super(context, TYPE_RADIO);
+    this.topWidget = newElement("ui-radios");
+    String radioName = "tvm-radio-" + counter++;
     this.widget.addEventListener("focus", this::onFocusGain);
     this.widget.addEventListener("blur", this::onFocusLoss);
     this.radios = new ArrayList<>();
-    this.radios.add(this.widget);
+    this.radios.add(new RadioButton(this.widget, radioName, 0));
     this.options = Collections.emptyList();
     this.formatter = ToStringFormatter.get();
   }
@@ -86,22 +82,21 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
     ensureRadioButtonCount(this.options.size());
     int i = 0;
     for (V option : this.options) {
-      HTMLInputElement inputElement = this.radios.get(i++);
+      RadioButton rb = this.radios.get(i++);
       String title = this.formatter.apply(option);
-      setTextContent(inputElement, title);
-      this.topWidget.appendChild(inputElement);
+      rb.setLabel(title);
+      this.topWidget.appendChild(rb.top);
     }
   }
 
   private void ensureRadioButtonCount(int count) {
 
-    HTMLDocument document = this.widget.getOwnerDocument();
-    for (int i = this.radios.size(); i < count; i++) {
-      HTMLInputElement rb = document.createElement("input").cast();
-      rb.setType("radio");
-      rb.setName(this.widget.getName());
-      rb.addEventListener("focus", this::onFocusGain);
-      rb.addEventListener("blur", this::onFocusLoss);
+    int size = this.radios.size();
+    RadioButton last = this.radios.get(size - 1);
+    for (int i = size; i < count; i++) {
+      RadioButton rb = last.createNext();
+      rb.input.addEventListener("focus", this::onFocusGain);
+      rb.input.addEventListener("blur", this::onFocusLoss);
       this.radios.add(rb);
     }
   }
@@ -130,8 +125,8 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
     int optionCount = this.options.size();
     for (int i = 0; i < optionCount; i++) {
-      HTMLInputElement rb = this.radios.get(i);
-      if (rb.isChecked()) {
+      RadioButton rb = this.radios.get(i);
+      if (rb.input.isChecked()) {
         return this.options.get(i);
       }
     }
@@ -143,8 +138,52 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
     int index = this.options.indexOf(value);
     if ((index >= 0) && (index < this.radios.size())) {
-      this.radios.get(index).setChecked(true);
+      this.radios.get(index).input.setChecked(true);
     }
+  }
+
+  private class RadioButton {
+
+    private final HTMLElement top;
+
+    private final HTMLInputElement input;
+
+    private final HTMLElement label;
+
+    private int index;
+
+    private RadioButton(String name, int index) {
+
+      this(newInput(TYPE_RADIO), name, index);
+    }
+
+    private void setLabel(String title) {
+
+      setTextContent(this.label, title);
+    }
+
+    private RadioButton(HTMLInputElement widget, String name, int index) {
+
+      super();
+      this.top = newSpan();
+      this.input = widget;
+      this.input.setName(name);
+      this.index = index;
+      String id = name + "-" + index;
+      this.input.setAttribute("id", id);
+      this.input.addEventListener("focus", TvmRadioChoice.this::onFocusGain);
+      this.input.addEventListener("blur", TvmRadioChoice.this::onFocusLoss);
+      this.label = newLabel();
+      this.label.setAttribute("for", id);
+      this.top.appendChild(this.input);
+      this.top.appendChild(this.label);
+    }
+
+    private RadioButton createNext() {
+
+      return new RadioButton(this.input.getName(), this.index + 1);
+    }
+
   }
 
 }

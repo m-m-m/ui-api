@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLInputElement;
 
 import io.github.mmm.ui.UiContext;
@@ -16,6 +15,15 @@ import io.github.mmm.ui.widget.input.UiInput;
  */
 public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
 
+  /** {@link HTMLInputElement#getType() Type} of text input. */
+  public static final String TYPE_TEXT = "text";
+
+  /** {@link HTMLInputElement#getType() Type} of radio (button) input. */
+  public static final String TYPE_RADIO = "radio";
+
+  /** {@link HTMLInputElement#getType() Type} of checkbox input. */
+  public static final String TYPE_CHECKBOX = "checkbox";
+
   /**
    * The constructor.
    *
@@ -24,7 +32,7 @@ public abstract class TvmHtmlInput<V> extends TvmInput<V, HTMLInputElement> {
    */
   public TvmHtmlInput(UiContext context, String type) {
 
-    super(context, Window.current().getDocument().createElement("input").cast());
+    super(context, newInput());
     this.widget.setType(type);
   }
 

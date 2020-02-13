@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.input;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 
 import io.github.mmm.ui.UiContext;
@@ -23,7 +22,7 @@ public abstract class TvmHtmlSelect<V> extends TvmInput<V, HTMLSelectElement> {
    */
   public TvmHtmlSelect(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("select").cast());
+    super(context, newSelect());
   }
 
   /**
