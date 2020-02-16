@@ -52,13 +52,13 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   protected void registerHandlers() {
 
     super.registerHandlers();
-    this.widget.addEventListener("change", this::onChange);
+    this.widget.addEventListener("input", this::onInput);
   }
 
   /**
-   * @param event the change {@link Event}.
+   * @param event the input {@link Event}.
    */
-  protected void onChange(Event event) {
+  protected void onInput(Event event) {
 
     fireEvent(new UiValueChangeEvent(this, getProgrammaticEventType() == UiValueChangeEvent.TYPE));
   }

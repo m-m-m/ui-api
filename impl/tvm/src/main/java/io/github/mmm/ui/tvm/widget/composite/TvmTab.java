@@ -156,14 +156,17 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   protected void setVisibleNative(boolean visible) {
 
     super.setVisibleNative(visible);
-    if (visible) {
-
-    } else {
+    if (!visible) {
       this.sectionWidget.setAttribute(ATR_ARIA_HIDDEN, "true");
       if (this.selected) {
         TvmTabPanel tabPanel = getTabPanel();
         if (tabPanel != null) {
-          tabPanel.selectPreviousTab();
+          int activeChildIndex = tabPanel.getActiveChildIndex();
+          if (activeChildIndex == 0) {
+            tabPanel.selectNextTab();
+          } else {
+            tabPanel.selectPreviousTab();
+          }
         }
       }
     }
