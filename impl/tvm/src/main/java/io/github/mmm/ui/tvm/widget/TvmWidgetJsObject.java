@@ -7,6 +7,7 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLElement;
+import org.teavm.jso.dom.html.HTMLFormElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.html.HTMLTextAreaElement;
@@ -119,19 +120,24 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
   /**
    * @param parent the parent {@link Node}.
-   * @param child the child {@link Node} to insert as child at the given index.
+   * @param child the child {@link Node} to insert as child at the given index. May be {@code -1} to
+   *        {@link Node#appendChild(Node) insert at the end}.
    * @param index the position to insert the {@code child} at.
    */
   protected static void insertAt(Node parent, Node child, int index) {
 
+    System.out.println("adding " + child.getLocalName() + " to " + parent.getLocalName() + " at " + index);
     if (index == 0) {
       insertFirst(parent, child);
     }
     int i = 0;
-    Node node = parent.getFirstChild();
-    while ((node != null) && (i < index)) {
-      node = node.getNextSibling();
-      i++;
+    Node node = null;
+    if (index > 0) {
+      node = parent.getFirstChild();
+      while ((node != null) && (i < index)) {
+        node = node.getNextSibling();
+        i++;
+      }
     }
     if (node == null) {
       if (i == index) {
@@ -185,6 +191,30 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLSelectElement newSelect() {
 
     return DOC.createElement("select").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLFormElement}.
+   */
+  protected static HTMLFormElement newForm() {
+
+    return DOC.createElement("form").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement fieldset element}.
+   */
+  protected static HTMLElement newFieldSet() {
+
+    return DOC.createElement("fieldset").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLElement legend element}.
+   */
+  protected static HTMLElement newLegend() {
+
+    return DOC.createElement("legend").cast();
   }
 
   /**

@@ -11,7 +11,6 @@ import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
-import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
 
@@ -99,7 +98,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public UiLabel getNameWidget() {
+  public TvmLabel getNameWidget() {
 
     if (this.nameWidget == null) {
       this.nameWidget = new TvmLabel(this.context);

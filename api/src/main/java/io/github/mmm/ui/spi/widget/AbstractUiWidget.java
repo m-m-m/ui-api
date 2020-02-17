@@ -6,6 +6,7 @@ import io.github.mmm.event.AbstractEventSource;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
+import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiComposite;
 
@@ -47,6 +48,27 @@ public abstract class AbstractUiWidget extends AbstractEventSource<UiEvent, UiEv
   protected static void setParent(UiWidget widget, UiComposite<?> parent) {
 
     ((AbstractUiWidget) widget).setParent(parent);
+  }
+
+  /**
+   * @return the unwrapped widget.
+   * @see io.github.mmm.ui.widget.custom.UiCustomWidget#getDelegate()
+   */
+  protected abstract UiNativeWidget unwrap();
+
+  /**
+   * @param <T> type of the expected widget.
+   * @param widget the {@link UiWidget} to {@link #unwrap() unwrap}.
+   * @return the unwrapped native widget.
+   * @see #unwrap()
+   */
+  @SuppressWarnings("unchecked")
+  protected <T extends UiNativeWidget> T unwrap(UiWidget widget) {
+
+    if (widget == null) {
+      return null;
+    }
+    return (T) ((AbstractUiWidget) widget).unwrap();
   }
 
   /**

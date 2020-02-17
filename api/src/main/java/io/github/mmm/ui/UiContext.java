@@ -28,6 +28,7 @@ import io.github.mmm.ui.widget.input.UiRadioButton;
 import io.github.mmm.ui.widget.input.UiRadioChoice;
 import io.github.mmm.ui.widget.input.UiTextArea;
 import io.github.mmm.ui.widget.input.UiTextInput;
+import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
 import io.github.mmm.ui.widget.panel.UiTabPanel;
@@ -450,13 +451,29 @@ public interface UiContext {
   }
 
   /**
-   * @param inputs the {@link UiInput} widgets to {@link UiFormPanel#addChild(UiAbstractInput) add}.
+   * @param inputs the {@link UiAbstractInput input widgets} to {@link UiFormPanel#addChild(UiAbstractInput) add}.
    * @return the new widget instance.
    */
   default UiFormPanel createFormPanel(UiAbstractInput<?>... inputs) {
 
     UiFormPanel widget = create(UiFormPanel.class);
     for (UiAbstractInput<?> input : inputs) {
+      widget.addChild(input);
+    }
+    return widget;
+  }
+
+  /**
+   * @param name the {@link UiFormGroup#getName() name} of the {@link UiFormGroup} that groups the given
+   *        {@link UiInput}s.
+   * @param inputs the {@link UiInput} widgets to {@link UiFormGroup#addChild(UiInput) add}.
+   * @return the new widget instance.
+   */
+  default UiFormGroup createFormGroup(String name, UiInput<?>... inputs) {
+
+    UiFormGroup widget = create(UiFormGroup.class);
+    widget.setName(name);
+    for (UiInput<?> input : inputs) {
       widget.addChild(input);
     }
     return widget;

@@ -22,18 +22,11 @@ public class TvmDynamicPanel<W extends HTMLElement> extends TvmDynamicComposite<
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmDynamicPanel(UiContext context, W widget) {
 
     super(context, widget);
-  }
-
-  @Override
-  protected void setEnabledNative(boolean enabled) {
-
-    // TODO Auto-generated method stub
-
   }
 
 }

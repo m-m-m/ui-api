@@ -29,7 +29,7 @@ public abstract class TvmComposite<W extends HTMLElement, C extends UiWidget> ex
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmComposite(UiContext context, W widget) {
 

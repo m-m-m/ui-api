@@ -13,7 +13,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.panel.UiFormGroup;
+import io.github.mmm.ui.widget.panel.UiAbstractFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiResponsiveColumnPanel;
 import io.github.mmm.validation.Validator;
@@ -77,14 +77,14 @@ public class UiBinding {
    * @param context
    * @return
    */
-  protected <B extends WritableBean> UiFormGroup<B> createFormGroup(ReadableBeanProperty<B> beanProperty,
+  protected <B extends WritableBean> UiAbstractFormGroup<B> createFormGroup(ReadableBeanProperty<B> beanProperty,
       UiContext context) {
 
     WritableBean bean = beanProperty.get();
     if (bean == null) {
       return null;
     }
-    UiFormGroup<B> formGroup = null;
+    UiAbstractFormGroup<B> formGroup = null;
     return formGroup;
   }
 

@@ -5,6 +5,7 @@ package io.github.mmm.ui.widget.custom;
 import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
+import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiComposite;
 
@@ -57,6 +58,12 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   protected static final <T extends UiWidget> T getDelegate(UiCustomWidget<T> customWidget) {
 
     return customWidget.getDelegate();
+  }
+
+  @Override
+  protected UiNativeWidget unwrap() {
+
+    return unwrap(this.delegate);
   }
 
   /**

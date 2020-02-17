@@ -29,7 +29,7 @@ public class TvmVerticalPanel extends TvmDynamicPanel<HTMLElement> implements Ui
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmVerticalPanel(UiContext context, HTMLElement widget) {
 

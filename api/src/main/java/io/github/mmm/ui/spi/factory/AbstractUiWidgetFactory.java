@@ -66,6 +66,7 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
       if (!required) {
         return null;
       }
+      System.out.println("No Factory registered for " + type.getName());
       throw new UnsupportedOperationException(type.getName());
     }
     return (W) factory.create(context);

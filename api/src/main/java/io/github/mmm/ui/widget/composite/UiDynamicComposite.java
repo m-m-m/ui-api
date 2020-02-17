@@ -23,7 +23,7 @@ public interface UiDynamicComposite<C extends UiWidget> extends UiComposite<C> {
    */
   default void addChild(C child) {
 
-    addChild(child, getChildCount());
+    addChild(child, -1);
   }
 
   /**

@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.panel;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.events.KeyboardEvent;
 import org.teavm.jso.dom.html.HTMLElement;
@@ -33,8 +32,8 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
    */
   public TvmTabPanel(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("ui-tabs"));
-    this.topWidget = Window.current().getDocument().createElement("ui-tabpanel");
+    super(context, newElement("ui-tabs"));
+    this.topWidget = newElement("ui-tabpanel");
     this.topWidget.appendChild(this.widget);
     this.selectedTabIndex = -1;
     this.widget.addEventListener("keydown", this::onKeyDown);

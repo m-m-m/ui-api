@@ -2,6 +2,7 @@ io.github.mmm.ui.tvm.factory.TvmFactoryAudioPlayer
 io.github.mmm.ui.tvm.factory.TvmFactoryButton
 io.github.mmm.ui.tvm.factory.TvmFactoryCheckbox
 io.github.mmm.ui.tvm.factory.TvmFactoryComboBoxDataList
+io.github.mmm.ui.tvm.factory.TvmFactoryFormGroup
 io.github.mmm.ui.tvm.factory.TvmFactoryFormPanel
 io.github.mmm.ui.tvm.factory.TvmFactoryHorizontalPanel
 io.github.mmm.ui.tvm.factory.TvmFactoryLabel

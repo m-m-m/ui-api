@@ -2,13 +2,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.panel;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.UiEnabledFlags;
-import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
+import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 
@@ -17,9 +15,7 @@ import io.github.mmm.ui.widget.panel.UiVerticalPanel;
  *
  * @since 1.0.0
  */
-public class TvmFormPanel extends TvmDynamicComposite<HTMLElement, UiAbstractInput<?>> implements UiFormPanel {
-
-  private String validationFailure;
+public class TvmFormPanel extends TvmFailureComposite<UiAbstractInput<?>> implements UiFormPanel {
 
   /**
    * The constructor.
@@ -28,14 +24,14 @@ public class TvmFormPanel extends TvmDynamicComposite<HTMLElement, UiAbstractInp
    */
   public TvmFormPanel(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("ui-vpanel"));
+    super(context, newForm());
   }
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmFormPanel(UiContext context, HTMLElement widget) {
 
@@ -43,30 +39,34 @@ public class TvmFormPanel extends TvmDynamicComposite<HTMLElement, UiAbstractInp
   }
 
   @Override
-  public String getValidationFailure() {
+  protected void addChildToDom(UiAbstractInput<?> child, int index) {
 
-    return this.validationFailure;
-  }
-
-  @Override
-  public void setValidationFailure(String validationFailure) {
-
-    boolean invalid = !isEmpty(validationFailure);
-    if (invalid) {
-      this.validationFailure = validationFailure;
-      getStyles().add(STYLE_INVALID);
-    } else {
-      this.validationFailure = null;
-      getStyles().remove(STYLE_INVALID);
+    int domIndex = -1;
+    if (index >= 0) {
+      domIndex = 0;
+      for (int i = 0; i < index; i++) {
+        UiAbstractInput<?> input = this.children.get(i);
+        domIndex++;
+        if (input instanceof UiInput) {
+          domIndex++;
+        }
+      }
     }
-    // TODO apply validationFailure to widget!
+    if (child instanceof UiInput) {
+      insertAt(this.widget, getTopNode(child.getNameWidget()), domIndex);
+      if (domIndex >= 0) {
+        domIndex++;
+      }
+    }
+    insertAt(this.widget, getTopNode(child), domIndex);
   }
 
   @Override
-  protected void setEnabledNative(boolean enabled) {
+  protected void removeChildFromDom(UiAbstractInput<?> child) {
 
-    for (UiAbstractInput<?> child : this.children) {
-      child.setEnabled(enabled, UiEnabledFlags.PARENT);
+    this.widget.removeChild(getTopNode(child));
+    if (child instanceof UiInput) {
+      this.widget.removeChild(getTopNode(child.getNameWidget()));
     }
   }
 

@@ -3,19 +3,49 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.composite.UiDynamicComposite;
-import io.github.mmm.ui.widget.composite.UiFailureComposite;
-import io.github.mmm.ui.widget.input.UiAbstractInput;
-import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.validation.Validator;
 
 /**
- * {@link UiDynamicComposite} for a {@link #getName() named} sub-group in a {@link UiFormPanel form} of {@link UiInput}s
- * as {@link #getChild(int) children} shown vertically from the top to the bottom.
- *
- * @param <V> type of the {@link #getValue() value}.
- * @since 1.0.0
+ * {@link UiAbstractFormGroup} as {@link UiNativeWidget native widget} without {@link #getValue() value}.
  */
-public interface UiFormGroup<V>
-    extends UiDynamicComposite<UiInput<?>>, UiFailureComposite<UiInput<?>>, UiAbstractInput<V>, UiNativeWidget {
+public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiNativeWidget {
+
+  @Override
+  default Validator<? super Void> getValidator() {
+
+    return null;
+  }
+
+  @Override
+  default void setValidator(Validator<? super Void> validator) {
+
+  }
+
+  @Override
+  default void setValue(Void value) {
+
+  }
+
+  @Override
+  default void setValueForUser(Void value) {
+
+  }
+
+  @Override
+  default Void getOriginalValue() {
+
+    return null;
+  }
+
+  @Override
+  default void setOriginalValue(Void originalValue) {
+
+  }
+
+  @Override
+  default Void getValue() {
+
+    return null;
+  }
 
 }

@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget.composite;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.datatype.UiEnabledFlags;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
@@ -22,7 +23,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmDynamicComposite(UiContext context, W widget) {
 
@@ -33,8 +34,22 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
   public void addChild(C child, int index) {
 
     setParent(child, this);
-    this.widget.appendChild(getTopNode(child));
-    this.children.add(index, child);
+    addChildToDom(child, index);
+    if (index == -1) {
+      this.children.add(child);
+    } else {
+      this.children.add(index, child);
+    }
+  }
+
+  /**
+   * @param child the widget to add as child to the DOM.
+   * @param index the index where to insert the child.
+   * @see #addChild(UiWidget, int)
+   */
+  protected void addChildToDom(C child, int index) {
+
+    insertAt(this.widget, getTopNode(child), index);
   }
 
   @Override
@@ -42,7 +57,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
 
     boolean removed = this.children.remove(child);
     if (removed) {
-      this.widget.removeChild(getTopNode(child));
+      removeChildFromDom(child);
       setParent(child, null);
     }
     return removed;
@@ -52,9 +67,27 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
   public C removeChild(int index) {
 
     C child = this.children.remove(index);
-    this.widget.removeChild(getTopNode(child));
+    removeChildFromDom(child);
     setParent(child, null);
     return child;
+  }
+
+  /**
+   * @param child the widget to remove as child from the DOM.
+   * @see #removeChild(UiWidget)
+   * @see #removeChild(int)
+   */
+  protected void removeChildFromDom(C child) {
+
+    this.widget.removeChild(getTopNode(child));
+  }
+
+  @Override
+  protected void setEnabledNative(boolean enabled) {
+
+    for (C child : this.children) {
+      child.setEnabled(enabled, UiEnabledFlags.PARENT);
+    }
   }
 
 }

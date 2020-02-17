@@ -30,7 +30,7 @@ public class TvmHorizontalPanel extends TvmDynamicPanel<HTMLElement> implements 
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
-   * @param widget the {@link #getWidget() JavaFx widget}.
+   * @param widget the {@link #getWidget() TeaVM widget}.
    */
   public TvmHorizontalPanel(UiContext context, HTMLElement widget) {
 

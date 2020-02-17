@@ -381,6 +381,12 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   @Override
+  protected UiNativeWidget unwrap() {
+
+    return this;
+  }
+
+  @Override
   public final boolean isDisposed() {
 
     return (this.enabledState == -1);
