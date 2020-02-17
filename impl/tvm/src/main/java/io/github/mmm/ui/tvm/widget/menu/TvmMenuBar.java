@@ -6,7 +6,7 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.tvm.widget.composite.TvmComposite;
+import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.widget.menu.UiMenu;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
 
@@ -15,7 +15,7 @@ import io.github.mmm.ui.widget.menu.UiMenuBar;
  *
  * @since 1.0.0
  */
-public class TvmMenuBar extends TvmComposite<HTMLElement, UiMenu> implements UiMenuBar {
+public class TvmMenuBar extends TvmDynamicComposite<HTMLElement, UiMenu> implements UiMenuBar {
 
   /**
    * The constructor.
@@ -36,25 +36,6 @@ public class TvmMenuBar extends TvmComposite<HTMLElement, UiMenu> implements UiM
   public TvmMenuBar(UiContext context) {
 
     super(context, Window.current().getDocument().createElement("ui-menu"));
-  }
-
-  @Override
-  public void addChild(UiMenu child, int index) {
-
-    // TODO: add to DOM
-    this.children.add(index, child);
-  }
-
-  @Override
-  public UiMenu removeChild(int index) {
-
-    if ((index < 0) || (index >= this.children.size())) {
-      return null;
-    }
-    UiMenu menu = this.children.remove(index);
-    // TODO: remove from dom DOM
-    // this.widget.removeChild(getTopNode(menu));
-    return menu;
   }
 
   @Override

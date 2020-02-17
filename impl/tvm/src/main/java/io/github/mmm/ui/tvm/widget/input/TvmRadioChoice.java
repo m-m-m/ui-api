@@ -92,9 +92,9 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
   private void ensureRadioButtonCount(int count) {
 
     int size = this.radios.size();
-    RadioButton last = this.radios.get(size - 1);
+    RadioButton rb = this.radios.get(size - 1);
     for (int i = size; i < count; i++) {
-      RadioButton rb = last.createNext();
+      rb = rb.createNext();
       rb.input.addEventListener("focus", this::onFocusGain);
       rb.input.addEventListener("blur", this::onFocusLoss);
       this.radios.add(rb);

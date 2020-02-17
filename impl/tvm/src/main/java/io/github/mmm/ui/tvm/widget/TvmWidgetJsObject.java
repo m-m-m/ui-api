@@ -138,13 +138,12 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
         node = node.getNextSibling();
         i++;
       }
-    }
-    if (node == null) {
-      if (i == index) {
-        parent.appendChild(child);
-      } else {
+      if (i < index) {
         throw new IllegalArgumentException(Integer.toString(index));
       }
+    }
+    if (node == null) {
+      parent.appendChild(child);
     } else {
       parent.insertBefore(child, node);
     }

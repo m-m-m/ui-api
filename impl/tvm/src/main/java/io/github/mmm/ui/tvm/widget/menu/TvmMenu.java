@@ -46,8 +46,13 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
   @Override
   public void addChild(UiAbstractMenuItem child, int index) {
 
-    insertAt(this.widget, getTopNode(child), index);
-    this.children.add(index, child);
+    if (index >= 0) {
+      insertAt(this.widget, getTopNode(child), index);
+      this.children.add(index, child);
+    } else {
+      this.widget.appendChild(getTopNode(child));
+      this.children.add(child);
+    }
   }
 
   @Override
