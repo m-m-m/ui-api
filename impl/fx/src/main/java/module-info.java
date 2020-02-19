@@ -1,6 +1,7 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.fx.factory.FxFactoryButton;
 import io.github.mmm.ui.fx.factory.FxFactoryCheckbox;
+import io.github.mmm.ui.fx.factory.FxFactoryFormGroup;
 import io.github.mmm.ui.fx.factory.FxFactoryFormPanel;
 import io.github.mmm.ui.fx.factory.FxFactoryHorizontalPanel;
 import io.github.mmm.ui.fx.factory.FxFactoryLabel;
@@ -45,6 +46,7 @@ module io.github.mmm.ui.fx {
   provides UiSingleWidgetFactoryNative with //
       FxFactoryButton, //
       FxFactoryCheckbox, //
+      FxFactoryFormGroup, //
       FxFactoryFormPanel, //
       FxFactoryLabel, //
       FxFactoryVerticalPanel, //

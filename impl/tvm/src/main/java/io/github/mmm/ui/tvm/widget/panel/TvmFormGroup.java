@@ -6,14 +6,17 @@ import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.tvm.widget.TvmWidgetHtmlElement;
+import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormGroup;
 
 /**
+ * Implementation of {@link UiFormGroup} using TeaVM.
  *
+ * @since 1.0.0
  */
-public class TvmFormGroup extends TvmFailureComposite<UiInput<?>> implements UiFormGroup {
+public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> implements UiFormGroup {
 
   private final Legend legend;
 
@@ -41,7 +44,7 @@ public class TvmFormGroup extends TvmFailureComposite<UiInput<?>> implements UiF
   }
 
   @Override
-  protected void addChildToDom(UiInput<?> child, int index) {
+  protected void addChildWidget(UiInput<?> child, int index) {
 
     int domIndex = index;
     if (domIndex >= 0) {
@@ -55,7 +58,7 @@ public class TvmFormGroup extends TvmFailureComposite<UiInput<?>> implements UiF
   }
 
   @Override
-  protected void removeChildFromDom(UiInput<?> child) {
+  protected void removeChildWidget(UiInput<?> child) {
 
     this.widget.removeChild(getTopNode(child.getNameWidget()));
     this.widget.removeChild(getTopNode(child));
@@ -74,15 +77,31 @@ public class TvmFormGroup extends TvmFailureComposite<UiInput<?>> implements UiF
   }
 
   @Override
-  public boolean hasNameWidget() {
+  public boolean isCollapsed() {
 
-    return true;
+    // TODO Auto-generated method stub
+    return false;
   }
 
   @Override
-  public UiLabel getNameWidget() {
+  public void setCollapsed(boolean collapsed) {
 
-    return this.legend;
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public boolean isCollapsible() {
+
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public void setCollapsible(boolean collapsible) {
+
+    // TODO Auto-generated method stub
+
   }
 
   private static class Legend extends TvmWidgetHtmlElement<HTMLElement> implements UiLabel {

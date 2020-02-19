@@ -5,17 +5,17 @@ package io.github.mmm.ui.tvm.widget.panel;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
-import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 
 /**
- * Implementation of {@link UiVerticalPanel} using TeaVM.
+ * Implementation of {@link UiFormPanel} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmFormPanel extends TvmFailureComposite<UiAbstractInput<?>> implements UiFormPanel {
+public class TvmFormPanel extends TvmDynamicComposite<HTMLElement, UiAbstractInput<?>> implements UiFormPanel {
 
   /**
    * The constructor.
@@ -39,7 +39,7 @@ public class TvmFormPanel extends TvmFailureComposite<UiAbstractInput<?>> implem
   }
 
   @Override
-  protected void addChildToDom(UiAbstractInput<?> child, int index) {
+  protected void addChildWidget(UiAbstractInput<?> child, int index) {
 
     int domIndex = -1;
     if (index >= 0) {
@@ -53,7 +53,8 @@ public class TvmFormPanel extends TvmFailureComposite<UiAbstractInput<?>> implem
       }
     }
     if (child instanceof UiInput) {
-      insertAt(this.widget, getTopNode(child.getNameWidget()), domIndex);
+      UiInput<?> input = (UiInput<?>) child;
+      insertAt(this.widget, getTopNode(input.getNameWidget()), domIndex);
       if (domIndex >= 0) {
         domIndex++;
       }
@@ -62,11 +63,12 @@ public class TvmFormPanel extends TvmFailureComposite<UiAbstractInput<?>> implem
   }
 
   @Override
-  protected void removeChildFromDom(UiAbstractInput<?> child) {
+  protected void removeChildWidget(UiAbstractInput<?> child) {
 
     this.widget.removeChild(getTopNode(child));
     if (child instanceof UiInput) {
-      this.widget.removeChild(getTopNode(child.getNameWidget()));
+      UiInput<?> input = (UiInput<?>) child;
+      this.widget.removeChild(getTopNode(input.getNameWidget()));
     }
   }
 

@@ -3,21 +3,18 @@
 package io.github.mmm.ui.fx.widget.panel;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.fx.widget.composite.FxDynamicComposite;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
+import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
-import io.github.mmm.ui.widget.panel.UiVerticalPanel;
-import javafx.scene.layout.VBox;
+import javafx.scene.Node;
 
 /**
- * Implementation of {@link UiVerticalPanel} using JavaFx {@link VBox}.
+ * Implementation of {@link UiFormPanel} using JavaFx.
  *
  * @since 1.0.0
  */
-public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiAbstractInput<?>> implements UiFormPanel {
-
-  private String validationFailure;
+public class FxFormPanel extends FxFailureComposite<AdvancedGridPane, UiAbstractInput<?>> implements UiFormPanel {
 
   /**
    * The constructor.
@@ -30,60 +27,28 @@ public class FxFormPanel extends FxDynamicComposite<AdvancedGridPane, UiAbstract
   }
 
   @Override
-  public void addChild(UiAbstractInput<?> child, int index) {
+  protected void addChildWidget(UiAbstractInput<?> child, int index) {
 
     int rows = this.children.size();
-    if ((index < 0) || (index > rows)) {
-      throw new IllegalArgumentException(Integer.toString(index));
-    }
-    setParent(child, this);
-    UiLabel label = child.getNameWidget();
-    if (index == rows) {
-      this.widget.addRow(index, getTopNode(label), getTopNode(child));
-    } else if (index < rows) {
-      this.widget.insertRow(index, getTopNode(label), getTopNode(child));
-    }
-    this.children.add(index, child);
-  }
-
-  @Override
-  public boolean removeChild(UiAbstractInput<?> child) {
-
-    int index = this.children.indexOf(child);
-    if (index < 0) {
-      return false;
-    }
-    removeChild(index);
-    return true;
-  }
-
-  @Override
-  public UiAbstractInput<?> removeChild(int index) {
-
-    UiAbstractInput<?> child = this.children.remove(index);
-    this.widget.removeRow(index);
-    setParent(child, null);
-    return child;
-  }
-
-  @Override
-  public String getValidationFailure() {
-
-    return this.validationFailure;
-  }
-
-  @Override
-  public void setValidationFailure(String validationFailure) {
-
-    boolean invalid = !isEmpty(validationFailure);
-    if (invalid) {
-      this.validationFailure = validationFailure;
-      getStyles().add(STYLE_INVALID);
+    Node[] childNodes;
+    if (child instanceof UiInput) {
+      UiInput<?> input = (UiInput<?>) child;
+      UiLabel label = input.getNameWidget();
+      childNodes = new Node[] { getTopNode(label), getTopNode(child) };
     } else {
-      this.validationFailure = null;
-      getStyles().remove(STYLE_INVALID);
+      childNodes = new Node[] { getTopNode(child) };
     }
-    // TODO apply validationFailure to widget!
+    if ((index == -1) || (index == rows)) {
+      this.widget.addRow(rows, childNodes);
+    } else if (index < rows) {
+      this.widget.insertRow(index, childNodes);
+    }
+  }
+
+  @Override
+  protected void removeChildWidget(UiAbstractInput<?> child, int index) {
+
+    this.widget.removeRow(index);
   }
 
 }

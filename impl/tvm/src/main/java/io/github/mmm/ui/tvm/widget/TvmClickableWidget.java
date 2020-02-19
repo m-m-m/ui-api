@@ -32,7 +32,7 @@ public abstract class TvmClickableWidget<W extends HTMLElement> extends TvmActiv
   protected void registerHandlers() {
 
     super.registerHandlers();
-    this.widget.addEventListener("click", this::onClick);
+    this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
 
   @Override

@@ -36,7 +36,7 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
     this.topWidget = newElement("ui-tabpanel");
     this.topWidget.appendChild(this.widget);
     this.selectedTabIndex = -1;
-    this.widget.addEventListener("keydown", this::onKeyDown);
+    this.widget.addEventListener(EVENT_TYPE_KEYDOWN, this::onKeyDown);
   }
 
   private void onKeyDown(Event e) {
@@ -104,27 +104,24 @@ public class TvmTabPanel extends TvmDynamicComposite<HTMLElement, UiTab> impleme
   }
 
   @Override
-  public void addChild(UiTab child, int index) {
+  protected void addChildWidget(UiTab child, int index) {
 
+    super.addChildWidget(child, index);
     int size = this.children.size();
-    super.addChild(child, index);
     TvmTab tab = (TvmTab) child;
     this.topWidget.appendChild(tab.getSectionWidget());
     if (size == 0) {
       tab.setSelected(true, false);
-      this.selectedTabIndex = index; // = 0
+      this.selectedTabIndex = 0;
     }
   }
 
   @Override
-  public boolean removeChild(UiTab child) {
+  protected void removeChildWidget(UiTab child) {
 
-    boolean removed = super.removeChild(child);
-    if (removed) {
-      TvmTab tab = (TvmTab) child;
-      this.topWidget.appendChild(tab.getSectionWidget());
-    }
-    return removed;
+    super.removeChildWidget(child);
+    TvmTab tab = (TvmTab) child;
+    this.topWidget.removeChild(tab.getSectionWidget());
   }
 
   @Override

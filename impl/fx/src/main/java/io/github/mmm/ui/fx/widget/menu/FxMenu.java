@@ -31,6 +31,19 @@ public class FxMenu extends FxAbstractMenuItem<Menu> implements UiMenu {
   }
 
   @Override
+  public void addChild(UiAbstractMenuItem child, int index) {
+
+    FxAbstractMenuItem<?> fxChild = (FxAbstractMenuItem<?>) child;
+    if (index == -1) {
+      this.widget.getItems().add(fxChild.getWidget());
+      this.children.add(fxChild);
+    } else {
+      this.widget.getItems().add(index, fxChild.getWidget());
+      this.children.add(index, fxChild);
+    }
+  }
+
+  @Override
   public boolean removeChild(UiAbstractMenuItem child) {
 
     boolean removed = this.children.remove(child);
@@ -68,14 +81,6 @@ public class FxMenu extends FxAbstractMenuItem<Menu> implements UiMenu {
       return null;
     }
     return this.children.get(index);
-  }
-
-  @Override
-  public void addChild(UiAbstractMenuItem child, int index) {
-
-    FxAbstractMenuItem<?> fxChild = (FxAbstractMenuItem<?>) child;
-    this.widget.getItems().add(fxChild.getWidget());
-    this.children.add(index, fxChild);
   }
 
 }

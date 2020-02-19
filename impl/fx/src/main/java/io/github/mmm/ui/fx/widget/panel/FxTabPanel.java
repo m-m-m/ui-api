@@ -5,7 +5,7 @@ package io.github.mmm.ui.fx.widget.panel;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiVisibleFlags;
 import io.github.mmm.ui.fx.widget.FxAtomicWidget;
-import io.github.mmm.ui.fx.widget.composite.FxComposite;
+import io.github.mmm.ui.fx.widget.composite.FxDynamicComposite;
 import io.github.mmm.ui.fx.widget.composite.FxTab;
 import io.github.mmm.ui.widget.composite.UiTab;
 import io.github.mmm.ui.widget.panel.UiTabPanel;
@@ -18,7 +18,7 @@ import javafx.scene.control.TabPane;
  *
  * @since 1.0.0
  */
-public class FxTabPanel extends FxComposite<TabPane, UiTab> implements UiTabPanel, FxAtomicWidget<TabPane> {
+public class FxTabPanel extends FxDynamicComposite<TabPane, UiTab> implements UiTabPanel, FxAtomicWidget<TabPane> {
 
   /**
    * The constructor.
@@ -36,29 +36,20 @@ public class FxTabPanel extends FxComposite<TabPane, UiTab> implements UiTabPane
   }
 
   @Override
-  public void addChild(UiTab child, int index) {
+  protected void addChildWidget(UiTab child, int index) {
 
     FxTab fxTab = (FxTab) child;
-    this.widget.getTabs().add(fxTab.getWidget());
-    this.children.add(index, child);
-    setParent(child, this);
-  }
-
-  @Override
-  public boolean removeChild(UiTab child) {
-
-    boolean removed = this.children.remove(child);
-    if (removed) {
-      this.widget.getTabs().remove(getTab(child));
+    if (index == -1) {
+      this.widget.getTabs().add(fxTab.getWidget());
+    } else {
+      this.widget.getTabs().add(index, fxTab.getWidget());
     }
-    return removed;
   }
 
   @Override
-  public UiTab removeChild(int index) {
+  protected void removeChildWidget(UiTab child, int index) {
 
     this.widget.getTabs().remove(index);
-    return this.children.remove(index);
   }
 
   @Override
@@ -74,12 +65,11 @@ public class FxTabPanel extends FxComposite<TabPane, UiTab> implements UiTabPane
   @Override
   public int getActiveChildIndex() {
 
-    Tab tab = this.widget.getSelectionModel().getSelectedItem();
+    UiTab tab = getActiveChild();
     if (tab == null) {
       return -1;
     }
-    FxTab fxTab = FxTab.get(tab);
-    return this.children.indexOf(fxTab);
+    return this.children.indexOf(tab);
   }
 
   @Override

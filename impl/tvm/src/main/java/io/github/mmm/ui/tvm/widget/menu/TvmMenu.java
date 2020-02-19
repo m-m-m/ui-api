@@ -5,7 +5,10 @@ package io.github.mmm.ui.tvm.widget.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLButtonElement;
+import org.teavm.jso.dom.html.HTMLElement;
+import org.teavm.jso.dom.xml.Node;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.menu.UiAbstractMenuItem;
@@ -18,7 +21,19 @@ import io.github.mmm.ui.widget.menu.UiMenu;
  */
 public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
 
+  private final HTMLElement menu;
+
   private final List<UiAbstractMenuItem> children;
+
+  /**
+   * The constructor.
+   *
+   * @param context the {@link #getContext() context}.
+   */
+  public TvmMenu(UiContext context) {
+
+    this(context, newButton());
+  }
 
   /**
    * The constructor.
@@ -30,28 +45,33 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
 
     super(context, widget);
     this.children = new ArrayList<>();
+    this.menu = newElement("ui-menu");
   }
 
-  /**
-   * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
-   */
-  public TvmMenu(UiContext context) {
+  @Override
+  protected void onClick(Event event) {
 
-    super(context);
-    this.children = new ArrayList<>();
+    super.onClick(event);
+    Node parentNode = this.menu.getParentNode();
+    if (parentNode == null) {
+
+      this.menu.setAttribute("style", "left:" + this.widget.getAbsoluteLeft() + "px,top:"
+          + (this.widget.getAbsoluteTop() + this.widget.getClientHeight()) + "px");
+      DOC.getBody().appendChild(this.menu);
+    } else {
+      parentNode.removeChild(this.menu);
+    }
   }
 
   @Override
   public void addChild(UiAbstractMenuItem child, int index) {
 
-    if (index >= 0) {
-      insertAt(this.widget, getTopNode(child), index);
-      this.children.add(index, child);
-    } else {
-      this.widget.appendChild(getTopNode(child));
+    if (index == -1) {
+      this.menu.appendChild(getTopNode(child));
       this.children.add(child);
+    } else {
+      insertAt(this.menu, getTopNode(child), index);
+      this.children.add(index, child);
     }
   }
 
@@ -59,7 +79,7 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
   public UiAbstractMenuItem removeChild(int index) {
 
     UiAbstractMenuItem childItem = this.children.remove(index);
-    this.widget.removeChild(getTopNode(childItem));
+    this.menu.removeChild(getTopNode(childItem));
     return childItem;
   }
 

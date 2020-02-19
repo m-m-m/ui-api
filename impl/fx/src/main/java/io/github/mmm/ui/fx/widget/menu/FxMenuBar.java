@@ -3,7 +3,7 @@
 package io.github.mmm.ui.fx.widget.menu;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.fx.widget.composite.FxComposite;
+import io.github.mmm.ui.fx.widget.composite.FxDynamicComposite;
 import io.github.mmm.ui.widget.menu.UiMenu;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
 import javafx.scene.control.Menu;
@@ -14,7 +14,7 @@ import javafx.scene.control.MenuBar;
  *
  * @since 1.0.0
  */
-public class FxMenuBar extends FxComposite<MenuBar, UiMenu> implements UiMenuBar {
+public class FxMenuBar extends FxDynamicComposite<MenuBar, UiMenu> implements UiMenuBar {
 
   /**
    * The constructor.
@@ -32,27 +32,19 @@ public class FxMenuBar extends FxComposite<MenuBar, UiMenu> implements UiMenuBar
   }
 
   @Override
-  public void addChild(UiMenu child, int index) {
+  protected void addChildWidget(UiMenu child, int index) {
 
-    this.widget.getMenus().add(getMenu(child));
-    this.children.add(index, child);
-  }
-
-  @Override
-  public boolean removeChild(UiMenu child) {
-
-    boolean removed = this.widget.getMenus().remove(getMenu(child));
-    if (removed) {
-      this.children.remove(child);
+    if (index == -1) {
+      this.widget.getMenus().add(getMenu(child));
+    } else {
+      this.widget.getMenus().add(index, getMenu(child));
     }
-    return removed;
   }
 
   @Override
-  public UiMenu removeChild(int index) {
+  protected void removeChildWidget(UiMenu child, int index) {
 
     this.widget.getMenus().remove(index);
-    return this.children.remove(index);
   }
 
 }

@@ -32,7 +32,7 @@ public class TvmMenuItem extends TvmAbstractButtonMenuItem implements UiMenuItem
    */
   public TvmMenuItem(UiContext context) {
 
-    super(context);
+    super(context, newButton());
   }
 
 }

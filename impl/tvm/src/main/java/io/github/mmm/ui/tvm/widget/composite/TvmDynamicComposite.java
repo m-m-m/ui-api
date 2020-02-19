@@ -34,7 +34,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
   public void addChild(C child, int index) {
 
     setParent(child, this);
-    addChildToDom(child, index);
+    addChildWidget(child, index);
     if (index == -1) {
       this.children.add(child);
     } else {
@@ -47,7 +47,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
    * @param index the index where to insert the child.
    * @see #addChild(UiWidget, int)
    */
-  protected void addChildToDom(C child, int index) {
+  protected void addChildWidget(C child, int index) {
 
     insertAt(this.widget, getTopNode(child), index);
   }
@@ -57,7 +57,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
 
     boolean removed = this.children.remove(child);
     if (removed) {
-      removeChildFromDom(child);
+      removeChildWidget(child);
       setParent(child, null);
     }
     return removed;
@@ -67,7 +67,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
   public C removeChild(int index) {
 
     C child = this.children.remove(index);
-    removeChildFromDom(child);
+    removeChildWidget(child);
     setParent(child, null);
     return child;
   }
@@ -77,7 +77,7 @@ public abstract class TvmDynamicComposite<W extends HTMLElement, C extends UiWid
    * @see #removeChild(UiWidget)
    * @see #removeChild(int)
    */
-  protected void removeChildFromDom(C child) {
+  protected void removeChildWidget(C child) {
 
     this.widget.removeChild(getTopNode(child));
   }

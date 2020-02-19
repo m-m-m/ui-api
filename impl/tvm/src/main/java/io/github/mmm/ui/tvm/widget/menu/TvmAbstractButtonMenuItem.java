@@ -23,17 +23,7 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
 
     super(context, widget);
     this.label = "";
-  }
-
-  /**
-   * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
-   */
-  public TvmAbstractButtonMenuItem(UiContext context) {
-
-    super(context, newButton());
-    this.label = "";
+    this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
 
   @Override

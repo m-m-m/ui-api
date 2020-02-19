@@ -382,7 +382,6 @@ public interface UiContext {
 
     UiTextInput widget = create(UiTextInput.class);
     widget.setName(label);
-    // widget.setPlaceholder(label);
     return widget;
   }
 
@@ -394,7 +393,6 @@ public interface UiContext {
 
     UiPasswordInput widget = create(UiPasswordInput.class);
     widget.setName(label);
-    // widget.setPlaceholder(label);
     return widget;
   }
 
@@ -406,7 +404,6 @@ public interface UiContext {
 
     UiTextArea widget = create(UiTextArea.class);
     widget.setName(label);
-    // widget.setPlaceholder(label);
     return widget;
   }
 
@@ -477,6 +474,16 @@ public interface UiContext {
       widget.addChild(input);
     }
     return widget;
+  }
+
+  /**
+   * @return the default {@link io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure#getValidationFailure()
+   *         validation failure} message to show if something is invalid (e.g. for
+   *         {@link io.github.mmm.ui.widget.composite.UiTab}s).
+   */
+  default String getDefaultValidationFailure() {
+
+    return "Please enter valid data.";
   }
 
 }

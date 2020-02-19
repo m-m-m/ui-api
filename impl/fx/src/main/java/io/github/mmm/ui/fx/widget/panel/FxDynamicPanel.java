@@ -3,7 +3,7 @@
 package io.github.mmm.ui.fx.widget.panel;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.fx.widget.composite.FxDynamicComposite;
+import io.github.mmm.ui.fx.widget.composite.FxDynamicCompositePane;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.panel.UiDynamicPanel;
 import javafx.scene.layout.Pane;
@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
  * @param <W> type of {@link #getWidget() JavaFx widget}.
  * @since 1.0.0
  */
-public abstract class FxDynamicPanel<W extends Pane> extends FxDynamicComposite<W, UiRegularWidget>
+public abstract class FxDynamicPanel<W extends Pane> extends FxDynamicCompositePane<W, UiRegularWidget>
     implements UiDynamicPanel {
 
   /**

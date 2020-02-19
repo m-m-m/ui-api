@@ -27,8 +27,6 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
 
   private TvmLabel nameWidget;
 
-  private String validationFailure;
-
   private Validator<? super V> validator;
 
   private V originalValue;
@@ -51,7 +49,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   protected void registerHandlers() {
 
     super.registerHandlers();
-    this.widget.addEventListener("input", this::onInput);
+    this.widget.addEventListener(EVENT_TYPE_INPUT, this::onInput);
   }
 
   /**
@@ -111,6 +109,9 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
         this.nameWidget.setFor(id);
         this.nameWidget.setId(id + "_label");
       }
+      if (this.validator.isMandatory()) {
+        this.nameWidget.getStyles().add("mandatory");
+      }
     }
     return this.nameWidget;
   }
@@ -137,18 +138,8 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   }
 
   @Override
-  public String getValidationFailure() {
+  protected void doSetValidationFailure(String error) {
 
-    return this.validationFailure;
-  }
-
-  @Override
-  public void setValidationFailure(String error) {
-
-    if ((error == null) || (error.isBlank())) {
-      error = null;
-    }
-    this.validationFailure = error;
     setCustomValidity(this.widget, error);
   }
 
@@ -165,6 +156,13 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
       this.validator = Validator.none();
     } else {
       this.validator = validator;
+    }
+    if (this.nameWidget != null) {
+      if (this.validator.isMandatory()) {
+        this.nameWidget.getStyles().add("mandatory");
+      } else {
+        this.nameWidget.getStyles().remove("mandatory");
+      }
     }
   }
 
@@ -200,7 +198,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   protected void onFocusGain(Event event) {
 
     super.onFocusGain(event);
-    if (this.validationFailure != null) {
+    if (!isValid()) {
       // TODO update tvm version
       // this.widget.reportValidity();
     }
@@ -213,6 +211,6 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     super.onFocusLoss(event);
   }
 
-  @JSBody(params = { "input", "value" }, script = "input.setCustomValidity(value);")
+  @JSBody(params = { EVENT_TYPE_INPUT, "value" }, script = "input.setCustomValidity(value);")
   private static native void setCustomValidity(HTMLElement input, String value);
 }

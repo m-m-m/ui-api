@@ -26,6 +26,7 @@ public abstract class TvmAbstractActiveMenuItem<W extends HTMLElement> extends T
   public TvmAbstractActiveMenuItem(UiContext context, W widget) {
 
     super(context, widget);
+    this.widget.setAttribute(ATR_ROLE, "menuitem");
   }
 
 }

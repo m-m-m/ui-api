@@ -16,6 +16,7 @@ import io.github.mmm.ui.event.UiHideEvent;
 import io.github.mmm.ui.event.UiShowEvent;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.ui.widget.composite.UiComposite;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.ui.widget.window.UiAbstractWindow;
@@ -27,7 +28,8 @@ import io.github.mmm.validation.Validator;
  *
  * @since 1.0.0
  */
-public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements UiNativeWidget {
+public abstract class AbstractUiNativeWidget extends AbstractUiWidget
+    implements UiNativeWidget, UiWidgetWithValidationFailure {
 
   private static final BitFlag READ_ONLY = BitFlag.B00;
 
@@ -44,6 +46,8 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   private int enabledState;
 
   private int readOnlyState;
+
+  private String validationFailure;
 
   /**
    * The constructor.
@@ -301,32 +305,80 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget implements
   }
 
   @Override
-  public boolean validate() {
+  public boolean isValid() {
+
+    return (this.validationFailure == null);
+  }
+
+  @Override
+  public boolean validateDown() {
 
     boolean valid = true;
     if (this instanceof UiValidatableWidget) {
       validate((UiValidatableWidget<?>) this);
-    }
-    if (this instanceof UiComposite) {
+    } else if (this instanceof UiComposite) {
       UiComposite<?> composite = (UiComposite<?>) this;
       int childCount = composite.getChildCount();
       for (int i = 0; i < childCount; i++) {
         UiWidget child = composite.getChild(i);
-        if (!child.validate()) {
+        if (!child.validateDown()) {
           valid = false;
         }
+      }
+      if (valid) {
+        setValidationFailure(null);
+      } else {
+        setValidationFailure(this.context.getDefaultValidationFailure());
       }
     }
     return valid;
   }
 
-  private <V> void validate(UiValidatableWidget<V> widget) {
+  private <V> boolean validate(UiValidatableWidget<V> widget) {
 
     V value = widget.getValue();
     Validator<? super V> validator = widget.getValidator();
     ValidationResult result = validator.validate(value, widget.getId());
-    String validationFailure = result.getLocalizedMessage(this.context.getLocale());
-    widget.setValidationFailure(validationFailure);
+    String error = result.getLocalizedMessage(this.context.getLocale());
+    widget.setValidationFailure(error);
+    return (error == null);
+  }
+
+  @Override
+  public String getValidationFailure() {
+
+    return this.validationFailure;
+  }
+
+  @Override
+  public void setValidationFailure(String validationFailure) {
+
+    if (isEmpty(validationFailure)) {
+      if (this.validationFailure == null) {
+        return;
+      }
+      this.validationFailure = null;
+    } else {
+      if (validationFailure.equals(this.validationFailure)) {
+        return;
+      }
+      this.validationFailure = validationFailure;
+    }
+    doSetValidationFailure(this.validationFailure);
+  }
+
+  /**
+   * Called from {@link #setValidationFailure(String)} if the failure actually changed. Do not call manually.
+   *
+   * @param error the new {@link #getValidationFailure() validation failure}. Will be {@code null} if valid.
+   */
+  protected void doSetValidationFailure(String error) {
+
+    if (error == null) {
+      getStyles().remove(STYLE_INVALID);
+    } else {
+      getStyles().add(STYLE_INVALID);
+    }
   }
 
   @Override

@@ -25,8 +25,6 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
 
   private FxLabel nameWidget;
 
-  private String validationFailure;
-
   private Validator<? super V> validator;
 
   private V originalValue;
@@ -110,23 +108,10 @@ public abstract class FxInput<W extends Control, V> extends FxActiveWidget<W> im
   }
 
   @Override
-  public String getValidationFailure() {
+  protected void doSetValidationFailure(String error) {
 
-    return this.validationFailure;
-  }
-
-  @Override
-  public void setValidationFailure(String error) {
-
-    boolean invalid;
-    if ((error == null) || (error.isBlank())) {
-      this.validationFailure = null;
-      invalid = false;
-    } else {
-      this.validationFailure = error;
-      invalid = true;
-    }
-    this.widget.pseudoClassStateChanged(CLASS_INVALID, invalid);
+    this.widget.pseudoClassStateChanged(CLASS_INVALID, (error != null));
+    // TODO apply error to widget (popover/tooltip)
   }
 
   @Override

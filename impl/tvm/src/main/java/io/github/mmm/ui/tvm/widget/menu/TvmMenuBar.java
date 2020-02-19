@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.menu;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
@@ -26,6 +25,7 @@ public class TvmMenuBar extends TvmDynamicComposite<HTMLElement, UiMenu> impleme
   public TvmMenuBar(UiContext context, HTMLElement widget) {
 
     super(context, widget);
+    this.widget.setAttribute(ATR_ROLE, "menubar");
   }
 
   /**
@@ -35,7 +35,7 @@ public class TvmMenuBar extends TvmDynamicComposite<HTMLElement, UiMenu> impleme
    */
   public TvmMenuBar(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("ui-menu"));
+    this(context, newElement("ui-menubar"));
   }
 
   @Override

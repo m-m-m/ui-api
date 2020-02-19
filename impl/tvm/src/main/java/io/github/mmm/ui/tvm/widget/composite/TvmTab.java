@@ -25,6 +25,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
 
   private final HTMLElement sectionWidget;
 
+  private final HTMLElement errorWidget;
+
   private String label;
 
   private UiRegularWidget child;
@@ -41,15 +43,18 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
   public TvmTab(UiContext context) {
 
     super(context, newButton());
-    this.widget.setAttribute("aria-role", "tab");
+    this.widget.setAttribute(ATR_ROLE, "tab");
     HTMLDocument document = Window.current().getDocument();
-    this.labelWidget = document.createElement("label");
+    this.errorWidget = newIcon(CLASS_ERROR);
+    this.widget.appendChild(this.errorWidget);
+    this.errorWidget.setHidden(true);
+    this.labelWidget = newLabel();
     this.widget.appendChild(this.labelWidget);
     this.label = "";
     this.closable = false;
     this.sectionWidget = document.createElement("section");
     setSelected(false);
-    this.widget.addEventListener("click", this::onClick);
+    this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
 
   private TvmTabPanel getTabPanel() {
@@ -193,6 +198,14 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     if (focus) {
       this.widget.focus();
     }
+  }
+
+  @Override
+  protected void doSetValidationFailure(String error) {
+
+    super.doSetValidationFailure(error);
+    this.errorWidget.setHidden(error == null);
+    this.errorWidget.setTitle(error);
   }
 
 }

@@ -215,18 +215,56 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
 
   /**
    * Triggers a validation of this widget (including all potential
-   * {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}). This will update the
-   * {@link #isValid() valid state} and {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getValidationFailure()
-   * failure message} of all involved widgets. For an immutable widget (e.g. a {@link UiLabel}) this method will have no
-   * effect and immediately returns {@code true}.
+   * {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children} and propagation to {@link #getParent()
+   * parent}s). This will update the {@link #isValid() valid state} and
+   * {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getValidationFailure() failure message} of all involved
+   * widgets. For an immutable widget (e.g. a {@link UiLabel}) this method will have no effect and immediately returns
+   * {@code true}.
    *
    * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
    *         widget and all its potential {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}
    *         have been successfully validated, {@code false} otherwise.
    * @see io.github.mmm.ui.widget.value.UiValidatableWidget
    * @see #isValid()
+   * @see #validateDown()
+   * @see #validateUp(boolean)
    */
-  boolean validate();
+  default boolean validate() {
+
+    boolean oldValid = isValid();
+    boolean valid = validateDown();
+    if (valid != oldValid) {
+      validateUp(valid);
+    }
+    return valid;
+  }
+
+  /**
+   * Propagates the new {@link #isValid() validation state} to {@link #getParent() parent} (and recursively to
+   * ancestors). This allows {@link io.github.mmm.ui.widget.composite.UiTab}s and other children from
+   * {@link io.github.mmm.ui.widget.composite.UiSingleComposite}s to indicate validation failures (e.g. with an error
+   * icon) so the end-user is able to find hidden children (e.g. inside tabs) and can correct the input data.
+   *
+   * @param valid the new {@link #isValid() valid status}.
+   * @see #validate()
+   */
+  default void validateUp(boolean valid) {
+
+    UiComposite<?> parent = getParent();
+    if (parent != null) {
+      parent.validateUp(valid);
+    }
+  }
+
+  /**
+   * Performs {@link #validate() validation} without {@link #validateUp(boolean) upwards propagation}.
+   *
+   * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
+   *         widget and all its potential {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}
+   *         have been successfully validated, {@code false} otherwise.
+   * @see #validate()
+   */
+  boolean validateDown();
 
   /**
    * @return {@code true} if the value has been <em>modified</em> by the end-user via the UI since it has been

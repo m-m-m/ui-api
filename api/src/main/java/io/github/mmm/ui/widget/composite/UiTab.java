@@ -18,6 +18,16 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
  * @since 1.0.0
  */
 public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidgetWithLabel, UiWidgetWithClosable,
-    UiActiveWidget, UiNativeWidget { /* AttributeWriteImage<UiWidgetImage>, */
+    UiActiveWidget, UiFailureComposite<UiRegularWidget>, UiNativeWidget { /* AttributeWriteImage<UiWidgetImage>, */
+
+  @Override
+  default void validateUp(boolean valid) {
+
+    if (valid) {
+      setValidationFailure(null);
+    } else {
+      setValidationFailure(getContext().getDefaultValidationFailure());
+    }
+  }
 
 }

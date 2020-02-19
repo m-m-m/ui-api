@@ -6,6 +6,7 @@ import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLButtonElement;
+import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
 import org.teavm.jso.dom.html.HTMLFormElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
@@ -29,7 +30,10 @@ import io.github.mmm.ui.widget.custom.UiCustomWidget;
 public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNativeWidgetWrapper<W> {
 
   /** The owner {@link Document} of the HTML. */
-  protected static final Document DOC = Window.current().getDocument();
+  protected static final HTMLDocument DOC = Window.current().getDocument();
+
+  /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
+  protected static final String ATR_ROLE = "role";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_ARIA_HIDDEN = "aria-hidden";
@@ -39,6 +43,33 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_TABINDEX = "tabindex";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_BLUR = "blur";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_FOCUS = "focus";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_CLICK = "click";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_INPUT = "input";
+
+  /** {@link org.teavm.jso.dom.events.Event#getType() Event type} {@value}. */
+  protected static final String EVENT_TYPE_KEYDOWN = "keydown";
+
+  /** {@link HTMLElement#getClassName() CSS class name} for error icon. */
+  protected static final String CLASS_ERROR = "error";
+
+  /** {@link HTMLElement#getClassName() CSS class name} for warning icon. */
+  protected static final String CLASS_WARNING = "warning";
+
+  /** {@link HTMLElement#getClassName() CSS class name} for info icon. */
+  protected static final String CLASS_INFO = "info";
+
+  /** {@link HTMLElement#getClassName() CSS class name} for question icon. */
+  protected static final String CLASS_QUESTION = "question";
 
   /** @see #getWidget() */
   protected final W widget;
@@ -247,6 +278,17 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   protected static HTMLElement newElement(String tag) {
 
     return DOC.createElement(tag).cast();
+  }
+
+  /**
+   * @param name the {@link HTMLElement#getClassName() CSS class name} of the icon.
+   * @return a new {@link HTMLElement}.
+   */
+  protected static HTMLElement newIcon(String name) {
+
+    HTMLElement input = newElement("ui-icon");
+    input.setClassName(name);
+    return input;
   }
 
 }

@@ -37,8 +37,8 @@ public abstract class TvmActiveWidget<W extends HTMLElement> extends TvmWidgetHt
   protected void registerHandlers() {
 
     super.registerHandlers();
-    this.widget.addEventListener("focus", this::onFocusGain);
-    this.widget.addEventListener("blur", this::onFocusLoss);
+    this.widget.addEventListener(EVENT_TYPE_FOCUS, this::onFocusGain);
+    this.widget.addEventListener(EVENT_TYPE_BLUR, this::onFocusLoss);
   }
 
   /**

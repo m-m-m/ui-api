@@ -184,4 +184,10 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
     this.delegate.setReadOnlyFixed(readOnlyFixed);
   }
 
+  @Override
+  public boolean validateDown() {
+
+    return this.delegate.validateDown();
+  }
+
 }

@@ -3,12 +3,13 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithCollapse;
 import io.github.mmm.validation.Validator;
 
 /**
  * {@link UiAbstractFormGroup} as {@link UiNativeWidget native widget} without {@link #getValue() value}.
  */
-public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiNativeWidget {
+public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiWidgetWithCollapse, UiNativeWidget {
 
   @Override
   default Validator<? super Void> getValidator() {
@@ -46,6 +47,17 @@ public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiNativeWidget {
   default Void getValue() {
 
     return null;
+  }
+
+  @Override
+  default void validateUp(boolean valid) {
+
+    if (valid) {
+      setValidationFailure(null);
+    } else {
+      setValidationFailure(getContext().getDefaultValidationFailure());
+    }
+    UiAbstractFormGroup.super.validateUp(valid);
   }
 
 }

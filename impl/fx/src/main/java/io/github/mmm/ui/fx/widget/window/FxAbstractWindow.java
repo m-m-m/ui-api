@@ -183,9 +183,12 @@ public abstract class FxAbstractWindow<W extends Stage> extends FxWidgetObject<W
   @Override
   public void addChild(UiRegularWidget child, int index) {
 
+    setParent(child, this);
+    if (index == -1) {
+      index = this.children.size();
+    }
     this.composite.getChildren().add(index + getChildOffset(), getTopNode(child));
     this.children.add(index, child);
-    setParent(child, this);
   }
 
   @Override
