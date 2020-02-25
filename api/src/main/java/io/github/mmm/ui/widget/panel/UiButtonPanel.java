@@ -3,6 +3,7 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.widget.UiRegularWidget;
 
 /**
  * {@link UiAbstractButtonContainer button container} showing a number of
@@ -11,6 +12,6 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  *
  * @since 1.0.0
  */
-public interface UiButtonPanel extends UiAbstractButtonContainer, UiNativeWidget {
+public interface UiButtonPanel extends UiAbstractButtonContainer, UiRegularWidget, UiNativeWidget {
 
 }

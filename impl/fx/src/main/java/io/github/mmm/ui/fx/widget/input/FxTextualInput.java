@@ -16,6 +16,8 @@ import javafx.scene.control.TextInputControl;
  */
 public abstract class FxTextualInput<W extends TextInputControl, V> extends FxInput<W, V> implements UiTextualInput<V> {
 
+  private String autocomplete;
+
   /**
    * The constructor.
    *
@@ -43,6 +45,19 @@ public abstract class FxTextualInput<W extends TextInputControl, V> extends FxIn
   public void setPlaceholder(String placeholder) {
 
     this.widget.setPromptText(placeholder);
+  }
+
+  @Override
+  public String getAutocomplete() {
+
+    return this.autocomplete;
+  }
+
+  @Override
+  public void setAutocomplete(String autocomplete) {
+
+    // Not supported by JavaFx
+    this.autocomplete = autocomplete;
   }
 
 }

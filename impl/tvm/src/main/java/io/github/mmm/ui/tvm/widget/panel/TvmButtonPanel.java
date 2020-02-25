@@ -6,23 +6,25 @@ import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
+import io.github.mmm.ui.tvm.widget.composite.TvmDynamicComposite;
+import io.github.mmm.ui.widget.button.UiAbstractButton;
+import io.github.mmm.ui.widget.panel.UiButtonPanel;
 
 /**
- * Implementation of {@link UiHorizontalPanel} using TeaVM.
+ * Implementation of {@link UiButtonPanel} using TeaVM.
  *
  * @since 1.0.0
  */
-public class TvmHorizontalPanel extends TvmDynamicPanel<HTMLElement> implements UiHorizontalPanel {
+public class TvmButtonPanel extends TvmDynamicComposite<HTMLElement, UiAbstractButton> implements UiButtonPanel {
 
   /**
    * The constructor.
    *
    * @param context the {@link #getContext() context}.
    */
-  public TvmHorizontalPanel(UiContext context) {
+  public TvmButtonPanel(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("ui-hpanel"));
+    super(context, Window.current().getDocument().createElement("ui-buttons"));
   }
 
   /**
@@ -31,7 +33,7 @@ public class TvmHorizontalPanel extends TvmDynamicPanel<HTMLElement> implements 
    * @param context the {@link #getContext() context}.
    * @param widget the {@link #getWidget() TeaVM widget}.
    */
-  public TvmHorizontalPanel(UiContext context, HTMLElement widget) {
+  public TvmButtonPanel(UiContext context, HTMLElement widget) {
 
     super(context, widget);
   }

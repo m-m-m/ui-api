@@ -73,8 +73,7 @@ public class UiStylesImpl implements UiStyles {
       boolean validStart = true;
       int end = index + length;
       if (index > 0) {
-        char c = this.styles.charAt(index - 1);
-        if (c != ' ') {
+        if (this.styles.charAt(index - 1) != ' ') {
           validStart = false;
         }
       }
@@ -94,7 +93,7 @@ public class UiStylesImpl implements UiStyles {
     Objects.requireNonNull(style, "style");
     assert (style.matches(PATTERN_SINGLE));
     if (!contains(style)) {
-      if (this.styles == null) {
+      if (isEmpty(this.styles)) {
         this.styles = style;
       } else {
         this.styles = this.styles + " " + style;
@@ -116,9 +115,14 @@ public class UiStylesImpl implements UiStyles {
     int startIndex = getIndexOfStyle(style);
     if (startIndex >= 0) {
       int endIndex = startIndex + style.length();
-      if (endIndex < this.styles.length()) {
-        // also remove separating space after style-name
-        endIndex++;
+      if (startIndex == 0) {
+        if (endIndex < this.styles.length()) {
+          // also remove separating space after style-name
+          endIndex++;
+        }
+      } else {
+        // also remove leading space before style-name
+        startIndex--;
       }
       this.styles = this.styles.substring(0, startIndex) + this.styles.substring(endIndex);
       onStylesChanged();

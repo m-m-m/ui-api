@@ -4,6 +4,7 @@ package io.github.mmm.ui.widget.custom;
 
 import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiStyles;
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
@@ -185,9 +186,9 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   }
 
   @Override
-  public boolean validateDown() {
+  public boolean validateDown(UiValidState state) {
 
-    return this.delegate.validateDown();
+    return this.delegate.validateDown(state);
   }
 
 }

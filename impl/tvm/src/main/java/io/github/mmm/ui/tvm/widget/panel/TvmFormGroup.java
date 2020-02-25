@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.panel;
 
+import org.teavm.jso.dom.events.Event;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
@@ -19,6 +20,10 @@ import io.github.mmm.ui.widget.panel.UiFormGroup;
 public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> implements UiFormGroup {
 
   private final Legend legend;
+
+  private boolean collapsed;
+
+  private boolean collapsible;
 
   /**
    * The constructor.
@@ -41,6 +46,7 @@ public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> i
     super(context, widget);
     this.legend = new Legend(context);
     this.widget.appendChild(this.legend.getTopWidget());
+    setCollapsible(true);
   }
 
   @Override
@@ -77,36 +83,63 @@ public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> i
   }
 
   @Override
+  protected void doSetValidationFailure(String error) {
+
+    super.doSetValidationFailure(error);
+    this.legend.errorWidget.setHidden(error == null);
+    this.legend.errorWidget.setTitle(error);
+  }
+
+  @Override
   public boolean isCollapsed() {
 
-    // TODO Auto-generated method stub
-    return false;
+    return this.collapsed;
   }
 
   @Override
   public void setCollapsed(boolean collapsed) {
 
-    // TODO Auto-generated method stub
-
+    if (collapsed == this.collapsed) {
+      return;
+    }
+    if (collapsed) {
+      getStyles().add(STYLE_COLLAPSED);
+      this.legend.expandIcon.setClassName(CLASS_EXPAND);
+    } else {
+      getStyles().remove(STYLE_COLLAPSED);
+      this.legend.expandIcon.setClassName(CLASS_COLLAPSE);
+    }
+    this.collapsed = collapsed;
   }
 
   @Override
   public boolean isCollapsible() {
 
-    // TODO Auto-generated method stub
-    return false;
+    return this.collapsible;
   }
 
   @Override
   public void setCollapsible(boolean collapsible) {
 
-    // TODO Auto-generated method stub
-
+    if (collapsible == this.collapsible) {
+      return;
+    }
+    if (collapsible) {
+      getStyles().add(STYLE_COLLAPSIBLE);
+    } else {
+      getStyles().remove(STYLE_COLLAPSIBLE);
+    }
+    this.legend.expandIcon.setHidden(!collapsible);
+    this.collapsible = collapsible;
   }
 
-  private static class Legend extends TvmWidgetHtmlElement<HTMLElement> implements UiLabel {
+  private class Legend extends TvmWidgetHtmlElement<HTMLElement> implements UiLabel {
+
+    private final HTMLElement expandIcon;
 
     private final HTMLElement topWidget;
+
+    private final HTMLElement errorWidget;
 
     private String label;
 
@@ -119,7 +152,22 @@ public class TvmFormGroup extends TvmDynamicComposite<HTMLElement, UiInput<?>> i
 
       super(context, newLabel());
       this.topWidget = newLegend();
+      this.expandIcon = newIcon(CLASS_COLLAPSE);
+      this.topWidget.appendChild(this.expandIcon);
       this.topWidget.appendChild(this.widget);
+      this.errorWidget = newIcon(CLASS_ERROR);
+      this.errorWidget.setHidden(true);
+      this.topWidget.appendChild(this.errorWidget);
+      this.topWidget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
+    }
+
+    @Override
+    protected void onClick(Event event) {
+
+      if (TvmFormGroup.this.collapsible) {
+        setCollapsed(!TvmFormGroup.this.collapsed);
+      }
+      super.onClick(event);
     }
 
     @Override

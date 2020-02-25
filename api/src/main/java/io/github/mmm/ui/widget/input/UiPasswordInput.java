@@ -24,6 +24,7 @@ public interface UiPasswordInput extends UiStringInput, UiNativeWidget {
 
     UiPasswordInput confirmation = getContext().createPasswordInput(getName());
     confirmation.setValidator(new ValidatorPasswordConfirmation(() -> getValue()));
+    confirmation.setAutocomplete(AUTOCOMPLETE_NEW_PASSWORD);
     return confirmation;
   }
 

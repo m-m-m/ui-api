@@ -27,11 +27,12 @@ public abstract class TvmLabelledInput<V> extends TvmHtmlInput<V> implements UiW
    *
    * @param context the {@link #getContext() context}.
    * @param type the {@link HTMLInputElement#getType() type} of the input.
+   * @param tag the {@link HTMLElement#getTagName() tag name} of the {@link #getTopWidget() top widget}.
    */
-  public TvmLabelledInput(UiContext context, String type) {
+  public TvmLabelledInput(UiContext context, String type, String tag) {
 
     super(context, type);
-    this.topWidget = newDiv();
+    this.topWidget = newElement(tag);
     this.labelWidget = newLabel();
     this.topWidget.appendChild(this.widget);
     this.topWidget.appendChild(this.labelWidget);

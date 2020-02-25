@@ -1,10 +1,12 @@
 import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.fx.factory.FxFactoryButton;
+import io.github.mmm.ui.fx.factory.FxFactoryButtonPanel;
 import io.github.mmm.ui.fx.factory.FxFactoryCheckbox;
 import io.github.mmm.ui.fx.factory.FxFactoryFormGroup;
 import io.github.mmm.ui.fx.factory.FxFactoryFormPanel;
 import io.github.mmm.ui.fx.factory.FxFactoryHorizontalPanel;
 import io.github.mmm.ui.fx.factory.FxFactoryLabel;
+import io.github.mmm.ui.fx.factory.FxFactoryMediaPlayer;
 import io.github.mmm.ui.fx.factory.FxFactoryMenu;
 import io.github.mmm.ui.fx.factory.FxFactoryMenuItem;
 import io.github.mmm.ui.fx.factory.FxFactoryMenuItemCheckbox;
@@ -43,13 +45,17 @@ module io.github.mmm.ui.fx {
 
   requires javafx.web;
 
+  requires javafx.media;
+
   provides UiSingleWidgetFactoryNative with //
       FxFactoryButton, //
+      FxFactoryButtonPanel, //
       FxFactoryCheckbox, //
       FxFactoryFormGroup, //
       FxFactoryFormPanel, //
       FxFactoryLabel, //
       FxFactoryVerticalPanel, //
+      FxFactoryMediaPlayer, //
       FxFactoryMenu, //
       FxFactoryMenuItem, //
       FxFactoryMenuItemCheckbox, //

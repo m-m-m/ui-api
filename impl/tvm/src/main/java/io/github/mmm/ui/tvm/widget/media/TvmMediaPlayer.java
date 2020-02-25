@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.media;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLElement;
 
 import io.github.mmm.ui.UiContext;
@@ -31,7 +30,7 @@ public class TvmMediaPlayer extends TvmActiveWidget<HTMLElement> implements UiMe
    */
   public TvmMediaPlayer(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("media-player"));
+    super(context, newElement("ui-mplayer"));
   }
 
   private TvmAudioPlayer getAudio() {
@@ -66,14 +65,17 @@ public class TvmMediaPlayer extends TvmActiveWidget<HTMLElement> implements UiMe
     } else {
       newActiveMedia = null;
     }
-    if (this.activeMedia == newActiveMedia) {
-      return;
+    if (this.activeMedia != newActiveMedia) {
+      if (this.activeMedia != null) {
+        this.activeMedia.setMedia(null);
+        this.activeMedia.setVisible(false);
+      }
+      this.activeMedia = newActiveMedia;
     }
-    this.activeMedia.setMedia(null);
-    this.activeMedia.setVisible(false);
-    this.activeMedia = newActiveMedia;
-    this.activeMedia.setMedia(media);
-    this.activeMedia.setVisible(true);
+    if (this.activeMedia != null) {
+      this.activeMedia.setMedia(media);
+      this.activeMedia.setVisible(true);
+    }
   }
 
   @Override

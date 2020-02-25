@@ -28,6 +28,7 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidg
     } else {
       setValidationFailure(getContext().getDefaultValidationFailure());
     }
+    UiMutableSingleComposite.super.validateUp(valid);
   }
 
 }

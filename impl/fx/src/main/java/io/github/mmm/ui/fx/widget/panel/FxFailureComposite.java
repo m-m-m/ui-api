@@ -18,8 +18,6 @@ import javafx.scene.layout.Pane;
 public abstract class FxFailureComposite<W extends Pane, C extends UiWidget> extends FxDynamicCompositePane<W, C>
     implements UiFailureComposite<C> {
 
-  private String validationFailure;
-
   /**
    * The constructor.
    *
@@ -32,23 +30,9 @@ public abstract class FxFailureComposite<W extends Pane, C extends UiWidget> ext
   }
 
   @Override
-  public String getValidationFailure() {
+  protected void doSetValidationFailure(String error) {
 
-    return this.validationFailure;
+    super.doSetValidationFailure(error);
+    // TODO: apply to view
   }
-
-  @Override
-  public void setValidationFailure(String validationFailure) {
-
-    boolean invalid = !isEmpty(validationFailure);
-    if (invalid) {
-      this.validationFailure = validationFailure;
-      getStyles().add(STYLE_INVALID);
-    } else {
-      this.validationFailure = null;
-      getStyles().remove(STYLE_INVALID);
-    }
-    // TODO apply validationFailure to widget!
-  }
-
 }

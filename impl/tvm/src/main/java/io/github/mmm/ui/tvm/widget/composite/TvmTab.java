@@ -46,8 +46,8 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     this.widget.setAttribute(ATR_ROLE, "tab");
     HTMLDocument document = Window.current().getDocument();
     this.errorWidget = newIcon(CLASS_ERROR);
-    this.widget.appendChild(this.errorWidget);
     this.errorWidget.setHidden(true);
+    this.widget.appendChild(this.errorWidget);
     this.labelWidget = newLabel();
     this.widget.appendChild(this.labelWidget);
     this.label = "";
@@ -206,6 +206,11 @@ public class TvmTab extends TvmComposite<HTMLButtonElement, UiRegularWidget> imp
     super.doSetValidationFailure(error);
     this.errorWidget.setHidden(error == null);
     this.errorWidget.setTitle(error);
+    if (error == null) {
+      this.sectionWidget.setClassName("");
+    } else {
+      this.sectionWidget.setClassName(STYLE_INVALID);
+    }
   }
 
 }

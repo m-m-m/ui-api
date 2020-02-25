@@ -51,6 +51,7 @@ public class TvmComboBoxSelect<V> extends TvmHtmlSelect<V> implements UiComboBox
 
     this.placeholder = placeholder;
     // this.widget.setPlaceholder(placeholder);
+    this.widget.setAttribute("placeholder", placeholder);
   }
 
   @Override

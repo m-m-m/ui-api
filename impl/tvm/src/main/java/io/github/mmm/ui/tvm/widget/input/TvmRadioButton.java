@@ -13,6 +13,8 @@ import io.github.mmm.ui.widget.input.UiRadioButton;
  */
 public class TvmRadioButton extends TvmBooleanInput implements UiRadioButton {
 
+  static final String TAG_UI_RADIO = "ui-radio";
+
   /**
    * The constructor.
    *
@@ -20,7 +22,7 @@ public class TvmRadioButton extends TvmBooleanInput implements UiRadioButton {
    */
   public TvmRadioButton(UiContext context) {
 
-    super(context, "radio");
+    super(context, TYPE_RADIO, TAG_UI_RADIO);
   }
 
   @Override

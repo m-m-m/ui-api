@@ -11,6 +11,7 @@ import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.tvm.widget.TvmActiveWidget;
 import io.github.mmm.ui.tvm.widget.TvmLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithAutocomplete;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
 
@@ -21,7 +22,8 @@ import io.github.mmm.validation.Validator;
  * @param <V> type of {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget<W> implements UiInput<V> {
+public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget<W>
+    implements UiInput<V>, UiWidgetWithAutocomplete {
 
   private String name;
 
@@ -32,6 +34,8 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   private V originalValue;
 
   private boolean modified;
+
+  private String autocomplete;
 
   /**
    * The constructor.
@@ -140,7 +144,12 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
   @Override
   protected void doSetValidationFailure(String error) {
 
-    setCustomValidity(this.widget, error);
+    if (error == null) {
+      setCustomValidity(this.widget, "");
+    } else {
+      setCustomValidity(this.widget, error);
+      reportValidity(this.widget);
+    }
   }
 
   @Override
@@ -200,7 +209,7 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     super.onFocusGain(event);
     if (!isValid()) {
       // TODO update tvm version
-      // this.widget.reportValidity();
+      reportValidity(this.widget);
     }
   }
 
@@ -211,6 +220,22 @@ public abstract class TvmInput<V, W extends HTMLElement> extends TvmActiveWidget
     super.onFocusLoss(event);
   }
 
+  @Override
+  public String getAutocomplete() {
+
+    return this.autocomplete;
+  }
+
+  @Override
+  public void setAutocomplete(String autocomplete) {
+
+    this.autocomplete = autocomplete;
+    this.widget.setAttribute("autocomplete", autocomplete);
+  }
+
   @JSBody(params = { EVENT_TYPE_INPUT, "value" }, script = "input.setCustomValidity(value);")
   private static native void setCustomValidity(HTMLElement input, String value);
+
+  @JSBody(params = { EVENT_TYPE_INPUT }, script = "input.reportValidity();")
+  private static native void reportValidity(HTMLElement input);
 }

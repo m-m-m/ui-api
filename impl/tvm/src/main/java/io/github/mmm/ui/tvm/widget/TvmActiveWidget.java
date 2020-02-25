@@ -10,6 +10,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiFocusGainEvent;
 import io.github.mmm.ui.event.UiFocusLossEvent;
 import io.github.mmm.ui.widget.UiActiveWidget;
+import io.github.mmm.ui.widget.composite.UiComposite;
 
 /**
  * Implementation of {@link io.github.mmm.ui.widget.UiActiveWidget} for TeaVM.
@@ -31,6 +32,15 @@ public abstract class TvmActiveWidget<W extends HTMLElement> extends TvmWidgetHt
 
     super(context, widget);
     this.accessKey = ACCESS_KEY_NONE;
+  }
+
+  @Override
+  protected void setParent(UiComposite<?> parent) {
+
+    if (parent != null) {
+      ensureHandlers();
+    }
+    super.setParent(parent);
   }
 
   @Override

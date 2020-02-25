@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import io.github.mmm.ui.datatype.UiSeverity;
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.event.UiClickEventListener;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.event.action.UiAction;
@@ -19,6 +20,7 @@ import io.github.mmm.ui.event.action.UiActionYes;
 import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
+import io.github.mmm.ui.widget.button.UiAbstractButton;
 import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiCheckbox;
@@ -28,6 +30,7 @@ import io.github.mmm.ui.widget.input.UiRadioButton;
 import io.github.mmm.ui.widget.input.UiRadioChoice;
 import io.github.mmm.ui.widget.input.UiTextArea;
 import io.github.mmm.ui.widget.input.UiTextInput;
+import io.github.mmm.ui.widget.panel.UiButtonPanel;
 import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
@@ -477,6 +480,19 @@ public interface UiContext {
   }
 
   /**
+   * @param buttons the {@link UiAbstractButton button}s.
+   * @return the new widget instance.
+   */
+  default UiButtonPanel createButtonPanel(UiAbstractButton... buttons) {
+
+    UiButtonPanel widget = create(UiButtonPanel.class);
+    for (UiAbstractButton button : buttons) {
+      widget.addChild(button);
+    }
+    return widget;
+  }
+
+  /**
    * @return the default {@link io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure#getValidationFailure()
    *         validation failure} message to show if something is invalid (e.g. for
    *         {@link io.github.mmm.ui.widget.composite.UiTab}s).
@@ -484,6 +500,14 @@ public interface UiContext {
   default String getDefaultValidationFailure() {
 
     return "Please enter valid data.";
+  }
+
+  /**
+   * @return a new instance of {@link UiValidState}.
+   */
+  default UiValidState newValidState() {
+
+    return new UiValidState();
   }
 
 }

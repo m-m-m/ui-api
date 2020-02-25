@@ -7,15 +7,15 @@ package io.github.mmm.ui.datatype;
  *
  * @since 1.0.0
  */
-public enum UiDisplayType {
+public enum UiScreenType {
 
-  /** {@link io.github.mmm.ui.UiDisplay#getType() Type} of a small display (e.g. smartphone). */
+  /** {@link io.github.mmm.ui.UiScreen#getType() Type} of a small display (e.g. smartphone). */
   SMALL,
 
-  /** {@link io.github.mmm.ui.UiDisplay#getType() Type} of a medium display (e.g. tablet). */
+  /** {@link io.github.mmm.ui.UiScreen#getType() Type} of a medium display (e.g. tablet). */
   MEDIUM,
 
-  /** {@link io.github.mmm.ui.UiDisplay#getType() Type} of a large display (e.g. PC or laptop). */
+  /** {@link io.github.mmm.ui.UiScreen#getType() Type} of a large display (e.g. PC or laptop). */
   LARGE
 
 }

@@ -7,6 +7,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiEnabledFlags;
 import io.github.mmm.ui.datatype.UiStyles;
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.datatype.UiVisibleFlags;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
@@ -226,13 +227,16 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    *         have been successfully validated, {@code false} otherwise.
    * @see io.github.mmm.ui.widget.value.UiValidatableWidget
    * @see #isValid()
-   * @see #validateDown()
+   * @see #validateDown(UiValidState)
    * @see #validateUp(boolean)
    */
   default boolean validate() {
 
     boolean oldValid = isValid();
-    boolean valid = validateDown();
+    UiValidState state = getContext().newValidState();
+    validateDown(state);
+    boolean valid = state.isValid();
+    System.out.println("Validation of " + getClass().getSimpleName() + " is " + valid + " and was " + oldValid);
     if (valid != oldValid) {
       validateUp(valid);
     }
@@ -259,12 +263,14 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   /**
    * Performs {@link #validate() validation} without {@link #validateUp(boolean) upwards propagation}.
    *
+   * @param state the new {@link UiValidState}.
    * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
    *         widget and all its potential {@link io.github.mmm.ui.widget.composite.UiComposite#getChild(int) children}
-   *         have been successfully validated, {@code false} otherwise.
+   *         have been successfully validated, {@code false} otherwise. Can differ from {@link UiValidState#isValid()}
+   *         if the subtree of this widget is valid but other widgets have been validated before.
    * @see #validate()
    */
-  boolean validateDown();
+  boolean validateDown(UiValidState state);
 
   /**
    * @return {@code true} if the value has been <em>modified</em> by the end-user via the UI since it has been

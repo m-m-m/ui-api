@@ -165,7 +165,7 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
     private RadioButton(HTMLInputElement widget, String name, int index) {
 
       super();
-      this.top = newSpan();
+      this.top = newElement(TvmRadioButton.TAG_UI_RADIO);
       this.input = widget;
       this.input.setName(name);
       this.index = index;
@@ -181,7 +181,9 @@ public class TvmRadioChoice<V> extends TvmTextualInput<V> implements UiRadioChoi
 
     private RadioButton createNext() {
 
-      return new RadioButton(this.input.getName(), this.index + 1);
+      RadioButton radioButton = new RadioButton(this.input.getName(), this.index + 1);
+      radioButton.input.setTabIndex(-1);
+      return radioButton;
     }
 
   }

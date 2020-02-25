@@ -61,7 +61,8 @@ public abstract class TvmTextualInput<V> extends TvmHtmlInput<V> implements UiTe
   public void setPlaceholder(String placeholder) {
 
     this.placeholder = placeholder;
-    // this.nativeWidget.setPlaceholder(placeholder);
+    // sthis.widget.setPlaceholder(placeholder);
+    this.widget.setAttribute("placeholder", placeholder);
   }
 
 }

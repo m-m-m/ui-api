@@ -5,7 +5,7 @@ package io.github.mmm.ui;
 import java.util.concurrent.Callable;
 
 /**
- * This is the interface for the dispatcher of UI events.
+ * This is the interface for the dispatcher of asynchronous processing.
  *
  * @see UiContext#getDispatcher()
  *

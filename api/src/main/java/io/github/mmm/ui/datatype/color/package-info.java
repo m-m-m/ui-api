@@ -2,5 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 /**
  * Contains datatypes to represent a color.
+ * 
+ * @see io.github.mmm.ui.datatype.color.Color
+ * @see io.github.mmm.ui.datatype.color.GenericColor
  */
 package io.github.mmm.ui.datatype.color;

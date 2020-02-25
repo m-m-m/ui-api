@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.tvm.widget.media;
 
-import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.html.HTMLAudioElement;
 
 import io.github.mmm.ui.UiContext;
@@ -22,7 +21,7 @@ public class TvmAudioPlayer extends TvmMediaWidget<HTMLAudioElement> implements 
    */
   public TvmAudioPlayer(UiContext context) {
 
-    super(context, Window.current().getDocument().createElement("audio").cast());
+    super(context, newAudio());
   }
 
 }

@@ -1,5 +1,6 @@
 io.github.mmm.ui.tvm.factory.TvmFactoryAudioPlayer
 io.github.mmm.ui.tvm.factory.TvmFactoryButton
+io.github.mmm.ui.tvm.factory.TvmFactoryButtonPanel
 io.github.mmm.ui.tvm.factory.TvmFactoryCheckbox
 io.github.mmm.ui.tvm.factory.TvmFactoryComboBoxDataList
 io.github.mmm.ui.tvm.factory.TvmFactoryFormGroup

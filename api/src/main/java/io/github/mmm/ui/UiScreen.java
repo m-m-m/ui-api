@@ -3,7 +3,7 @@
 package io.github.mmm.ui;
 
 import io.github.mmm.ui.attribute.AttributeReadSizeInPixel;
-import io.github.mmm.ui.datatype.UiDisplayType;
+import io.github.mmm.ui.datatype.UiScreenType;
 
 /**
  * This is the interface for the display where the UI objects are shown. <br>
@@ -19,9 +19,9 @@ import io.github.mmm.ui.datatype.UiDisplayType;
 public interface UiScreen extends AttributeReadSizeInPixel {
 
   /**
-   * @return the {@link UiDisplayType} that categorizes the display size.
+   * @return the {@link UiScreenType} that categorizes the display size.
    */
-  UiDisplayType getType();
+  UiScreenType getType();
 
   /**
    * @return the <em>dots per inch</em> (DPI) rate of this display.

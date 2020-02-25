@@ -7,6 +7,7 @@ import io.github.mmm.ui.datatype.BitFlag;
 import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.BitValueBoolean;
 import io.github.mmm.ui.datatype.UiPropagation;
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.event.UiDisableEvent;
 import io.github.mmm.ui.event.UiEnableEvent;
 import io.github.mmm.ui.event.UiEvent;
@@ -18,6 +19,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.ui.widget.composite.UiComposite;
+import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.ui.widget.window.UiAbstractWindow;
 import io.github.mmm.validation.ValidationResult;
@@ -311,17 +313,15 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
   }
 
   @Override
-  public boolean validateDown() {
+  public boolean validateDown(UiValidState state) {
 
     boolean valid = true;
-    if (this instanceof UiValidatableWidget) {
-      validate((UiValidatableWidget<?>) this);
-    } else if (this instanceof UiComposite) {
+    if (this instanceof UiComposite) {
       UiComposite<?> composite = (UiComposite<?>) this;
       int childCount = composite.getChildCount();
       for (int i = 0; i < childCount; i++) {
         UiWidget child = composite.getChild(i);
-        if (!child.validateDown()) {
+        if (!child.validateDown(state)) {
           valid = false;
         }
       }
@@ -331,27 +331,36 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
         setValidationFailure(this.context.getDefaultValidationFailure());
       }
     }
+    if (this instanceof UiValidatableWidget) {
+      valid = validate((UiValidatableWidget<?>) this, state);
+    }
     return valid;
   }
 
-  private <V> boolean validate(UiValidatableWidget<V> widget) {
+  private <V> boolean validate(UiValidatableWidget<V> widget, UiValidState state) {
 
     V value = widget.getValue();
     Validator<? super V> validator = widget.getValidator();
     ValidationResult result = validator.validate(value, widget.getId());
     String error = result.getLocalizedMessage(this.context.getLocale());
     widget.setValidationFailure(error);
-    return (error == null);
+    if (state.isSetFocus() && (this instanceof UiInput)) {
+      widget.setFocused();
+      state.setFocussed();
+    }
+    boolean valid = (error == null);
+    state.notify(valid);
+    return valid;
   }
 
   @Override
-  public String getValidationFailure() {
+  public final String getValidationFailure() {
 
     return this.validationFailure;
   }
 
   @Override
-  public void setValidationFailure(String validationFailure) {
+  public final void setValidationFailure(String validationFailure) {
 
     if (isEmpty(validationFailure)) {
       if (this.validationFailure == null) {

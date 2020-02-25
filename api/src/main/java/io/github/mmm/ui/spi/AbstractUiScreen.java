@@ -3,7 +3,7 @@
 package io.github.mmm.ui.spi;
 
 import io.github.mmm.ui.UiScreen;
-import io.github.mmm.ui.datatype.UiDisplayType;
+import io.github.mmm.ui.datatype.UiScreenType;
 
 /**
  * Abstract base implementation of {@link UiScreen}.
@@ -25,7 +25,7 @@ public abstract class AbstractUiScreen implements UiScreen {
   protected double size;
 
   /** @see #getType() */
-  protected UiDisplayType type;
+  protected UiScreenType type;
 
   /**
    * The constructor.
@@ -72,7 +72,7 @@ public abstract class AbstractUiScreen implements UiScreen {
   }
 
   @Override
-  public UiDisplayType getType() {
+  public UiScreenType getType() {
 
     if (this.type == null) {
       update();
@@ -88,11 +88,11 @@ public abstract class AbstractUiScreen implements UiScreen {
     double h = this.height / this.dpi;
     this.size = Math.sqrt((w * w) + (h * h));
     if (this.size < 8) {
-      this.type = UiDisplayType.SMALL;
+      this.type = UiScreenType.SMALL;
     } else if (this.size > 12) {
-      this.type = UiDisplayType.LARGE;
+      this.type = UiScreenType.LARGE;
     } else {
-      this.type = UiDisplayType.MEDIUM;
+      this.type = UiScreenType.MEDIUM;
     }
   }
 

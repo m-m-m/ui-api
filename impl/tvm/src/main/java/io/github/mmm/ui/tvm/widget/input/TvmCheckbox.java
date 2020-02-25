@@ -19,7 +19,7 @@ public class TvmCheckbox extends TvmBooleanInput implements UiCheckbox {
    */
   public TvmCheckbox(UiContext context) {
 
-    super(context, TYPE_CHECKBOX);
+    super(context, TYPE_CHECKBOX, "ui-checkbox");
   }
 
 }

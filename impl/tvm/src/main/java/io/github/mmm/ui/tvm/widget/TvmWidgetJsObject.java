@@ -5,6 +5,7 @@ package io.github.mmm.ui.tvm.widget;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.browser.Window;
 import org.teavm.jso.dom.events.Event;
+import org.teavm.jso.dom.html.HTMLAudioElement;
 import org.teavm.jso.dom.html.HTMLButtonElement;
 import org.teavm.jso.dom.html.HTMLDocument;
 import org.teavm.jso.dom.html.HTMLElement;
@@ -12,6 +13,7 @@ import org.teavm.jso.dom.html.HTMLFormElement;
 import org.teavm.jso.dom.html.HTMLInputElement;
 import org.teavm.jso.dom.html.HTMLSelectElement;
 import org.teavm.jso.dom.html.HTMLTextAreaElement;
+import org.teavm.jso.dom.html.HTMLVideoElement;
 import org.teavm.jso.dom.xml.Document;
 import org.teavm.jso.dom.xml.Node;
 
@@ -31,6 +33,9 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
 
   /** The owner {@link Document} of the HTML. */
   protected static final HTMLDocument DOC = Window.current().getDocument();
+
+  /** {@link HTMLElement#getTagName() Tag name} of UI icon. */
+  protected static final String TAG_NAME_UI_ICON = "ui-icon";
 
   /** {@link HTMLElement#getAttribute(String) Attribute name} {@value}. */
   protected static final String ATR_ROLE = "role";
@@ -68,8 +73,20 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   /** {@link HTMLElement#getClassName() CSS class name} for info icon. */
   protected static final String CLASS_INFO = "info";
 
+  /** {@link HTMLElement#getClassName() CSS class name} for expand icon. */
+  protected static final String CLASS_EXPAND = "expand";
+
+  /** {@link HTMLElement#getClassName() CSS class name} for collapse icon. */
+  protected static final String CLASS_COLLAPSE = "collapse";
+
   /** {@link HTMLElement#getClassName() CSS class name} for question icon. */
   protected static final String CLASS_QUESTION = "question";
+
+  /** CSS style for a collapsed widget (hiding its children). */
+  protected static final String STYLE_COLLAPSED = "collapsed";
+
+  /** CSS style for a collapsible widget (can be collapsed/expanded by the end-user). */
+  protected static final String STYLE_COLLAPSIBLE = "collapsible";
 
   /** @see #getWidget() */
   protected final W widget;
@@ -157,7 +174,6 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
    */
   protected static void insertAt(Node parent, Node child, int index) {
 
-    System.out.println("adding " + child.getLocalName() + " to " + parent.getLocalName() + " at " + index);
     if (index == 0) {
       insertFirst(parent, child);
     }
@@ -232,6 +248,22 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
   }
 
   /**
+   * @return a new {@link HTMLVideoElement}.
+   */
+  protected static HTMLVideoElement newVideo() {
+
+    return DOC.createElement("video").cast();
+  }
+
+  /**
+   * @return a new {@link HTMLAudioElement}.
+   */
+  protected static HTMLAudioElement newAudio() {
+
+    return DOC.createElement("audio").cast();
+  }
+
+  /**
    * @return a new {@link HTMLElement fieldset element}.
    */
   protected static HTMLElement newFieldSet() {
@@ -286,7 +318,7 @@ public abstract class TvmWidgetJsObject<W extends JSObject> extends AbstractUiNa
    */
   protected static HTMLElement newIcon(String name) {
 
-    HTMLElement input = newElement("ui-icon");
+    HTMLElement input = newElement(TAG_NAME_UI_ICON);
     input.setClassName(name);
     return input;
   }

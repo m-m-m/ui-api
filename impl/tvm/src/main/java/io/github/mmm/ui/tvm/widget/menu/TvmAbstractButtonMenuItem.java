@@ -23,7 +23,6 @@ public abstract class TvmAbstractButtonMenuItem extends TvmAbstractActiveMenuIte
 
     super(context, widget);
     this.label = "";
-    this.widget.addEventListener(EVENT_TYPE_CLICK, this::onClick);
   }
 
   @Override

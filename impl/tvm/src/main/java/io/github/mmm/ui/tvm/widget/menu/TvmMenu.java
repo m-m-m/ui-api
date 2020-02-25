@@ -51,16 +51,17 @@ public class TvmMenu extends TvmAbstractButtonMenuItem implements UiMenu {
   @Override
   protected void onClick(Event event) {
 
-    super.onClick(event);
     Node parentNode = this.menu.getParentNode();
     if (parentNode == null) {
-
+      System.out.println("Opening menu");
       this.menu.setAttribute("style", "left:" + this.widget.getAbsoluteLeft() + "px,top:"
           + (this.widget.getAbsoluteTop() + this.widget.getClientHeight()) + "px");
       DOC.getBody().appendChild(this.menu);
     } else {
+      System.out.println("Closing menu");
       parentNode.removeChild(this.menu);
     }
+    super.onClick(event);
   }
 
   @Override
