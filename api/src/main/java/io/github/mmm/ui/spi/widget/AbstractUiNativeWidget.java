@@ -3,11 +3,11 @@
 package io.github.mmm.ui.spi.widget;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.BitFlag;
-import io.github.mmm.ui.datatype.BitMask;
-import io.github.mmm.ui.datatype.BitValueBoolean;
 import io.github.mmm.ui.datatype.UiPropagation;
 import io.github.mmm.ui.datatype.UiValidState;
+import io.github.mmm.ui.datatype.bitmask.BitFlag;
+import io.github.mmm.ui.datatype.bitmask.BitMask;
+import io.github.mmm.ui.datatype.bitmask.BitValueBoolean;
 import io.github.mmm.ui.event.UiDisableEvent;
 import io.github.mmm.ui.event.UiEnableEvent;
 import io.github.mmm.ui.event.UiEvent;

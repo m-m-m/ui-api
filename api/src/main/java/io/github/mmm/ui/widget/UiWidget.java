@@ -4,11 +4,11 @@ package io.github.mmm.ui.widget;
 
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiEnabledFlags;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.datatype.UiVisibleFlags;
+import io.github.mmm.ui.datatype.bitmask.BitMask;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.composite.UiComposite;
@@ -228,40 +228,39 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    * @see io.github.mmm.ui.widget.value.UiValidatableWidget
    * @see #isValid()
    * @see #validateDown(UiValidState)
-   * @see #validateUp(boolean)
+   * @see #validateUp(UiValidState)
    */
   default boolean validate() {
 
-    boolean oldValid = isValid();
     UiValidState state = getContext().newValidState();
     validateDown(state);
     boolean valid = state.isValid();
-    System.out.println("Validation of " + getClass().getSimpleName() + " is " + valid + " and was " + oldValid);
-    if (valid != oldValid) {
-      validateUp(valid);
+    UiComposite<?> parent = getParent();
+    if (parent != null) {
+      parent.validateUp(state);
     }
     return valid;
   }
 
   /**
-   * Propagates the new {@link #isValid() validation state} to {@link #getParent() parent} (and recursively to
-   * ancestors). This allows {@link io.github.mmm.ui.widget.composite.UiTab}s and other children from
-   * {@link io.github.mmm.ui.widget.composite.UiSingleComposite}s to indicate validation failures (e.g. with an error
-   * icon) so the end-user is able to find hidden children (e.g. inside tabs) and can correct the input data.
+   * Propagates the new {@link UiValidState} to {@link #getParent() parent} (and recursively to ancestors). This allows
+   * {@link io.github.mmm.ui.widget.composite.UiTab}s and other composites that can collapse or hide their children to
+   * indicate validation failures (e.g. with an error icon) so the end-user is able to find invalid data even in hidden
+   * children and can correct the data.
    *
-   * @param valid the new {@link #isValid() valid status}.
+   * @param state the new {@link UiValidState}.
    * @see #validate()
    */
-  default void validateUp(boolean valid) {
+  default void validateUp(UiValidState state) {
 
     UiComposite<?> parent = getParent();
     if (parent != null) {
-      parent.validateUp(valid);
+      parent.validateUp(state);
     }
   }
 
   /**
-   * Performs {@link #validate() validation} without {@link #validateUp(boolean) upwards propagation}.
+   * Performs {@link #validate() validation} without {@link #validateUp(UiValidState) upwards propagation}.
    *
    * @param state the new {@link UiValidState}.
    * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this

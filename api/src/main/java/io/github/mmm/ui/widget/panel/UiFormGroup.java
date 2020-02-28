@@ -2,14 +2,16 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.panel;
 
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithCollapse;
+import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.validation.Validator;
 
 /**
- * {@link UiAbstractFormGroup} as {@link UiNativeWidget native widget} without {@link #getValue() value}.
+ * {@link UiAbstractCompositeInput} as {@link UiNativeWidget native widget} without {@link #getValue() value}.
  */
-public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiWidgetWithCollapse, UiNativeWidget {
+public interface UiFormGroup extends UiAbstractCompositeInput<UiInput<?>, Void>, UiWidgetWithCollapse, UiNativeWidget {
 
   @Override
   default Validator<? super Void> getValidator() {
@@ -50,14 +52,14 @@ public interface UiFormGroup extends UiAbstractFormGroup<Void>, UiWidgetWithColl
   }
 
   @Override
-  default void validateUp(boolean valid) {
+  default void validateUp(UiValidState state) {
 
-    if (valid) {
+    if (state.isValid()) {
       setValidationFailure(null);
     } else {
       setValidationFailure(getContext().getDefaultValidationFailure());
     }
-    UiAbstractFormGroup.super.validateUp(valid);
+    UiAbstractCompositeInput.super.validateUp(state);
   }
 
 }

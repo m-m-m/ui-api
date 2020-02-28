@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.media;
 
-import io.github.mmm.ui.datatype.UiMedia;
+import io.github.mmm.ui.datatype.media.UiMedia;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**

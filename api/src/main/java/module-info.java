@@ -24,6 +24,14 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.datatype;
 
+  exports io.github.mmm.ui.datatype.bitmask;
+
+  exports io.github.mmm.ui.datatype.chart;
+
+  exports io.github.mmm.ui.datatype.color;
+
+  exports io.github.mmm.ui.datatype.media;
+
   exports io.github.mmm.ui.event;
 
   exports io.github.mmm.ui.event.action;
@@ -41,6 +49,8 @@ module io.github.mmm.ui {
   exports io.github.mmm.ui.widget.attribute;
 
   exports io.github.mmm.ui.widget.button;
+
+  exports io.github.mmm.ui.widget.chart;
 
   exports io.github.mmm.ui.widget.composite;
 

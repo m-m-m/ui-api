@@ -2,6 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.datatype;
 
+import io.github.mmm.ui.datatype.bitmask.BitMask;
+import io.github.mmm.ui.datatype.bitmask.InverseBitFlag;
+import io.github.mmm.ui.datatype.bitmask.InverseBitMask;
+
 /**
  * {@link BitMask} constants for {@link io.github.mmm.ui.widget.UiWidget#setEnabled(boolean, BitMask)}.
  *

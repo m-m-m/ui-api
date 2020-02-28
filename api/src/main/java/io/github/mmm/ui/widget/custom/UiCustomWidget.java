@@ -2,9 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.datatype.BitMask;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.datatype.UiValidState;
+import io.github.mmm.ui.datatype.bitmask.BitMask;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;

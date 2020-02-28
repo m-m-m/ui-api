@@ -23,7 +23,6 @@
   <modules>
     <module>api</module>
     <module>binding</module>
-    <module>impl</module>
   </modules>
 
   <dependencyManagement>
@@ -31,11 +30,6 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-ui-fx</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

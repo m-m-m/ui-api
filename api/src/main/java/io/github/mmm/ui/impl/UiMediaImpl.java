@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import io.github.mmm.ui.datatype.UiMedia;
-import io.github.mmm.ui.datatype.UiMediaPreview;
-import io.github.mmm.ui.datatype.UiMediaSource;
-import io.github.mmm.ui.datatype.UiMediaTrack;
-import io.github.mmm.ui.datatype.UiMediaType;
+import io.github.mmm.ui.datatype.media.UiMedia;
+import io.github.mmm.ui.datatype.media.UiMediaPreview;
+import io.github.mmm.ui.datatype.media.UiMediaSource;
+import io.github.mmm.ui.datatype.media.UiMediaTrack;
+import io.github.mmm.ui.datatype.media.UiMediaType;
 
 /**
  * Implementation of {@link UiMedia}.

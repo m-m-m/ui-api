@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.binding;
 
+import io.github.mmm.bean.BeanFactory;
 import io.github.mmm.bean.ReadableBean;
 import io.github.mmm.bean.WritableBean;
 import io.github.mmm.bean.property.ReadableBeanProperty;
@@ -13,7 +14,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.panel.UiAbstractFormGroup;
+import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiResponsiveColumnPanel;
 import io.github.mmm.validation.Validator;
@@ -58,7 +59,7 @@ public class UiBinding {
       UiAbstractInput<?> input = null;
       Class<?> valueClass = property.getValueClass();
       if (property instanceof ReadableBeanProperty) {
-        input = createFormGroup((ReadableBeanProperty<?>) property, context);
+        input = createFormGroup((ReadableBeanProperty<?>) property, context, bean);
       } else if (isBindableValueClass(valueClass)) { // TODO use Predicate
         input = createInput(property, context, bean);
       }
@@ -73,18 +74,26 @@ public class UiBinding {
   }
 
   /**
-   * @param bean
-   * @param context
-   * @return
+   * @param beanProperty the {@link ReadableBeanProperty}.
+   * @param context the {@link UiContext}.
+   * @param parentBean the parent {@link ReadableBean bean}.
+   * @return the {@link UiFormGroup}.
    */
-  protected <B extends WritableBean> UiAbstractFormGroup<B> createFormGroup(ReadableBeanProperty<B> beanProperty,
-      UiContext context) {
+  protected <B extends WritableBean> UiFormGroup createFormGroup(ReadableBeanProperty<B> beanProperty,
+      UiContext context, ReadableBean parentBean) {
 
     WritableBean bean = beanProperty.get();
     if (bean == null) {
-      return null;
+      Class<B> beanClass = beanProperty.getValueClass();
+      bean = BeanFactory.get().create(beanClass);
     }
-    UiAbstractFormGroup<B> formGroup = null;
+    String groupName = localizeLabel(context, beanProperty, parentBean);
+    for (WritableProperty<?> property : bean.getProperties()) {
+
+    }
+    UiInput<?>[] inputs = {};
+    UiFormGroup formGroup = context.createFormGroup(groupName, inputs);
+    // UiCustomFromGroup<B> formGroup = null;
     return formGroup;
   }
 
@@ -177,7 +186,7 @@ public class UiBinding {
   protected String localizeLabel(UiContext context, ReadableProperty<?> property, Object source) {
 
     String propertyName = property.getName();
-    // TODO Auto-generated method stub
+    // TODO perform I18N
     return propertyName;
   }
 

@@ -3,14 +3,21 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
- * {@link UiDynamicComposite} showing multiple {@link UiFormPanel} {@link #getChild(int) children} as columns in a
- * responsive layout.
+ * {@link UiDynamicComposite} showing multiple {@link #getChild(int) children} as columns in a responsive layout. So
+ * assuming your {@link io.github.mmm.ui.UiScreen screen} and {@link io.github.mmm.ui.widget.window.UiWindow window} is
+ * wide enough, all {@link #getChild(int) children} will be presented as columns from the left to the right. However if
+ * there is less {@link io.github.mmm.ui.widget.window.UiWindow#getWidth() width} available, columns from the right will
+ * be moved to the bottom to avoid horizontal scrolling. If there is only little width available (e.g. on a smart phone)
+ * only one column will be available and all children will be displayed vertically from the top to the bottom. So in
+ * other words this panel is a hybrid of {@link UiHorizontalPanel} with {@link UiVerticalPanel} that adapts dynamically
+ * to the width available.
  *
  * @since 1.0.0
  */
-public interface UiResponsiveColumnPanel extends UiDynamicComposite<UiFormPanel>, UiNativeWidget {
+public interface UiResponsiveColumnPanel extends UiDynamicComposite<UiRegularWidget>, UiNativeWidget {
 
 }

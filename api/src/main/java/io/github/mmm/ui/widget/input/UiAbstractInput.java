@@ -4,7 +4,6 @@ package io.github.mmm.ui.widget.input;
 
 import io.github.mmm.ui.widget.UiAtomicWidget;
 import io.github.mmm.ui.widget.UiLabel;
-import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.ui.widget.value.UiValuedWidget;
 
@@ -14,7 +13,7 @@ import io.github.mmm.ui.widget.value.UiValuedWidget;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract interface UiAbstractInput<V> extends UiValidatableWidget<V>, UiRegularWidget {
+public abstract interface UiAbstractInput<V> extends UiValidatableWidget<V> {
 
   /**
    * @return the {@link UiLabel#getLabel() label} for the {@link UiInput#getNameWidget() name widget} or the title of

@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.composite;
 
+import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
@@ -21,14 +22,14 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidg
     UiActiveWidget, UiFailureComposite<UiRegularWidget>, UiNativeWidget { /* AttributeWriteImage<UiWidgetImage>, */
 
   @Override
-  default void validateUp(boolean valid) {
+  default void validateUp(UiValidState state) {
 
-    if (valid) {
+    if (state.isValid()) {
       setValidationFailure(null);
     } else {
       setValidationFailure(getContext().getDefaultValidationFailure());
     }
-    UiMutableSingleComposite.super.validateUp(valid);
+    UiMutableSingleComposite.super.validateUp(state);
   }
 
 }
