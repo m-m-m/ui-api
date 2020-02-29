@@ -5,8 +5,15 @@ package io.github.mmm.ui.widget.chart;
 import io.github.mmm.ui.datatype.chart.UiDataSeries;
 
 /**
- * {@link UiChart} showing a bar char as a series of
+ * {@link UiChart} showing a bar char with {@link UiDataSeries series of data}.
+ *
+ * @since 1.0.0
  */
 public interface UiBarChart extends UiChart<UiDataSeries> {
+
+  /**
+   * @param labels the labels of the series.
+   */
+  void setSeriesLabels(String... labels);
 
 }

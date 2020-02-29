@@ -5,7 +5,9 @@ package io.github.mmm.ui.widget.chart;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
+ * {@link UiBarChart} showing a bar char with horizontal bars leading to the right.
  *
+ * @since 1.0.0
  */
 public interface UiBarChartHorizontal extends UiBarChart, UiNativeWidget {
 

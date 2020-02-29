@@ -12,8 +12,8 @@ The module `mmm-ui` provides an abstraction API for user-interfaces (UI).
 This allows to build a powerful UI independent of the actual toolkit.
 You can write portable UI code that can run
 
-* as native JavaFx application
-* as web-app in the browser
+* as native JavaFx application using https://github.com/m-m-m/ui-fx[mmm-ui-fx]
+* as web-app in the browser using https://github.com/m-m-m/ui-tvm[mmm-ui-tvm]
 * ...in the future we might implement more alternatives such as android or SWT
 
 For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui/module-summary.html[documnetation].

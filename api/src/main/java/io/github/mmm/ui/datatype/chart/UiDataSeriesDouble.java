@@ -17,7 +17,7 @@ public class UiDataSeriesDouble implements UiDataSeries {
    *
    * @param values the underlying values.
    */
-  public UiDataSeriesDouble(double[] values) {
+  public UiDataSeriesDouble(double... values) {
 
     super();
     Objects.requireNonNull(values);
