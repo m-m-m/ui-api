@@ -17,8 +17,6 @@ public class UiDataSet<V> {
 
   private static final int ALPHA = 0xE0000000;
 
-  private static final int MASK_RGB = 0xFFFFFF;
-
   private static final int[] COLS = { 0xE06030, 0xF0A030, 0x50B050, 0x40A0B0, 0x4050B0, 0x9040C0, 0xF00070, 0x4040E0,
   0xA08080, 0xC04070, 0xF030A0, 0x5020A0, 0x20A0F0, 0x208020, 0xFF2020, 0xFFFF40 };
 
@@ -62,6 +60,11 @@ public class UiDataSet<V> {
     return this.color;
   }
 
+  /**
+   * @param i the index of this dataset in the chart.
+   * @return the {@link #getColor() color} or the default color for the given index if {@link #getColor()} is
+   *         {@code null}.
+   */
   public Color getColor(int i) {
 
     if (this.color != null) {
