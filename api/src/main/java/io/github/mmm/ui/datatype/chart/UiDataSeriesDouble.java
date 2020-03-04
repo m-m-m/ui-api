@@ -10,14 +10,14 @@ import java.util.Objects;
  */
 public class UiDataSeriesDouble implements UiDataSeries {
 
-  private final double[] values;
+  private final float[] values;
 
   /**
    * The constructor.
    *
    * @param values the underlying values.
    */
-  public UiDataSeriesDouble(double... values) {
+  public UiDataSeriesDouble(float... values) {
 
     super();
     Objects.requireNonNull(values);
@@ -31,7 +31,7 @@ public class UiDataSeriesDouble implements UiDataSeries {
   }
 
   @Override
-  public double get(int i) {
+  public float get(int i) {
 
     return this.values[i];
   }

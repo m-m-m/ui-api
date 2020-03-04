@@ -37,12 +37,12 @@ public class UiDataSeriesNumber implements UiDataSeries {
   }
 
   @Override
-  public double get(int i) {
+  public float get(int i) {
 
     if (this.values[i] == null) {
       return 0;
     }
-    return this.values[i].doubleValue();
+    return this.values[i].floatValue();
   }
 
   @Override

@@ -17,10 +17,10 @@ public interface UiDataSeries {
 
   /**
    * @param i the index of the requested value in the range from {@code 0} to {@link #getCount()}-1.
-   * @return the requested value as {@code double}.
+   * @return the requested value as {@code float}.
    * @see #getNumber(int)
    */
-  double get(int i);
+  float get(int i);
 
   /**
    * @param i the index of the requested value in the range from {@code 0} to {@link #getCount()}-1.
