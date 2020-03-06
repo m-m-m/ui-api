@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.input;
 
+import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
@@ -31,5 +32,36 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  * @since 1.0.0
  */
 public interface UiRadioChoice<V> extends UiAbstractSingleChoice<V>, UiNativeWidget {
+
+  /**
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @param context the {@link UiContext}.
+   * @param name the {@link #getName() name} (label).
+   * @param enumType the {@link Class} reflecting an {@link Enum} defining the options.
+   * @return the new widget instance.
+   */
+  static <V extends Enum<?>> UiRadioChoice<V> ofEnum(UiContext context, String name, Class<V> enumType) {
+
+    UiRadioChoice<V> widget = context.create(UiRadioChoice.class);
+    widget.setName(name);
+    widget.setOptions(enumType.getEnumConstants());
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @param context the {@link UiContext}.
+   * @param name the {@link #getName() name} (label).
+   * @param options the {@link #getOptions() options}.
+   * @return the new widget instance.
+   */
+  @SuppressWarnings("unchecked")
+  static <V> UiRadioChoice<V> of(UiContext context, String name, V... options) {
+
+    UiRadioChoice<V> widget = context.create(UiRadioChoice.class);
+    widget.setName(name);
+    widget.setOptions(options);
+    return widget;
+  }
 
 }

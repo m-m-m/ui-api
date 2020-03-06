@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.binding;
 
+import java.util.Collection;
+
 import io.github.mmm.bean.BeanFactory;
 import io.github.mmm.bean.ReadableBean;
 import io.github.mmm.bean.WritableBean;
@@ -10,6 +12,7 @@ import io.github.mmm.entity.id.Id;
 import io.github.mmm.entity.link.Link;
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.property.WritableProperty;
+import io.github.mmm.property.container.ReadableContainerProperty;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.event.UiValueChangeEvent;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
@@ -17,6 +20,7 @@ import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
 import io.github.mmm.ui.widget.panel.UiResponsiveColumnPanel;
+import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.validation.Validator;
 
 /**
@@ -25,25 +29,48 @@ import io.github.mmm.validation.Validator;
  */
 public class UiBinding {
 
+  private final UiContext context;
+
+  private final PropertyFilter defaultPropertyFilter;
+
   /**
    * The constructor.
+   *
+   * @param context the {@link UiContext}.
    */
-  public UiBinding() {
+  public UiBinding(UiContext context) {
+
+    this(context, null);
+  }
+
+  /**
+   * The constructor.
+   *
+   * @param context the {@link UiContext}.
+   * @param defaultPropertyFilter the {@link PropertyFilter} to use as default.
+   */
+  public UiBinding(UiContext context, PropertyFilter defaultPropertyFilter) {
 
     super();
+    this.context = context;
+    if (defaultPropertyFilter == null) {
+      this.defaultPropertyFilter = PropertyFilterDefault.INSTANCE;
+    } else {
+      this.defaultPropertyFilter = defaultPropertyFilter;
+    }
   }
 
-  public <B extends ReadableBean> UiResponsiveColumnPanel/* <B> */ createEditor(B bean, UiContext context) {
+  public <B extends ReadableBean> UiValidatableWidget<B> createEditor(B bean) {
 
-    return createEditor(bean, context, 2);
+    return createEditor(bean, 2);
   }
 
-  public <B extends ReadableBean> UiResponsiveColumnPanel/* <B> */ createEditor(B bean, UiContext context,
-      int columns) {
+  public <B extends ReadableBean> UiValidatableWidget<B> createEditor(B bean, int columns) {
 
-    UiResponsiveColumnPanel panel = context.create(UiResponsiveColumnPanel.class);
-    bindBean(bean, panel, columns);
-    return panel;
+    // UiResponsiveColumnPanel panel = context.create(UiResponsiveColumnPanel.class);
+    // bindBean(bean, panel, columns);
+    // return new UiCustomForm<>(this.context, getValue, setValue);
+    return null;
   }
 
   /**
@@ -51,59 +78,124 @@ public class UiBinding {
    * @param panel the {@link UiResponsiveColumnPanel} where to add the input widgets.
    * @param columns the number of columns.
    */
-  public void bindBean(ReadableBean bean, UiResponsiveColumnPanel panel, int columns) {
+  public void bindBean(ReadableBean bean, UiBindingReceiver receiver, boolean createGroup) {
 
-    UiContext context = panel.getContext();
-    UiFormPanel mainForm = null;
+    bindBean(bean, receiver, createGroup, this.defaultPropertyFilter);
+  }
+
+  /**
+   * @param bean the {@link ReadableBean} to bind.
+   * @param receiver the {@link UiBindingReceiver}.
+   * @param createGroup - {@code true} to create {@link UiFormGroup}s for nested beans, {@code false} otherwise.
+   * @param propertyFilter the {@link PropertyFilter}.
+   */
+  public void bindBean(ReadableBean bean, UiBindingReceiver receiver, boolean createGroup,
+      PropertyFilter propertyFilter) {
+
+    if (bean == null) {
+      return;
+    }
     for (ReadableProperty<?> property : bean.getProperties()) {
-      UiAbstractInput<?> input = null;
-      Class<?> valueClass = property.getValueClass();
-      if (property instanceof ReadableBeanProperty) {
-        input = createFormGroup((ReadableBeanProperty<?>) property, context, bean);
-      } else if (isBindableValueClass(valueClass)) { // TODO use Predicate
-        input = createInput(property, context, bean);
-      }
-      if (input != null) {
-        if (mainForm == null) {
-          mainForm = context.createFormPanel();
-          panel.addChild(mainForm);
-        }
-        mainForm.addChild(input);
+      if (!propertyFilter.filter(property)) {
+        bindProperty(property, bean, receiver, propertyFilter, createGroup);
       }
     }
   }
 
+  private <V> void bindProperty(ReadableProperty<V> property, ReadableBean bean, UiBindingReceiver receiver,
+      PropertyFilter propertyFilter, boolean createGroup) {
+
+    if (propertyFilter.filter(property)) {
+      return;
+    }
+    if (property instanceof ReadableBeanProperty) {
+      bindBean((ReadableBeanProperty<?>) property, bean, receiver, propertyFilter, createGroup);
+    } else {
+      createInput(property, bean, receiver, false);
+    }
+  }
+
+  private <B extends WritableBean> void bindBean(ReadableBeanProperty<B> beanProperty, ReadableBean parentBean,
+      UiBindingReceiver receiver, PropertyFilter propertyFilter, boolean createGroup) {
+
+    B childBean = beanProperty.get();
+    if (childBean == null) {
+      childBean = BeanFactory.get().create(beanProperty.getValueClass());
+    }
+    if (createGroup) {
+      UiFormGroup<B> formGroup = createFormGroup(childBean, beanProperty, parentBean, propertyFilter);
+      receiver.add(beanProperty, formGroup);
+    } else {
+      bindBean(childBean, receiver, false, propertyFilter);
+    }
+  }
+
   /**
-   * @param beanProperty the {@link ReadableBeanProperty}.
-   * @param context the {@link UiContext}.
-   * @param parentBean the parent {@link ReadableBean bean}.
+   * @param <B> type of {@link WritableBean}.
+   * @param bean the {@link WritableBean}.
    * @return the {@link UiFormGroup}.
    */
-  protected <B extends WritableBean> UiFormGroup createFormGroup(ReadableBeanProperty<B> beanProperty,
-      UiContext context, ReadableBean parentBean) {
+  public <B extends WritableBean> UiFormPanel<B> createFormPanel(B bean) {
 
-    WritableBean bean = beanProperty.get();
-    if (bean == null) {
-      Class<B> beanClass = beanProperty.getValueClass();
-      bean = BeanFactory.get().create(beanClass);
-    }
-    String groupName = localizeLabel(context, beanProperty, parentBean);
-    for (WritableProperty<?> property : bean.getProperties()) {
+    return createFormPanel(bean, this.defaultPropertyFilter);
+  }
 
+  /**
+   * @param <B> type of {@link WritableBean}.
+   * @param bean the {@link WritableBean}.
+   * @param propertyFilter the {@link PropertyFilter}.
+   * @return the {@link UiFormGroup}.
+   */
+  public <B extends WritableBean> UiFormPanel<B> createFormPanel(B bean, PropertyFilter propertyFilter) {
+
+    UiBindingReceiverImpl<B> binding = new UiBindingReceiverImpl<>(bean);
+    bindBean(bean, binding, true, propertyFilter);
+    Collection<UiAbstractInput<?>> inputs = binding.getInputs();
+    if (inputs.isEmpty()) {
+      return null;
     }
-    UiInput<?>[] inputs = {};
-    UiFormGroup formGroup = context.createFormGroup(groupName, inputs);
-    // UiCustomFromGroup<B> formGroup = null;
+    UiFormPanel<B> formPanel = UiFormPanel.of(this.context, binding);
+    for (UiAbstractInput<?> input : inputs) {
+      formPanel.addChild(input);
+    }
+    return formPanel;
+  }
+
+  /**
+   * @param <B> type of {@link WritableBean}.
+   * @param bean the {@link WritableBean}.
+   * @param beanProperty the {@link ReadableBeanProperty}.
+   * @param parentBean the parent {@link ReadableBean bean}.
+   * @param propertyFilter the {@link PropertyFilter}.
+   * @return the {@link UiFormGroup}.
+   */
+  public <B extends WritableBean> UiFormGroup<B> createFormGroup(B bean, ReadableBeanProperty<B> beanProperty,
+      ReadableBean parentBean, PropertyFilter propertyFilter) {
+
+    String groupName = localizeLabel(beanProperty, parentBean);
+    UiBindingReceiverImpl<B> binding = new UiBindingReceiverImpl<>(bean);
+    bindBean(bean, binding, false, propertyFilter);
+    Collection<UiAbstractInput<?>> inputs = binding.getInputs();
+    if (inputs.isEmpty()) {
+      return null;
+    }
+    UiFormGroup<B> formGroup = UiFormGroup.of(this.context, binding, groupName);
+    for (UiAbstractInput<?> input : inputs) {
+      formGroup.addChild((UiInput<?>) input);
+    }
     return formGroup;
   }
 
   /**
-   * @param valueClass the {@link ReadableProperty#getValueClass() value class}.
-   * @return {@code true} if properties of the given {@link ReadableProperty#getValueClass() value class} should be
-   *         bound to the UI, {@code false} otherwise.
+   * @param property the {@link ReadableProperty} to test.
+   * @return {@code true} if the given {@code property} should be bound to the UI, {@code false} otherwise.
    */
-  protected boolean isBindableValueClass(Class<?> valueClass) {
+  protected boolean isBindableProperty(ReadableProperty<?> property) {
 
+    if (property instanceof ReadableContainerProperty) {
+      return isBindableProperty(((ReadableContainerProperty<?, ?>) property).getValueProperty());
+    }
+    Class<?> valueClass = property.getValueClass();
     if (Id.class.isAssignableFrom(valueClass)) {
       return false;
     } else if (Link.class.isAssignableFrom(valueClass)) {
@@ -115,17 +207,23 @@ public class UiBinding {
   /**
    * @param <V> type of the {@link ReadableProperty#get() property value}.
    * @param property the {@link ReadableProperty}.
-   * @param context the {@link UiContext}.
    * @param source the optional {@link Object} (e.g. {@code Bean}) owning the property. May be {@code null} but is
    *        required for advanced localization (if you want more specific labels in case the
    *        {@link WritableProperty#getName() property name} is not specific enough).
+   * @param receiver the {@link UiBindingReceiver}. May be {@code null}.
+   * @param bindValue {@code true} to bind the value of the {@link ReadableProperty} bidirectional with the
+   *        {@link UiInput}.
    * @return the {@link UiInput} widget for the given {@link ReadableProperty property}.
    */
-  public <V> UiInput<V> createInput(ReadableProperty<V> property, UiContext context, Object source) {
+  public <V> UiInput<V> createInput(ReadableProperty<V> property, Object source, UiBindingReceiver receiver,
+      boolean bindValue) {
 
-    UiInput<V> input = context.createInput(property);
+    UiInput<V> input = this.context.createInput(property);
     input.setId(createId(property, source));
-    bindProperty(property, input, source);
+    bindProperty(property, input, source, bindValue);
+    if (receiver != null) {
+      receiver.add(property, input);
+    }
     return input;
   }
 
@@ -135,32 +233,38 @@ public class UiBinding {
    * @param source the optional {@link Object} (e.g. {@code Bean}) owning the property. May be {@code null} but is
    *        required for advanced localization (if you want more specific labels in case the
    *        {@link WritableProperty#getName() property name} is not specific enough).
+   * @param bindValue {@code true} to bind the value of the {@link ReadableProperty} bidirectional with the
+   *        {@link UiInput}.
    * @param <V> type of the value.
    */
-  public <V> void bindProperty(ReadableProperty<V> property, UiInput<V> input, Object source) {
+  public <V> void bindProperty(ReadableProperty<V> property, UiInput<V> input, Object source, boolean bindValue) {
 
     Validator<? super V> validator = property.getMetadata().getValidator();
     input.setValidator(validator);
-    String label = localizeLabel(input.getContext(), property, source);
-    input.setName(createFieldLabel(label, validator.isMandatory(), property, source));
+    String label = localizeLabel(property, source);
+    input.setName(label);
     boolean readOnly = property.isReadOnly();
     if (readOnly) {
       input.setReadOnlyFixed(Boolean.TRUE);
     } else {
-      final WritableProperty<V> writableProperty = (WritableProperty<V>) property;
-      input.addListener((e) -> {
-        if (e.getType() == UiValueChangeEvent.TYPE) {
-          V value = input.getValue();
-          writableProperty.set(value);
-        }
-      });
-    }
-    property.addListener((e) -> {
-      if (!e.isChange()) {
-        V value = property.get();
-        input.setValue(value);
+      if (bindValue) {
+        final WritableProperty<V> writableProperty = (WritableProperty<V>) property;
+        input.addListener((e) -> {
+          if (e.getType() == UiValueChangeEvent.TYPE) {
+            V value = input.getValue();
+            writableProperty.set(value);
+          }
+        });
       }
-    }, true);
+    }
+    if (bindValue) {
+      property.addListener((e) -> {
+        if (!e.isChange()) {
+          V value = property.get();
+          input.setValue(value);
+        }
+      }, true);
+    }
   }
 
   /**
@@ -178,32 +282,15 @@ public class UiBinding {
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param property the {@link ReadableProperty}.
    * @param source the optional {@link Object} (e.g. {@code Bean}) owning the property. May be {@code null}.
    * @return the localized label {@link String}.
    */
-  protected String localizeLabel(UiContext context, ReadableProperty<?> property, Object source) {
+  protected String localizeLabel(ReadableProperty<?> property, Object source) {
 
     String propertyName = property.getName();
     // TODO perform I18N
     return propertyName;
-  }
-
-  /**
-   * @param label the localized label.
-   * @param mandatory the {@link Validator#isMandatory() mandatory} flag of the {@link ReadableProperty property}.
-   * @param property the {@link ReadableProperty}.
-   * @param source the the optional {@link Object} (e.g. {@code Bean}) owning the property. May be {@code null}.
-   * @return the final label text.
-   */
-  protected String createFieldLabel(String label, boolean mandatory, ReadableProperty<?> property, Object source) {
-
-    if (mandatory) {
-      return label + "*:";
-    } else {
-      return label + ":";
-    }
   }
 
 }

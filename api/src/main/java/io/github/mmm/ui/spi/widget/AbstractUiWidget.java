@@ -2,10 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
-import io.github.mmm.event.AbstractEventSource;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiEvent;
-import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiComposite;
@@ -13,7 +10,7 @@ import io.github.mmm.ui.widget.composite.UiComposite;
 /**
  * Abstract base implementation of {@link UiWidget}.
  */
-public abstract class AbstractUiWidget extends AbstractEventSource<UiEvent, UiEventListener> implements UiWidget {
+public abstract class AbstractUiWidget implements UiWidget {
 
   /** @see #getContext() */
   protected final UiContext context;

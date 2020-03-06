@@ -2,88 +2,73 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.input.UiAbstractInput;
+import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
+import io.github.mmm.ui.widget.UiWidget;
+import io.github.mmm.ui.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
-import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.validation.Validator;
 
 /**
  * {@link UiCustomWidget} that is a {@link UiFormPanel}.
  *
+ * @param <W> type of the {@link #getDelegate() delegate}.
+ * @param <C> type of the {@link #getChild(int) child widgets}.
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public class UiCustomForm<V> extends UiCustomDynamicComposite<UiFormPanel, UiAbstractInput<?>>
-    implements UiFormPanel, UiValidatableWidget<V> {
-
-  private Validator<? super V> validator;
-
-  private V value;
-
-  private V originalValue;
-
-  /**
-   * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
-   */
-  public UiCustomForm(UiContext context) {
-
-    super(context.createFormPanel());
-    this.validator = Validator.none();
-  }
+public class UiCustomValuedComposite<W extends UiValuedComposite<C, V>, C extends UiWidget, V>
+    extends UiCustomDynamicComposite<W, C> implements UiValuedComposite<C, V> {
 
   /**
    * The constructor.
    *
    * @param delegate the {@link UiFormPanel}.
    */
-  public UiCustomForm(UiFormPanel delegate) {
+  public UiCustomValuedComposite(W delegate) {
 
     super(delegate);
   }
 
   @Override
+  public void initBinding(AttributeWriteValueForUser<V> binding) {
+
+    this.delegate.initBinding(binding);
+  }
+
+  @Override
   public V getValue() {
 
-    return this.value;
+    return this.delegate.getValue();
   }
 
   @Override
-  public void setValue(V value) {
+  public void setValue(V value, boolean forUser) {
 
-    this.value = value;
-  }
-
-  @Override
-  public void setValueForUser(V value) {
-
-    this.value = value;
+    this.delegate.setValue(value, forUser);
   }
 
   @Override
   public V getOriginalValue() {
 
-    return this.originalValue;
+    return this.delegate.getOriginalValue();
   }
 
   @Override
   public void setOriginalValue(V originalValue) {
 
-    this.originalValue = originalValue;
+    this.delegate.setOriginalValue(originalValue);
   }
 
   @Override
   public Validator<? super V> getValidator() {
 
-    return this.validator;
+    return this.delegate.getValidator();
   }
 
   @Override
   public void setValidator(Validator<? super V> validator) {
 
-    this.validator = validator;
+    this.delegate.setValidator(validator);
   }
 
   @Override

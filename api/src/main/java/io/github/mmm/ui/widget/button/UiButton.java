@@ -2,6 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.button;
 
+import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.event.UiClickEventListener;
+import io.github.mmm.ui.event.UiEventListener;
+import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
@@ -16,6 +20,32 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  */
 public interface UiButton extends UiAbstractButton, UiNativeWidget {
 
-  // nothing to add...
+  /**
+   * @param context the {@link UiContext}.
+   * @param label the {@link UiButton#getLabel() label}.
+   * @param listener the {@link UiEventListener}.
+   * @return the new {@link UiButton}.
+   * @see #of(UiContext, UiAction)
+   */
+  static UiButton of(UiContext context, String label, UiClickEventListener listener) {
+
+    UiButton widget = context.create(UiButton.class);
+    widget.setLabel(label);
+    if (listener != null) {
+      widget.addListener(listener);
+    }
+    return widget;
+  }
+
+  /**
+   * @param context the {@link UiContext}.
+   * @param action the {@link UiAction}.
+   * @return the new {@link UiButton}.
+   * @see UiContext#createButton(UiAction)
+   */
+  static UiButton of(UiContext context, UiAction action) {
+
+    return context.createButton(action);
+  }
 
 }

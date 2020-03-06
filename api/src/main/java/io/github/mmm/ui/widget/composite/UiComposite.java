@@ -99,6 +99,19 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
   }
 
   @Override
+  default boolean isModified() {
+
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      C child = getChild(i);
+      if (child.isModified()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
   default boolean isValid() {
 
     int childCount = getChildCount();
@@ -109,20 +122,6 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
       }
     }
     return true;
-  }
-
-  @Override
-  default boolean validate() {
-
-    boolean valid = true;
-    int childCount = getChildCount();
-    for (int i = 0; i < childCount; i++) {
-      C child = getChild(i);
-      if (!child.validate()) {
-        valid = false;
-      }
-    }
-    return valid;
   }
 
 }

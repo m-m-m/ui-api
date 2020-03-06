@@ -7,7 +7,7 @@ package io.github.mmm.ui.widget.input;
  *
  * @since 1.0.0
  */
-public interface UiStringInput extends UiTextualInput<String> {
+public abstract interface UiStringInput extends UiTextualInput<String> {
 
   @Override
   default String getText() {

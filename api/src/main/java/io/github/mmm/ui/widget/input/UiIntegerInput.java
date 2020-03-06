@@ -13,20 +13,20 @@ import io.github.mmm.ui.widget.UiNativeWidget;
  * Example:
  *
  * <pre>
- * <input type="time" placeholder="placeholder">
+ * <input type="number" placeholder="placeholder">
  * </pre>
  *
  */
-public interface UiTimeInput extends UiInput<LocalTime>, UiNativeWidget {
+public interface UiIntegerInput extends UiTextualInput<Integer>, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
-   * @return the new {@link UiTimeInput}.
+   * @return the new {@link UiIntegerInput}.
    */
-  static UiTimeInput of(UiContext context, String name) {
+  static UiIntegerInput of(UiContext context, String name) {
 
-    UiTimeInput widget = context.create(UiTimeInput.class);
+    UiIntegerInput widget = context.create(UiIntegerInput.class);
     widget.setName(name);
     return widget;
   }

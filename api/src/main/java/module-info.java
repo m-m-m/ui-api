@@ -73,4 +73,9 @@ module io.github.mmm.ui {
   uses UiSingleWidgetFactoryDatatype;
 
   uses UiSingleWidgetFactoryProperty;
+
+  provides UiSingleWidgetFactoryDatatype with //
+      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeInteger, //
+      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeBoolean, //
+      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeString;
 }

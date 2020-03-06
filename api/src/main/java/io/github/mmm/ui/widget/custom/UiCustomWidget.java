@@ -5,6 +5,7 @@ package io.github.mmm.ui.widget.custom;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.datatype.bitmask.BitMask;
+import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
@@ -94,6 +95,18 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
   }
 
   // --- delegation methods ---
+
+  @Override
+  public void addListener(UiEventListener listener, boolean weak) {
+
+    this.delegate.addListener(listener, weak);
+  }
+
+  @Override
+  public boolean removeListener(UiEventListener listener) {
+
+    return this.delegate.removeListener(listener);
+  }
 
   @Override
   public final UiComposite<?> getParent() {

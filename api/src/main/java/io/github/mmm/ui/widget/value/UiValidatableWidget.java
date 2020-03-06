@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.value;
 
+import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.validation.Validator;
 
@@ -11,7 +12,8 @@ import io.github.mmm.validation.Validator;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract interface UiValidatableWidget<V> extends UiValuedWidget<V>, UiWidgetWithValidationFailure {
+public abstract interface UiValidatableWidget<V>
+    extends UiValuedWidget<V>, UiWidgetWithValidationFailure, AttributeWriteValueForUser<V> {
 
   /**
    * Set both the {@link #getValue() value} and the {@link #getOriginalValue() original value} to the given argument.
@@ -21,7 +23,10 @@ public abstract interface UiValidatableWidget<V> extends UiValuedWidget<V>, UiWi
    * {@link #getOriginalValue() original value} that you have cloned.
    */
   @Override
-  void setValue(V value);
+  default void setValue(V value) {
+
+    setValue(value, false);
+  }
 
   /**
    * Like {@link #setValue(Object)} but will not change the {@link #getOriginalValue() original value} and will set
@@ -33,7 +38,17 @@ public abstract interface UiValidatableWidget<V> extends UiValuedWidget<V>, UiWi
    *
    * @param value the new {@link #getValue() value}.
    */
-  void setValueForUser(V value);
+  default void setValueForUser(V value) {
+
+    setValue(value, true);
+  }
+
+  /**
+   * @param value the new {@link #getValue() value}.
+   * @param forUser - {@code true} for {@link #setValueForUser(Object)} and {@code false} for {@link #setValue(Object)}.
+   */
+  @Override
+  void setValue(V value, boolean forUser);
 
   /**
    * @return the original value since it was last set via {@link #setOriginalValue(Object)} or most probably indirectly

@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.panel;
 
+import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiSwitchComposite;
@@ -31,11 +32,32 @@ public interface UiTabPanel extends UiSwitchComposite<UiTab>, UiRegularWidget, U
    */
   default UiTab addChild(UiRegularWidget child, String label) {
 
-    UiTab tab = getContext().create(UiTab.class);
-    tab.setLabel(label);
-    tab.setChild(child);
+    UiTab tab = UiTab.of(getContext(), child, label);
     addChild(tab);
     return tab;
+  }
+
+  /**
+   * @param context the {@link UiContext}.
+   * @return the new {@link UiTabPanel}.
+   */
+  static UiTabPanel of(UiContext context) {
+
+    return context.create(UiTabPanel.class);
+  }
+
+  /**
+   * @param context the {@link UiContext}.
+   * @param children the {@link UiRegularWidget}s to add as children.
+   * @return the new {@link UiTabPanel}.
+   */
+  static UiTabPanel of(UiContext context, UiTab... children) {
+
+    UiTabPanel widget = context.create(UiTabPanel.class);
+    for (UiTab child : children) {
+      widget.addChild(child);
+    }
+    return widget;
   }
 
 }

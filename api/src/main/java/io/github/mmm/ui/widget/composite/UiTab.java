@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.composite;
 
+import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
@@ -32,4 +33,18 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidg
     UiMutableSingleComposite.super.validateUp(state);
   }
 
+  /**
+   * @param context the {@link UiContext}.
+   * @param child the {@link UiRegularWidget} to show as content if the {@link UiTab} is
+   *        {@link io.github.mmm.ui.widget.panel.UiTabPanel#getActiveChild() active} (selected).
+   * @param label the {@link UiTab#getLabel() label} of the {@link UiTab}.
+   * @return the new {@link UiTab}.
+   */
+  static UiTab of(UiContext context, UiRegularWidget child, String label) {
+
+    UiTab widget = context.create(UiTab.class);
+    widget.setLabel(label);
+    widget.setChild(child);
+    return widget;
+  }
 }

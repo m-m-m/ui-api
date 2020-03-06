@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.value;
 
+import io.github.mmm.ui.attribute.AttributeWriteValue;
 import io.github.mmm.ui.widget.UiWidget;
 
 /**
@@ -10,18 +11,13 @@ import io.github.mmm.ui.widget.UiWidget;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public interface UiValuedWidget<V> extends UiWidget {
+public interface UiValuedWidget<V> extends UiWidget, AttributeWriteValue<V> {
 
   /**
-   * @return the current value contained in this widget (e.g. text input).
-   */
-  V getValue();
-
-  /**
-   * @param value the value to set.
    * @see UiValidatableWidget#getOriginalValue()
    * @see #isModified()
    */
+  @Override
   void setValue(V value);
 
 }

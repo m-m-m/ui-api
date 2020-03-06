@@ -4,38 +4,20 @@ package io.github.mmm.ui;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Consumer;
 
 import io.github.mmm.ui.datatype.UiSeverity;
 import io.github.mmm.ui.datatype.UiValidState;
-import io.github.mmm.ui.event.UiClickEventListener;
-import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.event.action.UiActionNo;
 import io.github.mmm.ui.event.action.UiActionOk;
 import io.github.mmm.ui.event.action.UiActionYes;
-import io.github.mmm.ui.widget.UiLabel;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.button.UiAbstractButton;
 import io.github.mmm.ui.widget.button.UiButton;
-import io.github.mmm.ui.widget.input.UiAbstractInput;
-import io.github.mmm.ui.widget.input.UiCheckbox;
 import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.input.UiPasswordInput;
-import io.github.mmm.ui.widget.input.UiRadioButton;
-import io.github.mmm.ui.widget.input.UiRadioChoice;
-import io.github.mmm.ui.widget.input.UiTextArea;
-import io.github.mmm.ui.widget.input.UiTextInput;
-import io.github.mmm.ui.widget.panel.UiButtonPanel;
-import io.github.mmm.ui.widget.panel.UiFormGroup;
-import io.github.mmm.ui.widget.panel.UiFormPanel;
-import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
-import io.github.mmm.ui.widget.panel.UiTabPanel;
-import io.github.mmm.ui.widget.panel.UiVerticalPanel;
 import io.github.mmm.ui.widget.window.UiMainWindow;
 import io.github.mmm.value.ReadableTypedValue;
 
@@ -282,215 +264,12 @@ public interface UiContext {
   <V> UiInput<V> createInput(ReadableTypedValue<V> property, boolean required);
 
   /**
-   * Creates a new {@link UiButton}.
-   *
-   * @see #createButton(UiAction)
-   *
-   * @param label the {@link UiButton#getLabel() label}.
-   * @param listener the {@link UiEventListener}.
-   * @return the new widget instance.
-   */
-  default UiButton createButton(String label, UiClickEventListener listener) {
-
-    UiButton widget = create(UiButton.class);
-    widget.setLabel(label);
-    if (listener != null) {
-      widget.addListener(listener);
-    }
-    return widget;
-  }
-
-  /**
    * Creates a new {@link UiButton} for the given {@link UiAction}.
    *
    * @param action the {@link UiAction}.
    * @return the new widget instance.
    */
   UiButton createButton(UiAction action);
-
-  /**
-   * @param label the {@link UiCheckbox#getLabel() label}.
-   * @return the new widget instance.
-   */
-  default UiCheckbox createCheckbox(String label) {
-
-    UiCheckbox widget = create(UiCheckbox.class);
-    widget.setLabel(label);
-    widget.setName(label);
-    return widget;
-  }
-
-  /**
-   * @param label the {@link UiRadioButton#getLabel() label}.
-   * @return the new widget instance.
-   */
-  default UiRadioButton createRadioButton(String label) {
-
-    UiRadioButton widget = create(UiRadioButton.class);
-    widget.setLabel(label);
-    widget.setName(label);
-    return widget;
-  }
-
-  /**
-   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
-   * @param label the {@link UiRadioChoice#getName() label}.
-   * @param options the {@link UiRadioChoice#setOptions(List) options}.
-   * @return the new widget instance.
-   */
-  @SuppressWarnings("unchecked")
-  default <V> UiRadioChoice<V> createRadioChoice(String label, List<V> options) {
-
-    UiRadioChoice<V> widget = create(UiRadioChoice.class);
-    widget.setName(label);
-    widget.setOptions(options);
-    return widget;
-  }
-
-  /**
-   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
-   * @param label the {@link UiRadioChoice#getName() label}.
-   * @param options the {@link UiRadioChoice#setOptions(Object...) options}.
-   * @return the new widget instance.
-   */
-  @SuppressWarnings("unchecked")
-  default <V> UiRadioChoice<V> createRadioChoice(String label, V... options) {
-
-    UiRadioChoice<V> widget = create(UiRadioChoice.class);
-    widget.setName(label);
-    widget.setOptions(options);
-    return widget;
-  }
-
-  /**
-   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
-   * @param label the {@link UiRadioChoice#getName() label}.
-   * @param enumOptions the {@link Class} reflecting an {@link Enum} defining the options.
-   * @return the new widget instance.
-   */
-  @SuppressWarnings("unchecked")
-  default <V extends Enum<?>> UiRadioChoice<V> createRadioChoiceByEnum(String label, Class<V> enumOptions) {
-
-    UiRadioChoice<V> widget = create(UiRadioChoice.class);
-    widget.setName(label);
-    widget.setOptions(enumOptions.getEnumConstants());
-    return widget;
-  }
-
-  /**
-   * @param label the {@link UiTextInput#getName() label}.
-   * @return the new widget instance.
-   */
-  default UiTextInput createTextInput(String label) {
-
-    UiTextInput widget = create(UiTextInput.class);
-    widget.setName(label);
-    return widget;
-  }
-
-  /**
-   * @param label the {@link UiPasswordInput#getName() label}.
-   * @return the new widget instance.
-   */
-  default UiPasswordInput createPasswordInput(String label) {
-
-    UiPasswordInput widget = create(UiPasswordInput.class);
-    widget.setName(label);
-    return widget;
-  }
-
-  /**
-   * @param label the {@link UiTextArea#getName() label}.
-   * @return the new widget instance.
-   */
-  default UiTextArea createTextArea(String label) {
-
-    UiTextArea widget = create(UiTextArea.class);
-    widget.setName(label);
-    return widget;
-  }
-
-  /**
-   * Creates a new {@link UiLabel}.
-   *
-   * @param label is the {@link UiLabel#getLabel() label}.
-   * @return the new widget instance.
-   */
-  default UiLabel createLabel(String label) {
-
-    UiLabel widget = create(UiLabel.class);
-    widget.setLabel(label);
-    return widget;
-  }
-
-  /**
-   * @return the new widget instance.
-   */
-  default UiTabPanel createTabPanel() {
-
-    UiTabPanel tabPanel = create(UiTabPanel.class);
-    return tabPanel;
-  }
-
-  /**
-   * @return the new widget instance.
-   */
-  default UiVerticalPanel createVerticalPanel() {
-
-    UiVerticalPanel verticalPanel = create(UiVerticalPanel.class);
-    return verticalPanel;
-  }
-
-  /**
-   * @return the new widget instance.
-   */
-  default UiHorizontalPanel createHorizontalPanel() {
-
-    UiHorizontalPanel horizontalPanel = create(UiHorizontalPanel.class);
-    return horizontalPanel;
-  }
-
-  /**
-   * @param inputs the {@link UiAbstractInput input widgets} to {@link UiFormPanel#addChild(UiAbstractInput) add}.
-   * @return the new widget instance.
-   */
-  default UiFormPanel createFormPanel(UiAbstractInput<?>... inputs) {
-
-    UiFormPanel widget = create(UiFormPanel.class);
-    for (UiAbstractInput<?> input : inputs) {
-      widget.addChild(input);
-    }
-    return widget;
-  }
-
-  /**
-   * @param name the {@link UiFormGroup#getName() name} of the {@link UiFormGroup} that groups the given
-   *        {@link UiInput}s.
-   * @param inputs the {@link UiInput} widgets to {@link UiFormGroup#addChild(UiInput) add}.
-   * @return the new widget instance.
-   */
-  default UiFormGroup createFormGroup(String name, UiInput<?>... inputs) {
-
-    UiFormGroup widget = create(UiFormGroup.class);
-    widget.setName(name);
-    for (UiInput<?> input : inputs) {
-      widget.addChild(input);
-    }
-    return widget;
-  }
-
-  /**
-   * @param buttons the {@link UiAbstractButton button}s.
-   * @return the new widget instance.
-   */
-  default UiButtonPanel createButtonPanel(UiAbstractButton... buttons) {
-
-    UiButtonPanel widget = create(UiButtonPanel.class);
-    for (UiAbstractButton button : buttons) {
-      widget.addChild(button);
-    }
-    return widget;
-  }
 
   /**
    * @return the default {@link io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure#getValidationFailure()

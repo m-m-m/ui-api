@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
+import io.github.mmm.event.EventListener;
+import io.github.mmm.event.EventSourceAdapter;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.datatype.UiPropagation;
 import io.github.mmm.ui.datatype.UiValidState;
@@ -37,6 +39,8 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
 
   private static final BitValueBoolean READ_ONLY_FIXED = BitValueBoolean.ofBoolean(1);
 
+  private EventSourceAdapter<UiEvent, UiEventListener> eventAdapter;
+
   private UiComposite<?> parent;
 
   private boolean handlersRegistered;
@@ -59,6 +63,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
   public AbstractUiNativeWidget(UiContext context) {
 
     super(context);
+    this.eventAdapter = EventSourceAdapter.empty();
     this.handlersRegistered = false;
     if (isInitiallyVisible()) {
       this.visibleState = 0;
@@ -66,6 +71,50 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
       this.visibleState = 1;
     }
     this.enabledState = 0;
+  }
+
+  @Override
+  public void addListener(UiEventListener listener, boolean weak) {
+
+    ensureHandlers();
+    this.eventAdapter = this.eventAdapter.addListener(listener, weak);
+  }
+
+  @Override
+  public boolean removeListener(UiEventListener listener) {
+
+    EventSourceAdapter<UiEvent, UiEventListener> adapter = this.eventAdapter.removeListener(listener);
+    if (adapter == null) {
+      return false;
+    }
+    this.eventAdapter = adapter;
+    return true;
+  }
+
+  /**
+   * @return {@code true} if at least one {@link EventListener} is {@link #addListener(UiEventListener, boolean)
+   *         registered}, {@code false} otherwise.
+   */
+  protected boolean hasListeners() {
+
+    return this.eventAdapter.hasListeners();
+  }
+
+  /**
+   * @return the {@link EventSourceAdapter}.
+   */
+  protected EventSourceAdapter<UiEvent, UiEventListener> getEventAdapter() {
+
+    return this.eventAdapter;
+  }
+
+  /**
+   * @param event the event to {@link EventListener#onEvent(Object) send} to all {@link #addListener(UiEventListener)
+   *        registered} {@link EventListener}s.
+   */
+  protected void fireEvent(UiEvent event) {
+
+    this.eventAdapter.fireEvent(event);
   }
 
   /**
@@ -339,16 +388,19 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
 
   private <V> boolean validate(UiValidatableWidget<V> widget, UiValidState state) {
 
-    V value = widget.getValue();
     Validator<? super V> validator = widget.getValidator();
-    ValidationResult result = validator.validate(value, widget.getId());
-    String error = result.getLocalizedMessage(this.context.getLocale());
-    widget.setValidationFailure(error);
-    if (state.isSetFocus() && (this instanceof UiInput)) {
-      widget.setFocused();
-      state.setFocussed();
+    boolean valid = true;
+    if ((validator != null) && (validator != Validator.none())) {
+      V value = widget.getValue();
+      ValidationResult result = validator.validate(value, widget.getId());
+      String error = result.getLocalizedMessage(this.context.getLocale());
+      widget.setValidationFailure(error);
+      valid = (error == null);
+      if (!valid && state.isSetFocus() && (this instanceof UiInput)) {
+        widget.setFocused();
+        state.setFocussed();
+      }
     }
-    boolean valid = (error == null);
     state.notify(valid);
     return valid;
   }
@@ -388,13 +440,6 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
     } else {
       getStyles().add(STYLE_INVALID);
     }
-  }
-
-  @Override
-  public void addListener(UiEventListener listener, boolean weak) {
-
-    ensureHandlers();
-    super.addListener(listener, weak);
   }
 
   /**
