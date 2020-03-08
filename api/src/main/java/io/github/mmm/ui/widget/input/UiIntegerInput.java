@@ -2,22 +2,20 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.input;
 
-import java.time.LocalTime;
-
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
- * {@link UiInput} for a {@link LocalTime}. Will allow to enter the time as text similar to {@link UiTextInput} but more
- * structured. It may even support picking the time from a clock popup.<br>
+ * {@link UiNumberInput} for an {@link Integer} {@link #getValue() value}.<br>
  * Example:
  *
  * <pre>
  * <input type="number" placeholder="placeholder">
  * </pre>
  *
+ * @since 1.0.0
  */
-public interface UiIntegerInput extends UiTextualInput<Integer>, UiNativeWidget {
+public interface UiIntegerInput extends UiNumberInput<Integer>, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.

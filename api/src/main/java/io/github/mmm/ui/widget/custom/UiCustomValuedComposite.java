@@ -42,6 +42,12 @@ public class UiCustomValuedComposite<W extends UiValuedComposite<C, V>, C extend
   }
 
   @Override
+  public V getValueOrThrow() {
+
+    return this.delegate.getValueOrThrow();
+  }
+
+  @Override
   public void setValue(V value, boolean forUser) {
 
     this.delegate.setValue(value, forUser);

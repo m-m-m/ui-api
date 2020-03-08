@@ -42,6 +42,8 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.spi.factory;
 
+  exports io.github.mmm.ui.spi.range;
+
   exports io.github.mmm.ui.spi.widget;
 
   exports io.github.mmm.ui.widget;

@@ -15,6 +15,27 @@ import io.github.mmm.validation.Validator;
 public abstract interface UiValidatableWidget<V>
     extends UiValuedWidget<V>, UiWidgetWithValidationFailure, AttributeWriteValueForUser<V> {
 
+  @Override
+  default V getValue() {
+
+    try {
+      return getValueOrThrow();
+    } catch (Exception e) {
+      String error = e.getMessage();
+      if ((error == null) || error.isEmpty()) {
+        error = e.getClass().getSimpleName();
+      }
+      setValidationFailure(error);
+      return null;
+    }
+  }
+
+  /**
+   * @return the current {@link #getValue() value}.
+   * @throws RuntimeException if the value could not be parsed.
+   */
+  V getValueOrThrow();
+
   /**
    * Set both the {@link #getValue() value} and the {@link #getOriginalValue() original value} to the given argument.
    * Further, {@link #isModified() modified} is reset to {@code false}. In case the value type is mutable and you want
