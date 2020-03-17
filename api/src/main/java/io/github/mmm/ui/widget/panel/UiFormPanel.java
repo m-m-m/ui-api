@@ -33,9 +33,25 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
    * @param <V> type of the {@link #getValue() value}.
    * @param context the {@link UiContext}.
    * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
+   * @param children the {@link UiAbstractInput}s to add as children.
+   * @return the new {@link UiFormPanel}.
+   */
+  static <V> UiFormPanel<V> of(UiContext context, UiAbstractInput<?>... children) {
+
+    UiFormPanel<V> widget = context.create(UiFormPanel.class);
+    for (UiAbstractInput<?> child : children) {
+      widget.addChild(child);
+    }
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link #getValue() value}.
+   * @param context the {@link UiContext}.
+   * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
    * @return the new {@link UiFormGroup}.
    */
-  static <V> UiFormPanel<V> of(UiContext context, AttributeWriteValueForUser<V> binding) {
+  static <V> UiFormPanel<V> of(AttributeWriteValueForUser<V> binding, UiContext context) {
 
     UiFormPanel<V> widget = context.create(UiFormPanel.class);
     widget.initBinding(binding);
@@ -49,7 +65,7 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormPanel}.
    */
-  static <V> UiFormPanel<V> of(UiContext context, AttributeWriteValueForUser<V> binding,
+  static <V> UiFormPanel<V> of(AttributeWriteValueForUser<V> binding, UiContext context,
       UiAbstractInput<?>... children) {
 
     UiFormPanel<V> widget = context.create(UiFormPanel.class);

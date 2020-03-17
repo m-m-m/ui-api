@@ -154,7 +154,7 @@ public class UiBinding {
     if (inputs.isEmpty()) {
       return null;
     }
-    UiFormPanel<B> formPanel = UiFormPanel.of(this.context, binding);
+    UiFormPanel<B> formPanel = UiFormPanel.of(binding, this.context);
     for (UiAbstractInput<?> input : inputs) {
       formPanel.addChild(input);
     }

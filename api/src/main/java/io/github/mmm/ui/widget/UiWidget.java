@@ -293,6 +293,16 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   UiComposite<?> getParent();
 
   /**
+   * @param <W> the requested {@link UiWidget} type.
+   * @return this instance casted to the expected type.
+   */
+  @SuppressWarnings("unchecked")
+  default <W extends UiWidget> W cast() {
+
+    return (W) this;
+  }
+
+  /**
    * This method disposes this widget. It is detached from the UI and resources are deallocated. A disposed widget can
    * not be used or displayed anymore.
    */

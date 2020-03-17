@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
+import io.github.mmm.base.exception.ObjectNotFoundException;
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.factory.UiSingleWidgetFactory;
 import io.github.mmm.ui.widget.UiWidget;
@@ -67,7 +68,7 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
         return null;
       }
       System.out.println("No Factory registered for " + type.getName());
-      throw new UnsupportedOperationException(type.getName());
+      throw new ObjectNotFoundException("WidgetFactory", type.getName());
     }
     return (W) factory.create(context);
   }

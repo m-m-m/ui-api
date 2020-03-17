@@ -23,9 +23,9 @@ public interface UiSlider<V extends Number> extends UiNumericInput<V> {
   boolean isTextVisible();
 
   /**
-   * @param outputVisible the new value of {@link #isTextVisible()}.
+   * @param textVisible the new value of {@link #isTextVisible()}.
    */
-  void setTextVisible(boolean outputVisible);
+  void setTextVisible(boolean textVisible);
 
   /**
    * @return {@code true} if the output ({@link #getValue() value} as text beside the slider) is editable, {@code false}
@@ -37,8 +37,8 @@ public interface UiSlider<V extends Number> extends UiNumericInput<V> {
   boolean isTextEditable();
 
   /**
-   * @param outputEditable the new value of {@link #isTextEditable()}.
+   * @param textEditable the new value of {@link #isTextEditable()}.
    */
-  void setTextEditable(boolean outputEditable);
+  void setTextEditable(boolean textEditable);
 
 }
