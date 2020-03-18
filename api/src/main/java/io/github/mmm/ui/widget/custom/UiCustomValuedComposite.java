@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
+import io.github.mmm.ui.UiValueBinding;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
@@ -30,7 +30,7 @@ public class UiCustomValuedComposite<W extends UiValuedComposite<C, V>, C extend
   }
 
   @Override
-  public void initBinding(AttributeWriteValueForUser<V> binding) {
+  public void initBinding(UiValueBinding<V> binding) {
 
     this.delegate.initBinding(binding);
   }

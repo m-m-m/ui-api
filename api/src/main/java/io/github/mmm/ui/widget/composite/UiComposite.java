@@ -112,6 +112,21 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
   }
 
   @Override
+  default long getModificationTimestamp() {
+
+    long modificationTimestamp = -1;
+    int childCount = getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      C child = getChild(i);
+      long ts = child.getModificationTimestamp();
+      if (ts > modificationTimestamp) {
+        ts = modificationTimestamp;
+      }
+    }
+    return modificationTimestamp;
+  }
+
+  @Override
   default boolean isValid() {
 
     int childCount = getChildCount();

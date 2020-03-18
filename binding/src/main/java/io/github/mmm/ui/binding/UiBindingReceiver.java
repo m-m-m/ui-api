@@ -9,7 +9,7 @@ import io.github.mmm.ui.widget.input.UiAbstractInput;
  * Call-back interface receiving {@link UiAbstractInput input widgets} for {@link ReadableProperty properties}.
  *
  * @since 1.0.0
- * @see UiBinding#bindBean(io.github.mmm.bean.ReadableBean, UiBindingReceiver)
+ * @see UiBinding#bindBean(io.github.mmm.bean.ReadableBean, UiBindingReceiver, boolean)
  */
 public interface UiBindingReceiver {
 

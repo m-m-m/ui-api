@@ -3,6 +3,7 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.UiValueBinding;
 import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
@@ -46,12 +47,12 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
   }
 
   /**
-   * @param <V> type of the {@link #getValue() value}.
    * @param context the {@link UiContext}.
-   * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
+   * @param binding the {@link UiValueBinding} defining how to read and write the value.
+   * @param <V> type of the {@link #getValue() value}.
    * @return the new {@link UiFormGroup}.
    */
-  static <V> UiFormPanel<V> of(AttributeWriteValueForUser<V> binding, UiContext context) {
+  static <V> UiFormPanel<V> of(UiContext context, UiValueBinding<V> binding) {
 
     UiFormPanel<V> widget = context.create(UiFormPanel.class);
     widget.initBinding(binding);
@@ -61,12 +62,11 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
   /**
    * @param <V> type of the {@link #getValue() value}.
    * @param context the {@link UiContext}.
-   * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
+   * @param binding the {@link UiValueBinding} defining how to read and write the value.
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormPanel}.
    */
-  static <V> UiFormPanel<V> of(AttributeWriteValueForUser<V> binding, UiContext context,
-      UiAbstractInput<?>... children) {
+  static <V> UiFormPanel<V> of(UiContext context, UiValueBinding<V> binding, UiAbstractInput<?>... children) {
 
     UiFormPanel<V> widget = context.create(UiFormPanel.class);
     widget.initBinding(binding);

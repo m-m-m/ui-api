@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.composite;
 
-import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.widget.UiWidget;
+import io.github.mmm.ui.widget.value.UiBindableWidget;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
 
 /**
@@ -14,13 +14,6 @@ import io.github.mmm.ui.widget.value.UiValidatableWidget;
  * @since 1.0.0
  */
 public interface UiValuedComposite<C extends UiWidget, V>
-    extends UiDynamicComposite<C>, UiFailureComposite<C>, UiValidatableWidget<V> {
-
-  /**
-   * Initialized the value binding.
-   *
-   * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
-   */
-  void initBinding(AttributeWriteValueForUser<V> binding);
+    extends UiDynamicComposite<C>, UiFailureComposite<C>, UiBindableWidget<V> {
 
 }

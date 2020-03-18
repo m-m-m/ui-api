@@ -3,6 +3,7 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.UiValueBinding;
 import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithCollapse;
@@ -54,7 +55,7 @@ public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiAbst
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiFormGroup}.
    */
-  static <V> UiFormGroup<V> of(UiContext context, AttributeWriteValueForUser<V> binding, String name) {
+  static <V> UiFormGroup<V> of(UiContext context, UiValueBinding<V> binding, String name) {
 
     UiFormGroup<V> widget = context.create(UiFormGroup.class);
     widget.setName(name);
@@ -70,8 +71,7 @@ public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiAbst
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormGroup}.
    */
-  static <V> UiFormGroup<V> of(UiContext context, AttributeWriteValueForUser<V> binding, String name,
-      UiInput<?>... children) {
+  static <V> UiFormGroup<V> of(UiContext context, UiValueBinding<V> binding, String name, UiInput<?>... children) {
 
     UiFormGroup<V> widget = context.create(UiFormGroup.class);
     widget.setName(name);

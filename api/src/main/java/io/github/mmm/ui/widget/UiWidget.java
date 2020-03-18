@@ -283,7 +283,16 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
    */
   default boolean isModified() {
 
-    return false;
+    return (getModificationTimestamp() > 0);
+  }
+
+  /**
+   * @return the timestamp of the last change to this widget. Will be {@code -1} if it not {@link #isModified()
+   *         modified}.
+   */
+  default long getModificationTimestamp() {
+
+    return -1;
   }
 
   /**

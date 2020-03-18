@@ -4,6 +4,7 @@ package io.github.mmm.ui.widget.input;
 
 import io.github.mmm.ui.widget.UiAtomicWidget;
 import io.github.mmm.ui.widget.UiLabel;
+import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.value.UiValuedWidget;
 
 /**
@@ -25,5 +26,17 @@ public abstract interface UiInput<V> extends UiAbstractInput<V>, UiAtomicWidget 
    *         unnecessary overhead (e.g. if a {@link UiInput} is used for inline editing).
    */
   UiLabel getNameWidget();
+
+  /**
+   * @return {@code true} if the {@link #getContainerWidget() container widget} has already been created, {@code false}
+   *         otherwise. Helpful to avoid unintended lazy initialization.
+   */
+  boolean hasContainerWidget();
+
+  /**
+   * @return the {@link UiRegularWidget} containing both the {@link #getNameWidget() name widget} and the actual input
+   *         widget. Will be lazily created on the first call of this method.
+   */
+  UiRegularWidget getContainerWidget();
 
 }

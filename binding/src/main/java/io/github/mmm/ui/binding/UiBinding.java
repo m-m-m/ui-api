@@ -19,7 +19,6 @@ import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.panel.UiFormGroup;
 import io.github.mmm.ui.widget.panel.UiFormPanel;
-import io.github.mmm.ui.widget.panel.UiResponsiveColumnPanel;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
 import io.github.mmm.validation.Validator;
 
@@ -75,8 +74,8 @@ public class UiBinding {
 
   /**
    * @param bean the {@link ReadableBean} to bind.
-   * @param panel the {@link UiResponsiveColumnPanel} where to add the input widgets.
-   * @param columns the number of columns.
+   * @param receiver the {@link UiBindingReceiver}.
+   * @param createGroup - {@code true} to create {@link UiFormGroup}s for nested beans, {@code false} otherwise.
    */
   public void bindBean(ReadableBean bean, UiBindingReceiver receiver, boolean createGroup) {
 
@@ -154,7 +153,7 @@ public class UiBinding {
     if (inputs.isEmpty()) {
       return null;
     }
-    UiFormPanel<B> formPanel = UiFormPanel.of(binding, this.context);
+    UiFormPanel<B> formPanel = UiFormPanel.of(this.context, binding);
     for (UiAbstractInput<?> input : inputs) {
       formPanel.addChild(input);
     }
