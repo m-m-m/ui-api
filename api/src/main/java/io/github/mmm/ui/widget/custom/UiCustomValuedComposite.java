@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.custom;
 
-import io.github.mmm.ui.UiValueBinding;
+import io.github.mmm.ui.binding.UiValueBinding;
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.widget.panel.UiFormPanel;

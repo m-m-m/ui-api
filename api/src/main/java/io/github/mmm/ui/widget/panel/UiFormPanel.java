@@ -3,8 +3,8 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.UiValueBinding;
 import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
+import io.github.mmm.ui.binding.UiValueBinding;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;

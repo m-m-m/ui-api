@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.binding;
+package io.github.mmm.ui.binding.data;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 import io.github.mmm.bean.WritableBean;
 import io.github.mmm.property.ReadableProperty;
-import io.github.mmm.ui.UiValueBinding;
+import io.github.mmm.ui.binding.UiValueBinding;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.value.UiBindableWidget;
 

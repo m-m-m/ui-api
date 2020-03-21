@@ -41,11 +41,11 @@ public interface UiButton extends UiAbstractButton, UiNativeWidget {
    * @param context the {@link UiContext}.
    * @param action the {@link UiAction}.
    * @return the new {@link UiButton}.
-   * @see UiContext#createButton(UiAction)
    */
   static UiButton of(UiContext context, UiAction action) {
 
-    return context.createButton(action);
+    UiButton button = context.create(UiButton.class);
+    context.getActionBinding().bind(action, button);
+    return button;
   }
-
 }

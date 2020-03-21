@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.binding;
+package io.github.mmm.ui.binding.data;
 
 import io.github.mmm.property.ReadableProperty;
 
@@ -9,7 +9,7 @@ import io.github.mmm.property.ReadableProperty;
  * the UI.
  *
  * @since 1.0.0
- * @see UiBinding
+ * @see UiDataBinding
  */
 @FunctionalInterface
 public interface PropertyFilter {

@@ -22,6 +22,8 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.attribute;
 
+  exports io.github.mmm.ui.binding;
+
   exports io.github.mmm.ui.datatype;
 
   exports io.github.mmm.ui.datatype.bitmask;

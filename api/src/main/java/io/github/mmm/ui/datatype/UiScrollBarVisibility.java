@@ -7,15 +7,15 @@ package io.github.mmm.ui.datatype;
  *
  * @since 1.0.0
  */
-public enum UiScrolling {
+public enum UiScrollBarVisibility {
 
   /** The scrollbar is displayed only if the content is too large for the containing panel. */
   AUTO,
 
   /** The scrollbar is always visible. */
-  SCROLLBAR_VISIBLE,
+  ALWAYS,
 
   /** The scrollbar is always hidden. Overflow is not reachable for end-user. */
-  SCROLLBAR_HIDDEN
+  HIDDEN
 
 }

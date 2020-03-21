@@ -12,6 +12,7 @@ import io.github.mmm.ui.event.UiEventListener;
  * application.
  *
  * @since 1.0.0
+ * @see io.github.mmm.ui.widget.button.UiButton#of(io.github.mmm.ui.UiContext, UiAction)
  */
 public abstract interface UiAction extends UiEventListener {
 

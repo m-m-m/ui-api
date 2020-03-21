@@ -6,8 +6,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import io.github.mmm.ui.binding.UiActionBinding;
 import io.github.mmm.ui.datatype.UiSeverity;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.event.action.UiAction;
@@ -16,7 +18,6 @@ import io.github.mmm.ui.event.action.UiActionOk;
 import io.github.mmm.ui.event.action.UiActionYes;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.window.UiMainWindow;
 import io.github.mmm.value.ReadableTypedValue;
@@ -43,6 +44,12 @@ public interface UiContext {
   Locale getLocale();
 
   /**
+   * @param key the {@link ResourceBundle#getString(String) key}.
+   * @return the localized text.
+   */
+  String localize(String key);
+
+  /**
    * @return the {@link UiScreen} to read the current screen resolution.
    */
   UiScreen getScreen();
@@ -56,6 +63,11 @@ public interface UiContext {
    * @return a new {@link UiToggleGroup} instance.
    */
   UiToggleGroup createToggleGroup();
+
+  /**
+   * @return the {@link UiActionBinding}.
+   */
+  UiActionBinding getActionBinding();
 
   /**
    * This method opens a confirmation popup window with the given {@code message}. The title of the popup is
@@ -262,14 +274,6 @@ public interface UiContext {
    *         {@code false}.
    */
   <V> UiInput<V> createInput(ReadableTypedValue<V> property, boolean required);
-
-  /**
-   * Creates a new {@link UiButton} for the given {@link UiAction}.
-   *
-   * @param action the {@link UiAction}.
-   * @return the new widget instance.
-   */
-  UiButton createButton(UiAction action);
 
   /**
    * @return the default {@link io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure#getValidationFailure()

@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.value;
 
-import io.github.mmm.ui.UiValueBinding;
+import io.github.mmm.ui.binding.UiValueBinding;
 
 /**
  * {@link UiValidatableWidget} with external {@link UiValueBinding}.

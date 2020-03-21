@@ -5,18 +5,16 @@ package io.github.mmm.ui.spi;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
-import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.binding.DefaultActionBinding;
+import io.github.mmm.ui.binding.UiActionBinding;
 import io.github.mmm.ui.datatype.UiSeverity;
-import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.value.ReadableTypedValue;
 
@@ -32,6 +30,8 @@ public abstract class AbstractUiContext implements UiContext {
   private final UiWidgetFactoryDatatype datatypeFactory;
 
   private final UiWidgetFactoryProperty propertyFactory;
+
+  private UiActionBinding actionBinding;
 
   private Locale locale;
 
@@ -59,6 +59,7 @@ public abstract class AbstractUiContext implements UiContext {
     this.nativeFactory = nativeFactory;
     this.datatypeFactory = datatypeFactory;
     this.propertyFactory = propertyFactory;
+    this.actionBinding = DefaultActionBinding.get();
     this.locale = Locale.getDefault();
   }
 
@@ -79,6 +80,21 @@ public abstract class AbstractUiContext implements UiContext {
     this.locale = locale;
   }
 
+  @Override
+  public UiActionBinding getActionBinding() {
+
+    return this.actionBinding;
+  }
+
+  /**
+   * @param actionBinding new value of {@link #getActionBinding()}.
+   */
+  public void setActionBinding(UiActionBinding actionBinding) {
+
+    Objects.requireNonNull(actionBinding);
+    this.actionBinding = actionBinding;
+  }
+
   /**
    * @return the {@link ResourceBundle} for localization.
    */
@@ -90,11 +106,8 @@ public abstract class AbstractUiContext implements UiContext {
     return this.bundle;
   }
 
-  /**
-   * @param key the {@link ResourceBundle#getString(String) key}.
-   * @return the localized text.
-   */
-  protected String localize(String key) {
+  @Override
+  public String localize(String key) {
 
     try {
       return getBundle().getString(key);
@@ -137,52 +150,6 @@ public abstract class AbstractUiContext implements UiContext {
       input = createInput(property.getValueClass(), required);
     }
     return input;
-  }
-
-  @Override
-  public UiButton createButton(UiAction action) {
-
-    Objects.requireNonNull(action, "action");
-    String id = action.getId();
-    Objects.requireNonNull(id, "id");
-    UiButton button = create(UiButton.class);
-    button.setId(id);
-    String label = action.getLabel();
-    if (label == null) {
-      label = localize(id);
-      if (label == null) {
-        label = CaseHelper.capitalize(id);
-      }
-    }
-    button.setLabel(label);
-    String tooltip = action.getTooltip();
-    if (tooltip == null) {
-      tooltip = localize(id + "_tooltip");
-    }
-    if (tooltip != null) {
-      button.setTooltip(tooltip);
-    }
-    UiEventListener listener = action;
-    if (action.requireConfirmation()) {
-      String message = action.getConfirmationMessage();
-      if (message == null) {
-        message = localize(id + "_confirm");
-      }
-      if (message == null) {
-        message = "Are you sure?";
-      }
-      final String finalMessage = message;
-      listener = (e) -> {
-        Consumer<Boolean> callback = (choice) -> {
-          if (Boolean.TRUE.equals(choice)) {
-            action.onEvent(e);
-          }
-        };
-        showPopupYesNo(finalMessage, null, callback);
-      };
-    }
-    button.addListener(listener);
-    return button;
   }
 
 }

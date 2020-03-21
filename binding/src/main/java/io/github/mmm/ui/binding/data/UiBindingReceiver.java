@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.binding;
+package io.github.mmm.ui.binding.data;
 
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
@@ -9,7 +9,7 @@ import io.github.mmm.ui.widget.input.UiAbstractInput;
  * Call-back interface receiving {@link UiAbstractInput input widgets} for {@link ReadableProperty properties}.
  *
  * @since 1.0.0
- * @see UiBinding#bindBean(io.github.mmm.bean.ReadableBean, UiBindingReceiver, boolean)
+ * @see UiDataBinding#bindBean(io.github.mmm.bean.ReadableBean, UiBindingReceiver, boolean)
  */
 public interface UiBindingReceiver {
 

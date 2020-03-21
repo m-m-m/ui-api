@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.panel;
 
-import io.github.mmm.ui.datatype.UiScrolling;
+import io.github.mmm.ui.datatype.UiScrollBarVisibility;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.composite.UiMutableSingleComposite;
@@ -13,23 +13,23 @@ import io.github.mmm.ui.widget.composite.UiMutableSingleComposite;
 public interface UiScrollPanel extends UiMutableSingleComposite<UiRegularWidget>, UiNativeWidget {
 
   /**
-   * @return the {@link UiScrolling} for the horizontal scrollbar.
+   * @return the {@link UiScrollBarVisibility} for the horizontal scrollbar.
    */
-  UiScrolling getHorizontalScrolling();
+  UiScrollBarVisibility getHorizontalScrolling();
 
   /**
    * @param scrolling the new {@link #getHorizontalScrolling() horizontal scrolling}.
    */
-  void setHorizontalScrolling(UiScrolling scrolling);
+  void setHorizontalScrolling(UiScrollBarVisibility scrolling);
 
   /**
-   * @return the {@link UiScrolling} for the vertical scrollbar.
+   * @return the {@link UiScrollBarVisibility} for the vertical scrollbar.
    */
-  UiScrolling getVerticalScrolling();
+  UiScrollBarVisibility getVerticalScrolling();
 
   /**
    * @param scrolling the new {@link #getVerticalScrolling() vertical scrolling}.
    */
-  void setVerticalScrolling(UiScrolling scrolling);
+  void setVerticalScrolling(UiScrollBarVisibility scrolling);
 
 }

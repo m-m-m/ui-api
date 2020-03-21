@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.binding;
+package io.github.mmm.ui.binding.data;
 
 import java.util.Collection;
 
@@ -26,7 +26,7 @@ import io.github.mmm.validation.Validator;
  * Binding that allows to bind a {@link ReadableProperty property} or an entire {@link ReadableBean bean} to the UI. It
  * can create entire dialogs forms for beans dynamically.
  */
-public class UiBinding {
+public class UiDataBinding {
 
   private final UiContext context;
 
@@ -37,7 +37,7 @@ public class UiBinding {
    *
    * @param context the {@link UiContext}.
    */
-  public UiBinding(UiContext context) {
+  public UiDataBinding(UiContext context) {
 
     this(context, null);
   }
@@ -48,7 +48,7 @@ public class UiBinding {
    * @param context the {@link UiContext}.
    * @param defaultPropertyFilter the {@link PropertyFilter} to use as default.
    */
-  public UiBinding(UiContext context, PropertyFilter defaultPropertyFilter) {
+  public UiDataBinding(UiContext context, PropertyFilter defaultPropertyFilter) {
 
     super();
     this.context = context;
