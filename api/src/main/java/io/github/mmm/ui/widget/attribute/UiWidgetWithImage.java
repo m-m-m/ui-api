@@ -3,7 +3,7 @@
 package io.github.mmm.ui.widget.attribute;
 
 import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.media.UiImage;
+import io.github.mmm.ui.widget.img.UiImage;
 
 /**
  * {@link UiWidget} with a {@link #getImage() image} (icon).

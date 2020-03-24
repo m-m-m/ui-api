@@ -1,15 +1,13 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
-
-import io.github.mmm.ui.widget.UiWidget;
+package io.github.mmm.ui.attribute;
 
 /**
- * {@link UiWidget} that may be {@link #setMaximized(boolean) maximized}.
+ * Interface to read and {@link #setMaximized(boolean) write} the {@link #isMaximized() maximized} state.
  *
  * @since 1.0.0
  */
-public abstract interface UiWidgetWithMaximizable extends UiWidget {
+public abstract interface AttributeWriteMaximized {
 
   /**
    * @return {@code true} if this widget is currently maximized (full-screen so its size covers the entire screen),

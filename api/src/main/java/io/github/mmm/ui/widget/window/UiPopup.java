@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.window;
 
+import io.github.mmm.ui.event.action.UiActionClose;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.button.UiButton;
 import io.github.mmm.ui.widget.panel.UiButtonPanel;
@@ -15,7 +16,7 @@ import io.github.mmm.ui.widget.panel.UiButtonPanel;
  *
  * @since 1.0.0
  */
-public interface UiPopup extends UiAbstractWindow, UiNativeWidget {
+public interface UiPopup extends UiChildWindow, UiNativeWidget {
 
   /**
    * @return the {@link UiButtonPanel} located at the bottom of this popup where {@link UiButton buttons} shall be
@@ -29,6 +30,13 @@ public interface UiPopup extends UiAbstractWindow, UiNativeWidget {
    *
    * @return the close button.
    */
-  UiButton createAndAddCloseButton();
+  default UiButton createAndAddCloseButton() {
+
+    UiActionClose close = (e) -> setVisible(false);
+    UiButton closeButton = UiButton.of(getContext(), close);
+    getButtonPanel().addChild(closeButton);
+    return closeButton;
+
+  }
 
 }

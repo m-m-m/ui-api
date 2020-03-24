@@ -7,6 +7,6 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 /**
  * A normal window (no popup).
  */
-public interface UiWindow extends UiAbstractWindow, UiNativeWidget {
+public interface UiWindow extends UiChildWindow, UiNativeWidget {
 
 }

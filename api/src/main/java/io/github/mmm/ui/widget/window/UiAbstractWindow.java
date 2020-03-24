@@ -2,28 +2,25 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.window;
 
-import io.github.mmm.ui.datatype.UiLength;
+import io.github.mmm.ui.attribute.AttributeWritePosition;
+import io.github.mmm.ui.attribute.AttributeWriteSizeInPixel;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithClosable;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithMaximizable;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithPosition;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithSize;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithTitle;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
- * {@link UiDynamicComposite} that represents a <em>window</em>. To open the window use {@link #setVisible(boolean)
- * setVisible(true)} and to close it use {@link #setVisible(boolean) setVisible(false)}. Some underlying UI toolkits do
- * not support to dynamically change the features of the window so configure them via {@link #setClosable(boolean)},
- * {@link #setResizable(boolean)}, etc. before opening the window.
+ * {@link UiDynamicComposite} that represents a <em>window</em>.
  *
  * @since 1.0.0
  */
-public abstract interface UiAbstractWindow extends UiDynamicComposite<UiRegularWidget>, UiWidgetWithTitle,
-    UiWidgetWithClosable, UiWidgetWithSize, UiWidgetWithPosition, UiWidgetWithMaximizable {
+public abstract interface UiAbstractWindow
+    extends UiDynamicComposite<UiRegularWidget>, UiWidgetWithTitle, AttributeWriteSizeInPixel, AttributeWritePosition {
+
+  @Override
+  UiAbstractWindow getParent();
 
   /**
-   * @return {@code true} if this window can be {@link #setSize(UiLength, UiLength) resized} by the end-user,
+   * @return {@code true} if this window can be {@link #setSizeInPixel(double, double) resized} by the end-user,
    *         {@code false} otherwise.
    */
   boolean isResizable();
@@ -34,13 +31,19 @@ public abstract interface UiAbstractWindow extends UiDynamicComposite<UiRegularW
   void setResizable(boolean resizable);
 
   /**
-   * @return {@code true} if this window can be moved by the end-user (by dragging around), {@code false} otherwise.
+   * Opens this window by setting {@link #isVisible() visible} to {@code true}.
    */
-  boolean isMovable();
+  default void open() {
+
+    setVisible(true);
+  }
 
   /**
-   * @param movable is the new value of {@link #isMovable()}.
+   * Opens this window by setting {@link #isVisible() visible} to {@code false}.
    */
-  void setMovable(boolean movable);
+  default void close() {
+
+    setVisible(false);
+  }
 
 }

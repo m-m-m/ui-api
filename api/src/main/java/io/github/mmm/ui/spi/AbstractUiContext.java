@@ -7,15 +7,15 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.UiNotifier;
 import io.github.mmm.ui.binding.DefaultActionBinding;
 import io.github.mmm.ui.binding.UiActionBinding;
-import io.github.mmm.ui.datatype.UiSeverity;
-import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.input.UiInput;
+import io.github.mmm.ui.widget.window.UiMainWindow;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
@@ -31,7 +31,11 @@ public abstract class AbstractUiContext implements UiContext {
 
   private final UiWidgetFactoryProperty propertyFactory;
 
+  private UiMainWindow mainWindow;
+
   private UiActionBinding actionBinding;
+
+  private UiNotifier notifier;
 
   private Locale locale;
 
@@ -61,6 +65,15 @@ public abstract class AbstractUiContext implements UiContext {
     this.propertyFactory = propertyFactory;
     this.actionBinding = DefaultActionBinding.get();
     this.locale = Locale.getDefault();
+  }
+
+  @Override
+  public UiMainWindow getMainWindow() {
+
+    if (this.mainWindow == null) {
+      this.mainWindow = create(UiMainWindow.class);
+    }
+    return this.mainWindow;
   }
 
   @Override
@@ -95,6 +108,31 @@ public abstract class AbstractUiContext implements UiContext {
     this.actionBinding = actionBinding;
   }
 
+  @Override
+  public UiNotifier getNotifier() {
+
+    if (this.notifier == null) {
+      this.notifier = createDefaultNotifier();
+    }
+    return this.notifier;
+  }
+
+  /**
+   * @return the default implementation of {@link UiNotifier}.
+   */
+  protected abstract UiNotifier createDefaultNotifier();
+
+  /**
+   * @param notifier new value of {@link #getNotifier()}.
+   */
+  public void setNotifier(UiNotifier notifier) {
+
+    if (this.notifier != null) {
+      throw new IllegalStateException();
+    }
+    this.notifier = notifier;
+  }
+
   /**
    * @return the {@link ResourceBundle} for localization.
    */
@@ -114,18 +152,6 @@ public abstract class AbstractUiContext implements UiContext {
     } catch (Exception e) {
       return null;
     }
-  }
-
-  /**
-   * This method gets the title for the given {@link UiSeverity}.
-   *
-   * @param severity is the {@link UiSeverity}.
-   * @return the according title.
-   * @see #showPopup(String, UiSeverity, String, String, UiAction...)
-   */
-  protected String getTitle(UiSeverity severity) {
-
-    return getBundle().getString(severity.getName());
   }
 
   @Override

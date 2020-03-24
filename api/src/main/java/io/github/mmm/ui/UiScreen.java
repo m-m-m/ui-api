@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui;
 
-import io.github.mmm.ui.attribute.AttributeReadSizeInPixel;
+import io.github.mmm.ui.attribute.AttributeReadSize;
 import io.github.mmm.ui.datatype.UiScreenType;
 
 /**
@@ -16,7 +16,7 @@ import io.github.mmm.ui.datatype.UiScreenType;
  *
  * @since 1.0.0
  */
-public interface UiScreen extends AttributeReadSizeInPixel {
+public interface UiScreen extends AttributeReadSize {
 
   /**
    * @return the {@link UiScreenType} that categorizes the display size.

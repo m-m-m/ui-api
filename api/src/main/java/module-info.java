@@ -60,6 +60,8 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.widget.custom;
 
+  exports io.github.mmm.ui.widget.img;
+
   exports io.github.mmm.ui.widget.input;
 
   exports io.github.mmm.ui.widget.media;

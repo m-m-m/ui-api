@@ -16,7 +16,7 @@ import io.github.mmm.ui.widget.value.UiValuedWidget;
 public abstract interface UiAbstractInput<V> extends UiValidatableWidget<V> {
 
   /**
-   * @return the {@link UiLabel#getLabel() label} for the {@link UiInput#getNameWidget() name widget} or the title of
+   * @return the {@link UiLabel#getText() label} for the {@link UiInput#getNameWidget() name widget} or the title of
    *         the {@link io.github.mmm.ui.widget.panel.UiFormGroup}.
    */
   String getName();

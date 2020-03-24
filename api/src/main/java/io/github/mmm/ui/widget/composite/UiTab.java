@@ -8,7 +8,7 @@ import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.attribute.UiWidgetWithClosable;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
  * {@link UiMutableSingleComposite} that represents a single {@code tab}. It is a simple container for the actual widget
@@ -19,7 +19,7 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
  *
  * @since 1.0.0
  */
-public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidgetWithLabel, UiWidgetWithClosable,
+public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidgetWithText, UiWidgetWithClosable,
     UiActiveWidget, UiFailureComposite<UiRegularWidget>, UiNativeWidget { /* AttributeWriteImage<UiWidgetImage>, */
 
   @Override
@@ -37,13 +37,13 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidg
    * @param context the {@link UiContext}.
    * @param child the {@link UiRegularWidget} to show as content if the {@link UiTab} is
    *        {@link io.github.mmm.ui.widget.panel.UiTabPanel#getActiveChild() active} (selected).
-   * @param label the {@link UiTab#getLabel() label} of the {@link UiTab}.
+   * @param label the {@link UiTab#getText() label} of the {@link UiTab}.
    * @return the new {@link UiTab}.
    */
   static UiTab of(UiContext context, UiRegularWidget child, String label) {
 
     UiTab widget = context.create(UiTab.class);
-    widget.setLabel(label);
+    widget.setText(label);
     widget.setChild(child);
     return widget;
   }

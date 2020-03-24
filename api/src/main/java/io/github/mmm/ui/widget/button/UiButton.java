@@ -10,7 +10,7 @@ import io.github.mmm.ui.widget.UiNativeWidget;
 
 /**
  * This is the interface for an normal {@link UiAbstractButton button}. <br>
- * Here you can see an example (with {@link #setLabel(String) label} "Click me"):
+ * Here you can see an example (with {@link #setText(String) label} "Click me"):
  *
  * <pre>
  * <button type="button">Click me</button>
@@ -22,7 +22,7 @@ public interface UiButton extends UiAbstractButton, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.
-   * @param label the {@link UiButton#getLabel() label}.
+   * @param label the {@link UiButton#getText() label}.
    * @param listener the {@link UiEventListener}.
    * @return the new {@link UiButton}.
    * @see #of(UiContext, UiAction)
@@ -30,7 +30,7 @@ public interface UiButton extends UiAbstractButton, UiNativeWidget {
   static UiButton of(UiContext context, String label, UiClickEventListener listener) {
 
     UiButton widget = context.create(UiButton.class);
-    widget.setLabel(label);
+    widget.setText(label);
     if (listener != null) {
       widget.addListener(listener);
     }

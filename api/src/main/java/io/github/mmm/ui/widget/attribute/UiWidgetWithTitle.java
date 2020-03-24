@@ -12,7 +12,7 @@ import io.github.mmm.ui.widget.UiWidget;
 public interface UiWidgetWithTitle extends UiWidget {
 
   /**
-   * @return the title of this widget. Similar to {@link UiWidgetWithLabel#getLabel() label} but more exposed (e.g.
+   * @return the title of this widget. Similar to {@link UiWidgetWithText#getText() label} but more exposed (e.g.
    *         displayed in title-bar in case of a {@link io.github.mmm.ui.widget.window.UiWindow window}). Will be the
    *         empty {@link String} if not set.
    */

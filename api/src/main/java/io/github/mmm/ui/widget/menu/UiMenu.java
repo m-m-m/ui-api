@@ -5,22 +5,22 @@ package io.github.mmm.ui.widget.menu;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
  * {@link UiDynamicComposite} representing a <em>menu</em>. A menu is something that is displayed by its
- * {@link #getLabel() label} and opens a list of {@link UiAbstractMenuItem menu items} if it is clicked. The user can
+ * {@link #getText() label} and opens a list of {@link UiAbstractMenuItem menu items} if it is clicked. The user can
  * click on one of these {@link UiAbstractMenuItem menu items} to execute a specific functionality. <br>
  * A {@link UiMenu} is also a {@link UiAbstractMenuItem} so you can add it to another menu as a <em>sub menu</em>.
  *
  * @since 1.0.0
  */
 public interface UiMenu
-    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, UiWidgetWithLabel, UiNativeWidget {
+    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, UiWidgetWithText, UiNativeWidget {
 
   /**
-   * @param label the {@link UiMenuItem#getLabel() label} of the {@link UiMenuItem} to create.
+   * @param label the {@link UiMenuItem#getText() label} of the {@link UiMenuItem} to create.
    * @param listener the {@link UiEventListener} to listen for {@link UiEvent}s such as
    *        {@link io.github.mmm.ui.event.UiClickEvent}.
    * @return the created and added {@link UiMenuItem}.
@@ -28,7 +28,7 @@ public interface UiMenu
   default UiMenuItem addMenuItem(String label, UiEventListener listener) {
 
     UiMenuItem menuItem = getContext().create(UiMenuItem.class);
-    menuItem.setLabel(label);
+    menuItem.setText(label);
     menuItem.addListener(listener);
     addChild(menuItem);
     return menuItem;
@@ -44,13 +44,13 @@ public interface UiMenu
   }
 
   /**
-   * @param label is the {@link #getLabel() label} of the sub-menu.
+   * @param label is the {@link #getText() label} of the sub-menu.
    * @return the new sub-menu.
    */
   default UiMenu addSubmenu(String label) {
 
     UiMenu submenu = getContext().create(UiMenu.class);
-    submenu.setLabel(label);
+    submenu.setText(label);
     addChild(submenu);
     return submenu;
   }

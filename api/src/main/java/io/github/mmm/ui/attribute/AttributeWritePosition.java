@@ -1,26 +1,13 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
-
-import io.github.mmm.ui.widget.UiWidget;
+package io.github.mmm.ui.attribute;
 
 /**
- * {@link UiWidget} that has a {@link #setPosition(double, double) position} of {@link #getX() X} and {@link #getY() Y}
- * coordinates.
+ * Interface to read and {@link #setPosition(double, double) write} a position.
  *
  * @since 1.0.0
  */
-public interface UiWidgetWithPosition extends UiWidget {
-
-  /**
-   * @return the x position of this widget as the number of pixels from the left on the x-axis (horizontally).
-   */
-  double getX();
-
-  /**
-   * @return the y position of this widget at the number of pixels from the top on the y-axia (certically).
-   */
-  double getY();
+public interface AttributeWritePosition extends AttributeReadPosition {
 
   /**
    * @param x the new {@link #getX() position on the x-axis}.

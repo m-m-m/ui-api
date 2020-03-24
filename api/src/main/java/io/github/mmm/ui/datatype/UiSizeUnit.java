@@ -9,7 +9,7 @@ package io.github.mmm.ui.datatype;
  */
 // absolute units 1in = 2.54cm = 25.4mm = 72pt = 12pc
 // for font-size ~ 1em = 12pt = 16px = 100%
-public enum UiLengthUnit {
+public enum UiSizeUnit {
 
   /** Unit for pixels. */
   PIXEL("px", "pixel"),
@@ -32,7 +32,7 @@ public enum UiLengthUnit {
    * @param value - see {@link #getArgb()}.
    * @param title - see {@link #toString()}.
    */
-  private UiLengthUnit(String value, String title) {
+  private UiSizeUnit(String value, String title) {
 
     this.key = value;
     this.title = title;
@@ -55,14 +55,14 @@ public enum UiLengthUnit {
   }
 
   /**
-   * Creates a new {@link UiLength} with this {@link UiLengthUnit} as {@link UiLength#getUnit() unit}.
+   * Creates a new {@link UiSize} with this {@link UiSizeUnit} as {@link UiSize#getUnit() unit}.
    *
-   * @param amount is the {@link UiLength#getAmount() amount}.
-   * @return the new {@link UiLength}.
+   * @param amount is the {@link UiSize#getAmount() amount}.
+   * @return the new {@link UiSize}.
    */
-  public UiLength newLength(double amount) {
+  public UiSize newSize(double amount) {
 
-    return new UiLength(amount, this);
+    return new UiSize(amount, this);
   }
 
   @Override

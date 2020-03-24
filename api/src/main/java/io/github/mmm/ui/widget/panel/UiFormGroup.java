@@ -6,7 +6,7 @@ import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.binding.UiValueBinding;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithCollapse;
+import io.github.mmm.ui.widget.composite.UiCollapsibleComposite;
 import io.github.mmm.ui.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.widget.input.UiAbstractInput;
 import io.github.mmm.ui.widget.input.UiInput;
@@ -17,8 +17,8 @@ import io.github.mmm.ui.widget.input.UiInput;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiAbstractCompositeInput<UiInput<?>, V>,
-    UiWidgetWithCollapse, UiNativeWidget {
+public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiCollapsibleComposite<UiInput<?>>,
+    UiAbstractCompositeInput<UiInput<?>, V>, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.

@@ -34,7 +34,7 @@ public class DefaultActionBinding implements UiActionBinding {
         label = CaseHelper.capitalize(id);
       }
     }
-    button.setLabel(label);
+    button.setText(label);
     String tooltip = action.getTooltip();
     if (tooltip == null) {
       tooltip = context.localize(id + "_tooltip");
@@ -59,7 +59,7 @@ public class DefaultActionBinding implements UiActionBinding {
             action.onEvent(e);
           }
         };
-        context.showPopupYesNo(finalMessage, null, callback);
+        context.getNotifier().showPopupYesNo(finalMessage, null, callback);
       };
     }
     button.addListener(listener);

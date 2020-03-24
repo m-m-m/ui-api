@@ -3,13 +3,13 @@
 package io.github.mmm.ui.widget;
 
 import io.github.mmm.ui.widget.attribute.UiWidgetWithClick;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
- * {@link UiActiveWidget} that has a {@link #getLabel() label} and is {@link #click() clickable}.
+ * {@link UiActiveWidget} that has a {@link #getText() label} and is {@link #click() clickable}.
  *
  * @since 1.0.0
  */
-public abstract interface UiClickableWidget extends UiActiveWidget, UiWidgetWithLabel, UiWidgetWithClick {
+public abstract interface UiClickableWidget extends UiActiveWidget, UiWidgetWithText, UiWidgetWithClick {
 
 }

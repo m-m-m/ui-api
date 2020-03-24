@@ -3,24 +3,24 @@
 package io.github.mmm.ui.widget;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithLabel;
+import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
  * {@link UiRegularWidget} that represents a label. A label is a very simple widget that displays some static text.
  *
  * @since 1.0.0
  */
-public interface UiLabel extends UiAtomicWidget, UiWidgetWithLabel, UiNativeWidget {
+public interface UiLabel extends UiAtomicWidget, UiWidgetWithText, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.
-   * @param label the {@link UiLabel#getLabel() label text}.
+   * @param text the {@link UiLabel#getText() text}.
    * @return the new {@link UiLabel}.
    */
-  static UiLabel of(UiContext context, String label) {
+  static UiLabel of(UiContext context, String text) {
 
     UiLabel widget = context.create(UiLabel.class);
-    widget.setLabel(label);
+    widget.setText(text);
     return widget;
   }
 

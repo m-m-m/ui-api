@@ -4,6 +4,7 @@ package io.github.mmm.ui.widget.media;
 
 import io.github.mmm.ui.attribute.AttributeManageMedia;
 import io.github.mmm.ui.datatype.media.UiMedia;
+import io.github.mmm.ui.widget.UiRegularWidget;
 import io.github.mmm.ui.widget.UiWidget;
 
 /**
@@ -11,7 +12,7 @@ import io.github.mmm.ui.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public abstract interface UiMediaWidget extends UiAbstractMediaWidget, AttributeManageMedia {
+public abstract interface UiMediaWidget extends UiRegularWidget, AttributeManageMedia {
 
   /**
    * @return the {@link UiMedia} or {@code null} in not {@link #setMedia(UiMedia) set}.
