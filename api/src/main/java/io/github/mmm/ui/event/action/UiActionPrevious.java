@@ -10,6 +10,7 @@ package io.github.mmm.ui.event.action;
  * @author Joerg Hohwiller (hohwille at users.sourceforge.net)
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionPrevious extends UiAction {
 
   /** @see #getId() */

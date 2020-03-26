@@ -12,6 +12,7 @@ import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.event.action.UiActionNo;
 import io.github.mmm.ui.event.action.UiActionOk;
 import io.github.mmm.ui.event.action.UiActionYes;
+import io.github.mmm.ui.widget.window.UiPopup;
 
 /**
  * Interface to notify via popup or growl.
@@ -51,10 +52,11 @@ public interface UiNotifier {
    * @see #showPopupOk(String, UiSeverity, String)
    *
    * @param message is the message to display.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(String message) {
+  default UiPopup showPopupOk(String message) {
 
-    showPopupOk(message, UiSeverity.INFORMATION);
+    return showPopupOk(message, UiSeverity.INFORMATION);
   }
 
   /**
@@ -65,10 +67,11 @@ public interface UiNotifier {
    *
    * @param message is the message to display.
    * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(String message, UiSeverity severity) {
+  default UiPopup showPopupOk(String message, UiSeverity severity) {
 
-    showPopupOk(message, severity, null, null);
+    return showPopupOk(message, severity, null, null);
   }
 
   /**
@@ -77,10 +80,11 @@ public interface UiNotifier {
    * @param message is the message to display.
    * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
    * @param title is the title that will be displayed in the title-bar of the popup.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(String message, UiSeverity severity, String title) {
+  default UiPopup showPopupOk(String message, UiSeverity severity, String title) {
 
-    showPopupOk(message, severity, title, null);
+    return showPopupOk(message, severity, title, null);
   }
 
   /**
@@ -90,10 +94,11 @@ public interface UiNotifier {
    * @param title is the title that will be displayed in the title-bar of the popup.
    * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
    * @param action is the {@link UiActionOk}.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(String message, UiSeverity severity, String title, UiActionOk action) {
+  default UiPopup showPopupOk(String message, UiSeverity severity, String title, UiActionOk action) {
 
-    showPopup(message, severity, title, null, UiActionOk.notNull(action));
+    return showPopup(message, severity, title, null, UiActionOk.notNull(action));
   }
 
   /**
@@ -101,14 +106,15 @@ public interface UiNotifier {
    * {@link UiSeverity#ERROR}.
    *
    * @param error is the {@link Throwable} that has occurred.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(Throwable error) {
+  default UiPopup showPopupOk(Throwable error) {
 
     String message = error.getLocalizedMessage();
     if (message == null) {
       message = error.getClass().getSimpleName();
     }
-    showPopupOk(error, message, null);
+    return showPopupOk(error, message, null);
   }
 
   /**
@@ -117,10 +123,11 @@ public interface UiNotifier {
    *
    * @param error is the {@link Throwable} that has occurred.
    * @param message is the message to display.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(Throwable error, String message) {
+  default UiPopup showPopupOk(Throwable error, String message) {
 
-    showPopupOk(error, message, null);
+    return showPopupOk(error, message, null);
   }
 
   /**
@@ -130,13 +137,14 @@ public interface UiNotifier {
    * @param error is the {@link Throwable} that has occurred.
    * @param message is the message to display.
    * @param action is the {@link UiActionOk}.
+   * @return the {@link UiPopup}.
    */
-  default void showPopupOk(Throwable error, String message, UiActionOk action) {
+  default UiPopup showPopupOk(Throwable error, String message, UiActionOk action) {
 
     StringWriter sw = new StringWriter(256);
     error.printStackTrace(new PrintWriter(sw));
     String details = sw.toString();
-    showPopup(message, UiSeverity.ERROR, null, details, UiActionOk.notNull(action));
+    return showPopup(message, UiSeverity.ERROR, null, details, UiActionOk.notNull(action));
   }
 
   /**
@@ -156,8 +164,9 @@ public interface UiNotifier {
    *        default title for {@link UiSeverity#QUESTION}.
    * @param callback is the {@link Consumer} invoked after the popup has been confirmed. {@link Consumer#accept(Object)}
    *        will receive {@link Boolean#TRUE} if the user clicked "Yes" and {@link Boolean#FALSE} for "No".
+   * @return the {@link UiPopup}.
    */
-  default void showPopupYesNo(String message, String title, Consumer<Boolean> callback) {
+  default UiPopup showPopupYesNo(String message, String title, Consumer<Boolean> callback) {
 
     UiActionYes yes = (e) -> {
       callback.accept(Boolean.TRUE);
@@ -165,7 +174,7 @@ public interface UiNotifier {
     UiActionNo no = (e) -> {
       callback.accept(Boolean.FALSE);
     };
-    showPopup(message, UiSeverity.QUESTION, title, null, yes, no);
+    return showPopup(message, UiSeverity.QUESTION, title, null, yes, no);
   }
 
   /**
@@ -183,7 +192,8 @@ public interface UiNotifier {
    *        to be expanded by the end user.
    * @param actions are the {@link UiAction}s for the buttons to close (answer, confirm, or cancel) the popup. Has to be
    *        at least one {@link UiAction}.
+   * @return the {@link UiPopup}.
    */
-  void showPopup(String message, UiSeverity severity, String title, String details, UiAction... actions);
+  UiPopup showPopup(String message, UiSeverity severity, String title, String details, UiAction... actions);
 
 }

@@ -11,6 +11,7 @@ import io.github.mmm.ui.widget.UiWidget;
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionEdit extends UiAction {
 
   /** @see #getId() */

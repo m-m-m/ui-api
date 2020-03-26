@@ -4,10 +4,12 @@ package io.github.mmm.ui.event.action;
 
 /**
  * {@link UiAction} for <em>yes</em>. Typically used to confirm a
- * {@link io.github.mmm.ui.UiContext#showPopupYesNo(String, String, java.util.function.Consumer) simple question popup}.
+ * {@link io.github.mmm.ui.UiNotifier#showPopupYesNo(String, String, java.util.function.Consumer) simple question
+ * popup}.
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionYes extends UiAction {
 
   /** @see #getId() */

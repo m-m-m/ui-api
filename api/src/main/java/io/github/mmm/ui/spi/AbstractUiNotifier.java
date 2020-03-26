@@ -45,7 +45,7 @@ public abstract class AbstractUiNotifier implements UiNotifier {
   }
 
   @Override
-  public void showPopup(String message, UiSeverity severity, String title, String details, UiAction... actions) {
+  public UiPopup showPopup(String message, UiSeverity severity, String title, String details, UiAction... actions) {
 
     UiPopup popup = this.context.create(UiPopup.class);
     if ((title == null) || title.isEmpty()) {
@@ -76,6 +76,7 @@ public abstract class AbstractUiNotifier implements UiNotifier {
       buttonPanel.addChild(button);
     }
     popup.setVisible(true);
+    return popup;
   }
 
 }

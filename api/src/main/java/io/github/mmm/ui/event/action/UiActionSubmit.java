@@ -10,6 +10,7 @@ package io.github.mmm.ui.event.action;
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionSubmit extends UiAction {
 
   /** @see #getId() */

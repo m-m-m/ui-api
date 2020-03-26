@@ -8,6 +8,7 @@ package io.github.mmm.ui.event.action;
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionOpen extends UiAction {
 
   /** @see #getId() */

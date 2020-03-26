@@ -39,7 +39,7 @@ public abstract interface UiAction extends UiEventListener {
   }
 
   /**
-   * @return {@code true} if a {@link io.github.mmm.ui.UiContext#showPopupOk(String) popup} should be opened and
+   * @return {@code true} if a {@link io.github.mmm.ui.UiNotifier#showPopupOk(String) popup} should be opened and
    *         confirmed before {@link #onEvent(io.github.mmm.ui.event.UiEvent) invoking} this action.
    */
   default boolean requireConfirmation() {

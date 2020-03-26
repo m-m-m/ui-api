@@ -7,6 +7,7 @@ package io.github.mmm.ui.event.action;
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionSave extends UiAction {
 
   /** @see #getId() */

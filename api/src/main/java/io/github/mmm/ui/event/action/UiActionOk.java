@@ -3,11 +3,12 @@
 package io.github.mmm.ui.event.action;
 
 /**
- * {@link UiAction} for <em>ok</em>. Typically used to close a {@link io.github.mmm.ui.UiContext#showPopupOk(String)
+ * {@link UiAction} for <em>ok</em>. Typically used to close a {@link io.github.mmm.ui.UiNotifier#showPopupOk(String)
  * confirmation popup}.
  *
  * @since 1.0.0
  */
+@FunctionalInterface
 public interface UiActionOk extends UiAction {
 
   /** A {@link UiActionOk} that does nothing {@link #onEvent(io.github.mmm.ui.event.UiEvent) on event}. */
