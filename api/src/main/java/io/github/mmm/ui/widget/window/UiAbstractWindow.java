@@ -2,10 +2,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.window;
 
-import io.github.mmm.ui.attribute.AttributeWritePosition;
-import io.github.mmm.ui.attribute.AttributeWriteSizeInPixel;
+import io.github.mmm.ui.attribute.AttributeReadPosition;
+import io.github.mmm.ui.attribute.AttributeReadSize;
+import io.github.mmm.ui.attribute.AttributeWriteResizable;
+import io.github.mmm.ui.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithTitle;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
@@ -14,7 +15,7 @@ import io.github.mmm.ui.widget.composite.UiDynamicComposite;
  * @since 1.0.0
  */
 public abstract interface UiAbstractWindow
-    extends UiDynamicComposite<UiRegularWidget>, UiWidgetWithTitle, AttributeWriteSizeInPixel, AttributeWritePosition {
+    extends UiDynamicComposite<UiRegularWidget>, AttributeWriteTitle, AttributeWriteResizable {
 
   @Override
   UiAbstractWindow getParent();
@@ -41,15 +42,14 @@ public abstract interface UiAbstractWindow
   }
 
   /**
-   * @return {@code true} if this window can be {@link #setSizeInPixel(double, double) resized} by the end-user,
-   *         {@code false} otherwise.
+   * @return access to read and write the position of this window.
    */
-  boolean isResizable();
+  AttributeReadPosition getPosition();
 
   /**
-   * @param resizable is the new value of {@link #isResizable()}.
+   * @return access to read and write the size of this window.
    */
-  void setResizable(boolean resizable);
+  AttributeReadSize getSize();
 
   /**
    * Opens this window by setting {@link #isVisible() visible} to {@code true}.

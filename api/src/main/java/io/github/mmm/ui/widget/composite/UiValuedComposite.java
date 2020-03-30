@@ -16,4 +16,10 @@ import io.github.mmm.ui.widget.value.UiValidatableWidget;
 public interface UiValuedComposite<C extends UiWidget, V>
     extends UiDynamicComposite<C>, UiFailureComposite<C>, UiBindableWidget<V> {
 
+  @Override
+  default boolean isValid() {
+
+    return UiFailureComposite.super.isValid();
+  }
+
 }

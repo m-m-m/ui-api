@@ -1,19 +1,16 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
-
-import io.github.mmm.ui.widget.UiWidget;
+package io.github.mmm.ui.attribute;
 
 /**
- * {@link UiWidget} that has a {@link #isCollapsible() collapsible} property to configure if it can be collapsed and
- * expanded by the end-user.
+ * Interface to read and write the {@link #isCollapsed() collapsed} and {@link #isCollapsible() collapsible} flags.
  *
  * @since 1.0.0
  */
-public abstract interface UiWidgetWithCollapse extends UiWidget {
+public abstract interface AttributeWriteCollapsible {
 
   /**
-   * @return {@code true} if this widget is currently collapsed (minimized, hiding its details), {@code false} otherwise
+   * @return {@code true} if this object is currently collapsed (minimized, hiding its details), {@code false} otherwise
    *         (if expanded).
    */
   boolean isCollapsed();

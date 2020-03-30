@@ -3,9 +3,9 @@
 package io.github.mmm.ui.widget.panel;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteText;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 import io.github.mmm.ui.widget.composite.UiCollapsibleComposite;
 
 /**
@@ -16,7 +16,7 @@ import io.github.mmm.ui.widget.composite.UiCollapsibleComposite;
  * @since 1.0.0
  */
 public interface UiCollapsiblePanel
-    extends UiCollapsibleComposite<UiRegularWidget>, UiDynamicPanel, UiWidgetWithText, UiNativeWidget {
+    extends UiCollapsibleComposite<UiRegularWidget>, UiDynamicPanel, AttributeWriteText, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.

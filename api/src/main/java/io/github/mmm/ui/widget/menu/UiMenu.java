@@ -2,10 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.menu;
 
+import io.github.mmm.ui.attribute.AttributeWriteText;
 import io.github.mmm.ui.event.UiEvent;
 import io.github.mmm.ui.event.UiEventListener;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 import io.github.mmm.ui.widget.composite.UiDynamicComposite;
 
 /**
@@ -17,7 +17,7 @@ import io.github.mmm.ui.widget.composite.UiDynamicComposite;
  * @since 1.0.0
  */
 public interface UiMenu
-    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, UiWidgetWithText, UiNativeWidget {
+    extends UiDynamicComposite<UiAbstractMenuItem>, UiAbstractMenuItem, AttributeWriteText, UiNativeWidget {
 
   /**
    * @param label the {@link UiMenuItem#getText() label} of the {@link UiMenuItem} to create.

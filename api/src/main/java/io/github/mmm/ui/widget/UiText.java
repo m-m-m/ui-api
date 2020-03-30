@@ -3,15 +3,15 @@
 package io.github.mmm.ui.widget;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteText;
 import io.github.mmm.ui.datatype.UiTextAlignment;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
  * {@link UiRegularWidget} that represents regular text.
  *
  * @since 1.0.0
  */
-public interface UiText extends UiAtomicWidget, UiWidgetWithText, UiNativeWidget {
+public interface UiText extends UiAtomicWidget, AttributeWriteText, UiNativeWidget {
 
   /**
    * @return the {@link UiTextAlignment}.

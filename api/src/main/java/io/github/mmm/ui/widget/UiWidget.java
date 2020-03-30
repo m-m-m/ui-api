@@ -4,6 +4,7 @@ package io.github.mmm.ui.widget;
 
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeReadValid;
 import io.github.mmm.ui.datatype.UiEnabledFlags;
 import io.github.mmm.ui.datatype.UiStyles;
 import io.github.mmm.ui.datatype.UiValidState;
@@ -31,7 +32,7 @@ import io.github.mmm.ui.widget.composite.UiComposite;
  *
  * @since 1.0.0
  */
-public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
+public interface UiWidget extends EventSource<UiEvent, UiEventListener>, AttributeReadValid {
 
   /** Use this character to compose hierarchical {@link #getId() IDs}. */
   String ID_SEPARATOR = "_";
@@ -201,14 +202,14 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener> {
   }
 
   /**
-   * @return {@code true} if valid (no {@link io.github.mmm.ui.widget.value.UiValidatableWidget#getValidationFailure()
-   *         validation failure} is present), {@code false} otherwise. A
-   *         {@link io.github.mmm.ui.widget.composite.UiComposite} is only valid if all its children are valid
-   *         (recursive check). An {@link UiAtomicWidget atomic widget} that does not implement
-   *         {@link io.github.mmm.ui.widget.value.UiValidatableWidget} will always return {@code true} here.
+   * A {@link io.github.mmm.ui.widget.composite.UiComposite} is only valid if all its children are valid (recursive
+   * check). An {@link UiAtomicWidget atomic widget} that does not implement
+   * {@link io.github.mmm.ui.widget.value.UiValidatableWidget} will always return {@code true} here.
+   * 
    * @see io.github.mmm.ui.widget.value.UiValidatableWidget
    * @see #validate()
    */
+  @Override
   default boolean isValid() {
 
     return true;

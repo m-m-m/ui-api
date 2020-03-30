@@ -3,12 +3,12 @@
 package io.github.mmm.ui.widget.composite;
 
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteClosable;
+import io.github.mmm.ui.attribute.AttributeWriteText;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.widget.UiActiveWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithClosable;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
 
 /**
  * {@link UiMutableSingleComposite} that represents a single {@code tab}. It is a simple container for the actual widget
@@ -19,7 +19,7 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
  *
  * @since 1.0.0
  */
-public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, UiWidgetWithText, UiWidgetWithClosable,
+public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, AttributeWriteText, AttributeWriteClosable,
     UiActiveWidget, UiFailureComposite<UiRegularWidget>, UiNativeWidget { /* AttributeWriteImage<UiWidgetImage>, */
 
   @Override

@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.value;
 
+import io.github.mmm.ui.attribute.AttributeWriteValidationFailure;
 import io.github.mmm.ui.attribute.AttributeWriteValueForUser;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.validation.Validator;
 
 /**
@@ -13,7 +13,13 @@ import io.github.mmm.validation.Validator;
  * @since 1.0.0
  */
 public abstract interface UiValidatableWidget<V>
-    extends UiValuedWidget<V>, UiWidgetWithValidationFailure, AttributeWriteValueForUser<V> {
+    extends UiValuedWidget<V>, AttributeWriteValidationFailure, AttributeWriteValueForUser<V> {
+
+  @Override
+  default boolean isValid() {
+
+    return UiValuedWidget.super.isValid();
+  }
 
   @Override
   default V getValue() {

@@ -2,11 +2,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.window;
 
-import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteClosable;
+import io.github.mmm.ui.attribute.AttributeWriteMaximized;
 import io.github.mmm.ui.attribute.AttributeWriteMinimized;
-import io.github.mmm.ui.attribute.AttributeWriteSize;
-import io.github.mmm.ui.datatype.UiSize;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithClosable;
+import io.github.mmm.ui.attribute.AttributeWriteMoveable;
+import io.github.mmm.ui.attribute.AttributeWritePositionRange;
+import io.github.mmm.ui.attribute.AttributeWriteSizeRange;
 
 /**
  * {@link UiAbstractWindow} that is a child of another window.
@@ -14,43 +15,13 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithClosable;
  * @since 1.0.0
  * @see UiMainWindow#isWindowPositionAbsolute()
  */
-public abstract interface UiChildWindow
-    extends UiAbstractWindow, UiWidgetWithClosable, AttributeWriteSize, AttributeWriteMinimized {
+public abstract interface UiChildWindow extends UiAbstractWindow, AttributeWriteClosable, AttributeWriteMinimized,
+    AttributeWriteMaximized, AttributeWriteMoveable {
 
   @Override
-  default double getWidthInPixel() {
-
-    UiContext context = getContext();
-    UiMainWindow mainWindow = context.getMainWindow();
-    UiSize width = getWidth();
-    if (mainWindow.isWindowPositionAbsolute()) {
-      return width.toPixel(context.getScreen().getWidthInPixel());
-    } else {
-      return width.toPixel(mainWindow.getWidthInPixel());
-    }
-  }
+  AttributeWritePositionRange getPosition();
 
   @Override
-  default double getHeightInPixel() {
-
-    UiContext context = getContext();
-    UiMainWindow mainWindow = context.getMainWindow();
-    UiSize height = getHeight();
-    if (mainWindow.isWindowPositionAbsolute()) {
-      return height.toPixel(context.getScreen().getHeightInPixel());
-    } else {
-      return height.toPixel(mainWindow.getHeightInPixel());
-    }
-  }
-
-  /**
-   * @return {@code true} if this window can be moved by the end-user (by dragging around), {@code false} otherwise.
-   */
-  boolean isMovable();
-
-  /**
-   * @param movable is the new value of {@link #isMovable()}.
-   */
-  void setMovable(boolean movable);
+  AttributeWriteSizeRange getSize();
 
 }

@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
+package io.github.mmm.ui.attribute;
 
 import io.github.mmm.ui.widget.UiWidget;
 
@@ -9,7 +9,7 @@ import io.github.mmm.ui.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public interface UiWidgetWithText extends UiWidget {
+public interface AttributeWriteText {
 
   /**
    * @return the label or text of this widget. Will be the empty string if no text has been set. The text is permanently

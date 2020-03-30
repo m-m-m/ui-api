@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.input;
 
+import io.github.mmm.ui.attribute.AttributeWriteAutocomplete;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithAutocomplete;
 
 /**
  * Abstract {@link UiRegularWidget} for textual input.
@@ -11,7 +11,7 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithAutocomplete;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public abstract interface UiTextualInput<V> extends UiInput<V>, UiWidgetWithAutocomplete {
+public abstract interface UiTextualInput<V> extends UiInput<V>, AttributeWriteAutocomplete {
 
   /**
    * @return the plain text entered by the end-user. Most likely the same as {@link #getValue() value} but if the value

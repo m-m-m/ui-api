@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.window;
 
+import io.github.mmm.ui.attribute.AttributeReadPosition;
+import io.github.mmm.ui.attribute.AttributeReadSize;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.menu.UiMenuBar;
 
@@ -23,14 +25,32 @@ import io.github.mmm.ui.widget.menu.UiMenuBar;
 public abstract interface UiMainWindow extends UiAbstractWindow, UiNativeWidget {
 
   /**
+   * <b>ATTENTION:</b> It is strictly discouraged to modify the position of the main window by the application. In case
+   * of a web-application this will move the browser window what will cause unacceptable impact on usability. However,
+   * if you are fully aware of what you are doing, it is technically possible to cast the result of this method to
+   * {@link io.github.mmm.ui.attribute.AttributeWritePosition} to do so.
+   */
+  @Override
+  AttributeReadPosition getPosition();
+
+  /**
+   * <b>ATTENTION:</b> It is strictly discouraged to modify the size of the main window by the application. In case of a
+   * web-application this will resize the browser window what will cause unacceptable impact on usability. However, if
+   * you are fully aware of what you are doing, it is technically possible to cast the result of this method to
+   * {@link io.github.mmm.ui.attribute.AttributeWriteSizeInPixel} to do so.
+   */
+  @Override
+  AttributeReadSize getSize();
+
+  /**
    * @return the {@link UiMenuBar menu bar} of this window. Will be created and attached to the window on the first call
    *         of this method.
    */
   UiMenuBar getMenuBar();
 
   /**
-   * @return {@code true} if the {@link #setPosition(double, double) position} of {@link UiAbstractWindow windows} is
-   *         absolute (on {@link io.github.mmm.ui.UiScreen}), {@code false} if relative to this main window (MDI mode).
+   * @return {@code true} if the {@link #getPosition() position} of {@link UiAbstractWindow windows} is absolute (on
+   *         {@link io.github.mmm.ui.UiScreen}), {@code false} if relative to this main window (MDI mode).
    */
   boolean isWindowPositionAbsolute();
 

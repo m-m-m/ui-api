@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
+package io.github.mmm.ui.attribute;
 
 import io.github.mmm.ui.widget.UiWidget;
 
@@ -9,7 +9,7 @@ import io.github.mmm.ui.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public interface UiWidgetWithAutocomplete extends UiWidget {
+public interface AttributeWriteAutocomplete {
 
   /** {@link #getAutocomplete() Autocomplete} turned off. */
   String AUTOCOMPLETE_OFF = "off";
@@ -195,7 +195,8 @@ public interface UiWidgetWithAutocomplete extends UiWidget {
   String AUTOCOMPLETE_CC_TYPE = "cc-type";
 
   /**
-   * @return the autocompletion configuration of this widget.
+   * @return the autocompletion configuration of this object (e.g.
+   *         {@link io.github.mmm.ui.widget.input.UiTextualInput}).
    */
   String getAutocomplete();
 

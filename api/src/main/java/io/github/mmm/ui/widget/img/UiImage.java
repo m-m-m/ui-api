@@ -4,16 +4,16 @@ package io.github.mmm.ui.widget.img;
 
 import io.github.mmm.ui.UiContext;
 import io.github.mmm.ui.attribute.AttributeWriteSize;
+import io.github.mmm.ui.attribute.AttributeWriteSource;
 import io.github.mmm.ui.widget.UiAtomicWidget;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithSource;
 
 /**
  * {@link UiAtomicWidget} for an image.
  *
  * @since 1.0.0
  */
-public interface UiImage extends UiAbstractImage, UiWidgetWithSource, AttributeWriteSize, UiNativeWidget {
+public interface UiImage extends UiAbstractImage, AttributeWriteSource, AttributeWriteSize, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.

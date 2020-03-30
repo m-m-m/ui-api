@@ -3,14 +3,14 @@
 package io.github.mmm.ui.widget;
 
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithText;
+import io.github.mmm.ui.attribute.AttributeWriteText;
 
 /**
  * {@link UiRegularWidget} that represents a label. A label is a very simple widget that displays some static text.
  *
  * @since 1.0.0
  */
-public interface UiLabel extends UiAtomicWidget, UiWidgetWithText, UiNativeWidget {
+public interface UiLabel extends UiAtomicWidget, AttributeWriteText, UiNativeWidget {
 
   /**
    * @param context the {@link UiContext}.

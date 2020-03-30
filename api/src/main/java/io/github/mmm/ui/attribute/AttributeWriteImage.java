@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.widget.attribute;
+package io.github.mmm.ui.attribute;
 
 import io.github.mmm.ui.widget.UiWidget;
 import io.github.mmm.ui.widget.img.UiImage;
@@ -10,7 +10,7 @@ import io.github.mmm.ui.widget.img.UiImage;
  *
  * @since 1.0.0
  */
-public abstract interface UiWidgetWithImage extends UiWidget {
+public abstract interface AttributeWriteImage {
 
   /**
    * @return the {@link UiImage} of this widget (typically an icon). Will be {@code null} if not set.

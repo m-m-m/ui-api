@@ -48,6 +48,8 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.spi.widget;
 
+  exports io.github.mmm.ui.spi.window;
+
   exports io.github.mmm.ui.widget;
 
   exports io.github.mmm.ui.widget.attribute;

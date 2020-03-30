@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget;
 
-import io.github.mmm.ui.widget.attribute.UiWidgetWithTooltip;
+import io.github.mmm.ui.attribute.AttributeWriteTooltip;
 
 /**
  * Abstract interface for an <em>atomic</em> {@link UiWidget}. Here atomic means that it is not a
@@ -10,6 +10,6 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithTooltip;
  *
  * @since 1.0.0
  */
-public abstract interface UiAtomicWidget extends UiWidgetWithTooltip, UiRegularWidget {
+public abstract interface UiAtomicWidget extends AttributeWriteTooltip, UiRegularWidget {
 
 }

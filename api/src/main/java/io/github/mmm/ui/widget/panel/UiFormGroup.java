@@ -20,6 +20,12 @@ import io.github.mmm.ui.widget.input.UiInput;
 public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiCollapsibleComposite<UiInput<?>>,
     UiAbstractCompositeInput<UiInput<?>, V>, UiNativeWidget {
 
+  @Override
+  default boolean isValid() {
+
+    return UiValuedComposite.super.isValid();
+  }
+
   /**
    * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).

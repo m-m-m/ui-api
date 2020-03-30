@@ -5,9 +5,9 @@ package io.github.mmm.ui.widget.chart;
 import java.util.Collection;
 
 import io.github.mmm.base.placement.Direction;
+import io.github.mmm.ui.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.datatype.chart.UiDataSet;
 import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithTitle;
 
 /**
  * {@link UiRegularWidget} that displays a <em>chart</em>. A chart visualizes data in a graphical diagram.
@@ -15,7 +15,7 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithTitle;
  * @param <D> type of the chart {@link UiDataSet#getData() data}.
  * @since 1.0.0
  */
-public interface UiChart<D> extends UiWidgetWithTitle, UiRegularWidget {
+public interface UiChart<D> extends AttributeWriteTitle, UiRegularWidget {
 
   /**
    * @return the {@link Direction} where the legend should be placed. Will be {@code null} if legend is disabled.

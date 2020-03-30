@@ -130,7 +130,7 @@ public interface UiContext {
   <V> UiInput<V> createInput(ReadableTypedValue<V> property, boolean required);
 
   /**
-   * @return the default {@link io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure#getValidationFailure()
+   * @return the default {@link io.github.mmm.ui.attribute.AttributeWriteValidationFailure#getValidationFailure()
    *         validation failure} message to show if something is invalid (e.g. for
    *         {@link io.github.mmm.ui.widget.composite.UiTab}s).
    */

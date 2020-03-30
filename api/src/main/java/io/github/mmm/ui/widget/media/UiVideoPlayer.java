@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.widget.media;
 
+import io.github.mmm.ui.attribute.AttributeWriteImage;
 import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithImage;
 
 /**
  * This is the interface for a {@link UiMediaWidget media-player widget} that plays videos (movies). <br>
@@ -12,7 +12,7 @@ import io.github.mmm.ui.widget.attribute.UiWidgetWithImage;
  *
  * @since 1.0.0
  */
-public interface UiVideoPlayer extends UiMediaWidget, UiWidgetWithImage, UiNativeWidget {
+public interface UiVideoPlayer extends UiMediaWidget, AttributeWriteImage, UiNativeWidget {
 
   // nothing to add...
 

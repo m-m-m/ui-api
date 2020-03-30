@@ -5,6 +5,7 @@ package io.github.mmm.ui.spi.widget;
 import io.github.mmm.event.EventListener;
 import io.github.mmm.event.EventSourceAdapter;
 import io.github.mmm.ui.UiContext;
+import io.github.mmm.ui.attribute.AttributeWriteValidationFailure;
 import io.github.mmm.ui.datatype.UiPropagation;
 import io.github.mmm.ui.datatype.UiValidState;
 import io.github.mmm.ui.datatype.bitmask.BitFlag;
@@ -19,7 +20,6 @@ import io.github.mmm.ui.event.UiHideEvent;
 import io.github.mmm.ui.event.UiShowEvent;
 import io.github.mmm.ui.widget.UiNativeWidget;
 import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.attribute.UiWidgetWithValidationFailure;
 import io.github.mmm.ui.widget.composite.UiComposite;
 import io.github.mmm.ui.widget.input.UiInput;
 import io.github.mmm.ui.widget.value.UiValidatableWidget;
@@ -33,7 +33,7 @@ import io.github.mmm.validation.Validator;
  * @since 1.0.0
  */
 public abstract class AbstractUiNativeWidget extends AbstractUiWidget
-    implements UiNativeWidget, UiWidgetWithValidationFailure {
+    implements UiNativeWidget, AttributeWriteValidationFailure {
 
   private static final BitFlag READ_ONLY = BitFlag.B00;
 
