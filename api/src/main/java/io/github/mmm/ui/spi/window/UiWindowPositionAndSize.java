@@ -68,16 +68,17 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public double getWidthInPixel() {
 
-    if (this.width == 0) {
-      this.width = getMaxScreenWidth() / 2;
-    }
     return this.width;
   }
 
   @Override
   public void setWidthInPixel(double width) {
 
-    this.width = width;
+    if (width == 0) {
+      this.width = getMaxScreenWidth() / 2;
+    } else {
+      this.width = width;
+    }
   }
 
   @Override
@@ -89,16 +90,17 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public double getHeightInPixel() {
 
-    if (this.height == 0) {
-      this.height = getMaxScreenHeight() / 2;
-    }
     return this.height;
   }
 
   @Override
   public void setHeightInPixel(double height) {
 
-    this.height = height;
+    if (height == 0) {
+      this.height = getMaxScreenHeight() / 2;
+    } else {
+      this.height = height;
+    }
   }
 
   @Override
