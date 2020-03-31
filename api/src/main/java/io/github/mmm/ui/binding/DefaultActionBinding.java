@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.event.UiEventListener;
+import io.github.mmm.ui.event.UiClickEventListener;
 import io.github.mmm.ui.event.action.UiAction;
 import io.github.mmm.ui.widget.button.UiAbstractButton;
 
@@ -42,7 +42,7 @@ public class DefaultActionBinding implements UiActionBinding {
     if (tooltip != null) {
       button.setTooltip(tooltip);
     }
-    UiEventListener listener = action;
+    UiClickEventListener listener = e -> action.onEvent(e);
     if (action.requireConfirmation()) {
       String message = action.getConfirmationMessage();
       if (message == null) {
@@ -50,7 +50,6 @@ public class DefaultActionBinding implements UiActionBinding {
       }
       if (message == null) {
         message = context.localize("confirm");
-        ;
       }
       final String finalMessage = message;
       listener = (e) -> {

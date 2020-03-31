@@ -74,11 +74,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public void setWidthInPixel(double width) {
 
-    if (width == 0) {
-      this.width = getMaxScreenWidth() / 2;
-    } else {
-      this.width = width;
-    }
+    this.width = clipSize(width);
   }
 
   @Override
@@ -96,11 +92,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public void setHeightInPixel(double height) {
 
-    if (height == 0) {
-      this.height = getMaxScreenHeight() / 2;
-    } else {
-      this.height = height;
-    }
+    this.height = clipSize(height);
   }
 
   @Override
@@ -260,7 +252,41 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
    */
   protected abstract double getMaxScreenHeight();
 
-  private static double clipSize(double size) {
+  /**
+   * Initializes the position and size. If neither of those is set, size will be set to a quarter of the screen (half of
+   * screen width and height) and window is centered on the screen.
+   *
+   * @param force {@code true} to always update {@link #getX() X} and {@link #getY() Y} to center the window on the
+   *        screen, {@code false} to only update {@link #getX() X} and {@link #getY() Y} in case they are uninitialized
+   *        ({@code -1}).
+   */
+  public void centerOnScreen(boolean force) {
+
+    double screenWidth = getMaxScreenWidth();
+    double screenHeigth = getMaxScreenHeight();
+    double w = getWidthInPixel();
+    if ((w < 10) || Double.isNaN(w)) {
+      w = screenWidth / 2;
+      setWidthInPixel(w);
+    }
+    double h = getHeightInPixel();
+    if ((h < 10) || Double.isNaN(h)) {
+      h = screenHeigth / 2;
+      setWidthInPixel(h);
+    }
+    if (force || (this.x < 0)) {
+      setX((screenWidth - w) / 2);
+    }
+    if (force || (this.y < 0)) {
+      setY((screenHeigth - h) / 2);
+    }
+  }
+
+  /**
+   * @param size the width or height to clip.
+   * @return the maximum of the given {@code size} and {@code 100}.
+   */
+  protected static double clipSize(double size) {
 
     if (size < 100) {
       return 100;
@@ -268,7 +294,11 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
     return size;
   }
 
-  private static double clipZero(double pos) {
+  /**
+   * @param pos the position value.
+   * @return the maximum of the given {@code pos} and {@code 0}.
+   */
+  protected static double clipZero(double pos) {
 
     if (pos < 0) {
       return 0;
@@ -276,7 +306,11 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
     return pos;
   }
 
-  private static double clipMax(double max) {
+  /**
+   * @param max the maximum value.
+   * @return the given {@code max} clipped to the range from {@code 0} to {@link Integer#MAX_VALUE}.
+   */
+  protected static double clipMax(double max) {
 
     if ((max < 0) || (max > Integer.MAX_VALUE)) {
       return Integer.MAX_VALUE;

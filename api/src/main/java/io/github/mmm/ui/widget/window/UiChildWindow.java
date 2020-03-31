@@ -24,4 +24,9 @@ public abstract interface UiChildWindow extends UiAbstractWindow, AttributeWrite
   @Override
   AttributeWriteSizeRange getSize();
 
+  /**
+   * Will modify the {@link #getPosition() position} such that the window is centered on the screen.
+   */
+  void centerOnScreen();
+
 }
