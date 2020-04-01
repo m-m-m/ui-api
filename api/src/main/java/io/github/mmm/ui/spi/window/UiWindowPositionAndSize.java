@@ -80,7 +80,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public void setWidth(UiSize width) {
 
-    setWidthInPixel(UiSize.getSafe(width).toPixel(getMaxScreenWidth()));
+    setWidthInPixel(UiSize.getSafe(width).toPixel(getScreenWidth()));
   }
 
   @Override
@@ -98,7 +98,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public void setHeight(UiSize height) {
 
-    setHeightInPixel(UiSize.getSafe(height).toPixel(getMaxScreenHeight()));
+    setHeightInPixel(UiSize.getSafe(height).toPixel(getScreenHeight()));
   }
 
   @Override
@@ -111,8 +111,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   @Override
   public void setSize(UiSize width, UiSize height) {
 
-    setSizeInPixel(UiSize.getSafe(width).toPixel(getMaxScreenWidth()),
-        UiSize.getSafe(height).toPixel(getMaxScreenHeight()));
+    setSizeInPixel(UiSize.getSafe(width).toPixel(getScreenWidth()), UiSize.getSafe(height).toPixel(getScreenHeight()));
   }
 
   @Override
@@ -243,14 +242,14 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
   }
 
   /**
-   * @return the current maximim screen width.
+   * @return the current width of the screen available for child windows.
    */
-  protected abstract double getMaxScreenWidth();
+  protected abstract double getScreenWidth();
 
   /**
-   * @return the current maximum screen height.
+   * @return the current height of the screen available for child windows.
    */
-  protected abstract double getMaxScreenHeight();
+  protected abstract double getScreenHeight();
 
   /**
    * Initializes the position and size. If neither of those is set, size will be set to a quarter of the screen (half of
@@ -262,8 +261,8 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
    */
   public void centerOnScreen(boolean force) {
 
-    double screenWidth = getMaxScreenWidth();
-    double screenHeigth = getMaxScreenHeight();
+    double screenWidth = getScreenWidth();
+    double screenHeigth = getScreenHeight();
     double w = getWidthInPixel();
     if ((w < 10) || Double.isNaN(w)) {
       w = screenWidth / 2;
