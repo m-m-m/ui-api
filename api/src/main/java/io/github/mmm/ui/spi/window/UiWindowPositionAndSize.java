@@ -272,7 +272,7 @@ public abstract class UiWindowPositionAndSize implements AttributeWritePositionR
     double h = getHeightInPixel();
     if ((h < 10) || Double.isNaN(h)) {
       h = screenHeigth / 2;
-      setWidthInPixel(h);
+      setHeightInPixel(h);
     }
     if (force || (this.x < 0)) {
       setX((screenWidth - w) / 2);

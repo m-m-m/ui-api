@@ -72,6 +72,8 @@ module io.github.mmm.ui {
 
   exports io.github.mmm.ui.widget.panel;
 
+  exports io.github.mmm.ui.widget.temporal;
+
   exports io.github.mmm.ui.widget.value;
 
   exports io.github.mmm.ui.widget.window;
