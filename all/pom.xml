@@ -7,19 +7,23 @@
     <artifactId>mmm-ui-api-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
-  <artifactId>mmm-ui-api-binding</artifactId>
+  <artifactId>mmm-ui-api-all</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>API for user-interface.</description>
+  <description>Aggregates all API modules for user-interface.</description>
   
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-core</artifactId>
+      <artifactId>mmm-ui-api-chart</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-entity-bean</artifactId>
+      <artifactId>mmm-ui-api-media</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-api-temporal</artifactId>
     </dependency>
   </dependencies>
 </project>

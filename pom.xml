@@ -8,11 +8,11 @@
     <version>7</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
-  <artifactId>mmm-ui-parent</artifactId>
+  <artifactId>mmm-ui-api-parent</artifactId>
   <version>${revision}${changelist}</version>
   <packaging>pom</packaging>
   <name>${project.artifactId}</name>
-  <description>Universal user-interface framework.</description>
+  <description>API of Universal user-interface framework.</description>
 
   <properties>
     <revision>1.0.0</revision>
@@ -21,15 +21,44 @@
   </properties>
 
   <modules>
-    <module>api</module>
+    <module>core</module>
+    <module>chart</module>
+    <module>media</module>
+    <module>temporal</module>
     <module>binding</module>
+    <module>all</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-ui</artifactId>
+        <artifactId>mmm-ui-api-all</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-binding</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-chart</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-media</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-temporal</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

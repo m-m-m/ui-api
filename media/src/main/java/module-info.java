@@ -5,12 +5,10 @@
 /**
  * Provides the API for binding of UI with properties and beans.
  */
-module io.github.mmm.ui.api.binding {
+module io.github.mmm.ui.api.media {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  requires transitive io.github.mmm.entity.bean;
-
-  exports io.github.mmm.ui.binding.data;
+  exports io.github.mmm.ui.widget.media;
 
 }
