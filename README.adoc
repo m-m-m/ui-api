@@ -1,14 +1,14 @@
 image:https://m-m-m.github.io/logo.svg[logo,width="150",link="https://m-m-m.github.io"]
 
-image:https://img.shields.io/github/license/m-m-m/ui.svg?label=License["Apache License, Version 2.0",link=https://github.com/m-m-m/ui/blob/master/LICENSE]
-image:https://travis-ci.org/m-m-m/ui.svg?branch=master["build-status",link="https://travis-ci.org/m-m-m/ui"]
+image:https://img.shields.io/github/license/m-m-m/ui-api.svg?label=License["Apache License, Version 2.0",link=https://github.com/m-m-m/ui-api/blob/master/LICENSE]
+image:https://travis-ci.org/m-m-m/ui-api.svg?branch=master["build-status",link="https://travis-ci.org/m-m-m/ui-api"]
 
-== mmm-ui
+== mmm-ui-api
 
-image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
-image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui/module-summary.html"]
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-all.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
+image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui.api.core/module-summary.html"]
 
-The module `mmm-ui` provides an abstraction API for user-interfaces (UI).
+The module `mmm-ui-api` provides an abstraction API for user-interfaces (UI).
 This allows to build a powerful UI independent of the actual toolkit.
 You can write portable UI code that can run
 
@@ -16,7 +16,7 @@ You can write portable UI code that can run
 * as web-app in the browser using https://github.com/m-m-m/ui-tvm[mmm-ui-tvm]
 * ...in the future we might implement more alternatives such as android or SWT
 
-For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui/module-summary.html[documnetation].
+For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui.core/module-summary.html[documnetation].
 
 === Usage
 
@@ -24,21 +24,21 @@ Maven Dependency:
 ```xml
 <dependency>
   <groupId>io.github.m-m-m</groupId>
-  <artifactId>mmm-ui</artifactId>
+  <artifactId>mmm-ui-api-all</artifactId>
 </dependency>
 ```
 
 Module Dependency:
 ```java
-  requires transitive io.github.mmm.ui;
+  requires transitive io.github.mmm.ui.all;
 ```
 
-== mmm-ui-binding
+== mmm-ui-api-binding
 
-image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-binding.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-binding.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
 image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui.binding/module-summary.html"]
 
-The module `mmm-ui-binding` provides powerful databinding and generic form creation for `mmm-property` and `mmm-bean`. Save lots of work and boost your productivity to sky-rocket development.
+The module `mmm-ui-api-binding` provides powerful databinding and generic form creation for `mmm-property` and `mmm-bean`. Save lots of work and boost your productivity to sky-rocket development.
 See the JavaDoc link for further details.
 
 === Usage
@@ -47,10 +47,10 @@ Maven Dependency:
 ```xml
 <dependency>
   <groupId>io.github.m-m-m</groupId>
-  <artifactId>mmm-ui-binding</artifactId>
+  <artifactId>mmm-ui-api-binding</artifactId>
 </dependency>
 ```
 Module Dependency:
 ```java
-  requires transitive io.github.mmm.ui.binding;
+  requires transitive io.github.mmm.ui.api.binding;
 ```
