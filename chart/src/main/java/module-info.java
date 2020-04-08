@@ -9,6 +9,8 @@ module io.github.mmm.ui.api.chart {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  exports io.github.mmm.ui.widget.chart;
+  exports io.github.mmm.ui.api.datatype.chart;
+
+  exports io.github.mmm.ui.api.widget.chart;
 
 }

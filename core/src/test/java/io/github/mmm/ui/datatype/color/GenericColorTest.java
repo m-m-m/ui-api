@@ -8,6 +8,22 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 
+import io.github.mmm.ui.api.datatype.color.Alpha;
+import io.github.mmm.ui.api.datatype.color.Blue;
+import io.github.mmm.ui.api.datatype.color.Brightness;
+import io.github.mmm.ui.api.datatype.color.Chroma;
+import io.github.mmm.ui.api.datatype.color.Color;
+import io.github.mmm.ui.api.datatype.color.ColorFactor;
+import io.github.mmm.ui.api.datatype.color.ColorModel;
+import io.github.mmm.ui.api.datatype.color.ColorSegment;
+import io.github.mmm.ui.api.datatype.color.ColorSegmentType;
+import io.github.mmm.ui.api.datatype.color.GenericColor;
+import io.github.mmm.ui.api.datatype.color.Green;
+import io.github.mmm.ui.api.datatype.color.Hue;
+import io.github.mmm.ui.api.datatype.color.Lightness;
+import io.github.mmm.ui.api.datatype.color.Red;
+import io.github.mmm.ui.api.datatype.color.Saturation;
+
 /**
  * This is the test-case for {@link GenericColor}.
  *

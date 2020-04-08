@@ -8,11 +8,11 @@ import io.github.mmm.base.range.WritableRange;
 import io.github.mmm.validation.Validator;
 
 /**
- * Implementation of {@link WritableRange} for {@link io.github.mmm.ui.widget.input.UiNumericInput}.
+ * Implementation of {@link WritableRange} for {@link io.github.mmm.ui.api.widget.input.UiNumericInput}.
  *
  * @param <V> type of the contained values.
  * @since 1.0.0
- * @see io.github.mmm.ui.widget.input.UiNumericInput#getRange()
+ * @see io.github.mmm.ui.api.widget.input.UiNumericInput#getRange()
  */
 public class NumericRange<V extends Number> extends AbstractRange<V> implements WritableRange<V> {
 

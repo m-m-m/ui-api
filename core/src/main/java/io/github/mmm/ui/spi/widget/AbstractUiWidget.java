@@ -2,10 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
 
 /**
  * Abstract base implementation of {@link UiWidget}.
@@ -49,7 +49,7 @@ public abstract class AbstractUiWidget implements UiWidget {
 
   /**
    * @return the unwrapped widget.
-   * @see io.github.mmm.ui.widget.custom.UiCustomWidget#getDelegate()
+   * @see io.github.mmm.ui.api.widget.custom.UiCustomWidget#getDelegate()
    */
   protected abstract UiNativeWidget unwrap();
 

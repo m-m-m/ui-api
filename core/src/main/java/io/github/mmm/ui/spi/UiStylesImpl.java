@@ -4,7 +4,7 @@ package io.github.mmm.ui.spi;
 
 import java.util.Objects;
 
-import io.github.mmm.ui.datatype.UiStyles;
+import io.github.mmm.ui.api.datatype.UiStyles;
 
 /**
  * Implementation of {@link UiStyles}.

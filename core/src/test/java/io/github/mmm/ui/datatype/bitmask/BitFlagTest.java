@@ -5,7 +5,7 @@ package io.github.mmm.ui.datatype.bitmask;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import io.github.mmm.ui.datatype.bitmask.BitFlag;
+import io.github.mmm.ui.api.datatype.bitmask.BitFlag;
 
 /**
  * Test of {@link BitFlag}.

@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
-import io.github.mmm.ui.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
  * {@link UiNativeWidget} implementations that wrap widgets from an existing UI toolkit should implement this interface.

@@ -4,26 +4,26 @@ package io.github.mmm.ui.spi.widget;
 
 import io.github.mmm.event.EventListener;
 import io.github.mmm.event.EventSourceAdapter;
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.attribute.AttributeWriteValidationFailure;
-import io.github.mmm.ui.datatype.UiPropagation;
-import io.github.mmm.ui.datatype.UiValidState;
-import io.github.mmm.ui.datatype.bitmask.BitFlag;
-import io.github.mmm.ui.datatype.bitmask.BitMask;
-import io.github.mmm.ui.datatype.bitmask.BitValueBoolean;
-import io.github.mmm.ui.event.UiDisableEvent;
-import io.github.mmm.ui.event.UiEnableEvent;
-import io.github.mmm.ui.event.UiEvent;
-import io.github.mmm.ui.event.UiEventListener;
-import io.github.mmm.ui.event.UiEventType;
-import io.github.mmm.ui.event.UiHideEvent;
-import io.github.mmm.ui.event.UiShowEvent;
-import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.UiWidget;
-import io.github.mmm.ui.widget.composite.UiComposite;
-import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.value.UiValidatableWidget;
-import io.github.mmm.ui.widget.window.UiAbstractWindow;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.attribute.AttributeWriteValidationFailure;
+import io.github.mmm.ui.api.datatype.UiPropagation;
+import io.github.mmm.ui.api.datatype.UiValidState;
+import io.github.mmm.ui.api.datatype.bitmask.BitFlag;
+import io.github.mmm.ui.api.datatype.bitmask.BitMask;
+import io.github.mmm.ui.api.datatype.bitmask.BitValueBoolean;
+import io.github.mmm.ui.api.event.UiDisableEvent;
+import io.github.mmm.ui.api.event.UiEnableEvent;
+import io.github.mmm.ui.api.event.UiEvent;
+import io.github.mmm.ui.api.event.UiEventListener;
+import io.github.mmm.ui.api.event.UiEventType;
+import io.github.mmm.ui.api.event.UiHideEvent;
+import io.github.mmm.ui.api.event.UiShowEvent;
+import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiComposite;
+import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
+import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
 import io.github.mmm.validation.ValidationResult;
 import io.github.mmm.validation.Validator;
 
@@ -467,7 +467,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
   /**
    * @return the {@link UiEventType} that was previously {@link #setProgrammaticEventType(UiEventType) set} as
    *         programmatic. ATTENTION: As a side-effect the value is reset to {@code null}.
-   * @see io.github.mmm.ui.event.UiEvent#isProgrammatic()
+   * @see io.github.mmm.ui.api.event.UiEvent#isProgrammatic()
    */
   protected UiEventType getProgrammaticEventType() {
 
@@ -477,9 +477,9 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
   }
 
   /**
-   * @param eventType the {@link UiEventType} to mark as {@link io.github.mmm.ui.event.UiEvent#isProgrammatic()
+   * @param eventType the {@link UiEventType} to mark as {@link io.github.mmm.ui.api.event.UiEvent#isProgrammatic()
    *        programmatic}. If the next event is of this type, it will be set as
-   *        {@link io.github.mmm.ui.event.UiEvent#isProgrammatic() programmatic}.
+   *        {@link io.github.mmm.ui.api.event.UiEvent#isProgrammatic() programmatic}.
    */
   protected void setProgrammaticEventType(UiEventType eventType) {
 

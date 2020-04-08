@@ -11,6 +11,6 @@ module io.github.mmm.ui.api.binding {
 
   requires transitive io.github.mmm.entity.bean;
 
-  exports io.github.mmm.ui.binding.data;
+  exports io.github.mmm.ui.api.binding.data;
 
 }

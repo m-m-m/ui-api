@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 /**
  * Formatter {@link Function} that delegates to {@link Object#toString()}. This is used as default for
- * {@link io.github.mmm.ui.widget.input.UiAbstractChoice#getFormatter() formatter}.
+ * {@link io.github.mmm.ui.api.widget.input.UiAbstractChoice#getFormatter() formatter}.
  *
  * @param <V> type of the value to {@link #apply(Object) format}.
  * @since 1.0.0

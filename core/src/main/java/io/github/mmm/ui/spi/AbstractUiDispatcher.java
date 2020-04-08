@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi;
 
-import io.github.mmm.ui.UiDispatcher;
+import io.github.mmm.ui.api.UiDispatcher;
 
 /**
  * Abstract base implementation of {@link UiDispatcher}.

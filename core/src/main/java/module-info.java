@@ -1,6 +1,6 @@
-import io.github.mmm.ui.factory.UiSingleWidgetFactoryDatatype;
-import io.github.mmm.ui.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.factory.UiSingleWidgetFactoryProperty;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 
 /*
  * Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
@@ -18,27 +18,23 @@ module io.github.mmm.ui.api.core {
 
   requires transitive io.github.mmm.value;
 
-  exports io.github.mmm.ui;
+  exports io.github.mmm.ui.api;
 
-  exports io.github.mmm.ui.attribute;
+  exports io.github.mmm.ui.api.attribute;
 
-  exports io.github.mmm.ui.binding;
+  exports io.github.mmm.ui.api.binding;
 
-  exports io.github.mmm.ui.datatype;
+  exports io.github.mmm.ui.api.datatype;
 
-  exports io.github.mmm.ui.datatype.bitmask;
+  exports io.github.mmm.ui.api.datatype.bitmask;
 
-  exports io.github.mmm.ui.datatype.chart;
+  exports io.github.mmm.ui.api.datatype.color;
 
-  exports io.github.mmm.ui.datatype.color;
+  exports io.github.mmm.ui.api.event;
 
-  exports io.github.mmm.ui.datatype.media;
+  exports io.github.mmm.ui.api.event.action;
 
-  exports io.github.mmm.ui.event;
-
-  exports io.github.mmm.ui.event.action;
-
-  exports io.github.mmm.ui.factory;
+  exports io.github.mmm.ui.api.factory;
 
   exports io.github.mmm.ui.spi;
 
@@ -50,27 +46,27 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.spi.window;
 
-  exports io.github.mmm.ui.widget;
+  exports io.github.mmm.ui.api.widget;
 
-  exports io.github.mmm.ui.widget.attribute;
+  exports io.github.mmm.ui.api.widget.attribute;
 
-  exports io.github.mmm.ui.widget.button;
+  exports io.github.mmm.ui.api.widget.button;
 
-  exports io.github.mmm.ui.widget.composite;
+  exports io.github.mmm.ui.api.widget.composite;
 
-  exports io.github.mmm.ui.widget.custom;
+  exports io.github.mmm.ui.api.widget.custom;
 
-  exports io.github.mmm.ui.widget.img;
+  exports io.github.mmm.ui.api.widget.img;
 
-  exports io.github.mmm.ui.widget.input;
+  exports io.github.mmm.ui.api.widget.input;
 
-  exports io.github.mmm.ui.widget.menu;
+  exports io.github.mmm.ui.api.widget.menu;
 
-  exports io.github.mmm.ui.widget.panel;
+  exports io.github.mmm.ui.api.widget.panel;
 
-  exports io.github.mmm.ui.widget.value;
+  exports io.github.mmm.ui.api.widget.value;
 
-  exports io.github.mmm.ui.widget.window;
+  exports io.github.mmm.ui.api.widget.window;
 
   uses UiSingleWidgetFactoryNative;
 
@@ -79,7 +75,7 @@ module io.github.mmm.ui.api.core {
   uses UiSingleWidgetFactoryProperty;
 
   provides UiSingleWidgetFactoryDatatype with //
-      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeInteger, //
-      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeBoolean, //
-      io.github.mmm.ui.factory.datatype.UiFactoryDatatypeString;
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger, //
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean, //
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString;
 }

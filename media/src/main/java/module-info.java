@@ -9,6 +9,8 @@ module io.github.mmm.ui.api.media {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  exports io.github.mmm.ui.widget.media;
+  exports io.github.mmm.ui.api.datatype.media;
+
+  exports io.github.mmm.ui.api.widget.media;
 
 }

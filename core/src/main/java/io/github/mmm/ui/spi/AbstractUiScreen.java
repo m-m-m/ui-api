@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi;
 
-import io.github.mmm.ui.UiScreen;
-import io.github.mmm.ui.datatype.UiScreenType;
+import io.github.mmm.ui.api.UiScreen;
+import io.github.mmm.ui.api.datatype.UiScreenType;
 
 /**
  * Abstract base implementation of {@link UiScreen}.

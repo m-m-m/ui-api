@@ -9,6 +9,6 @@ module io.github.mmm.ui.api.temporal {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  exports io.github.mmm.ui.widget.temporal;
+  exports io.github.mmm.ui.api.widget.temporal;
 
 }

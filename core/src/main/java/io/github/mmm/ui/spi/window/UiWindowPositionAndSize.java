@@ -2,13 +2,13 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.window;
 
-import io.github.mmm.ui.attribute.AttributeWritePositionRange;
-import io.github.mmm.ui.attribute.AttributeWriteSizeRange;
-import io.github.mmm.ui.datatype.UiSize;
+import io.github.mmm.ui.api.attribute.AttributeWritePositionRange;
+import io.github.mmm.ui.api.attribute.AttributeWriteSizeRange;
+import io.github.mmm.ui.api.datatype.UiSize;
 
 /**
  * Abstract base implementation for position, size and controls related attributes of
- * {@link io.github.mmm.ui.widget.window.UiAbstractWindow} or {@link io.github.mmm.ui.widget.window.UiChildWindow}.
+ * {@link io.github.mmm.ui.api.widget.window.UiAbstractWindow} or {@link io.github.mmm.ui.api.widget.window.UiChildWindow}.
  *
  * @since 1.0.0
  */

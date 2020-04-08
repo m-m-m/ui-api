@@ -21,12 +21,13 @@
   </properties>
 
   <modules>
+    <module>all</module>
+    <module>binding</module>
     <module>core</module>
     <module>chart</module>
+    <module>dialog</module>
     <module>media</module>
     <module>temporal</module>
-    <module>binding</module>
-    <module>all</module>
   </modules>
 
   <dependencyManagement>
@@ -49,6 +50,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-chart</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-dialog</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

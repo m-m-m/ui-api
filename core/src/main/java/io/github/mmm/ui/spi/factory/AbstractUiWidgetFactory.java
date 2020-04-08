@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.factory.UiSingleWidgetFactory;
-import io.github.mmm.ui.widget.UiWidget;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiSingleWidgetFactory;
+import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
  * Abstract base implementation for widget factor based on {@link UiSingleWidgetFactory}.

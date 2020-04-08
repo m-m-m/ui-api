@@ -2,21 +2,21 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.UiNotifier;
-import io.github.mmm.ui.datatype.UiSeverity;
-import io.github.mmm.ui.event.UiClickEventListener;
-import io.github.mmm.ui.event.action.UiAction;
-import io.github.mmm.ui.widget.UiRegularWidget;
-import io.github.mmm.ui.widget.UiText;
-import io.github.mmm.ui.widget.button.UiButton;
-import io.github.mmm.ui.widget.img.UiIcon;
-import io.github.mmm.ui.widget.panel.UiButtonPanel;
-import io.github.mmm.ui.widget.panel.UiCollapsiblePanel;
-import io.github.mmm.ui.widget.panel.UiHorizontalPanel;
-import io.github.mmm.ui.widget.panel.UiScrollPanel;
-import io.github.mmm.ui.widget.panel.UiVerticalPanel;
-import io.github.mmm.ui.widget.window.UiPopup;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiNotifier;
+import io.github.mmm.ui.api.datatype.UiSeverity;
+import io.github.mmm.ui.api.event.UiClickEventListener;
+import io.github.mmm.ui.api.event.action.UiAction;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.UiText;
+import io.github.mmm.ui.api.widget.button.UiButton;
+import io.github.mmm.ui.api.widget.img.UiIcon;
+import io.github.mmm.ui.api.widget.panel.UiButtonPanel;
+import io.github.mmm.ui.api.widget.panel.UiCollapsiblePanel;
+import io.github.mmm.ui.api.widget.panel.UiHorizontalPanel;
+import io.github.mmm.ui.api.widget.panel.UiScrollPanel;
+import io.github.mmm.ui.api.widget.panel.UiVerticalPanel;
+import io.github.mmm.ui.api.widget.window.UiPopup;
 
 /**
  * Abstract base implementation of {@link UiNotifier}.

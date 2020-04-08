@@ -6,6 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.github.mmm.base.text.CaseHelper;
+import io.github.mmm.ui.api.datatype.color.Alpha;
+import io.github.mmm.ui.api.datatype.color.Color;
 
 /**
  * Test of {@link Color}.

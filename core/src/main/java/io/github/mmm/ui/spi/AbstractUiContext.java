@@ -6,16 +6,16 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import io.github.mmm.ui.UiContext;
-import io.github.mmm.ui.UiNotifier;
-import io.github.mmm.ui.binding.DefaultActionBinding;
-import io.github.mmm.ui.binding.UiActionBinding;
-import io.github.mmm.ui.factory.UiWidgetFactoryDatatype;
-import io.github.mmm.ui.factory.UiWidgetFactoryNative;
-import io.github.mmm.ui.factory.UiWidgetFactoryProperty;
-import io.github.mmm.ui.widget.UiNativeWidget;
-import io.github.mmm.ui.widget.input.UiInput;
-import io.github.mmm.ui.widget.window.UiMainWindow;
+import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiNotifier;
+import io.github.mmm.ui.api.binding.DefaultActionBinding;
+import io.github.mmm.ui.api.binding.UiActionBinding;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryDatatype;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
+import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
