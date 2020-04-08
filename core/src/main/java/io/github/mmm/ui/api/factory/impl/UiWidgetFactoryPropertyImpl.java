@@ -3,10 +3,10 @@
 package io.github.mmm.ui.api.factory.impl;
 
 import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.AbstractUiWidgetFactory;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.ui.spi.factory.AbstractUiWidgetFactory;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**

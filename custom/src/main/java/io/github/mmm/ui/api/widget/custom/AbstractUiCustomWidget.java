@@ -6,23 +6,20 @@ import io.github.mmm.ui.api.datatype.UiStyles;
 import io.github.mmm.ui.api.datatype.UiValidState;
 import io.github.mmm.ui.api.datatype.bitmask.BitMask;
 import io.github.mmm.ui.api.event.UiEventListener;
+import io.github.mmm.ui.api.widget.UiCustomWidget;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.spi.widget.AbstractUiWidget;
 
 /**
- * This is the abstract base class for <em>custom widgets</em>. A custom widget is a {@link UiWidget} implemented via
- * {@link #getDelegate() delegation} to another widget. It is therefore toolkit independent and can be implemented as a
- * regular class. This makes the programming model of this UI-Toolkit easy to use. <br>
- * Typical use-cases for custom widgets are {@link io.github.mmm.ui.api.widget.input.UiInput} fields for custom datatypes
- * and {@link UiComposite}s for editors of particular business objects.
+ * This is the abstract base implementation of {@link UiCustomWidget}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
  *
  * @since 1.0.0
  */
-public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidget {
+public abstract class AbstractUiCustomWidget<W extends UiWidget> extends AbstractUiWidget implements UiCustomWidget<W> {
 
   /** @see #getDelegate() */
   protected final W delegate;
@@ -35,15 +32,13 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
    *
    * @param delegate is the {@link #getDelegate() delegate}.
    */
-  public UiCustomWidget(W delegate) {
+  public AbstractUiCustomWidget(W delegate) {
 
     super(delegate.getContext());
     this.delegate = delegate;
   }
 
-  /**
-   * @return the adapted {@link UiWidget} wrapped by this custom widget.
-   */
+  @Override
   public final W getDelegate() {
 
     return this.delegate;
@@ -57,7 +52,7 @@ public abstract class UiCustomWidget<W extends UiWidget> extends AbstractUiWidge
    * @param customWidget is the widget for which the {@link #getDelegate() delegate} is requested.
    * @return the requested {@link #getDelegate() delegate}.
    */
-  protected static final <T extends UiWidget> T getDelegate(UiCustomWidget<T> customWidget) {
+  protected static final <T extends UiWidget> T getDelegate(AbstractUiCustomWidget<T> customWidget) {
 
     return customWidget.getDelegate();
   }

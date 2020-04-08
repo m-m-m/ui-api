@@ -9,7 +9,7 @@ import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 import io.github.mmm.validation.Validator;
 
 /**
- * {@link UiCustomWidget} that is a {@link UiFormPanel}.
+ * {@link AbstractUiCustomWidget} that is a {@link UiFormPanel}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
  * @param <C> type of the {@link #getChild(int) child widgets}.

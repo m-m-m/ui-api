@@ -7,7 +7,7 @@ import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 
 /**
- * {@link UiCustomWidget} that is a {@link UiFormPanel}.
+ * {@link AbstractUiCustomWidget} that is a {@link UiFormPanel}.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0

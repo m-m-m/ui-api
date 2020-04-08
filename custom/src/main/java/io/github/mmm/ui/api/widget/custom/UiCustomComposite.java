@@ -6,13 +6,13 @@ import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 
 /**
- * {@link UiCustomWidget} that is a {@link UiComposite}.
+ * {@link AbstractUiCustomWidget} that is a {@link UiComposite}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public class UiCustomComposite<W extends UiComposite<C>, C extends UiWidget> extends UiCustomWidget<W>
+public class UiCustomComposite<W extends UiComposite<C>, C extends UiWidget> extends AbstractUiCustomWidget<W>
     implements UiComposite<C> {
 
   /**

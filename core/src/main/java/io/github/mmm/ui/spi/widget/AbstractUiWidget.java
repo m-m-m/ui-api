@@ -9,6 +9,8 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
 
 /**
  * Abstract base implementation of {@link UiWidget}.
+ *
+ * @since 1.0.0
  */
 public abstract class AbstractUiWidget implements UiWidget {
 
@@ -49,7 +51,7 @@ public abstract class AbstractUiWidget implements UiWidget {
 
   /**
    * @return the unwrapped widget.
-   * @see io.github.mmm.ui.api.widget.custom.UiCustomWidget#getDelegate()
+   * @see io.github.mmm.ui.api.widget.UiCustomWidget#getDelegate()
    */
   protected abstract UiNativeWidget unwrap();
 

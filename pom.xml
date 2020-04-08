@@ -25,6 +25,8 @@
     <module>binding</module>
     <module>core</module>
     <module>chart</module>
+    <module>custom</module>
+    <module>format</module>
     <module>dialog</module>
     <module>media</module>
     <module>temporal</module>
@@ -54,7 +56,17 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-custom</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-dialog</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-format</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

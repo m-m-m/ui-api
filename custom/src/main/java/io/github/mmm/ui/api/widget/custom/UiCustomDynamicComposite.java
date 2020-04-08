@@ -6,7 +6,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
 
 /**
- * {@link UiCustomWidget} that is a {@link UiDynamicComposite}.
+ * {@link AbstractUiCustomWidget} that is a {@link UiDynamicComposite}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
  * @param <C> type of the {@link #getChild(int) child widgets}.

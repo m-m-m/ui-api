@@ -3,10 +3,10 @@
 package io.github.mmm.ui.api.factory.impl;
 
 import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.AbstractUiWidgetFactory;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
-import io.github.mmm.ui.spi.factory.AbstractUiWidgetFactory;
 
 /**
  * Implementation of {@link UiWidgetFactoryNative}.

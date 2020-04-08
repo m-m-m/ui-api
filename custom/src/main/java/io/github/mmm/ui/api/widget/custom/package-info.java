@@ -1,7 +1,7 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
 /**
- * Contains the API for {@link io.github.mmm.ui.api.widget.custom.UiCustomWidget} and its sub-classes. While all native
+ * Contains the API for {@link io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget} and its sub-classes. While all native
  * widgets of this API are provided as interface to be implemented for native UI toolkits, here we provide custom
  * widgets as a classes to extend by users building client UIs. These are delegating to a
  * {@link io.github.mmm.ui.api.widget.UiNativeWidget native widget} and allow to build reusable structures and components in

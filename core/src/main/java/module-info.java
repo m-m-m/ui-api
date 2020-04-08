@@ -36,16 +36,6 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.api.factory;
 
-  exports io.github.mmm.ui.spi;
-
-  exports io.github.mmm.ui.spi.factory;
-
-  exports io.github.mmm.ui.spi.range;
-
-  exports io.github.mmm.ui.spi.widget;
-
-  exports io.github.mmm.ui.spi.window;
-
   exports io.github.mmm.ui.api.widget;
 
   exports io.github.mmm.ui.api.widget.attribute;
@@ -53,8 +43,6 @@ module io.github.mmm.ui.api.core {
   exports io.github.mmm.ui.api.widget.button;
 
   exports io.github.mmm.ui.api.widget.composite;
-
-  exports io.github.mmm.ui.api.widget.custom;
 
   exports io.github.mmm.ui.api.widget.img;
 
@@ -67,6 +55,14 @@ module io.github.mmm.ui.api.core {
   exports io.github.mmm.ui.api.widget.value;
 
   exports io.github.mmm.ui.api.widget.window;
+
+  exports io.github.mmm.ui.spi;
+
+  exports io.github.mmm.ui.spi.range;
+
+  exports io.github.mmm.ui.spi.widget;
+
+  exports io.github.mmm.ui.spi.window;
 
   uses UiSingleWidgetFactoryNative;
 
