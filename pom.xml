@@ -17,7 +17,7 @@
   <properties>
     <revision>1.0.0</revision>
     <changelist>-SNAPSHOT</changelist>
-    <mmm.repository>ui</mmm.repository>
+    <mmm.repository>ui-api</mmm.repository>
   </properties>
 
   <modules>
