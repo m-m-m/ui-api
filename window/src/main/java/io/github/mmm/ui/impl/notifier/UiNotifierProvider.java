@@ -2,9 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl.notifier;
 
-import java.util.ServiceLoader;
-
 import io.github.mmm.ui.api.notifier.UiNotifier;
+import io.github.mmm.ui.spi.ServiceHelper;
 
 /**
  * Provider of {@link UiNotifier}.
@@ -14,7 +13,7 @@ import io.github.mmm.ui.api.notifier.UiNotifier;
 public final class UiNotifierProvider {
 
   /** The {@link UiNotifier#get() singleton instance} of {@link UiNotifier}. */
-  public static final UiNotifier NOTIFIER = ServiceLoader.load(UiNotifier.class).findFirst().get();
+  public static final UiNotifier NOTIFIER = ServiceHelper.singleton(UiNotifier.class);
 
   private UiNotifierProvider() {
 

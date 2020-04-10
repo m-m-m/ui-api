@@ -2,9 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl;
 
-import java.util.ServiceLoader;
-
 import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.spi.ServiceHelper;
 
 /**
  * Provides the {@link UiContext}.
@@ -14,7 +13,7 @@ import io.github.mmm.ui.api.UiContext;
 public final class UiContextProvider {
 
   /** The {@link UiContext#get() singleton instance} of {@link UiContext}. */
-  public static final UiContext CONTEXT = ServiceLoader.load(UiContext.class).findFirst().get();
+  public static final UiContext CONTEXT = ServiceHelper.singleton(UiContext.class);
 
   private UiContextProvider() {
 

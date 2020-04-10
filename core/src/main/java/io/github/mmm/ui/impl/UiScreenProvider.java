@@ -2,9 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl;
 
-import java.util.ServiceLoader;
-
 import io.github.mmm.ui.api.UiScreen;
+import io.github.mmm.ui.spi.ServiceHelper;
 
 /**
  * Provides the {@link UiScreen}.
@@ -14,7 +13,7 @@ import io.github.mmm.ui.api.UiScreen;
 public final class UiScreenProvider {
 
   /** The {@link UiScreen#get() singleton instance} of {@link UiScreen}. */
-  public static final UiScreen SCREEN = ServiceLoader.load(UiScreen.class).findFirst().get();
+  public static final UiScreen SCREEN = ServiceHelper.singleton(UiScreen.class);
 
   private UiScreenProvider() {
 

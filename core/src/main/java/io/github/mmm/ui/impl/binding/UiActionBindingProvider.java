@@ -2,9 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl.binding;
 
-import java.util.ServiceLoader;
-
 import io.github.mmm.ui.api.binding.UiActionBinding;
+import io.github.mmm.ui.spi.ServiceHelper;
 
 /**
  * Provides the {@link UiActionBinding}.
@@ -14,7 +13,7 @@ import io.github.mmm.ui.api.binding.UiActionBinding;
 public final class UiActionBindingProvider {
 
   /** The {@link UiActionBinding#get() singleton instance} of {@link UiActionBinding}. */
-  public static final UiActionBinding ACTION_BINDING = ServiceLoader.load(UiActionBinding.class).findFirst().get();
+  public static final UiActionBinding ACTION_BINDING = ServiceHelper.singleton(UiActionBinding.class);
 
   private UiActionBindingProvider() {
 
