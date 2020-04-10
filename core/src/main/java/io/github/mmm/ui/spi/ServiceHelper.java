@@ -4,9 +4,6 @@ package io.github.mmm.ui.spi;
 
 import java.util.ServiceLoader;
 
-import io.github.mmm.base.exception.DuplicateObjectException;
-import io.github.mmm.base.exception.ObjectNotFoundException;
-
 /**
  * Helper class for {@link ServiceLoader}.
  */
@@ -42,14 +39,16 @@ public final class ServiceHelper {
         service = currentService;
       } else {
         if (unique) {
-          throw new DuplicateObjectException(currentService, type, service);
+          throw new IllegalStateException(type.getName());
+          // throw new DuplicateObjectException(currentService, type, service);
         } else if (!currentService.getClass().getName().startsWith("io.github.mmm.")) {
           service = currentService;
         }
       }
     }
     if (service == null) {
-      throw new ObjectNotFoundException(type);
+      // throw new ObjectNotFoundException(type);
+      throw new IllegalStateException(type.getName());
     }
     return service;
   }
