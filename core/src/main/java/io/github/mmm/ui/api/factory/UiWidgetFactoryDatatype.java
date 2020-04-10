@@ -3,13 +3,13 @@
 package io.github.mmm.ui.api.factory;
 
 import io.github.mmm.ui.api.UiContext;
-import io.github.mmm.ui.api.factory.impl.UiWidgetFactoryDatatypeImpl;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.impl.factory.UiWidgetFactoryDatatypeImpl;
 
 /**
- * Interface for a factory used to {@link #create(Class, boolean, UiContext) create} {@link UiNativeWidget native
- * widgets}. API-Users should typically use {@link io.github.mmm.ui.api.UiContext#createInput(Class)} instead.
+ * Interface for a factory used to {@link #create(Class, boolean) create} {@link UiNativeWidget native widgets}.
+ * API-Users should typically use {@link io.github.mmm.ui.api.UiContext#createInput(Class)} instead.
  *
  * @since 1.0.0
  */
@@ -18,14 +18,25 @@ public abstract interface UiWidgetFactoryDatatype {
   /**
    * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
    * @param datatype is the {@link Class} reflecting the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
-   * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype} has to be
-   *        registered for the given {@code datatype}, {@code false} otherwise.
-   * @param context the {@link UiContext}.
    * @return the new {@link UiInput}.
    * @see UiContext#createInput(Class, boolean)
-   * @see UiSingleWidgetFactoryDatatype#create(UiContext)
+   * @see UiSingleWidgetFactoryDatatype#create()
    */
-  <V> UiInput<V> create(Class<V> datatype, boolean required, UiContext context);
+  default <V> UiInput<V> create(Class<V> datatype) {
+
+    return create(datatype, true);
+  }
+
+  /**
+   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
+   * @param datatype is the {@link Class} reflecting the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
+   * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype} has to be
+   *        registered for the given {@code datatype}, {@code false} otherwise.
+   * @return the new {@link UiInput}.
+   * @see UiContext#createInput(Class, boolean)
+   * @see UiSingleWidgetFactoryDatatype#create()
+   */
+  <V> UiInput<V> create(Class<V> datatype, boolean required);
 
   /**
    * @return the instance of this interface.

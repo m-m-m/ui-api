@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
@@ -14,24 +13,12 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  */
 public abstract class AbstractUiWidget implements UiWidget {
 
-  /** @see #getContext() */
-  protected final UiContext context;
-
   /**
    * The constructor.
-   *
-   * @param context the {@link UiContext}.
    */
-  public AbstractUiWidget(UiContext context) {
+  public AbstractUiWidget() {
 
     super();
-    this.context = context;
-  }
-
-  @Override
-  public UiContext getContext() {
-
-    return this.context;
   }
 
   /**

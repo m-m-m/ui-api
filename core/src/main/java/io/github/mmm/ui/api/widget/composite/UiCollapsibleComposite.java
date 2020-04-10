@@ -6,12 +6,12 @@ import io.github.mmm.ui.api.attribute.AttributeWriteCollapsible;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
- * {@link UiDynamicComposite} that allows to {@link #setCollapsed(boolean) collapse and expand} its
+ * {@link UiMutableComposite} that allows to {@link #setCollapsed(boolean) collapse and expand} its
  * {@link #getChild(int) children}.
  *
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public interface UiCollapsibleComposite<C extends UiWidget> extends UiDynamicComposite<C>, AttributeWriteCollapsible {
+public interface UiCollapsibleComposite<C extends UiWidget> extends UiMutableComposite<C>, AttributeWriteCollapsible {
 
 }

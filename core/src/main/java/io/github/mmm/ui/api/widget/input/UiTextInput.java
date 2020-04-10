@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -16,15 +16,16 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiTextInput extends UiStringInput, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label) and {@link #getPlaceholder() placeholder}.
    * @return the new {@link UiTextInput}.
    */
-  static UiTextInput of(UiContext context, String name) {
+  static UiTextInput of(String name) {
 
-    UiTextInput widget = context.create(UiTextInput.class);
-    widget.setName(name);
-    widget.setPlaceholder(name);
+    UiTextInput widget = UiWidgetFactoryNative.get().create(UiTextInput.class);
+    if (name != null) {
+      widget.setName(name);
+      widget.setPlaceholder(name);
+    }
     return widget;
   }
 

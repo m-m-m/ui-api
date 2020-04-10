@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
@@ -52,13 +51,12 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
    * @param <W> type of the {@link UiWidget} to create.
    * @param type the {@link UiSingleWidgetFactory#getType() type} of the according {@link UiSingleWidgetFactory}.
    * @param required - {@code true} if the result is required, {@code false} otherwise.
-   * @param context the {@link UiContext}.
    * @return the created {@link UiWidget} or {@code null} if {@code required} is {@code false} and no
    *         {@link UiSingleWidgetFactory} is {@link #registerFactory(UiSingleWidgetFactory) registered} for the the
    *         given type.
    */
   @SuppressWarnings("unchecked")
-  protected <W extends UiWidget> W createForType(Class<?> type, boolean required, UiContext context) {
+  protected <W extends UiWidget> W createForType(Class<?> type, boolean required) {
 
     F factory = this.factoryMap.get(type);
     if (factory == null) {
@@ -69,7 +67,7 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
       // throw new ObjectNotFoundException("WidgetFactory", type.getName());
       throw new IllegalArgumentException(type.getName());
     }
-    return (W) factory.create(context);
+    return (W) factory.create();
   }
 
 }

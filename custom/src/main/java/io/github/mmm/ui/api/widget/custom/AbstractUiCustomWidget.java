@@ -34,7 +34,7 @@ public abstract class AbstractUiCustomWidget<W extends UiWidget> extends Abstrac
    */
   public AbstractUiCustomWidget(W delegate) {
 
-    super(delegate.getContext());
+    super();
     this.delegate = delegate;
   }
 

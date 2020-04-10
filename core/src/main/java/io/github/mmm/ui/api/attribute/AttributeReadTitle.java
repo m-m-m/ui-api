@@ -11,8 +11,7 @@ public interface AttributeReadTitle {
 
   /**
    * @return the title of this object. Similar to {@link AttributeWriteText#getText() text} but more exposed (e.g.
-   *         displayed in title-bar in case of a {@link io.github.mmm.ui.api.widget.window.UiAbstractWindow window}). Will
-   *         be the empty {@link String} if not set.
+   *         displayed in title-bar in case of a window). Will be the empty {@link String} if not set.
    */
   String getTitle();
 

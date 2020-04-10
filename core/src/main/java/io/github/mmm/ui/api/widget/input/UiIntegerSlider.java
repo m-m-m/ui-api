@@ -4,7 +4,7 @@ package io.github.mmm.ui.api.widget.input;
 
 import java.time.LocalTime;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -21,13 +21,12 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiIntegerSlider extends UiSlider<Integer>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiIntegerSlider}.
    */
-  static UiIntegerSlider of(UiContext context, String name) {
+  static UiIntegerSlider of(String name) {
 
-    UiIntegerSlider widget = context.create(UiIntegerSlider.class);
+    UiIntegerSlider widget = UiWidgetFactoryNative.get().create(UiIntegerSlider.class);
     widget.setName(name);
     return widget;
   }

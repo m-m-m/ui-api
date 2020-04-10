@@ -6,7 +6,6 @@ package io.github.mmm.ui.api.attribute;
  * Interface to read and write attributes of a media player.
  *
  * @since 1.0.0
- * @see io.github.mmm.ui.api.widget.media.UiMediaWidget
  */
 public abstract interface AttributeManageMedia {
 

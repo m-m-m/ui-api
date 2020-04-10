@@ -23,10 +23,10 @@ public interface UiSingleWidgetFactoryDatatype<V> extends UiSingleWidgetFactory<
   Class<V> getType();
 
   /**
-   * @see UiWidgetFactoryDatatype#create(Class, boolean, UiContext)
+   * @see UiWidgetFactoryDatatype#create(Class, boolean)
    * @see UiContext#createInput(Class)
    */
   @Override
-  UiInput<V> create(UiContext context);
+  UiInput<V> create();
 
 }

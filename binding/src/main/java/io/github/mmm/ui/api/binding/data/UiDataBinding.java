@@ -13,8 +13,8 @@ import io.github.mmm.entity.link.Link;
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.property.WritableProperty;
 import io.github.mmm.property.container.ReadableContainerProperty;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.api.widget.panel.UiFormGroup;
@@ -28,30 +28,24 @@ import io.github.mmm.validation.Validator;
  */
 public class UiDataBinding {
 
-  private final UiContext context;
-
   private final PropertyFilter defaultPropertyFilter;
 
   /**
    * The constructor.
-   *
-   * @param context the {@link UiContext}.
    */
-  public UiDataBinding(UiContext context) {
+  public UiDataBinding() {
 
-    this(context, null);
+    this(null);
   }
 
   /**
    * The constructor.
    *
-   * @param context the {@link UiContext}.
    * @param defaultPropertyFilter the {@link PropertyFilter} to use as default.
    */
-  public UiDataBinding(UiContext context, PropertyFilter defaultPropertyFilter) {
+  public UiDataBinding(PropertyFilter defaultPropertyFilter) {
 
     super();
-    this.context = context;
     if (defaultPropertyFilter == null) {
       this.defaultPropertyFilter = PropertyFilterDefault.INSTANCE;
     } else {
@@ -153,7 +147,7 @@ public class UiDataBinding {
     if (inputs.isEmpty()) {
       return null;
     }
-    UiFormPanel<B> formPanel = UiFormPanel.of(this.context, binding);
+    UiFormPanel<B> formPanel = UiFormPanel.of(binding);
     for (UiAbstractInput<?> input : inputs) {
       formPanel.addChild(input);
     }
@@ -178,7 +172,7 @@ public class UiDataBinding {
     if (inputs.isEmpty()) {
       return null;
     }
-    UiFormGroup<B> formGroup = UiFormGroup.of(this.context, binding, groupName);
+    UiFormGroup<B> formGroup = UiFormGroup.of(binding, groupName);
     for (UiAbstractInput<?> input : inputs) {
       formGroup.addChild((UiInput<?>) input);
     }
@@ -217,7 +211,7 @@ public class UiDataBinding {
   public <V> UiInput<V> createInput(ReadableProperty<V> property, Object source, UiBindingReceiver receiver,
       boolean bindValue) {
 
-    UiInput<V> input = this.context.createInput(property);
+    UiInput<V> input = UiWidgetFactoryProperty.get().create(property);
     input.setId(createId(property, source));
     bindProperty(property, input, source, bindValue);
     if (receiver != null) {

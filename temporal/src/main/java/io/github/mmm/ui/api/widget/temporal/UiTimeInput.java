@@ -4,7 +4,7 @@ package io.github.mmm.ui.api.widget.temporal;
 
 import java.time.LocalTime;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
@@ -23,14 +23,16 @@ import io.github.mmm.ui.api.widget.input.UiTextualInput;
 public interface UiTimeInput extends UiTextualInput<LocalTime>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiTimeInput}.
    */
-  static UiTimeInput of(UiContext context, String name) {
+  static UiTimeInput of(String name) {
 
-    UiTimeInput widget = context.create(UiTimeInput.class);
-    widget.setName(name);
+    UiTimeInput widget = UiWidgetFactoryNative.get().create(UiTimeInput.class);
+    if (name != null) {
+      widget.setName(name);
+      widget.setPlaceholder(name);
+    }
     return widget;
   }
 

@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.panel;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
@@ -17,22 +17,20 @@ import io.github.mmm.ui.api.widget.button.UiAbstractButton;
 public interface UiButtonPanel extends UiAbstractButtonContainer, UiRegularWidget, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @return the new {@link UiButtonPanel}.
    */
-  static UiButtonPanel of(UiContext context) {
+  static UiButtonPanel of() {
 
-    return context.create(UiButtonPanel.class);
+    return UiWidgetFactoryNative.get().create(UiButtonPanel.class);
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param children the {@link UiRegularWidget}s to add as children.
    * @return the new {@link UiButtonPanel}.
    */
-  static UiButtonPanel of(UiContext context, UiAbstractButton... children) {
+  static UiButtonPanel of(UiAbstractButton... children) {
 
-    UiButtonPanel widget = context.create(UiButtonPanel.class);
+    UiButtonPanel widget = of();
     for (UiAbstractButton child : children) {
       widget.addChild(child);
     }

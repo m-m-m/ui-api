@@ -4,6 +4,7 @@ package io.github.mmm.ui.api.binding;
 
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
+import io.github.mmm.ui.impl.binding.UiActionBindingProvider;
 
 /**
  * Interface to bind an {@link UiAction action} to a {@link UiAbstractButton button}.
@@ -17,4 +18,12 @@ public interface UiActionBinding {
    * @param button the {@link UiAbstractButton} to bind the action to.
    */
   void bind(UiAction action, UiAbstractButton button);
+
+  /**
+   * @return the singleton instance of this {@link UiActionBinding}.
+   */
+  static UiActionBinding get() {
+
+    return UiActionBindingProvider.ACTION_BINDING;
+  }
 }

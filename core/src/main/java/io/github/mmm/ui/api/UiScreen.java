@@ -4,16 +4,15 @@ package io.github.mmm.ui.api;
 
 import io.github.mmm.ui.api.attribute.AttributeReadSize;
 import io.github.mmm.ui.api.datatype.UiScreenType;
+import io.github.mmm.ui.impl.UiScreenProvider;
 
 /**
  * This is the interface for the display where the UI objects are shown. <br>
  * <b>ATTENTION:</b><br>
- * Be aware of multi-monitor setups. This object will represent the main screen OR the current screen where the
- * {@link io.github.mmm.ui.api.widget.window.UiMainWindow} is located. This can depend on the underlying implementation or
- * in case of a web-application on the browser.
+ * Be aware of multi-monitor setups. This object will represent the main screen OR the current screen where the main
+ * window is located. This can depend on the underlying implementation or in case of a web-application on the browser.
  *
- * @see UiContext#getScreen()
- *
+ * @see #get()
  * @since 1.0.0
  */
 public interface UiScreen extends AttributeReadSize {
@@ -39,5 +38,13 @@ public interface UiScreen extends AttributeReadSize {
    * reading resolution or screen type to force that you are getting most recent values.
    */
   void update();
+
+  /**
+   * @return the singleton instance of this {@link UiScreen}.
+   */
+  static UiScreen get() {
+
+    return UiScreenProvider.SCREEN;
+  }
 
 }

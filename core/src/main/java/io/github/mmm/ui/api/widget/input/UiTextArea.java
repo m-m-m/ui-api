@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -16,15 +16,16 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiTextArea extends UiStringInput, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label) and {@link #getPlaceholder() placeholder}.
    * @return the new {@link UiTextArea}.
    */
-  static UiTextArea of(UiContext context, String name) {
+  static UiTextArea of(String name) {
 
-    UiTextArea widget = context.create(UiTextArea.class);
-    widget.setName(name);
-    widget.setPlaceholder(name);
+    UiTextArea widget = UiWidgetFactoryNative.get().create(UiTextArea.class);
+    if (name != null) {
+      widget.setName(name);
+      widget.setPlaceholder(name);
+    }
     return widget;
   }
 

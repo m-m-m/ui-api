@@ -3,8 +3,8 @@
 package io.github.mmm.ui.api.widget.chart;
 
 import io.github.mmm.base.placement.Direction;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -18,16 +18,15 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiPieChart extends UiChart<Number>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param title the {@link #getTitle() title}.
    * @param legendPlacement the {@link #getLegnedPlacement() legend placement}.
    * @param dataSets the {@link #setData(UiDataSet...) data sets}.
    * @return the new {@link UiPieChart}.
    */
   @SuppressWarnings("unchecked")
-  static UiPieChart of(UiContext context, String title, Direction legendPlacement, UiDataSet<Number>... dataSets) {
+  static UiPieChart of(String title, Direction legendPlacement, UiDataSet<Number>... dataSets) {
 
-    UiPieChart chart = context.create(UiPieChart.class);
+    UiPieChart chart = UiWidgetFactoryNative.get().create(UiPieChart.class);
     chart.setTitle(title);
     chart.setLegendPlacement(legendPlacement);
     if ((dataSets != null) && (dataSets.length > 0)) {

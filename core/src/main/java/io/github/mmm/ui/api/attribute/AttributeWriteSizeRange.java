@@ -24,8 +24,8 @@ public interface AttributeWriteSizeRange extends AttributeWriteSize {
   /**
    * @return the maximum allowed value of {@link #getWidthInPixel() width in pixel}. Will be {@link Integer#MAX_VALUE}
    *         by default (unbounded) and is automatically clipped to the available width (of the
-   *         {@link io.github.mmm.ui.api.UiScreen} or {@link io.github.mmm.ui.api.widget.window.UiMainWindow}). Should be
-   *         greater or equal to {@link #getMinWidth() minWidth}.
+   *         {@link io.github.mmm.ui.api.UiScreen} or main window). Should be greater or equal to {@link #getMinWidth()
+   *         minWidth}.
    */
   double getMaxWidth();
 
@@ -62,8 +62,8 @@ public interface AttributeWriteSizeRange extends AttributeWriteSize {
   /**
    * @return the maximum allowed value of {@link #getHeightInPixel() height in pixel}. Will be {@link Integer#MAX_VALUE}
    *         by default (unbounded) and is automatically clipped to the available height (of the
-   *         {@link io.github.mmm.ui.api.UiScreen} or {@link io.github.mmm.ui.api.widget.window.UiMainWindow}). Should be
-   *         greater or equal to {@link #getMinHeight() minHeight}.
+   *         {@link io.github.mmm.ui.api.UiScreen} or main window). Should be greater or equal to {@link #getMinHeight()
+   *         minHeight}.
    */
   double getMaxHeight();
 

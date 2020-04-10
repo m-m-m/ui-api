@@ -3,19 +3,14 @@
 package io.github.mmm.ui.spi;
 
 import java.util.Locale;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import io.github.mmm.ui.api.UiContext;
-import io.github.mmm.ui.api.UiNotifier;
-import io.github.mmm.ui.api.binding.DefaultActionBinding;
-import io.github.mmm.ui.api.binding.UiActionBinding;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.ui.api.widget.window.UiMainWindow;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
@@ -30,12 +25,6 @@ public abstract class AbstractUiContext implements UiContext {
   private final UiWidgetFactoryDatatype datatypeFactory;
 
   private final UiWidgetFactoryProperty propertyFactory;
-
-  private UiMainWindow mainWindow;
-
-  private UiActionBinding actionBinding;
-
-  private UiNotifier notifier;
 
   private Locale locale;
 
@@ -63,17 +52,7 @@ public abstract class AbstractUiContext implements UiContext {
     this.nativeFactory = nativeFactory;
     this.datatypeFactory = datatypeFactory;
     this.propertyFactory = propertyFactory;
-    this.actionBinding = DefaultActionBinding.get();
     this.locale = Locale.getDefault();
-  }
-
-  @Override
-  public UiMainWindow getMainWindow() {
-
-    if (this.mainWindow == null) {
-      this.mainWindow = create(UiMainWindow.class);
-    }
-    return this.mainWindow;
   }
 
   @Override
@@ -91,46 +70,6 @@ public abstract class AbstractUiContext implements UiContext {
       locale = Locale.ROOT;
     }
     this.locale = locale;
-  }
-
-  @Override
-  public UiActionBinding getActionBinding() {
-
-    return this.actionBinding;
-  }
-
-  /**
-   * @param actionBinding new value of {@link #getActionBinding()}.
-   */
-  public void setActionBinding(UiActionBinding actionBinding) {
-
-    Objects.requireNonNull(actionBinding);
-    this.actionBinding = actionBinding;
-  }
-
-  @Override
-  public UiNotifier getNotifier() {
-
-    if (this.notifier == null) {
-      this.notifier = createDefaultNotifier();
-    }
-    return this.notifier;
-  }
-
-  /**
-   * @return the default implementation of {@link UiNotifier}.
-   */
-  protected abstract UiNotifier createDefaultNotifier();
-
-  /**
-   * @param notifier new value of {@link #getNotifier()}.
-   */
-  public void setNotifier(UiNotifier notifier) {
-
-    if (this.notifier != null) {
-      throw new IllegalStateException();
-    }
-    this.notifier = notifier;
   }
 
   /**
@@ -157,13 +96,13 @@ public abstract class AbstractUiContext implements UiContext {
   @Override
   public <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required) {
 
-    return this.nativeFactory.create(widgetInterface, required, this);
+    return this.nativeFactory.create(widgetInterface, required);
   }
 
   @Override
   public <V> UiInput<V> createInput(Class<V> datatype, boolean required) {
 
-    return this.datatypeFactory.create(datatype, required, this);
+    return this.datatypeFactory.create(datatype, required);
   }
 
   @SuppressWarnings("unchecked")
@@ -171,7 +110,7 @@ public abstract class AbstractUiContext implements UiContext {
   public <V> UiInput<V> createInput(ReadableTypedValue<V> property, boolean required) {
 
     Class<? extends ReadableTypedValue<V>> propertyType = (Class<? extends ReadableTypedValue<V>>) property.getClass();
-    UiInput<V> input = this.propertyFactory.create(propertyType, false, this);
+    UiInput<V> input = this.propertyFactory.create(propertyType, false);
     if (input == null) {
       input = createInput(property.getValueClass(), required);
     }

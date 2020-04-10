@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.img;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -42,13 +42,12 @@ public interface UiIcon extends UiAbstractImage, UiNativeWidget {
   void setSize(double size);
 
   /**
-   * @param context the {@link UiContext}.
    * @param iconId the {@link UiIcon#getIconId() icon ID}.
    * @return the new {@link UiIcon}.
    */
-  static UiIcon of(UiContext context, String iconId) {
+  static UiIcon of(String iconId) {
 
-    UiIcon widget = context.create(UiIcon.class);
+    UiIcon widget = UiWidgetFactoryNative.get().create(UiIcon.class);
     widget.setIconId(iconId);
     return widget;
   }

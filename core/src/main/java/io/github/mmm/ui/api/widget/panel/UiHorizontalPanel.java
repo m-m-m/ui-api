@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.panel;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
@@ -14,22 +14,20 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 public interface UiHorizontalPanel extends UiDynamicPanel, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @return the new {@link UiHorizontalPanel}.
    */
-  static UiHorizontalPanel of(UiContext context) {
+  static UiHorizontalPanel of() {
 
-    return context.create(UiHorizontalPanel.class);
+    return UiWidgetFactoryNative.get().create(UiHorizontalPanel.class);
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param children the {@link UiRegularWidget}s to add as children.
    * @return the new {@link UiVerticalPanel}.
    */
-  static UiHorizontalPanel of(UiContext context, UiRegularWidget... children) {
+  static UiHorizontalPanel of(UiRegularWidget... children) {
 
-    UiHorizontalPanel widget = context.create(UiHorizontalPanel.class);
+    UiHorizontalPanel widget = of();
     for (UiRegularWidget child : children) {
       widget.addChild(child);
     }

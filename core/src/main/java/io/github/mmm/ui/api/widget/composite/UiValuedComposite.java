@@ -7,14 +7,14 @@ import io.github.mmm.ui.api.widget.value.UiBindableWidget;
 import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
 
 /**
- * {@link UiDynamicComposite} with {@link UiValidatableWidget value and validation support}.
+ * {@link UiMutableComposite} with {@link UiValidatableWidget value and validation support}.
  *
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
 public interface UiValuedComposite<C extends UiWidget, V>
-    extends UiDynamicComposite<C>, UiFailureComposite<C>, UiBindableWidget<V> {
+    extends UiMutableComposite<C>, UiFailureComposite<C>, UiBindableWidget<V> {
 
   @Override
   default boolean isValid() {

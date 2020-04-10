@@ -1,11 +1,8 @@
-import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
-import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
-
 /*
  * Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  */
+
 /**
  * Provides the API for the universal user-interface framework.
  */
@@ -48,13 +45,9 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.api.widget.input;
 
-  exports io.github.mmm.ui.api.widget.menu;
-
   exports io.github.mmm.ui.api.widget.panel;
 
   exports io.github.mmm.ui.api.widget.value;
-
-  exports io.github.mmm.ui.api.widget.window;
 
   exports io.github.mmm.ui.spi;
 
@@ -62,15 +55,19 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.spi.widget;
 
-  exports io.github.mmm.ui.spi.window;
+  uses io.github.mmm.ui.api.UiContext;
 
-  uses UiSingleWidgetFactoryNative;
+  uses io.github.mmm.ui.api.UiScreen;
 
-  uses UiSingleWidgetFactoryDatatype;
+  uses io.github.mmm.ui.api.binding.UiActionBinding;
 
-  uses UiSingleWidgetFactoryProperty;
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
 
-  provides UiSingleWidgetFactoryDatatype with //
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
+
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
+
+  provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype with //
       io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger, //
       io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean, //
       io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString;

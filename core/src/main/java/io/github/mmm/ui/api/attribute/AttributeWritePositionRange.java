@@ -23,9 +23,8 @@ public interface AttributeWritePositionRange extends AttributeWritePosition {
 
   /**
    * @return the maximum allowed value of {@link #getX() X}. Will be {@link Integer#MAX_VALUE} by default (unbounded)
-   *         and is automatically clipped to the available width (of the {@link io.github.mmm.ui.api.UiScreen} or
-   *         {@link io.github.mmm.ui.api.widget.window.UiMainWindow}). Should be greater or equal to {@link #getMinX()
-   *         minX}.
+   *         and is automatically clipped to the available width (of the {@link io.github.mmm.ui.api.UiScreen} or main
+   *         window). Should be greater or equal to {@link #getMinX() minX}.
    */
   double getMaxX();
 
@@ -61,9 +60,8 @@ public interface AttributeWritePositionRange extends AttributeWritePosition {
 
   /**
    * @return the maximum allowed value of {@link #getY() Y}. Will be {@link Integer#MAX_VALUE} by default (unbounded)
-   *         and is automatically clipped to the available width (of the {@link io.github.mmm.ui.api.UiScreen} or
-   *         {@link io.github.mmm.ui.api.widget.window.UiMainWindow}). Should be greater or equal to {@link #getMinY()
-   *         minY}.
+   *         and is automatically clipped to the available width (of the {@link io.github.mmm.ui.api.UiScreen} or main
+   *         window). Should be greater or equal to {@link #getMinY() minY}.
    */
   double getMaxY();
 

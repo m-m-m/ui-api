@@ -2,18 +2,18 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.panel;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.api.binding.UiValueBinding;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
-import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 import io.github.mmm.ui.api.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.input.UiInput;
 
 /**
- * {@link UiDynamicComposite} for a form of {@link UiInput}s as {@link #getChild(int) children} shown vertically from
+ * {@link UiMutableComposite} for a form of {@link UiInput}s as {@link #getChild(int) children} shown vertically from
  * the top to the bottom.
  *
  * @param <V> type of the {@link #getValue() value}.
@@ -22,24 +22,23 @@ import io.github.mmm.ui.api.widget.input.UiInput;
 public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>, UiRegularWidget, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @return the new {@link UiFormPanel}.
    */
-  static UiFormPanel<Void> of(UiContext context) {
+  static UiFormPanel<Void> of() {
 
-    return context.create(UiFormPanel.class);
+    return UiWidgetFactoryNative.get().create(UiFormPanel.class);
   }
 
   /**
    * @param <V> type of the {@link #getValue() value}.
-   * @param context the {@link UiContext}.
    * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormPanel}.
    */
-  static <V> UiFormPanel<V> of(UiContext context, UiAbstractInput<?>... children) {
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  static <V> UiFormPanel<V> of(UiAbstractInput<?>... children) {
 
-    UiFormPanel<V> widget = context.create(UiFormPanel.class);
+    UiFormPanel<V> widget = (UiFormPanel) of();
     for (UiAbstractInput<?> child : children) {
       widget.addChild(child);
     }
@@ -47,29 +46,27 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param binding the {@link UiValueBinding} defining how to read and write the value.
    * @param <V> type of the {@link #getValue() value}.
    * @return the new {@link UiFormGroup}.
    */
-  static <V> UiFormPanel<V> of(UiContext context, UiValueBinding<V> binding) {
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  static <V> UiFormPanel<V> of(UiValueBinding<V> binding) {
 
-    UiFormPanel<V> widget = context.create(UiFormPanel.class);
+    UiFormPanel<V> widget = (UiFormPanel) of();
     widget.initBinding(binding);
     return widget;
   }
 
   /**
    * @param <V> type of the {@link #getValue() value}.
-   * @param context the {@link UiContext}.
    * @param binding the {@link UiValueBinding} defining how to read and write the value.
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormPanel}.
    */
-  static <V> UiFormPanel<V> of(UiContext context, UiValueBinding<V> binding, UiAbstractInput<?>... children) {
+  static <V> UiFormPanel<V> of(UiValueBinding<V> binding, UiAbstractInput<?>... children) {
 
-    UiFormPanel<V> widget = context.create(UiFormPanel.class);
-    widget.initBinding(binding);
+    UiFormPanel<V> widget = of(binding);
     for (UiAbstractInput<?> child : children) {
       widget.addChild(child);
     }

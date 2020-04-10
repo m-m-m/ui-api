@@ -3,9 +3,9 @@
 package io.github.mmm.ui.api.widget.chart;
 
 import io.github.mmm.base.placement.Direction;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.chart.UiDataSeries;
 import io.github.mmm.ui.api.datatype.chart.UiDataSet;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -16,17 +16,15 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiBarChartVertical extends UiBarChart, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param title the {@link #getTitle() title}.
    * @param legendPlacement the {@link #getLegnedPlacement() legend placement}.
    * @param dataSets the {@link #setData(UiDataSet...) data sets}.
    * @return the new {@link UiBarChartVertical}.
    */
   @SuppressWarnings("unchecked")
-  static UiBarChartVertical of(UiContext context, String title, Direction legendPlacement,
-      UiDataSet<UiDataSeries>... dataSets) {
+  static UiBarChartVertical of(String title, Direction legendPlacement, UiDataSet<UiDataSeries>... dataSets) {
 
-    UiBarChartVertical chart = context.create(UiBarChartVertical.class);
+    UiBarChartVertical chart = UiWidgetFactoryNative.get().create(UiBarChartVertical.class);
     chart.setTitle(title);
     chart.setLegendPlacement(legendPlacement);
     if ((dataSets != null) && (dataSets.length > 0)) {

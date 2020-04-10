@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.validation.string.ValidatorPasswordConfirmation;
 
@@ -23,52 +23,52 @@ public interface UiPasswordInput extends UiStringInput, UiNativeWidget {
    */
   default UiPasswordInput createConfirmationInput() {
 
-    UiPasswordInput confirmation = of(getContext(), "Confirm " + getName(), AUTOCOMPLETE_NEW_PASSWORD);
+    UiPasswordInput confirmation = of("Confirm " + getName(), AUTOCOMPLETE_NEW_PASSWORD);
     confirmation.setValidator(new ValidatorPasswordConfirmation(() -> getValue()));
     return confirmation;
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiPasswordInput} with {@link #AUTOCOMPLETE_CURRENT_PASSWORD}.
    */
-  static UiPasswordInput ofCurrent(UiContext context, String name) {
+  static UiPasswordInput ofCurrent(String name) {
 
-    return of(context, name, AUTOCOMPLETE_CURRENT_PASSWORD);
+    return of(name, AUTOCOMPLETE_CURRENT_PASSWORD);
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiPasswordInput} with {@link #AUTOCOMPLETE_NEW_PASSWORD}.
    */
-  static UiPasswordInput ofNew(UiContext context, String name) {
+  static UiPasswordInput ofNew(String name) {
 
-    return of(context, name, AUTOCOMPLETE_NEW_PASSWORD);
+    return of(name, AUTOCOMPLETE_NEW_PASSWORD);
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiPasswordInput} with {@link #AUTOCOMPLETE_OFF}.
    */
-  static UiPasswordInput ofOff(UiContext context, String name) {
+  static UiPasswordInput ofOff(String name) {
 
-    return of(context, name, AUTOCOMPLETE_OFF);
+    return of(name, AUTOCOMPLETE_OFF);
   }
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @param autocomplete the {@link #getAutocomplete() autocomplete}.
    * @return the new {@link UiPasswordInput}.
    */
-  static UiPasswordInput of(UiContext context, String name, String autocomplete) {
+  static UiPasswordInput of(String name, String autocomplete) {
 
-    UiPasswordInput widget = context.create(UiPasswordInput.class);
-    widget.setName(name);
-    widget.setAutocomplete(autocomplete);
+    UiPasswordInput widget = UiWidgetFactoryNative.get().create(UiPasswordInput.class);
+    if (name != null) {
+      widget.setName(name);
+    }
+    if (autocomplete != null) {
+      widget.setAutocomplete(autocomplete);
+    }
     return widget;
   }
 

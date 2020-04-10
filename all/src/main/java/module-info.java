@@ -15,6 +15,12 @@ module io.github.mmm.ui.api.all {
 
   requires transitive io.github.mmm.ui.api.media;
 
+  requires transitive io.github.mmm.ui.api.menu;
+
   requires transitive io.github.mmm.ui.api.temporal;
+
+  requires transitive io.github.mmm.ui.api.window;
+
+  requires transitive io.github.mmm.ui.api.controller;
 
 }

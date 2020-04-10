@@ -23,13 +23,15 @@
   <modules>
     <module>all</module>
     <module>binding</module>
+    <module>controller</module>
     <module>core</module>
     <module>chart</module>
     <module>custom</module>
     <module>format</module>
-    <module>dialog</module>
     <module>media</module>
+    <module>menu</module>
     <module>temporal</module>
+    <module>window</module>
   </modules>
 
   <dependencyManagement>
@@ -42,6 +44,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-binding</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-controller</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -61,11 +68,6 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-ui-api-dialog</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-format</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -76,7 +78,17 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-menu</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-temporal</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-window</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

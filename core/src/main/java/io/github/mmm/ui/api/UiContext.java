@@ -5,12 +5,11 @@ package io.github.mmm.ui.api;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import io.github.mmm.ui.api.binding.UiActionBinding;
 import io.github.mmm.ui.api.datatype.UiValidState;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.ui.api.widget.window.UiMainWindow;
+import io.github.mmm.ui.impl.UiContextProvider;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
@@ -24,12 +23,6 @@ import io.github.mmm.value.ReadableTypedValue;
 public interface UiContext {
 
   /**
-   * @return the {@link UiMainWindow} running this application. It will hold the {@link UiMainWindow#getMenuBar() menu
-   *         bar} and should be the main entry point to your application for end-users.
-   */
-  UiMainWindow getMainWindow();
-
-  /**
    * @return the {@link Locale} of the current user.
    */
   Locale getLocale();
@@ -41,11 +34,6 @@ public interface UiContext {
   String localize(String key);
 
   /**
-   * @return the {@link UiScreen} to read the current screen resolution.
-   */
-  UiScreen getScreen();
-
-  /**
    * @return the {@link UiDispatcher}.
    */
   UiDispatcher getDispatcher();
@@ -54,16 +42,6 @@ public interface UiContext {
    * @return a new {@link UiToggleGroup} instance.
    */
   UiToggleGroup createToggleGroup();
-
-  /**
-   * @return the {@link UiActionBinding}.
-   */
-  UiActionBinding getActionBinding();
-
-  /**
-   * @return the {@link UiNotifier}.
-   */
-  UiNotifier getNotifier();
 
   /**
    * @param <W> type of the {@link UiNativeWidget} to create.
@@ -80,8 +58,8 @@ public interface UiContext {
    * @param <W> type of the {@link UiNativeWidget} to create.
    * @param widgetInterface is the interface reflecting the {@link UiNativeWidget} to create. Shall not be
    *        {@link UiNativeWidget}.class itself.
-   * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative} has to be registered
-   *        for the given {@code widgetInterface}, {@code false} otherwise.
+   * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative} has to be
+   *        registered for the given {@code widgetInterface}, {@code false} otherwise.
    * @return the new {@link UiNativeWidget}. May be {@code null} if {@code required} is {@code false}.
    */
   <W extends UiNativeWidget> W create(Class<W> widgetInterface, boolean required);
@@ -146,6 +124,14 @@ public interface UiContext {
   default UiValidState newValidState() {
 
     return new UiValidState();
+  }
+
+  /**
+   * @return the instance of this {@link UiContext}.
+   */
+  static UiContext get() {
+
+    return UiContextProvider.CONTEXT;
   }
 
 }

@@ -23,7 +23,6 @@ import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
-import io.github.mmm.ui.api.widget.window.UiAbstractWindow;
 import io.github.mmm.validation.ValidationResult;
 import io.github.mmm.validation.Validator;
 
@@ -57,12 +56,10 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
 
   /**
    * The constructor.
-   *
-   * @param context the {@link UiContext}.
    */
-  public AbstractUiNativeWidget(UiContext context) {
+  public AbstractUiNativeWidget() {
 
-    super(context);
+    super();
     this.eventAdapter = EventSourceAdapter.empty();
     this.handlersRegistered = false;
     if (isInitiallyVisible()) {
@@ -122,7 +119,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
    */
   protected boolean isInitiallyVisible() {
 
-    return !(this instanceof UiAbstractWindow);
+    return false;
   }
 
   @Override
@@ -377,7 +374,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
       if (valid) {
         setValidationFailure(null);
       } else {
-        setValidationFailure(this.context.getDefaultValidationFailure());
+        setValidationFailure(UiContext.get().getDefaultValidationFailure());
       }
     }
     if (this instanceof UiValidatableWidget) {
@@ -393,7 +390,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
     if ((validator != null) && (validator != Validator.none())) {
       V value = widget.getValue();
       ValidationResult result = validator.validate(value, widget.getId());
-      String error = result.getLocalizedMessage(this.context.getLocale());
+      String error = result.getLocalizedMessage(UiContext.get().getLocale());
       widget.setValidationFailure(error);
       valid = (error == null);
       if (!valid && state.isSetFocus() && (this instanceof UiInput)) {

@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.color.Color;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -19,13 +19,12 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 public interface UiColorInput extends UiInput<Color>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiColorInput}.
    */
-  static UiColorInput of(UiContext context, String name) {
+  static UiColorInput of(String name) {
 
-    UiColorInput widget = context.create(UiColorInput.class);
+    UiColorInput widget = UiWidgetFactoryNative.get().create(UiColorInput.class);
     widget.setName(name);
     return widget;
   }

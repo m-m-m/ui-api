@@ -3,14 +3,14 @@
 package io.github.mmm.ui.api.widget.panel;
 
 import io.github.mmm.ui.api.widget.UiRegularWidget;
-import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 
 /**
- * {@link UiDynamicComposite} for a generic panel that accepts any {@link UiRegularWidget} as {@link #getChild(int)
+ * {@link UiMutableComposite} for a generic panel that accepts any {@link UiRegularWidget} as {@link #getChild(int)
  * child}.
  *
  * @since 1.0.0
  */
-public abstract interface UiDynamicPanel extends UiDynamicComposite<UiRegularWidget>, UiRegularWidget {
+public abstract interface UiDynamicPanel extends UiMutableComposite<UiRegularWidget>, UiRegularWidget {
 
 }

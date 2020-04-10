@@ -6,6 +6,7 @@ import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeReadValid;
 import io.github.mmm.ui.api.attribute.AttributeWriteId;
+import io.github.mmm.ui.api.attribute.AttributeWriteVisible;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
 import io.github.mmm.ui.api.datatype.UiStyles;
 import io.github.mmm.ui.api.datatype.UiValidState;
@@ -34,12 +35,8 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  *
  * @since 1.0.0
  */
-public interface UiWidget extends EventSource<UiEvent, UiEventListener>, AttributeReadValid, AttributeWriteId {
-
-  /**
-   * @return the owning {@link UiContext}.
-   */
-  UiContext getContext();
+public interface UiWidget
+    extends EventSource<UiEvent, UiEventListener>, AttributeReadValid, AttributeWriteVisible, AttributeWriteId {
 
   /**
    * @return the {@link UiStyles} of this widget. Use to add or remove custom styles.
@@ -81,9 +78,9 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   void setEnabled(boolean enabled, BitMask mask);
 
   /**
-   * @return {@code true} if visible, {@code false} if hidden.
    * @see #isVisible(BitMask)
    */
+  @Override
   default boolean isVisible() {
 
     return isVisible(null);
@@ -96,11 +93,7 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
    */
   boolean isVisible(BitMask mask);
 
-  /**
-   * @param visible {@code true} to show this widget (in case its parent is also visible), {@code false} to hide this
-   *        widget.
-   * @see #isVisible()
-   */
+  @Override
   default void setVisible(boolean visible) {
 
     setVisible(visible, UiVisibleFlags.DEFAULT);
@@ -208,7 +201,7 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
    */
   default boolean validate() {
 
-    UiValidState state = getContext().newValidState();
+    UiValidState state = UiContext.get().newValidState();
     validateDown(state);
     boolean valid = state.isValid();
     UiComposite<?> parent = getParent();
@@ -273,8 +266,8 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   }
 
   /**
-   * @return the parent of this widget or {@code null} if not attached to the UI or if this is a root widget (e.g.
-   *         {@link io.github.mmm.ui.api.widget.window.UiMainWindow}).
+   * @return the parent of this widget or {@code null} if not attached to the UI or if this is a root widget (e.g. the
+   *         main window).
    */
   UiComposite<?> getParent();
 

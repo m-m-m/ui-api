@@ -8,7 +8,7 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 /**
  * Factory for {@link UiNativeWidget} of a single {@link #getType() type}.
  *
- * @param <W> the generic type of the {@link #getType() widget} to {@link #create(UiContext) create}.
+ * @param <W> the generic type of the {@link #getType() widget} to {@link #create() create}.
  * @since 1.0.0
  */
 public interface UiSingleWidgetFactoryNative<W extends UiNativeWidget> extends UiSingleWidgetFactory<W> {
@@ -20,10 +20,10 @@ public interface UiSingleWidgetFactoryNative<W extends UiNativeWidget> extends U
   Class<W> getType();
 
   /**
-   * @see UiWidgetFactoryNative#create(Class, boolean, UiContext)
+   * @see UiWidgetFactoryNative#create(Class, boolean)
    * @see UiContext#create(Class)
    */
   @Override
-  W create(UiContext context);
+  W create();
 
 }

@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.datatype;
 
 /**
- * Available sizing for a {@link io.github.mmm.ui.api.widget.window.UiAbstractWindow window}.
+ * Available sizing for a window.
  */
 public enum UiWindowSizing {
 

@@ -3,14 +3,14 @@
 package io.github.mmm.ui.api.widget.panel;
 
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
-import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 
 /**
- * {@link UiDynamicComposite} containing a number of {@link UiAbstractButton buttons}.
+ * {@link UiMutableComposite} containing a number of {@link UiAbstractButton buttons}.
  *
  * @since 1.0.0
  */
 public abstract interface UiAbstractButtonContainer
-    extends UiDynamicComposite<UiAbstractButton> /* , ButtonContainer */ {
+    extends UiMutableComposite<UiAbstractButton> /* , ButtonContainer */ {
 
 }

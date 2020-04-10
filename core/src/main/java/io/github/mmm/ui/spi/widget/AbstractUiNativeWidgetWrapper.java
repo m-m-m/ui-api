@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.spi.widget;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.datatype.UiStyles;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.spi.UiStylesImpl;
@@ -20,12 +19,10 @@ public abstract class AbstractUiNativeWidgetWrapper<W> extends AbstractUiNativeW
 
   /**
    * The constructor.
-   *
-   * @param context the {@link UiContext}.
    */
-  public AbstractUiNativeWidgetWrapper(UiContext context) {
+  public AbstractUiNativeWidgetWrapper() {
 
-    super(context);
+    super();
   }
 
   @Override

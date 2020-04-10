@@ -5,13 +5,13 @@ package io.github.mmm.ui.api.widget.composite;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
- * {@link UiDynamicComposite} that only shows a single {@link #getChild(int) child} at a time. You can
+ * {@link UiMutableComposite} that only shows a single {@link #getChild(int) child} at a time. You can
  * {@link #setActiveChild(UiWidget) switch} the active (visible) {@link #getChild(int) child} programmatically.
  *
  * @param <C> is the generic type of the {@link #getChild(int) children}.
  * @since 1.0.0
  */
-public abstract interface UiSwitchComposite<C extends UiWidget> extends UiDynamicComposite<C> {
+public abstract interface UiSwitchComposite<C extends UiWidget> extends UiMutableComposite<C> {
 
   /**
    * @return the {@link #getChild(int) index} of the child that is currently active (visible). Will be {@code -1} if no

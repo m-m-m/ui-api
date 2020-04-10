@@ -6,6 +6,7 @@ import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteClosable;
 import io.github.mmm.ui.api.attribute.AttributeWriteText;
 import io.github.mmm.ui.api.datatype.UiValidState;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiActiveWidget;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
@@ -28,23 +29,26 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, Attrib
     if (state.isValid()) {
       setValidationFailure(null);
     } else {
-      setValidationFailure(getContext().getDefaultValidationFailure());
+      setValidationFailure(UiContext.get().getDefaultValidationFailure());
     }
     UiMutableSingleComposite.super.validateUp(state);
   }
 
   /**
-   * @param context the {@link UiContext}.
+   * @param text the {@link UiTab#getText() label text} of the {@link UiTab}.
    * @param child the {@link UiRegularWidget} to show as content if the {@link UiTab} is
    *        {@link io.github.mmm.ui.api.widget.panel.UiTabPanel#getActiveChild() active} (selected).
-   * @param label the {@link UiTab#getText() label} of the {@link UiTab}.
    * @return the new {@link UiTab}.
    */
-  static UiTab of(UiContext context, UiRegularWidget child, String label) {
+  static UiTab of(String text, UiRegularWidget child) {
 
-    UiTab widget = context.create(UiTab.class);
-    widget.setText(label);
-    widget.setChild(child);
+    UiTab widget = UiWidgetFactoryNative.get().create(UiTab.class);
+    if (text != null) {
+      widget.setText(text);
+    }
+    if (child != null) {
+      widget.setChild(child);
+    }
     return widget;
   }
 }

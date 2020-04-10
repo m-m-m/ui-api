@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.factory.datatype;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
@@ -21,9 +20,9 @@ public class UiFactoryDatatypeString implements UiSingleWidgetFactoryDatatype<St
   }
 
   @Override
-  public UiInput<String> create(UiContext context) {
+  public UiInput<String> create() {
 
-    return context.create(UiTextInput.class);
+    return UiTextInput.of(null);
   }
 
 }

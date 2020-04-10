@@ -19,11 +19,11 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-custom</artifactId>
+      <artifactId>mmm-ui-api-controller</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-dialog</artifactId>
+      <artifactId>mmm-ui-api-custom</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -35,7 +35,15 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-api-menu</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-api-temporal</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-api-window</artifactId>
     </dependency>
   </dependencies>
 </project>

@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.panel;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteText;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiCollapsibleComposite;
@@ -19,13 +19,20 @@ public interface UiCollapsiblePanel
     extends UiCollapsibleComposite<UiRegularWidget>, UiDynamicPanel, AttributeWriteText, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
+   * @return the new {@link UiCollapsiblePanel}.
+   */
+  static UiCollapsiblePanel of() {
+
+    return UiWidgetFactoryNative.get().create(UiCollapsiblePanel.class);
+  }
+
+  /**
    * @param children the {@link UiRegularWidget}s to add as children.
    * @return the new {@link UiCollapsiblePanel}.
    */
-  static UiCollapsiblePanel of(UiContext context, UiRegularWidget... children) {
+  static UiCollapsiblePanel of(UiRegularWidget... children) {
 
-    UiCollapsiblePanel widget = context.create(UiCollapsiblePanel.class);
+    UiCollapsiblePanel widget = of();
     for (UiRegularWidget child : children) {
       widget.addChild(child);
     }

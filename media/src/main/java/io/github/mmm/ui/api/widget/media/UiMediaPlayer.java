@@ -3,6 +3,7 @@
 package io.github.mmm.ui.api.widget.media;
 
 import io.github.mmm.ui.api.datatype.media.UiMedia;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -12,6 +13,19 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
  * @since 1.0.0
  */
 public interface UiMediaPlayer extends UiMediaWidget, UiNativeWidget {
+
+  /**
+   * @param media the optional initial {@link UiMedia}.
+   * @return the new {@link UiMediaPlayer}.
+   */
+  static UiMediaPlayer of(UiMedia media) {
+
+    UiMediaPlayer widget = UiWidgetFactoryNative.get().create(UiMediaPlayer.class);
+    if (media != null) {
+      widget.setMedia(media);
+    }
+    return widget;
+  }
 
   // /**
   // * This method makes the <em>previous</em> and <em>next</em> buttons visible and connects them with the given

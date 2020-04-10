@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -35,31 +35,41 @@ public interface UiRadioChoice<V> extends UiAbstractSingleChoice<V>, UiNativeWid
 
   /**
    * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
-   * @param enumType the {@link Class} reflecting an {@link Enum} defining the options.
    * @return the new widget instance.
    */
-  static <V extends Enum<?>> UiRadioChoice<V> ofEnum(UiContext context, String name, Class<V> enumType) {
+  static <V> UiRadioChoice<V> of(String name) {
 
-    UiRadioChoice<V> widget = context.create(UiRadioChoice.class);
-    widget.setName(name);
+    UiRadioChoice<V> widget = UiWidgetFactoryNative.get().create(UiRadioChoice.class);
+    if (name != null) {
+      widget.setName(name);
+    }
+    return widget;
+  }
+
+  /**
+   * @param name the {@link #getName() name} (label).
+   * @param enumType the {@link Class} reflecting an {@link Enum} defining the options.
+   * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
+   * @return the new widget instance.
+   */
+  static <V extends Enum<?>> UiRadioChoice<V> ofEnum(String name, Class<V> enumType) {
+
+    UiRadioChoice<V> widget = of(name);
     widget.setOptions(enumType.getEnumConstants());
     return widget;
   }
 
   /**
    * @param <V> type of the {@link UiRadioChoice#getOptions() options}.
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @param options the {@link #getOptions() options}.
    * @return the new widget instance.
    */
   @SuppressWarnings("unchecked")
-  static <V> UiRadioChoice<V> of(UiContext context, String name, V... options) {
+  static <V> UiRadioChoice<V> of(String name, V... options) {
 
-    UiRadioChoice<V> widget = context.create(UiRadioChoice.class);
-    widget.setName(name);
+    UiRadioChoice<V> widget = of(name);
     widget.setOptions(options);
     return widget;
   }

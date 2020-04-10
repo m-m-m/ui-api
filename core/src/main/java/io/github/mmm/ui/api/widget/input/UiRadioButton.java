@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.UiToggleGroup;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.value.UiAbstractRadioButton;
 
@@ -28,14 +28,15 @@ public interface UiRadioButton extends UiAbstractRadioButton, UiInput<Boolean>, 
   void setToggleGroup(UiToggleGroup group);
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiRadioButton}.
    */
-  static UiRadioButton of(UiContext context, String name) {
+  static UiRadioButton of(String name) {
 
-    UiRadioButton widget = context.create(UiRadioButton.class);
-    widget.setName(name);
+    UiRadioButton widget = UiWidgetFactoryNative.get().create(UiRadioButton.class);
+    if (name != null) {
+      widget.setName(name);
+    }
     return widget;
   }
 

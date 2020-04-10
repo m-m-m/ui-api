@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteText;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 
 /**
  * {@link UiRegularWidget} that represents a label. A label is a very simple widget that displays some static text.
@@ -13,13 +13,12 @@ import io.github.mmm.ui.api.attribute.AttributeWriteText;
 public interface UiLabel extends UiAtomicWidget, AttributeWriteText, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param text the {@link UiLabel#getText() text}.
    * @return the new {@link UiLabel}.
    */
-  static UiLabel of(UiContext context, String text) {
+  static UiLabel of(String text) {
 
-    UiLabel widget = context.create(UiLabel.class);
+    UiLabel widget = UiWidgetFactoryNative.get().create(UiLabel.class);
     widget.setText(text);
     return widget;
   }

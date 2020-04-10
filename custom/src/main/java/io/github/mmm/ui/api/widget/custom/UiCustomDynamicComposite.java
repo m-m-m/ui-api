@@ -3,17 +3,17 @@
 package io.github.mmm.ui.api.widget.custom;
 
 import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.composite.UiDynamicComposite;
+import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 
 /**
- * {@link AbstractUiCustomWidget} that is a {@link UiDynamicComposite}.
+ * {@link AbstractUiCustomWidget} that is a {@link UiMutableComposite}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public abstract class UiCustomDynamicComposite<W extends UiDynamicComposite<C>, C extends UiWidget>
-    extends UiCustomComposite<W, C> implements UiDynamicComposite<C> {
+public abstract class UiCustomDynamicComposite<W extends UiMutableComposite<C>, C extends UiWidget>
+    extends UiCustomComposite<W, C> implements UiMutableComposite<C> {
 
   /**
    * The constructor.

@@ -22,10 +22,10 @@ public interface UiSingleWidgetFactoryProperty<V> extends UiSingleWidgetFactory<
   Class<? extends ReadableTypedValue<V>> getType();
 
   /**
-   * @see UiWidgetFactoryDatatype#create(Class, boolean, UiContext)
+   * @see UiWidgetFactoryDatatype#create(Class, boolean)
    * @see UiContext#createInput(ReadableTypedValue, boolean)
    */
   @Override
-  UiInput<V> create(UiContext context);
+  UiInput<V> create();
 
 }
