@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.window;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
@@ -12,13 +12,26 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 public interface UiWindow extends UiChildWindow, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
+   * @param title the new {@link #getTitle() title} of the {@link UiWindow} to create.
+   * @return the new {@link UiWindow}.
+   */
+  static UiWindow of(String title) {
+
+    UiWindow window = UiWidgetFactoryNative.get().create(UiWindow.class);
+    if (title != null) {
+      window.setTitle(title);
+    }
+    return window;
+  }
+
+  /**
+   * @param title the new {@link #getTitle() title} of the {@link UiWindow} to create.
    * @param children the {@link UiRegularWidget}s to add as children.
    * @return the new {@link UiWindow}.
    */
-  static UiWindow of(UiContext context, UiRegularWidget... children) {
+  static UiWindow of(String title, UiRegularWidget... children) {
 
-    UiWindow window = context.create(UiWindow.class);
+    UiWindow window = of(title);
     for (UiRegularWidget child : children) {
       window.addChild(child);
     }
