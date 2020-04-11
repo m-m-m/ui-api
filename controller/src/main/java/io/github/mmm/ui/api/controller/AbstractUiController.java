@@ -54,7 +54,7 @@ public abstract class AbstractUiController<W extends UiWidget> implements UiCont
    * {@link UiPlace}.
    *
    * @param newPlace the {@link UiPlace} {@link UiPlace#getId() identifying} this {@link UiController} and providing
-   *        potential {@link UiPlace#getParameter(String) parameters}.
+   *        potential {@link UiPlace#get(String) parameters}.
    * @return the {@link UiControllerSlot} where to embed this controller into a parent controller or {@code null} if
    *         this is the root controller.
    */
@@ -68,7 +68,7 @@ public abstract class AbstractUiController<W extends UiWidget> implements UiCont
    * {@link UiPlace}.
    *
    * @param newPlace the {@link UiPlace} to open. It {@link UiPlace#getId() identifies} the leaf child
-   *        {@link UiController} and provides potential {@link UiPlace#getParameter(String) parameters}.
+   *        {@link UiController} and provides potential {@link UiPlace#get(String) parameters}.
    * @param newSlot the optional {@link UiControllerSlot} where to embed the child controller.
    * @return the {@link UiControllerSlot} where to embed this controller into a parent controller or {@code null} if
    *         this is the root controller.
@@ -93,7 +93,7 @@ public abstract class AbstractUiController<W extends UiWidget> implements UiCont
 
   /**
    * @param newPlace the {@link UiPlace} to open. It {@link UiPlace#getId() identifies} the leaf child
-   *        {@link UiController} and provides potential {@link UiPlace#getParameter(String) parameters}.
+   *        {@link UiController} and provides potential {@link UiPlace#get(String) parameters}.
    * @param newSlot the optional {@link UiControllerSlot} where to embed the child controller.
    * @return the {@link UiControllerSlot} where to embed this controller into a parent controller or {@code null} if
    *         this is the root controller.
