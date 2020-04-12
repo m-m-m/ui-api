@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeReadId {
+public abstract interface AttributeReadId {
 
   /** Use this character to compose hierarchical {@link #getId() IDs}. */
   String ID_SEPARATOR = "_";

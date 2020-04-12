@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWritePositionRange extends AttributeWritePosition {
+public abstract interface AttributeWritePositionRange extends AttributeWritePosition {
 
   /**
    * @return the minimum allowed value of {@link #getX() X}. Will be {@code 0} by default (unbounded). Should be less or

@@ -9,7 +9,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteText {
+public abstract interface AttributeWriteText {
 
   /**
    * @return the label or text of this widget. Will be the empty string if no text has been set. The text is permanently

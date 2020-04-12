@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteSizeRange extends AttributeWriteSize {
+public abstract interface AttributeWriteSizeRange extends AttributeWriteSize {
 
   /**
    * @return the minimum allowed value of {@link #getWidthInPixel() width in pixel}. Will be {@code 200} by default.

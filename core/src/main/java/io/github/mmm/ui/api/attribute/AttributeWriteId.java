@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteId extends AttributeReadId {
+public abstract interface AttributeWriteId extends AttributeReadId {
 
   /**
    * Use this method to give the object a meaningful identifier after creation. <br>

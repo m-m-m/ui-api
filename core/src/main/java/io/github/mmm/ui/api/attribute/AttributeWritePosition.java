@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWritePosition extends AttributeReadPosition {
+public abstract interface AttributeWritePosition extends AttributeReadPosition {
 
   /**
    * @param x the new {@link #getX() position on the x-axis}.

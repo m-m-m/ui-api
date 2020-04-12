@@ -7,11 +7,11 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
- * {@link UiDynamicPanel} that shows its {@link #getChild(int) children} vertically from the top to the bottom.
+ * {@link UiMutablePanel} that shows its {@link #getChild(int) children} vertically from the top to the bottom.
  *
  * @since 1.0.0
  */
-public interface UiVerticalPanel extends UiDynamicPanel, UiNativeWidget {
+public interface UiVerticalPanel extends UiMutablePanel, UiNativeWidget {
 
   /**
    * @return the new {@link UiVerticalPanel}.

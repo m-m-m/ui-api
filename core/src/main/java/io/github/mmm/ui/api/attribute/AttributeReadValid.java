@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeReadValid {
+public abstract interface AttributeReadValid {
 
   /**
    * @return {@code true} if valid (no {@link AttributeWriteValidationFailure#getValidationFailure() validation failure}

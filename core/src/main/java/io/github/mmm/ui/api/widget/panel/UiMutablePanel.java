@@ -11,6 +11,6 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
  *
  * @since 1.0.0
  */
-public abstract interface UiDynamicPanel extends UiMutableComposite<UiRegularWidget>, UiRegularWidget {
+public abstract interface UiMutablePanel extends UiMutableComposite<UiRegularWidget>, UiRegularWidget {
 
 }

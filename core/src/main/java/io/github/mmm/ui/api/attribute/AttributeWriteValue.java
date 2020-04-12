@@ -8,7 +8,7 @@ package io.github.mmm.ui.api.attribute;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public interface AttributeWriteValue<V> extends AttributeReadValue<V> {
+public abstract interface AttributeWriteValue<V> extends AttributeReadValue<V> {
 
   /**
    * @param value the {@link #getValue() value} to set.

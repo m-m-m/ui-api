@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeReadPosition {
+public abstract interface AttributeReadPosition {
 
   /**
    * @return the x position of this object as the number of pixels from the left on the x-axis (horizontally).

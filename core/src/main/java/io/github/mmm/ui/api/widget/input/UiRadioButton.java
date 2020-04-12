@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.UiToggleGroup;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.value.UiAbstractRadioButton;
@@ -20,12 +19,6 @@ import io.github.mmm.ui.api.widget.value.UiAbstractRadioButton;
  * @since 1.0.0
  */
 public interface UiRadioButton extends UiAbstractRadioButton, UiInput<Boolean>, UiNativeWidget {
-
-  /**
-   * @param group the {@link UiToggleGroup} that combines multiple {@link UiRadioButton}s so that only one out of the
-   *        group can be selected. For best UX you should typically use {@link UiRadioChoice} instead.
-   */
-  void setToggleGroup(UiToggleGroup group);
 
   /**
    * @param name the {@link #getName() name} (label).

@@ -12,7 +12,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteSize extends AttributeWriteSizeInPixel {
+public abstract interface AttributeWriteSize extends AttributeWriteSizeInPixel {
 
   /**
    * @param width the new {@link #getWidth() width}.

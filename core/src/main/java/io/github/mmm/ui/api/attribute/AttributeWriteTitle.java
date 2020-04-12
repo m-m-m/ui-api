@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteTitle extends AttributeReadTitle {
+public abstract interface AttributeWriteTitle extends AttributeReadTitle {
 
   /**
    * @param title the new value of {@link #getTitle() title}.

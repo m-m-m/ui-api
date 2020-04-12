@@ -8,7 +8,7 @@ package io.github.mmm.ui.api.attribute;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public interface AttributeReadValue<V> {
+public abstract interface AttributeReadValue<V> {
 
   /**
    * @return the current value.

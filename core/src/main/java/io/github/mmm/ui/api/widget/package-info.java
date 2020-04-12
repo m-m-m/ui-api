@@ -9,7 +9,7 @@
  * interface {@link io.github.mmm.ui.api.widget.UiRegularWidget} that all regular widgets are derived from. Unlike special
  * widgets such as e.g. {@link io.github.mmm.ui.api.widget.window.UiWindow windows} or
  * {@link io.github.mmm.ui.api.widget.menu.UiMenuItem menu items} a regular widget can be placed anywhere on the UI and
- * therefore be added to {@link io.github.mmm.ui.api.widget.panel.UiDynamicPanel panels} and other generic containers. Also
+ * therefore be added to {@link io.github.mmm.ui.api.widget.panel.UiMutablePanel panels} and other generic containers. Also
  * widgets are either {@link io.github.mmm.ui.api.widget.UiAtomicWidget atomic} or
  * {@link io.github.mmm.ui.api.widget.composite.UiComposite composite}.
  *

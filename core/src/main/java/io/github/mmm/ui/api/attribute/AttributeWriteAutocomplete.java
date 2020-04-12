@@ -9,7 +9,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteAutocomplete {
+public abstract interface AttributeWriteAutocomplete {
 
   /** {@link #getAutocomplete() Autocomplete} turned off. */
   String AUTOCOMPLETE_OFF = "off";

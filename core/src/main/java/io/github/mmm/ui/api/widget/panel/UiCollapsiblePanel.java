@@ -9,14 +9,14 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiCollapsibleComposite;
 
 /**
- * {@link UiCollapsibleComposite Collapsible} {@link UiDynamicPanel panel} as {@link UiNativeWidget native widget}.
+ * {@link UiCollapsibleComposite Collapsible} {@link UiMutablePanel panel} as {@link UiNativeWidget native widget}.
  * Allows to {@link #setCollapsed(boolean) collapse and expand} its {@link #getChild(int) children} that are layed out
  * vertically. The title of the top-bar to collaps/expand is set via {@link #setText(String)}.
  *
  * @since 1.0.0
  */
 public interface UiCollapsiblePanel
-    extends UiCollapsibleComposite<UiRegularWidget>, UiDynamicPanel, AttributeWriteText, UiNativeWidget {
+    extends UiCollapsibleComposite<UiRegularWidget>, UiMutablePanel, AttributeWriteText, UiNativeWidget {
 
   /**
    * @return the new {@link UiCollapsiblePanel}.

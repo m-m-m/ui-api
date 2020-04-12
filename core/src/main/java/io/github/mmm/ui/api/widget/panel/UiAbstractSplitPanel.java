@@ -3,12 +3,12 @@
 package io.github.mmm.ui.api.widget.panel;
 
 /**
- * {@link UiDynamicPanel} that shows split-bars between each of its {@link #getChild(int) children} and allows the user
+ * {@link UiMutablePanel} that shows split-bars between each of its {@link #getChild(int) children} and allows the user
  * to slide these split-bars to dynamically adjust the size of the {@link #getChild(int) children}.
  *
  * @since 1.0.0
  */
-public abstract interface UiAbstractSplitPanel extends UiDynamicPanel {
+public abstract interface UiAbstractSplitPanel extends UiMutablePanel {
 
   // nothing to add
 

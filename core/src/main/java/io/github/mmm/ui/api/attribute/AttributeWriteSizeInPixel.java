@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteSizeInPixel extends AttributeReadSize {
+public abstract interface AttributeWriteSizeInPixel extends AttributeReadSize {
 
   /**
    * @param width the new {@link #getWidthInPixel() width in pixel}.

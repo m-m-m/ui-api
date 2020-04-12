@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeReadTitle {
+public abstract interface AttributeReadTitle {
 
   /**
    * @return the title of this object. Similar to {@link AttributeWriteText#getText() text} but more exposed (e.g.

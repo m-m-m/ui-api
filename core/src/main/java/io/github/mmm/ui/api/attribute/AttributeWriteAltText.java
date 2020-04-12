@@ -7,7 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public interface AttributeWriteAltText {
+public abstract interface AttributeWriteAltText {
 
   /**
    * @return the <em>alternative text</em> of this object. This text is used to provide the essential information of an

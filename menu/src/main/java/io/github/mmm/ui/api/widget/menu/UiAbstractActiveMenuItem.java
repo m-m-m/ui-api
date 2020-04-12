@@ -11,6 +11,4 @@ import io.github.mmm.ui.api.widget.UiClickableWidget;
  */
 public abstract interface UiAbstractActiveMenuItem extends UiAbstractMenuItem, UiClickableWidget {
 
-  // nothing to add
-
 }

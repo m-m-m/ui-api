@@ -9,7 +9,7 @@ import io.github.mmm.ui.api.datatype.UiSize;
  *
  * @since 1.0.0
  */
-public interface AttributeReadSize {
+public abstract interface AttributeReadSize {
 
   /**
    * @return the width of this object in pixels.<br>
