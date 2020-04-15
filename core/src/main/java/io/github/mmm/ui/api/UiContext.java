@@ -109,8 +109,7 @@ public interface UiContext {
 
   /**
    * @return the default {@link io.github.mmm.ui.api.attribute.AttributeWriteValidationFailure#getValidationFailure()
-   *         validation failure} message to show if something is invalid (e.g. for
-   *         {@link io.github.mmm.ui.api.widget.composite.UiTab}s).
+   *         validation failure} message to show if something is invalid (e.g. for tabs).
    */
   default String getDefaultValidationFailure() {
 

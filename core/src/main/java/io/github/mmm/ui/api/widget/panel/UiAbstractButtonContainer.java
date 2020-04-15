@@ -10,7 +10,6 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
  *
  * @since 1.0.0
  */
-public abstract interface UiAbstractButtonContainer
-    extends UiMutableComposite<UiAbstractButton> /* , ButtonContainer */ {
+public abstract interface UiAbstractButtonContainer extends UiMutableComposite<UiAbstractButton> {
 
 }

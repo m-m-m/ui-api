@@ -1,12 +1,13 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.panel;
+package io.github.mmm.ui.api.widget.tab;
+
+import java.util.function.Supplier;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiSwitchComposite;
-import io.github.mmm.ui.api.widget.composite.UiTab;
 
 /**
  * {@link UiSwitchComposite} representing a <em>tab panel</em>. It contains a number of {@link #getChild(int) children}
@@ -14,7 +15,7 @@ import io.github.mmm.ui.api.widget.composite.UiTab;
  * {@link UiTab#getText() labels} of its {@link #getChild(int) children}. The user can click on one of these tabs in
  * order to see the actual {@link UiTab#getChild() content} of the according tab. <br>
  * This design might look a little complicated but gives a lot more flexibility for setting and changing attributes of
- * the {@link UiTab tab}. For convenience usage there is also {@link #addChild(UiRegularWidget, String)}.
+ * the {@link UiTab tab}. For convenience usage there is also {@link #addTab(String, UiRegularWidget)}.
  *
  * @since 1.0.0
  */
@@ -26,16 +27,29 @@ public interface UiTabPanel extends UiSwitchComposite<UiTab>, UiRegularWidget, U
    * closable}, it will remove itself as {@link #getChild(int) child} from this {@link UiTabPanel} when the end-user
    * closes it.
    *
-   * @param child is the {@link UiRegularWidget} to add.
-   * @param text is the label that will be displayed to identify the tab.
+   * @param text the label that will be displayed to identify the tab.
+   * @param child the {@link UiTab#getChild() tab content}.
    * @return the {@link UiTab} for this tab. It allows to change the title, set tooltip or image (icon), etc.
    */
-  default UiTab addChild(UiRegularWidget child, String text) {
+  UiTab addTab(String text, UiRegularWidget child);
+  //
+  // UiTab tab = UiTab.of(text, child);
+  // addChild(tab);
+  // return tab;
+  // }
 
-    UiTab tab = UiTab.of(text, child);
-    addChild(tab);
-    return tab;
-  }
+  /**
+   * Adds the given {@link UiRegularWidget} as new tab (and the end of all existing tabs).<br>
+   * <b>IMPORTANT:</b> In case you {@link UiTab#setClosable(boolean) make} the {@link UiTab} {@link UiTab#isClosable()
+   * closable}, it will remove itself as {@link #getChild(int) child} from this {@link UiTabPanel} when the end-user
+   * closes it.
+   *
+   * @param text the label that will be displayed to identify the tab.
+   * @param childSupplier the {@link Supplier} {@link Supplier#get() providing} the {@link UiTab#getChild() tab
+   *        content}. Allows lazy creation of the child when the tab is selected for the first time.
+   * @return the {@link UiTab} for this tab. It allows to change the title, set tooltip or image (icon), etc.
+   */
+  UiTab addTab(String text, Supplier<UiRegularWidget> childSupplier);
 
   /**
    * @return the new {@link UiTabPanel}.

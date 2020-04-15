@@ -213,9 +213,8 @@ public interface UiWidget
 
   /**
    * Propagates the new {@link UiValidState} to {@link #getParent() parent} (and recursively to ancestors). This allows
-   * {@link io.github.mmm.ui.api.widget.composite.UiTab}s and other composites that can collapse or hide their children
-   * to indicate validation failures (e.g. with an error icon) so the end-user is able to find invalid data even in
-   * hidden children and can correct the data.
+   * tabs and composites that can collapse or hide their children to indicate validation failures (e.g. with an error
+   * icon) so the end-user is able to find invalid data even in hidden children and can correct the data.
    *
    * @param state the new {@link UiValidState}.
    * @see #validate()

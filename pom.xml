@@ -30,6 +30,7 @@
     <module>format</module>
     <module>media</module>
     <module>menu</module>
+    <module>tab</module>
     <module>temporal</module>
     <module>window</module>
   </modules>
@@ -79,6 +80,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-menu</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-tab</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
