@@ -119,7 +119,7 @@ public abstract class AbstractUiNativeWidget extends AbstractUiWidget
    */
   protected boolean isInitiallyVisible() {
 
-    return false;
+    return true;
   }
 
   @Override
