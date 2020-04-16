@@ -32,7 +32,20 @@ public final class ServiceHelper {
    */
   public static final <S> S singleton(Class<S> type, boolean unique) {
 
-    ServiceLoader<S> serviceLoader = ServiceLoader.load(type);
+    return singleton(type, unique, ServiceLoader.load(type));
+  }
+
+  /**
+   * @param <S> type of the service.
+   * @param type the {@link Class} reflecting the service.
+   * @param unique - {@code true} if an exception is thrown if the service is not unique, {@code false} otherwise (allow
+   *        overriding default).
+   * @param serviceLoader the {@link ServiceLoader} that has to be provided from the module declaring the service API
+   *        and holds the {@code uses} statement in its {@code module-info}.
+   * @return the requested service.
+   */
+  public static final <S> S singleton(Class<S> type, boolean unique, ServiceLoader<S> serviceLoader) {
+
     S service = null;
     for (S currentService : serviceLoader) {
       if (service == null) {
