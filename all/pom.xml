@@ -27,6 +27,10 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-ui-api-data</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-api-format</artifactId>
     </dependency>
     <dependency>

@@ -15,6 +15,23 @@ module io.github.mmm.ui.api.core {
 
   requires transitive io.github.mmm.value;
 
+  uses io.github.mmm.ui.api.UiContext;
+
+  uses io.github.mmm.ui.api.UiScreen;
+
+  uses io.github.mmm.ui.api.binding.UiActionBinding;
+
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
+
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
+
+  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
+
+  provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype with //
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger, //
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean, //
+      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString;
+
   exports io.github.mmm.ui.api;
 
   exports io.github.mmm.ui.api.attribute;
@@ -54,21 +71,4 @@ module io.github.mmm.ui.api.core {
   exports io.github.mmm.ui.spi.range;
 
   exports io.github.mmm.ui.spi.widget;
-
-  uses io.github.mmm.ui.api.UiContext;
-
-  uses io.github.mmm.ui.api.UiScreen;
-
-  uses io.github.mmm.ui.api.binding.UiActionBinding;
-
-  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
-
-  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
-
-  uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
-
-  provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype with //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger, //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean, //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString;
 }
