@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.custom;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 
@@ -17,12 +16,11 @@ public abstract class UiCustomFormPanel<V> extends UiCustomValuedComposite<UiFor
 
   /**
    * The constructor.
-   *
-   * @param context the {@link #getContext() context}.
    */
-  public UiCustomFormPanel(UiContext context) {
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  public UiCustomFormPanel() {
 
-    super(context.create(UiFormPanel.class));
+    super((UiFormPanel) UiFormPanel.of());
   }
 
   /**

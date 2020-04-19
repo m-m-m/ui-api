@@ -3,15 +3,19 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 /**
- * Provides the API for binding of UI with properties and beans.
+ * Aggregates all modules of the UI API.
  */
 module io.github.mmm.ui.api.all {
 
+  requires transitive io.github.mmm.ui.api.binding;
+
   requires transitive io.github.mmm.ui.api.chart;
+
+  requires transitive io.github.mmm.ui.api.controller;
 
   requires transitive io.github.mmm.ui.api.core;
 
-  requires transitive io.github.mmm.ui.api.tab;
+  requires transitive io.github.mmm.ui.api.data;
 
   requires transitive io.github.mmm.ui.api.format;
 
@@ -19,10 +23,10 @@ module io.github.mmm.ui.api.all {
 
   requires transitive io.github.mmm.ui.api.menu;
 
+  requires transitive io.github.mmm.ui.api.tab;
+
   requires transitive io.github.mmm.ui.api.temporal;
 
   requires transitive io.github.mmm.ui.api.window;
-
-  requires transitive io.github.mmm.ui.api.controller;
 
 }

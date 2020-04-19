@@ -3,9 +3,7 @@
 package io.github.mmm.ui.api.event.action;
 
 /**
- * {@link UiAction} for <em>no</em>. Typically used to deny a
- * {@link io.github.mmm.ui.api.UiNotifier#showPopupYesNo(String, String, java.util.function.Consumer) simple question
- * popup}.
+ * {@link UiAction} for <em>no</em>. Typically used to deny a simple yes/no question popup.
  *
  * @see UiActionClose
  * @since 1.0.0

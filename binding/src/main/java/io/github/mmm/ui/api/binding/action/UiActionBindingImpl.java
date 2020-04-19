@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import io.github.mmm.base.text.CaseHelper;
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.binding.UiActionBinding;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
@@ -25,13 +25,13 @@ public class UiActionBindingImpl implements UiActionBinding {
   @Override
   public void bind(UiAction action, UiAbstractButton button) {
 
-    UiContext context = UiContext.get();
+    UiLocalizer localizer = UiLocalizer.get();
     String id = action.getId();
     Objects.requireNonNull(id, "id");
     button.setId(id);
     String label = action.getLabel();
     if (label == null) {
-      label = context.localize(id);
+      label = localizer.localize(id);
       if (label == null) {
         label = CaseHelper.capitalize(id);
       }
@@ -39,7 +39,7 @@ public class UiActionBindingImpl implements UiActionBinding {
     button.setText(label);
     String tooltip = action.getTooltip();
     if (tooltip == null) {
-      tooltip = context.localize(id + "_tooltip");
+      tooltip = localizer.localize(id, UiLocalizer.CONTEXT_TOOLTIP, true);
     }
     if (tooltip != null) {
       button.setTooltip(tooltip);
@@ -48,10 +48,10 @@ public class UiActionBindingImpl implements UiActionBinding {
     if (action.requireConfirmation()) {
       String message = action.getConfirmationMessage();
       if (message == null) {
-        message = context.localize(id + "_confirm");
+        message = localizer.localize(UiLocalizer.CONTEXT_CONFIRM, id, true);
       }
       if (message == null) {
-        message = context.localize("confirm");
+        message = localizer.localize(UiLocalizer.CONTEXT_CONFIRM);
       }
       final String finalMessage = message;
       listener = (e) -> {

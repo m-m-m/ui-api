@@ -13,6 +13,7 @@ import io.github.mmm.entity.link.Link;
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.property.WritableProperty;
 import io.github.mmm.property.container.ReadableContainerProperty;
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
@@ -281,9 +282,7 @@ public class UiDataBinding {
    */
   protected String localizeLabel(ReadableProperty<?> property, Object source) {
 
-    String propertyName = property.getName();
-    // TODO perform I18N
-    return propertyName;
+    return UiLocalizer.get().localize(property.getName(), source);
   }
 
 }

@@ -17,6 +17,8 @@ module io.github.mmm.ui.api.core {
 
   uses io.github.mmm.ui.api.UiContext;
 
+  uses io.github.mmm.ui.api.UiLocalizer;
+
   uses io.github.mmm.ui.api.UiScreen;
 
   uses io.github.mmm.ui.api.binding.UiActionBinding;
@@ -26,11 +28,6 @@ module io.github.mmm.ui.api.core {
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype;
 
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
-
-  provides io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype with //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeInteger, //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeBoolean, //
-      io.github.mmm.ui.api.factory.datatype.UiFactoryDatatypeString;
 
   exports io.github.mmm.ui.api;
 
@@ -66,9 +63,4 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.api.widget.value;
 
-  exports io.github.mmm.ui.spi;
-
-  exports io.github.mmm.ui.spi.range;
-
-  exports io.github.mmm.ui.spi.widget;
 }

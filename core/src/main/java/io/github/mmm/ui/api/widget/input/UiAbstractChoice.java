@@ -61,7 +61,7 @@ public abstract interface UiAbstractChoice<O, V> extends UiInput<V> {
   /**
    * @return the formatter to {@link Function#apply(Object) format} an {@link #getOptions() option} to {@link String} in
    *         order to display it in the UI. By default it will simply use
-   *         {@link io.github.mmm.ui.spi.ToStringFormatter}. Use {@link #setFormatter(Function)} to change default.
+   *         {@link io.github.mmm.base.lang.ToStringFormatter}. Use {@link #setFormatter(Function)} to change default.
    */
   Function<O, String> getFormatter();
 

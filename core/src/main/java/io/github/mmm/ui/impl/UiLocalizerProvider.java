@@ -6,18 +6,19 @@ import java.util.ServiceLoader;
 
 import io.github.mmm.base.config.ServiceHelper;
 import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiLocalizer;
 
 /**
- * Provides the {@link UiContext}.
+ * Provides the {@link UiLocalizer}.
  *
  * @since 1.0.0
  */
-public final class UiContextProvider {
+public final class UiLocalizerProvider {
 
   /** The {@link UiContext#get() singleton instance} of {@link UiContext}. */
-  public static final UiContext CONTEXT = ServiceHelper.singleton(ServiceLoader.load(UiContext.class));
+  public static final UiLocalizer LOCALIZER = ServiceHelper.singleton(ServiceLoader.load(UiLocalizer.class));
 
-  private UiContextProvider() {
+  private UiLocalizerProvider() {
 
     super();
   }

@@ -10,7 +10,6 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
  * This is the abstract interface for an {@link UiRegularWidget regular widget} that represents a <em>button</em>.
  *
  * @see UiButton
- * @see UiToggleButton
  *
  * @since 1.0.0
  */

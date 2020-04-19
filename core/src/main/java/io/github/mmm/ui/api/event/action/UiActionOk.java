@@ -3,8 +3,7 @@
 package io.github.mmm.ui.api.event.action;
 
 /**
- * {@link UiAction} for <em>ok</em>. Typically used to close a
- * {@link io.github.mmm.ui.api.UiNotifier#showPopupOk(String) confirmation popup}.
+ * {@link UiAction} for <em>ok</em>. Typically used to close a confirmation popup.
  *
  * @since 1.0.0
  */

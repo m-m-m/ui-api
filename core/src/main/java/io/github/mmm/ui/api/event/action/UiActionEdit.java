@@ -6,8 +6,8 @@ import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
  * {@link UiAction} for <em>edit</em>. It will allow the user to edit some object or data. It may
- * {@link UiWidget#setReadOnly(boolean) set the dialog from readonly to editable} or open a
- * {@link io.github.mmm.ui.api.widget.window.UiPopup popup window} for editing a selected object.
+ * {@link UiWidget#setReadOnly(boolean) set the dialog from readonly to editable} or open a popup window for editing a
+ * selected object.
  *
  * @since 1.0.0
  */

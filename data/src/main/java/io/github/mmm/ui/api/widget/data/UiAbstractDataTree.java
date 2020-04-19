@@ -7,17 +7,16 @@ import java.util.List;
 /**
  * A {@link UiAbstractDataWidget} that presents its data as a tree of nodes that can be expanded and collapsed.
  *
- * @param <D> type of the tree nodes as data model for the rows displayed by this widget. Typically a
- *        {@link io.github.mmm.bean.Bean}.
+ * @param <R> type of the tree nodes displayed as rows by this widget. Typically a {@link io.github.mmm.bean.Bean}.
  * @since 1.0.0
  */
-public interface UiAbstractDataTree<D> extends UiAbstractDataWidget<D> {
+public interface UiAbstractDataTree<R> extends UiAbstractDataWidget<R> {
 
   /**
    * @param model the {@link TreeModel} that has to be set to initialize this data tree. Should be set only once
    *        immediately after creation. If you want another {@link TreeModel} create a new tree widget.
    */
-  void setTreeModel(TreeModel<D> model);
+  void setTreeModel(TreeModel<R> model);
 
   /**
    * Model that adapts the tree structure.

@@ -3,9 +3,7 @@
 package io.github.mmm.ui.api.event.action;
 
 /**
- * {@link UiAction} for <em>yes</em>. Typically used to confirm a
- * {@link io.github.mmm.ui.api.UiNotifier#showPopupYesNo(String, String, java.util.function.Consumer) simple question
- * popup}.
+ * {@link UiAction} for <em>yes</em>. Typically used to confirm a simple yes/no question popup.
  *
  * @since 1.0.0
  */

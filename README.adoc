@@ -18,7 +18,7 @@ You can write portable UI code that can run
 * as dummy implementation for automated unit tests using https://github.com/m-m-m/ui-test[mmm-ui-test]
 * ...in the future we might implement more alternatives such as iOS or SWT
 
-For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui.core/module-summary.html[documnetation].
+For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui.api.core/module-summary.html[documnetation].
 
 === Usage
 
@@ -32,13 +32,13 @@ Maven Dependency:
 
 Module Dependency:
 ```java
-  requires transitive io.github.mmm.ui.all;
+  requires transitive io.github.mmm.ui.api.all;
 ```
 
 == mmm-ui-api-binding
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-binding.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
-image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui.binding/module-summary.html"]
+image:https://m-m-m.github.io/javadoc.svg?status=online["apidoc",link="https://m-m-m.github.io/docs/api/io.github.mmm.ui.api.binding/module-summary.html"]
 
 The module `mmm-ui-api-binding` provides powerful databinding and generic form creation for `mmm-property` and `mmm-bean`. Save lots of work and boost your productivity to sky-rocket development.
 See the JavaDoc link for further details.

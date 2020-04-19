@@ -60,15 +60,20 @@ public interface UiControllerManager {
   /**
    * This method navigates back in the history to the {@link UiPlace} that has been visited before. In a web-application
    * this can also be triggered by pressing the back button.
+   *
+   * @return the new {@link UiPlace} that we just navigated back to. Will be {@code null} if there is no history left.
    */
-  void navigateBack();
+  UiPlace navigateBack();
 
   /**
    * This method navigates forward in the history. After {@link #navigateBack()} was invoked, this method will go to the
    * {@link UiPlace} that has been visited before the invocation of {@link #navigateBack()}. In a web-application this
    * can also be triggered by pressing the forward button.
+   *
+   * @return the new {@link UiPlace} that we just navigated forward to. Will be {@code null} if we are already at the
+   *         end of the history and nothing is left to navigate forward.
    */
-  void navigateForward();
+  UiPlace navigateForward();
 
   /**
    * @param place is the {@link UiPlace} identifying the {@link UiController} to open.

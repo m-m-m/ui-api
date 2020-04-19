@@ -7,9 +7,9 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 /**
  * A {@link UiAbstractDataWidget} that presents its data as a tree of nodes that can be expanded and collapsed.
  *
- * @param <D> type of the data model for the rows displayed by this widget. Typically a {@link io.github.mmm.bean.Bean}.
+ * @param <R> type of the tree nodes displayed as rows by this widget. Typically a {@link io.github.mmm.bean.Bean}.
  * @since 1.0.0
  */
-public interface UiDataTreeTable<D> extends UiAbstractDataTree<D>, UiAbstractDataTable<D>, UiNativeWidget {
+public interface UiDataTreeTable<R> extends UiAbstractDataTree<R>, UiAbstractDataTable<R>, UiNativeWidget {
 
 }

@@ -8,13 +8,13 @@ import io.github.mmm.ui.api.attribute.AttributeWriteSelections;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
- * Abstract interface for widgets showing complex data in columns such as {@link UiDataList}.
+ * Abstract interface for widgets showing complex data in columns such as {@link UiDataTable}.
  *
- * @param <D> type of the data model for the rows displayed by this widget. Typically a {@link io.github.mmm.bean.Bean}.
+ * @param <R> type of the data for the rows displayed by this widget. Typically a {@link io.github.mmm.bean.Bean}.
  * @since 1.0.0
  */
-public abstract interface UiAbstractDataWidget<D>
-    extends UiRegularWidget, AttributeWriteSelection<D>, AttributeWriteSelections<D>, AttributeWriteMultiSelection {
+public abstract interface UiAbstractDataWidget<R>
+    extends UiRegularWidget, AttributeWriteSelection<R>, AttributeWriteSelections<R>, AttributeWriteMultiSelection {
 
   /**
    * @return {@code true} to show an internal first {@link UiColumn column} that displays the row numbers (like in

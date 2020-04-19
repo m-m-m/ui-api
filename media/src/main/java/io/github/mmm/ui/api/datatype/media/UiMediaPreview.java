@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.datatype.media;
 
 import io.github.mmm.ui.api.attribute.AttributeReadSource;
-import io.github.mmm.ui.spi.widget.AbstractUiWidget;
+import io.github.mmm.ui.api.widget.AbstractUiWidget;
 
 /**
  * Datatype representing a preview of a {@link UiMedia}. It {@link #getSource() points} to a preview-image (called

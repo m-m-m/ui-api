@@ -12,11 +12,11 @@ import io.github.mmm.ui.api.widget.UiWidget;
 /**
  * {@link UiWidget} for a column of a {@link UiAbstractDataWidget}.
  *
- * @param <D> type of the data model. Typically a {@link io.github.mmm.bean.Bean}.
- * @param <C> type of the cells in this column.
+ * @param <R> type of the row data. Typically a {@link io.github.mmm.bean.Bean}.
+ * @param <V> type of the value for the cells in this column.
  * @since 1.0.0
  */
-public interface UiColumn<D, C> extends UiWidget, AttributeWriteTitle, AttributeWriteResizable {
+public interface UiColumn<R, V> extends UiWidget, AttributeWriteTitle, AttributeWriteResizable {
 
   /**
    * @return {@code true} if this column allows filtering, {@code false} otherwise. Typically filtering renders a text
@@ -52,13 +52,13 @@ public interface UiColumn<D, C> extends UiWidget, AttributeWriteTitle, Attribute
   /**
    * @return the {@link Comparator} used to sort the values. May be {@code null} to disable sorting.
    */
-  Comparator<C> getSortComparator();
+  Comparator<V> getSortComparator();
 
   /**
    * @param sortComparator the new value of {@link #getSortComparator()}. May be {@code null} to disable sorting.
    * @see Comparator#naturalOrder()
    */
-  void setSortComparator(Comparator<C> sortComparator);
+  void setSortComparator(Comparator<V> sortComparator);
 
   /**
    * @return {@code true} if this column is editable so the end-user can potentially edit the cell values of this column

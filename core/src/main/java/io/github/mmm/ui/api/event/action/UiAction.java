@@ -17,8 +17,8 @@ import io.github.mmm.ui.api.event.UiEventListener;
 public abstract interface UiAction extends UiEventListener {
 
   /**
-   * @return the ID of this action. Will be applied as {@link io.github.mmm.ui.api.widget.UiWidget#getId() widget ID} and
-   *         also used to derive {@link #getLabel() label} or potentially icon automatically.
+   * @return the ID of this action. Will be applied as {@link io.github.mmm.ui.api.widget.UiWidget#getId() widget ID}
+   *         and also used to derive {@link #getLabel() label} or potentially icon automatically.
    */
   String getId();
 
@@ -39,11 +39,14 @@ public abstract interface UiAction extends UiEventListener {
   }
 
   /**
-   * @return {@code true} if a {@link io.github.mmm.ui.api.UiNotifier#showPopupOk(String) popup} should be opened and
-   *         confirmed before {@link #onEvent(io.github.mmm.ui.api.event.UiEvent) invoking} this action.
+   * @return {@code true} if the user should confirm a question popup before this action is
+   *         {@link #onEvent(io.github.mmm.ui.api.event.UiEvent) invoked}.
    */
   default boolean requireConfirmation() {
 
+    if (getConfirmationMessage() != null) {
+      return true;
+    }
     return false;
   }
 
