@@ -19,12 +19,13 @@ public interface UiDataTable<R> extends UiAbstractDataTable<R>, UiValidatableWid
 
   /**
    * @param <R> type of the data for the rows displayed by this widget.
-   * @param template an instance of the row data as template.
+   * @param template an instance of the row data as {@link UiAbstractDataWidget#setRowTemplate(Object) template}.
    * @return the new {@link UiDataTable}.
    */
   static <R> UiDataTable<R> of(R template) {
 
     UiDataTable<R> widget = UiWidgetFactoryNative.get().create(UiDataTable.class);
+    widget.setRowTemplate(template);
     return widget;
   }
 

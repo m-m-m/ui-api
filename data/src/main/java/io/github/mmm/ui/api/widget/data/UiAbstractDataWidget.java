@@ -17,6 +17,11 @@ public abstract interface UiAbstractDataWidget<R>
     extends UiRegularWidget, AttributeWriteSelection<R>, AttributeWriteSelections<R>, AttributeWriteMultiSelection {
 
   /**
+   * @param rowTemplate the template instance of a row.
+   */
+  void setRowTemplate(R rowTemplate);
+
+  /**
    * @return {@code true} to show an internal first {@link UiColumn column} that displays the row numbers (like in
    *         Microsoft Excel), {@code false} otherwise.
    */
