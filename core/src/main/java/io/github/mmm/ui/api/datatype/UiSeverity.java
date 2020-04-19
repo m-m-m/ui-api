@@ -20,16 +20,16 @@ package io.github.mmm.ui.api.datatype;
 public class UiSeverity {
 
   /** {@link UiSeverity} indicating an general purpose information. */
-  public static final UiSeverity INFORMATION = new UiSeverity("information");
+  public static final UiSeverity INFORMATION = new UiSeverity("Information");
 
   /** {@link UiSeverity} indicating a warning. */
-  public static final UiSeverity WARNING = new UiSeverity("warning");
+  public static final UiSeverity WARNING = new UiSeverity("Warning");
 
   /** {@link UiSeverity} indicating an error. */
-  public static final UiSeverity ERROR = new UiSeverity("error");
+  public static final UiSeverity ERROR = new UiSeverity("Error");
 
   /** {@link UiSeverity} indicating a question. */
-  public static final UiSeverity QUESTION = new UiSeverity("question");
+  public static final UiSeverity QUESTION = new UiSeverity("Question");
 
   private final String name;
 
