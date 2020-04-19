@@ -20,21 +20,21 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
   int getColumnCount();
 
   /**
-   * @param <C> type of the cell values of the {@link UiColumn}.
-   * @param property the {@link PropertyPath property} of the data model ({@literal <D>}).
+   * @param <V> type of the cell values of the {@link UiColumn}.
+   * @param property the {@link PropertyPath property} of the row data.
    * @return the new {@link UiColumn}.
    * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
    */
-  <C> UiColumn<R, C> createColumn(PropertyPath<C> property);
+  <V> UiColumn<R, V> createColumn(PropertyPath<V> property);
 
   /**
    * @param title the {@link UiColumn#getTitle() column header title}.
    * @param adapter the {@link UiAbstractDataWidget.ColumnAdapter} giving access to read (and write) the column cell
    *        values from the data model.
-   * @param <C> type of the cell values of the {@link UiColumn}.
+   * @param <V> type of the cell values of the {@link UiColumn}.
    * @return the new {@link UiColumn}.
    */
-  <C> UiColumn<R, C> createColumn(String title, ColumnAdapter<R, C> adapter);
+  <V> UiColumn<R, V> createColumn(String title, ColumnAdapter<R, V> adapter);
 
   /**
    * @param index is the index of the requested {@link UiColumn}. The index corresponds to the index when the
@@ -53,14 +53,14 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
   void addColumn(UiColumn<R, ?> column);
 
   /**
-   * @param <C> type of the cell values of the {@link UiColumn}.
-   * @param property the {@link PropertyPath property} of the data model ({@literal <D>}).
+   * @param <V> type of the cell values of the {@link UiColumn}.
+   * @param property the {@link PropertyPath property} of the row data.
    * @return the new {@link UiColumn}.
    * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
    */
-  default <C> UiColumn<R, C> addColumn(PropertyPath<C> property) {
+  default <V> UiColumn<R, V> addColumn(PropertyPath<V> property) {
 
-    UiColumn<R, C> column = createColumn(property);
+    UiColumn<R, V> column = createColumn(property);
     addColumn(column);
     return column;
   }
@@ -96,9 +96,9 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
   void setFilterHandler(FilterHandler<R> filterHandler);
 
   /**
-   * @param <D> type of the data model for the rows.
+   * @param <R> type of the data model for the rows.
    */
-  interface FilterHandler<D> {
+  interface FilterHandler<R> {
 
     /**
      * @param column the {@link UiColumn} that has changed its filter.
@@ -108,7 +108,7 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
      *         behavior.
      * @see UiColumn#getFilterText()
      */
-    boolean onFilter(UiColumn<D, ?> column, boolean complete);
+    boolean onFilter(UiColumn<R, ?> column, boolean complete);
   }
 
 }
