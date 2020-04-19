@@ -11,7 +11,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionReset extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "reset";
+  String ACTION_ID = "Reset";
 
   @Override
   default String getId() {

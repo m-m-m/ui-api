@@ -13,7 +13,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionRemove extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "close";
+  String ACTION_ID = "Remove";
 
   @Override
   default String getId() {

@@ -14,7 +14,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionSubmit extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "submit";
+  String ACTION_ID = "Submit";
 
   @Override
   default String getId() {

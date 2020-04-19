@@ -13,7 +13,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionNext extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "next";
+  String ACTION_ID = "Next";
 
   @Override
   default String getId() {

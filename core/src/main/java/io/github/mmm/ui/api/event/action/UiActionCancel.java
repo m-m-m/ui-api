@@ -12,7 +12,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionCancel extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "cancel";
+  String ACTION_ID = "Cancel";
 
   @Override
   default String getId() {

@@ -15,7 +15,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
 public interface UiActionEdit extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "edit";
+  String ACTION_ID = "Edit";
 
   @Override
   default String getId() {

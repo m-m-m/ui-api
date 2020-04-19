@@ -12,19 +12,19 @@ import io.github.mmm.ui.impl.UiLocalizerProvider;
 public interface UiLocalizer {
 
   /** The default {@link #localize(String) localization key} for a validation failure. */
-  String KEY_DEFAULT_VALIDATION_FAILURE = "invalid";
+  String KEY_DEFAULT_VALIDATION_FAILURE = "_invalid";
 
   /**
    * The {@link #localize(String, Object, boolean) context} for the
    * {@link io.github.mmm.ui.api.widget.UiAtomicWidget#getTooltip() tooltip}.
    */
-  String CONTEXT_TOOLTIP = "tooltip";
+  String CONTEXT_TOOLTIP = "_tooltip";
 
   /**
    * The {@link #localize(String, Object, boolean) context} for the
    * {@link io.github.mmm.ui.api.event.action.UiAction#requireConfirmation() confirmation}.
    */
-  String CONTEXT_CONFIRM = "confirm";
+  String CONTEXT_CONFIRM = "_confirm";
 
   /**
    * @return the {@link Locale} of the current user.
@@ -70,7 +70,7 @@ public interface UiLocalizer {
    *        should not be {@code null} or this method will simply return {@code null}.
    * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Implementations may map the
    *         {@code context} to a different {@link java.util.ResourceBundle} or build a composed key as
-   *         {@code «key»_«context»}. If the localization for the specific context fails a general lookup without
+   *         {@code «key»«context»}. If the localization for the specific context fails a general lookup without
    *         {@code context} has to be used as fallback. If no localization could be found at all the original
    *         {@code key} shall be returned. Users of this method shall design their keys such that this fallback still
    *         makes sense.

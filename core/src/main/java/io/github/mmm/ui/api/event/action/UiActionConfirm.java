@@ -14,7 +14,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionConfirm extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "confirm";
+  String ACTION_ID = "Confirm";
 
   @Override
   default String getId() {

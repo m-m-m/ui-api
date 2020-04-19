@@ -14,7 +14,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionPrevious extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "previous";
+  String ACTION_ID = "Previous";
 
   @Override
   default String getId() {

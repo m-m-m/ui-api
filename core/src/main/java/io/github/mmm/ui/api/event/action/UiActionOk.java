@@ -15,7 +15,7 @@ public interface UiActionOk extends UiAction {
   };
 
   /** @see #getId() */
-  String ACTION_ID = "ok";
+  String ACTION_ID = "OK";
 
   @Override
   default String getId() {

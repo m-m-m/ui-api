@@ -12,7 +12,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionOpen extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "open";
+  String ACTION_ID = "Open";
 
   @Override
   default String getId() {

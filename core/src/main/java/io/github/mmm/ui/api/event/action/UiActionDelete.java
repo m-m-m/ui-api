@@ -12,7 +12,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionDelete extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "delete";
+  String ACTION_ID = "Delete";
 
   @Override
   default String getId() {

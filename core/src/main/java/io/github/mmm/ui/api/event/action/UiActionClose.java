@@ -11,7 +11,7 @@ package io.github.mmm.ui.api.event.action;
 public interface UiActionClose extends UiAction {
 
   /** @see #getId() */
-  String ACTION_ID = "close";
+  String ACTION_ID = "Close";
 
   @Override
   default String getId() {
