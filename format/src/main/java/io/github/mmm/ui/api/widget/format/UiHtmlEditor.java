@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.format;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
 
@@ -14,13 +14,12 @@ import io.github.mmm.ui.api.widget.input.UiInput;
 public interface UiHtmlEditor extends UiInput<String>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiHtmlEditor}.
    */
-  static UiHtmlEditor of(UiContext context, String name) {
+  static UiHtmlEditor of(String name) {
 
-    UiHtmlEditor widget = context.create(UiHtmlEditor.class);
+    UiHtmlEditor widget = UiWidgetFactoryNative.get().create(UiHtmlEditor.class);
     widget.setName(name);
     return widget;
   }

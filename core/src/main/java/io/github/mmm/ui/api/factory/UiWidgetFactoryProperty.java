@@ -2,14 +2,13 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.factory;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiInput;
 import io.github.mmm.ui.impl.factory.UiWidgetFactoryPropertyImpl;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
- * Interface for a factory used to {@link #create(Class, boolean) create} {@link UiInput}. API-Users should typically
- * use {@link io.github.mmm.ui.api.UiContext#createInput(ReadableTypedValue, boolean)} instead.
+ * Interface for a factory used to {@link #create(Class, boolean) create} {@link UiInput}. API-Users should use
+ * {@link UiInput#of(ReadableTypedValue)} instead.
  *
  * @since 1.0.0
  */
@@ -19,7 +18,6 @@ public abstract interface UiWidgetFactoryProperty {
    * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
    * @param propertyType is the {@link Class} reflecting the {@link UiSingleWidgetFactoryProperty#getType() property}.
    * @return the new {@link UiInput}.
-   * @see UiContext#createInput(ReadableTypedValue, boolean)
    * @see UiSingleWidgetFactoryProperty#create()
    */
   default <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType) {
@@ -33,7 +31,6 @@ public abstract interface UiWidgetFactoryProperty {
    * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype} has to be
    *        registered for the given {@code datatype}, {@code false} otherwise.
    * @return the new {@link UiInput}.
-   * @see UiContext#createInput(ReadableTypedValue, boolean)
    * @see UiSingleWidgetFactoryProperty#create()
    */
   <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType, boolean required);

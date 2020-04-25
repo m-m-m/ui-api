@@ -4,6 +4,8 @@ package io.github.mmm.ui.api;
 
 import java.util.concurrent.Callable;
 
+import io.github.mmm.ui.impl.UiDispatcherProvider;
+
 /**
  * This is the interface for the dispatcher of asynchronous processing.
  *
@@ -55,5 +57,13 @@ public interface UiDispatcher {
    * @param delayMilliseconds is the periodically delay in milliseconds when the {@code task} shall be executed.
    */
   void invokeTimer(Callable<Boolean> task, int delayMilliseconds);
+
+  /**
+   * @return the instance of this {@link UiDispatcher}.
+   */
+  static UiDispatcher get() {
+
+    return UiDispatcherProvider.DISPATCHER;
+  }
 
 }

@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.tab;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.attribute.AttributeWriteClosable;
 import io.github.mmm.ui.api.attribute.AttributeWriteText;
 import io.github.mmm.ui.api.datatype.UiValidState;
@@ -32,7 +32,8 @@ public interface UiTab extends UiMutableSingleComposite<UiRegularWidget>, Attrib
     if (state.isValid()) {
       setValidationFailure(null);
     } else {
-      setValidationFailure(UiContext.get().getDefaultValidationFailure());
+      String failure = UiLocalizer.get().localize(UiLocalizer.KEY_DEFAULT_VALIDATION_FAILURE);
+      setValidationFailure(failure);
     }
     UiMutableSingleComposite.super.validateUp(state);
   }

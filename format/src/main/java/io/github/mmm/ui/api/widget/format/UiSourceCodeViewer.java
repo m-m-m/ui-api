@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.format;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.value.UiValuedWidget;
@@ -16,13 +16,12 @@ import io.github.mmm.ui.api.widget.value.UiValuedWidget;
 public interface UiSourceCodeViewer extends UiValuedWidget<String>, UiRegularWidget, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param code the {@link #getValue() value} (source-code to display).
    * @return the new {@link UiSourceCodeViewer}.
    */
-  static UiSourceCodeViewer of(UiContext context, String code) {
+  static UiSourceCodeViewer of(String code) {
 
-    UiSourceCodeViewer widget = context.create(UiSourceCodeViewer.class);
+    UiSourceCodeViewer widget = UiWidgetFactoryNative.get().create(UiSourceCodeViewer.class);
     widget.setValue(code);
     return widget;
   }

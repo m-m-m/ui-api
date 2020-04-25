@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.factory;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.input.UiInput;
 
 /**
@@ -24,7 +23,7 @@ public interface UiSingleWidgetFactoryDatatype<V> extends UiSingleWidgetFactory<
 
   /**
    * @see UiWidgetFactoryDatatype#create(Class, boolean)
-   * @see UiContext#createInput(Class)
+   * @see UiInput#of(Class)
    */
   @Override
   UiInput<V> create();

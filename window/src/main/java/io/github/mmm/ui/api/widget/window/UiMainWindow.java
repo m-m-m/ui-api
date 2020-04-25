@@ -13,9 +13,9 @@ import io.github.mmm.ui.impl.widget.window.UiMainWindowProvider;
  * tab running the app).<br>
  * <b>ATTENTION:</b><br>
  * There must be only a single instance of {@link UiMainWindow} that shall be accessed via {@link #get()}. Never
- * manually create {@link UiMainWindow} via {@link io.github.mmm.ui.api.UiContext#create(Class)}. This is only possible
- * for modularity of the UI implementations and direct creation outside {@link io.github.mmm.ui.api.UiContext} is
- * unspecified and behavior can change in future versions.
+ * manually create {@link UiMainWindow} via {@link io.github.mmm.ui.api.factory.UiWidgetFactoryNative#create(Class)}.
+ * This is only possible for modularity of the UI implementations and direct creation is unspecified and behavior can
+ * change in future versions.
  *
  * @since 1.0.0
  */

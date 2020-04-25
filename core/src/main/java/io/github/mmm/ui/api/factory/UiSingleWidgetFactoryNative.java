@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.factory;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -21,7 +20,6 @@ public interface UiSingleWidgetFactoryNative<W extends UiNativeWidget> extends U
 
   /**
    * @see UiWidgetFactoryNative#create(Class, boolean)
-   * @see UiContext#create(Class)
    */
   @Override
   W create();

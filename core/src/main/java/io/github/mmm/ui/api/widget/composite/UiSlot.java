@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.composite;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
@@ -16,13 +16,12 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 public interface UiSlot extends UiMutableSingleComposite<UiRegularWidget>, UiNativeWidget {
 
   /**
-   * @param context the {@link UiContext}.
    * @param id the {@link #getId() ID}.
    * @return the new {@link UiSlot}.
    */
-  static UiSlot of(UiContext context, String id) {
+  static UiSlot of(String id) {
 
-    UiSlot slot = context.create(UiSlot.class);
+    UiSlot slot = UiWidgetFactoryNative.get().create(UiSlot.class);
     slot.setId(id);
     return slot;
   }

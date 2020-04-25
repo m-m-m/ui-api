@@ -3,12 +3,13 @@
 package io.github.mmm.ui.api;
 
 import io.github.mmm.ui.api.widget.input.UiRadioButton;
+import io.github.mmm.ui.impl.UiToggleGroupFactoryProvider;
 
 /**
  * This is a logical group that combines multiple {@link io.github.mmm.ui.api.widget.UiWidget}s such as
  * {@link UiRadioButton}s so that only one of them can be selected at a time.
  *
- * @see UiContext#createToggleGroup()
+ * @see #of()
  */
 public interface UiToggleGroup {
 
@@ -16,5 +17,13 @@ public interface UiToggleGroup {
    * @return the native toggle group from the underlying toolkit.
    */
   Object getGroup();
+
+  /**
+   * @return a new instance of {@link UiToggleGroup}.
+   */
+  static UiToggleGroup of() {
+
+    return UiToggleGroupFactoryProvider.FACTORY.create();
+  }
 
 }

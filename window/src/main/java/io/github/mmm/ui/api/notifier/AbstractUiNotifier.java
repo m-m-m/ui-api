@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.notifier;
 
-import io.github.mmm.ui.api.UiContext;
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
@@ -34,7 +34,7 @@ public abstract class AbstractUiNotifier implements UiNotifier {
   public UiPopup createPopup(String message, UiSeverity severity, String title, String details, UiAction... actions) {
 
     if ((title == null) || title.isEmpty()) {
-      title = UiContext.get().localize(severity.getName());
+      title = UiLocalizer.get().localize(severity.getName());
     }
     if (title == null) {
       title = severity.getName();

@@ -29,6 +29,8 @@ module io.github.mmm.ui.api.core {
 
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 
+  uses io.github.mmm.ui.api.factory.UiToggleGroupFactory;
+
   exports io.github.mmm.ui.api;
 
   exports io.github.mmm.ui.api.attribute;

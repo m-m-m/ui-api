@@ -3,7 +3,6 @@
 package io.github.mmm.ui.api.widget;
 
 import io.github.mmm.event.EventSource;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeReadValid;
 import io.github.mmm.ui.api.attribute.AttributeWriteId;
 import io.github.mmm.ui.api.attribute.AttributeWriteVisible;
@@ -20,13 +19,13 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  * Interface for an adapter to a physical <em>widget</em> of the underlying native widget toolkit. Anything displayed on
  * the UI <br>
  * A widget is any object of the UI (user interface) and may be atomic or {@link UiComposite composite}. <br>
- * {@link UiNativeWidget Native widgets} can be {@link UiContext#create(Class) created} via {@link UiContext} that has
- * implementations for all supported toolkits (technically via
- * {@link io.github.mmm.ui.api.factory.UiWidgetFactoryNative}). This way you can decide which native toolkit you like to
- * use just by configuration and dependencies. <br>
+ * {@link UiNativeWidget Native widgets} can be {@link io.github.mmm.ui.api.factory.UiWidgetFactoryNative#create(Class)
+ * created}. For convenience {@link UiNativeWidget native widgets} offer static {@code of} methods in their interface as
+ * a "constructor". So e.g. to create a new label simply use {@code UiLabel#of(String) UiLabel.of("My Labeltext")}.<br>
  * If you want to make your UI code portable even for toolkits such as SWT, you need to make proper use of
  * {@link #dispose()} for all {@link UiWidget}s that are no longer needed what is generally a good idea. Further for
- * toolkits such as web (via TeaVM) there are strict limitations for the client-side code.<br>
+ * toolkits such as the web with HTML/CSS/JS (via TeaVM) there are some limitations for the client-side code. Check out
+ * the documentation of TeaVM for further details.<br>
  * <b>ATTENTION:</b><br>
  * A {@link UiWidget} can only be used once in a client application. Even if you want to have the exact same button
  * twice on the screen you need to create two distinct instances. <br>
@@ -201,7 +200,7 @@ public interface UiWidget
    */
   default boolean validate() {
 
-    UiValidState state = UiContext.get().newValidState();
+    UiValidState state = new UiValidState();
     validateDown(state);
     boolean valid = state.isValid();
     UiComposite<?> parent = getParent();
