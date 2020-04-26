@@ -195,12 +195,52 @@ public interface UiWidget
    *         children} have been successfully validated, {@code false} otherwise.
    * @see io.github.mmm.ui.api.widget.value.UiValidatableWidget
    * @see #isValid()
+   * @see #validate(UiValidState)
    * @see #validateDown(UiValidState)
    * @see #validateUp(UiValidState)
    */
   default boolean validate() {
 
+    return validate(new UiValidState());
+  }
+
+  /**
+   * Triggers a validation of this widget (including all potential
+   * {@link io.github.mmm.ui.api.widget.composite.UiComposite#getChild(int) children} and propagation to
+   * {@link #getParent() parent}s). This will update the {@link #isValid() valid state} and
+   * {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget#getValidationFailure() failure message} of all
+   * involved widgets. For an immutable widget (e.g. a {@link UiLabel}) this method will have no effect and immediately
+   * returns {@code true}.
+   *
+   * @param updateFocus - {@code true} to put the focus in the first invalid field, {@code false} otherwise.
+   * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
+   *         widget and all its potential {@link io.github.mmm.ui.api.widget.composite.UiComposite#getChild(int)
+   *         children} have been successfully validated, {@code false} otherwise.
+   */
+  default boolean validate(boolean updateFocus) {
+
     UiValidState state = new UiValidState();
+    if (!updateFocus) {
+      state.setFocussed();
+    }
+    return validate(state);
+  }
+
+  /**
+   * Triggers a validation of this widget (including all potential
+   * {@link io.github.mmm.ui.api.widget.composite.UiComposite#getChild(int) children} and propagation to
+   * {@link #getParent() parent}s). This will update the {@link #isValid() valid state} and
+   * {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget#getValidationFailure() failure message} of all
+   * involved widgets. For an immutable widget (e.g. a {@link UiLabel}) this method will have no effect and immediately
+   * returns {@code true}.
+   *
+   * @param state the {@link UiValidState}.
+   * @return the new {@link #isValid() valid status} as result of this validation. In other words {@code true} if this
+   *         widget and all its potential {@link io.github.mmm.ui.api.widget.composite.UiComposite#getChild(int)
+   *         children} have been successfully validated, {@code false} otherwise.
+   */
+  default boolean validate(UiValidState state) {
+
     validateDown(state);
     boolean valid = state.isValid();
     UiComposite<?> parent = getParent();
