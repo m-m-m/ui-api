@@ -16,10 +16,10 @@ import io.github.mmm.property.container.ReadableContainerProperty;
 import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.event.UiValueChangeEvent;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
+import io.github.mmm.ui.api.widget.form.UiFormGroup;
+import io.github.mmm.ui.api.widget.form.UiFormPanel;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.ui.api.widget.panel.UiFormGroup;
-import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
 import io.github.mmm.validation.Validator;
 

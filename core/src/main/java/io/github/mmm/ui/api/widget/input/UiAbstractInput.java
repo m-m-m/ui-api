@@ -17,7 +17,7 @@ public abstract interface UiAbstractInput<V> extends UiValidatableWidget<V> {
 
   /**
    * @return the {@link UiLabel#getText() label} for the {@link UiInput#getNameWidget() name widget} or the title of
-   *         the {@link io.github.mmm.ui.api.widget.panel.UiFormGroup}.
+   *         the {@link io.github.mmm.ui.api.widget.form.UiFormGroup}.
    */
   String getName();
 

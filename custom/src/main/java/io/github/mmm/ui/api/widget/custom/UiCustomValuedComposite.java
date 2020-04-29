@@ -5,7 +5,7 @@ package io.github.mmm.ui.api.widget.custom;
 import io.github.mmm.ui.api.binding.UiValueBinding;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiValuedComposite;
-import io.github.mmm.ui.api.widget.panel.UiFormPanel;
+import io.github.mmm.ui.api.widget.form.UiFormPanel;
 import io.github.mmm.validation.Validator;
 
 /**

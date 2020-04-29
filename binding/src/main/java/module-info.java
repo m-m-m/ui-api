@@ -8,6 +8,8 @@
  */
 module io.github.mmm.ui.api.binding {
 
+  requires transitive io.github.mmm.ui.api.form;
+
   requires transitive io.github.mmm.ui.api.window;
 
   requires transitive io.github.mmm.entity.bean;

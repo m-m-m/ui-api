@@ -7,7 +7,7 @@
  */
 module io.github.mmm.ui.api.custom {
 
-  requires transitive io.github.mmm.ui.api.core;
+  requires transitive io.github.mmm.ui.api.form;
 
   exports io.github.mmm.ui.api.widget.custom;
 

@@ -2,8 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.custom;
 
+import io.github.mmm.ui.api.widget.form.UiFormPanel;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
-import io.github.mmm.ui.api.widget.panel.UiFormPanel;
 
 /**
  * {@link AbstractUiCustomWidget} that is a {@link UiFormPanel}.

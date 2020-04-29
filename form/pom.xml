@@ -7,23 +7,15 @@
     <artifactId>mmm-ui-api-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
-  <artifactId>mmm-ui-api-binding</artifactId>
+  <artifactId>mmm-ui-api-form</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
-  <description>API for user-interface.</description>
+  <description>API for form widgets (layout of input forms).</description>
   
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-form</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-window</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-entity-bean</artifactId>
+      <artifactId>mmm-ui-api-core</artifactId>
     </dependency>
   </dependencies>
 </project>

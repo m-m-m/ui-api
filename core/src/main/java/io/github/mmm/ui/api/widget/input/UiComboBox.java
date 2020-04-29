@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
@@ -25,5 +26,46 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
  * @since 1.0.0
  */
 public interface UiComboBox<V> extends UiAbstractSingleChoice<V>, UiTextualInput<V>, UiNativeWidget {
+
+  /**
+   * @param <V> type of the {@link UiComboBox#getOptions() options}.
+   * @param name the {@link #getName() name} (label).
+   * @return the new {@link UiComboBox} instance.
+   */
+  static <V> UiComboBox<V> of(String name) {
+
+    UiComboBox<V> widget = UiWidgetFactoryNative.get().create(UiComboBox.class);
+    if (name != null) {
+      widget.setName(name);
+    }
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link Enum} {@link UiComboBox#getOptions() options}.
+   * @param name the {@link #getName() name} (label).
+   * @param enumType the {@link Class} reflecting an {@link Enum} defining the options.
+   * @return the new {@link UiComboBox} instance.
+   */
+  static <V extends Enum<?>> UiComboBox<V> ofEnum(String name, Class<V> enumType) {
+
+    UiComboBox<V> widget = of(name);
+    widget.setOptions(enumType.getEnumConstants());
+    return widget;
+  }
+
+  /**
+   * @param <V> type of the {@link UiComboBox#getOptions() options}.
+   * @param name the {@link #getName() name} (label).
+   * @param options the {@link #getOptions() options}.
+   * @return the new {@link UiComboBox} instance.
+   */
+  @SuppressWarnings("unchecked")
+  static <V> UiComboBox<V> of(String name, V... options) {
+
+    UiComboBox<V> widget = of(name);
+    widget.setOptions(options);
+    return widget;
+  }
 
 }

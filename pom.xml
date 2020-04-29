@@ -28,6 +28,7 @@
     <module>chart</module>
     <module>custom</module>
     <module>data</module>
+    <module>form</module>
     <module>format</module>
     <module>media</module>
     <module>menu</module>
@@ -71,6 +72,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-data</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-form</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
