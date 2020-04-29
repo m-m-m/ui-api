@@ -15,6 +15,12 @@ import io.github.mmm.validation.Validator;
 public abstract interface UiValidatableWidget<V>
     extends UiValuedWidget<V>, AttributeWriteValidationFailure, AttributeWriteValueForUser<V> {
 
+  /**
+   * Custom style to mark widgets if {@link Validator#isMandatory() mandatory} (e.g.
+   * {@link io.github.mmm.ui.api.widget.input.UiInput#getNameWidget()}).
+   */
+  String STYLE_MANDATORY = "mandatory";
+
   @Override
   default boolean isValid() {
 
