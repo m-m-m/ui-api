@@ -11,7 +11,7 @@ module io.github.mmm.ui.api.controller {
 
   requires transitive io.github.mmm.ui.api.window;
 
-  uses io.github.mmm.ui.api.controller.UiControllerManager;
+  uses io.github.mmm.ui.api.controller.UiNavigationManager;
 
   uses io.github.mmm.ui.api.controller.AbstractUiController;
 

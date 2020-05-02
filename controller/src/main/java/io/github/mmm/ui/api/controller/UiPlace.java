@@ -39,7 +39,7 @@ import io.github.mmm.ui.api.attribute.AttributeReadId;
  *
  *  public static void navigateAddress(long id) {
  *    {@link UiPlace} place = placeAddress(id);
- *    {@link UiControllerManager}.{@link UiControllerManager#get() get()}.{@link UiControllerManager#navigateTo(UiPlace) navigateTo}(place);
+ *    {@link UiNavigationManager}.{@link UiNavigationManager#get() get()}.{@link UiNavigationManager#navigateTo(UiPlace) navigateTo}(place);
  *  }
  *
  * </pre>
@@ -49,13 +49,16 @@ import io.github.mmm.ui.api.attribute.AttributeReadId;
 public final class UiPlace implements AttributeReadId {
 
   /** The separator for {@link #getId() dialog-id} and its {@link #getParameters() parameters}. */
-  public static final char SEPARATOR_STATE = ':';
+  public static final char SEPARATOR_STATE = '?';
 
   /** The separator used between {@link #getParameters() parameters}. */
-  public static final char SEPARATOR_PARAMETER = ';';
+  public static final char SEPARATOR_PARAMETER = '&';
 
   /** The separator for key and value of a {@link #get(String) parameter}. */
   public static final char SEPARATOR_VALUE = '=';
+
+  /** The separator for anchor used to prevent that {@link #get(String) parameters} are send to the server. */
+  public static final char SEPARATOR_ANCHOR = '#';
 
   /** The regex pattern used to assert {@link #get(String) parameter keys}. */
   public static final String PATTERN_KEY = "[^;:=&/]+";
@@ -63,8 +66,11 @@ public final class UiPlace implements AttributeReadId {
   /** The regex pattern used to assert {@link #get(String) parameter values}. */
   public static final String PATTERN_VALUE = "[^;]*";
 
-  /** @see UiController#PATTERN_DIALOG_ID */
-  public static final String PATTERN_DIALOG_ID = UiController.PATTERN_DIALOG_ID;
+  /**
+   * The initial place before the client is initialized by navigating to the first place. This is not a valid place to
+   * navigate to.
+   */
+  public static final UiPlace NONE = new UiPlace("");
 
   private final String id;
 
@@ -89,7 +95,7 @@ public final class UiPlace implements AttributeReadId {
   public UiPlace(String id, Map<String, String> parameters) {
 
     super();
-    if (!id.matches(PATTERN_DIALOG_ID)) {
+    if (id.contains("?")) {
       throw new IllegalArgumentException(id);
     }
     this.id = id;
@@ -202,10 +208,11 @@ public final class UiPlace implements AttributeReadId {
   @Override
   public String toString() {
 
-    if (this.parameters == null) {
+    if ((this.parameters == null) || this.parameters.isEmpty()) {
       return this.id;
     } else {
       StringBuilder buffer = new StringBuilder(this.id);
+      buffer.append(SEPARATOR_ANCHOR);
       char separator = SEPARATOR_STATE;
       for (Entry<String, String> entry : this.parameters.entrySet()) {
         String key = entry.getKey();
@@ -233,14 +240,16 @@ public final class UiPlace implements AttributeReadId {
   public static UiPlace parse(String place) {
 
     int stateIndex = place.indexOf(SEPARATOR_STATE);
+    String id;
+    Map<String, String> parameters;
     if (stateIndex < 0) {
-      // myDialogId
-      return new UiPlace(place);
+      id = place;
+      parameters = Collections.emptyMap();
     } else {
       // myDialogId:key1=value1;key2=;key3;key4=value4
       // value2 and value3 are both the empty string.
-      String id = place.substring(0, stateIndex);
-      Map<String, String> parameters = new LinkedHashMap<>();
+      id = place.substring(0, stateIndex);
+      parameters = new LinkedHashMap<>();
       int start = stateIndex + 1;
       int length = place.length();
       while (start < length) {
@@ -262,8 +271,12 @@ public final class UiPlace implements AttributeReadId {
         parameters.put(key, value);
         start = end + 1;
       }
-      return new UiPlace(id, parameters);
     }
+    int last = id.length() - 1;
+    if ((last > 0) && (id.charAt(last) == SEPARATOR_ANCHOR)) {
+      id = id.substring(0, last);
+    }
+    return new UiPlace(id, parameters);
   }
 
   /**

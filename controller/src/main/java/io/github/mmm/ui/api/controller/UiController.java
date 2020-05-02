@@ -21,9 +21,6 @@ import io.github.mmm.ui.api.widget.composite.UiMutableSingleComposite;
  */
 public interface UiController<W extends UiWidget> extends AttributeReadTitle, AttributeReadId, AttributeReadVisible {
 
-  /** The regex pattern {@link #getId() dialog IDs} have to match. */
-  String PATTERN_DIALOG_ID = "[^:;=?&\\s/\\\\]+";
-
   /**
    * {@link UiController#getType() Type} of the <em>root</em> {@link UiController}. This is the top-level
    * {@link UiController} of the application and holds the {@link io.github.mmm.ui.api.widget.window.UiMainWindow} as
@@ -91,8 +88,8 @@ public interface UiController<W extends UiWidget> extends AttributeReadTitle, At
   /**
    * {@inheritDoc}
    *
-   * The ID of a dialog should only contain ASCII letters, Latin digits, hyphens or underscores. It must not contain
-   * ':', ';', '&', '?', '=', '/', '\\' or ' '.
+   * The ID of a dialog should only contain ASCII letters, Latin digits, hyphens or underscores. It may contain slashes
+   * ('/'). It must not contain '?', '&', '=', ':', ';', '\\' or ' '.
    *
    * @see #ID_ROOT
    * @see #ID_PAGE

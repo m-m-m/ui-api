@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.event;
 
+import io.github.mmm.ui.api.attribute.AttributeReadProgrammatic;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
@@ -9,7 +10,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public abstract class UiEvent {
+public abstract class UiEvent implements AttributeReadProgrammatic {
 
   private final UiWidget source;
 
@@ -36,11 +37,7 @@ public abstract class UiEvent {
     return this.source;
   }
 
-  /**
-   * @return {@code true} if this event was triggered by the program (e.g. via
-   *         {@link io.github.mmm.ui.api.widget.attribute.UiWidgetWithClick#click()}), {@code false} if performed by an end-user
-   *         interaction (e.g. keyboard, touch, or mouse).
-   */
+  @Override
   public boolean isProgrammatic() {
 
     return this.programmatic;

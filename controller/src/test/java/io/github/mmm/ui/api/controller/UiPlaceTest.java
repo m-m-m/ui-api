@@ -18,7 +18,7 @@ public class UiPlaceTest extends Assertions {
   @Test
   public void testParseWithoutParams() {
 
-    String id = "myDialogId";
+    String id = "my/dialog/id";
     UiPlace place = UiPlace.parse(id);
     assertThat(place.getId()).isEqualTo(id);
     assertThat(place.toString()).isEqualTo(id);
@@ -36,10 +36,10 @@ public class UiPlaceTest extends Assertions {
   public void testParseWithParams() {
 
     String id = "myDialogId";
-    String placeString = id + ":key1=value1;key2=;key3;key4=value4";
+    String placeString = id + "#?key1=value1&key2=&key3&key4=value4";
     UiPlace place = UiPlace.parse(placeString);
     assertThat(place.getId()).isEqualTo(id);
-    assertThat(place.toString()).isEqualTo("myDialogId:key1=value1;key2=;key3=;key4=value4");
+    assertThat(place.toString()).isEqualTo("myDialogId#?key1=value1&key2=&key3=&key4=value4");
     assertThat(place.get("key1")).isEqualTo("value1");
     assertThat(place.get("key2")).isEmpty();
     assertThat(place.get("key3")).isEmpty();
@@ -100,10 +100,10 @@ public class UiPlaceTest extends Assertions {
     assertThat(place.toString()).isEqualTo(id);
     assertThat(place.getParameters()).isEmpty();
     place = UiPlace.of(id, "key1", null, "key2", "value2");
-    assertThat(place.toString()).isEqualTo("placeId:key2=value2");
+    assertThat(place.toString()).isEqualTo("placeId#?key2=value2");
     assertThat(place.get("key2")).isEqualTo("value2");
     place = UiPlace.of(id, "key1", "value1", "key2", "value2");
-    assertThat(place.toString()).isEqualTo("placeId:key1=value1;key2=value2");
+    assertThat(place.toString()).isEqualTo("placeId#?key1=value1&key2=value2");
     assertThat(place.get("key1")).isEqualTo("value1");
     assertThat(place.get("key2")).isEqualTo("value2");
 
@@ -120,19 +120,19 @@ public class UiPlaceTest extends Assertions {
     String id = "placeId";
     assertThat(UiPlace.of(id, "key1", null, "key2", null, "key3", null).toString()).isEqualTo(id);
     assertThat(UiPlace.of(id, "key1", "value1", "key2", null, "key3", null).toString())
-        .isEqualTo("placeId:key1=value1");
+        .isEqualTo("placeId#?key1=value1");
     assertThat(UiPlace.of(id, "key1", null, "key2", "value2", "key3", null).toString())
-        .isEqualTo("placeId:key2=value2");
+        .isEqualTo("placeId#?key2=value2");
     assertThat(UiPlace.of(id, "key1", null, "key2", null, "key3", "value3").toString())
-        .isEqualTo("placeId:key3=value3");
+        .isEqualTo("placeId#?key3=value3");
     assertThat(UiPlace.of(id, "key1", "value1", "key2", "value2", "key3", null).toString())
-        .isEqualTo("placeId:key1=value1;key2=value2");
+        .isEqualTo("placeId#?key1=value1&key2=value2");
     assertThat(UiPlace.of(id, "key1", "value1", "key2", null, "key3", "value3").toString())
-        .isEqualTo("placeId:key1=value1;key3=value3");
+        .isEqualTo("placeId#?key1=value1&key3=value3");
     assertThat(UiPlace.of(id, "key1", null, "key2", "value2", "key3", "value3").toString())
-        .isEqualTo("placeId:key2=value2;key3=value3");
+        .isEqualTo("placeId#?key2=value2&key3=value3");
     assertThat(UiPlace.of(id, "key1", "value1", "key2", "value2", "key3", "value3").toString())
-        .isEqualTo("placeId:key1=value1;key2=value2;key3=value3");
+        .isEqualTo("placeId#?key1=value1&key2=value2&key3=value3");
   }
 
   /**

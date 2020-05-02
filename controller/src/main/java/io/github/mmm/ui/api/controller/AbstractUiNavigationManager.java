@@ -9,15 +9,17 @@ import java.util.ServiceLoader;
 
 import io.github.mmm.base.exception.DuplicateObjectException;
 import io.github.mmm.base.exception.ObjectNotFoundException;
+import io.github.mmm.event.AbstractEventSource;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiMutableSingleComposite;
 
 /**
- * Implementation of {@link UiControllerManager}.
+ * Implementation of {@link UiNavigationManager}.
  *
  * @since 1.0.0
  */
-public abstract class AbstractUiControllerManager implements UiControllerManager {
+public abstract class AbstractUiNavigationManager
+    extends AbstractEventSource<UiNavigationEvent, UiNavigationEventListener> implements UiNavigationManager {
 
   private final Map<String, AbstractUiController<?>> id2controllerMap;
 
@@ -29,11 +31,12 @@ public abstract class AbstractUiControllerManager implements UiControllerManager
    * The constructor.
    */
   @SuppressWarnings("rawtypes")
-  public AbstractUiControllerManager() {
+  public AbstractUiNavigationManager() {
 
     super();
     this.id2controllerMap = new HashMap<>();
     this.type2controllerMap = new HashMap<>();
+    this.currentPlace = UiPlace.NONE;
     ServiceLoader<AbstractUiController> serviceLoader = ServiceLoader.load(AbstractUiController.class);
     for (AbstractUiController<?> controller : serviceLoader) {
       register(controller);
@@ -82,10 +85,21 @@ public abstract class AbstractUiControllerManager implements UiControllerManager
   @Override
   public void navigateTo(UiPlace place) {
 
-    // TODO
+    navigateTo(place, true);
+  }
+
+  /**
+   * @param place is the {@link UiPlace} identifying the {@link UiController} to open.
+   * @param programmatic the {@link UiNavigationEvent#isProgrammatic() programmatic flag}.
+   * @see #navigateTo(UiPlace)
+   */
+  protected void navigateTo(UiPlace place, boolean programmatic) {
+
     Objects.requireNonNull(place, "place");
+    UiPlace oldPlace = this.currentPlace;
     navigateRecursive(place, null);
     this.currentPlace = place;
+    fireEvent(new UiNavigationEvent(oldPlace, place, programmatic));
   }
 
   /**

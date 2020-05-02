@@ -6,10 +6,10 @@ import java.util.ServiceLoader;
 
 import io.github.mmm.base.exception.DuplicateObjectException;
 import io.github.mmm.base.exception.ObjectNotFoundException;
-import io.github.mmm.ui.api.controller.UiControllerManager;
+import io.github.mmm.ui.api.controller.UiNavigationManager;
 
 /**
- * Provider for {@link UiControllerManager}.
+ * Provider for {@link UiNavigationManager}.
  *
  * @since 1.0.0
  */
@@ -18,30 +18,30 @@ public class UiControllerManagerProvider {
   /** The singleton instance. */
   public static final UiControllerManagerProvider INSTANCE = new UiControllerManagerProvider();
 
-  private final UiControllerManager controllerManager;
+  private final UiNavigationManager controllerManager;
 
   private UiControllerManagerProvider() {
 
     super();
-    ServiceLoader<UiControllerManager> serviceLoader = ServiceLoader.load(UiControllerManager.class);
-    UiControllerManager cm = null;
-    for (UiControllerManager manager : serviceLoader) {
+    ServiceLoader<UiNavigationManager> serviceLoader = ServiceLoader.load(UiNavigationManager.class);
+    UiNavigationManager cm = null;
+    for (UiNavigationManager manager : serviceLoader) {
       if (cm == null) {
         cm = manager;
       } else {
-        throw new DuplicateObjectException(manager, UiControllerManager.class.getSimpleName(), cm);
+        throw new DuplicateObjectException(manager, UiNavigationManager.class.getSimpleName(), cm);
       }
     }
     if (cm == null) {
-      throw new ObjectNotFoundException(UiControllerManager.class.getSimpleName());
+      throw new ObjectNotFoundException(UiNavigationManager.class.getSimpleName());
     }
     this.controllerManager = cm;
   }
 
   /**
-   * @return the {@link UiControllerManager}.
+   * @return the {@link UiNavigationManager}.
    */
-  public UiControllerManager getControllerManager() {
+  public UiNavigationManager getControllerManager() {
 
     return this.controllerManager;
   }

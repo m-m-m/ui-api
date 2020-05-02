@@ -3,6 +3,7 @@
 package io.github.mmm.ui.api.controller;
 
 import io.github.mmm.base.exception.ObjectNotFoundException;
+import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.impl.controller.UiControllerManagerProvider;
 
@@ -11,7 +12,7 @@ import io.github.mmm.ui.impl.controller.UiControllerManagerProvider;
  *
  * @since 1.0.0
  */
-public interface UiControllerManager {
+public interface UiNavigationManager extends EventSource<UiNavigationEvent, UiNavigationEventListener> {
 
   /**
    * @param <W> type of the {@link UiController#getView() view}.
@@ -81,9 +82,9 @@ public interface UiControllerManager {
   void navigateTo(UiPlace place);
 
   /**
-   * @return the instance of this {@link UiControllerManager}.
+   * @return the instance of this {@link UiNavigationManager}.
    */
-  static UiControllerManager get() {
+  static UiNavigationManager get() {
 
     return UiControllerManagerProvider.INSTANCE.getControllerManager();
   }
