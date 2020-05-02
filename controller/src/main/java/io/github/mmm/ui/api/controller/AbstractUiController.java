@@ -112,7 +112,7 @@ public abstract class AbstractUiController<W extends UiWidget> implements UiCont
   /**
    * This method resets this {@link AbstractUiController} and disposes its {@link #getView() view}.
    */
-  protected final void reset() {
+  public final void reset() {
 
     onReset();
     if (this.view != null) {

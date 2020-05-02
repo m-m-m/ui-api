@@ -5,7 +5,7 @@ package io.github.mmm.ui.api.controller;
 import io.github.mmm.base.exception.ObjectNotFoundException;
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.impl.controller.UiControllerManagerProvider;
+import io.github.mmm.ui.impl.controller.UiNavigationManagerProvider;
 
 /**
  * Interface to manage {@link UiController}s.
@@ -77,16 +77,44 @@ public interface UiNavigationManager extends EventSource<UiNavigationEvent, UiNa
   UiPlace navigateForward();
 
   /**
+   * Navigates to the given {@link UiPlace}.
+   *
    * @param place is the {@link UiPlace} identifying the {@link UiController} to open.
    */
-  void navigateTo(UiPlace place);
+  default void navigateTo(UiPlace place) {
+
+    navigateTo(place, false);
+  }
+
+  /**
+   * Navigates to the given {@link UiPlace}.
+   *
+   * @param place is the {@link UiPlace} identifying the {@link UiController} to open.
+   * @param replace - if {@code true} the {@link #getCurrentPlace() current place} will be replaced with the given
+   *        {@link UiPlace}, {@code false} otherwise (default). Replacing is e.g. helpful for {@link UiController}s that
+   *        do logical decisions and only redirect to the actual {@link UiPlace}.
+   */
+  void navigateTo(UiPlace place, boolean replace);
+
+  /**
+   * Replaces the {@link #getCurrentPlace() current place} with the given {@link UiPlace} without creating a new entry
+   * in the navigation history.
+   *
+   * @param place the updated {@link UiPlace}. Currently the {@link UiPlace#getId() ID} of the {@link #getCurrentPlace()
+   *        current place} may not change. This is only to update {@link UiPlace#getParameters() parameters}. E.g. if
+   *        you want to represent the selection of a master-detail dialog in the location (URL) you can use a
+   *        {@link UiPlace#get(String) parameter}. This method allows to update the {@link UiPlace} and therefore the
+   *        location without adding it to the history so {@link #navigateBack()} navigating back} is not replaying the
+   *        entire history of the end-users selection what is typically undesired.
+   */
+  void updatePlace(UiPlace place);
 
   /**
    * @return the instance of this {@link UiNavigationManager}.
    */
   static UiNavigationManager get() {
 
-    return UiControllerManagerProvider.INSTANCE.getControllerManager();
+    return UiNavigationManagerProvider.MANAGER;
   }
 
 }

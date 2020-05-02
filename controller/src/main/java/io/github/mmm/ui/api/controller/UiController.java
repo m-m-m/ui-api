@@ -88,8 +88,8 @@ public interface UiController<W extends UiWidget> extends AttributeReadTitle, At
   /**
    * {@inheritDoc}
    *
-   * The ID of a dialog should only contain ASCII letters, Latin digits, hyphens or underscores. It may contain slashes
-   * ('/'). It must not contain '?', '&', '=', ':', ';', '\\' or ' '.
+   * The ID of a controller should only contain ASCII letters, Latin digits, hyphens or underscores. It may also contain
+   * slashes ('/') or the hash sign ('#'). It must not contain '?', '&', '=', ':', ';', '\\' or ' '.
    *
    * @see #ID_ROOT
    * @see #ID_PAGE

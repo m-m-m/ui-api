@@ -72,6 +72,9 @@ public final class UiPlace implements AttributeReadId {
    */
   public static final UiPlace NONE = new UiPlace("");
 
+  /** The default place to navigate to if the application is started without specifying a custom {@link UiPlace}. */
+  public static final UiPlace HOME = new UiPlace(UiController.ID_HOME);
+
   private final String id;
 
   private Map<String, String> parameters;
@@ -212,7 +215,6 @@ public final class UiPlace implements AttributeReadId {
       return this.id;
     } else {
       StringBuilder buffer = new StringBuilder(this.id);
-      buffer.append(SEPARATOR_ANCHOR);
       char separator = SEPARATOR_STATE;
       for (Entry<String, String> entry : this.parameters.entrySet()) {
         String key = entry.getKey();
@@ -271,10 +273,6 @@ public final class UiPlace implements AttributeReadId {
         parameters.put(key, value);
         start = end + 1;
       }
-    }
-    int last = id.length() - 1;
-    if ((last > 0) && (id.charAt(last) == SEPARATOR_ANCHOR)) {
-      id = id.substring(0, last);
     }
     return new UiPlace(id, parameters);
   }
