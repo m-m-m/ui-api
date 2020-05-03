@@ -13,7 +13,7 @@ import io.github.mmm.ui.api.attribute.AttributeReadId;
 public class UiControllerSlot implements AttributeReadId {
 
   /** {@link UiControllerSlot} for the {@link UiController#TYPE_PAGE page} controller. */
-  public static final UiControllerSlot SLOT_ROOT_PAGE = new UiControllerSlot(UiController.ID_ROOT,
+  public static final UiControllerSlot SLOT_ROOT = new UiControllerSlot(UiController.ID_ROOT,
       UiController.TYPE_PAGE);
 
   /** {@link UiControllerSlot} for the {@link UiController#TYPE_MAIN main} controller. */
@@ -21,7 +21,7 @@ public class UiControllerSlot implements AttributeReadId {
       UiController.TYPE_MAIN);
 
   /** {@link UiControllerSlot} for the {@link UiController#TYPE_NAVIGATION navigation} controller. */
-  public static final UiControllerSlot SLOT_PAGE_NAVIGATION = new UiControllerSlot(UiController.ID_NAVIGATION,
+  public static final UiControllerSlot SLOT_NAVIGATION = new UiControllerSlot(UiController.ID_NAVIGATION,
       UiController.TYPE_NAVIGATION);
 
   private final String id;

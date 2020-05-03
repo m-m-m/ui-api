@@ -13,7 +13,7 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
  *
  * @since 1.0.0
  */
-public interface UiSlot extends UiMutableSingleComposite<UiRegularWidget>, UiNativeWidget {
+public interface UiSlot extends UiMutableSingleComposite<UiRegularWidget>, UiRegularWidget, UiNativeWidget {
 
   /**
    * @param id the {@link #getId() ID}.

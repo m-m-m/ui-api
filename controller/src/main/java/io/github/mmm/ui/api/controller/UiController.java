@@ -25,8 +25,6 @@ public interface UiController<W extends UiWidget> extends AttributeReadTitle, At
    * {@link UiController#getType() Type} of the <em>root</em> {@link UiController}. This is the top-level
    * {@link UiController} of the application and holds the {@link io.github.mmm.ui.api.widget.window.UiMainWindow} as
    * {@link #getView() view}.
-   *
-   * @see io.github.mmm.ui.impl.controller.UiControllerRoot
    */
   String TYPE_ROOT = "Root";
 
@@ -123,11 +121,11 @@ public interface UiController<W extends UiWidget> extends AttributeReadTitle, At
   String getType();
 
   /**
-   * @param slot the {@link UiControllerSlot#getSlot() slot name}.
+   * @param slotId the {@link UiControllerSlot#getSlot() slot identifier}.
    * @return the {@link UiMutableSingleComposite} where to embed the {@link #getView() view} of a child
    *         {@link UiController} or {@code null} if no such slot is defined by this {@link UiController}.
    */
-  default UiMutableSingleComposite<? extends UiRegularWidget> getSlot(String slot) {
+  default UiMutableSingleComposite<? extends UiRegularWidget> getSlot(String slotId) {
 
     return null;
   }
