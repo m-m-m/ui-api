@@ -8,22 +8,33 @@ import io.github.mmm.ui.api.event.UiEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
- * This is the interface for an normal {@link UiAbstractButton button}. Unlike a {@link UiLink} it typically changes
- * some state. Only use a {@link UiButton} for navigation in case the navigation target depends on some other widget or
- * selection. E.g. in a master/detail panel you may select an element from a list and have buttons to delete or edit the
- * selected element. While the "edit" button will only navigate to another dialog the result depends on the selected
- * element. If the navigation target will be independent from external state always prefer a {@link UiLink} instead.<br>
+ * {@link UiRegularWidget} that represents a hyperlink (link). A link is some text that is highlighted and can be
+ * clicked in order to navigate somewhere.<br>
+ * <b>ATTENTION:</b> For usability a {@link UiLink} shall invoke an action that navigates somewhere. For actions that
+ * change some state, load additional data, or do something that does not switch the current dialog use other widgets,
+ * typically {@link UiButton} instead.<br>
  * Here you can see an example (with {@link #setText(String) label} "Click me"):
  *
  * <pre>
- * <button type="button">Click me</button>
+ * <a href="https://en.wikipedia.org/wiki/Hyperlink">Click me</a>
  * </pre>
  *
  * @since 1.0.0
  */
-public interface UiButton extends UiAbstractButton, UiNativeWidget {
+public interface UiLink extends UiAbstractButton, UiNativeWidget {
+
+  /**
+   * @return the hyperlink reference. Typically an URL to open when the link is clicked.
+   */
+  String getHref();
+
+  /**
+   * @param href the new value of {@link #getHref()}.
+   */
+  void setHref(String href);
 
   /**
    * @param label the {@link UiButton#getText() label}.
@@ -31,9 +42,9 @@ public interface UiButton extends UiAbstractButton, UiNativeWidget {
    * @return the new {@link UiButton}.
    * @see #of(UiAction)
    */
-  static UiButton of(String label, UiClickEventListener listener) {
+  static UiLink of(String label, UiClickEventListener listener) {
 
-    UiButton widget = UiWidgetFactoryNative.get().create(UiButton.class);
+    UiLink widget = UiWidgetFactoryNative.get().create(UiLink.class);
     widget.setText(label);
     if (listener != null) {
       widget.addListener(listener);
@@ -45,9 +56,9 @@ public interface UiButton extends UiAbstractButton, UiNativeWidget {
    * @param action the {@link UiAction}.
    * @return the new {@link UiButton}.
    */
-  static UiButton of(UiAction action) {
+  static UiLink of(UiAction action) {
 
-    UiButton button = UiWidgetFactoryNative.get().create(UiButton.class);
+    UiLink button = UiWidgetFactoryNative.get().create(UiLink.class);
     UiActionBinding.get().bind(action, button);
     return button;
   }
