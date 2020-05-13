@@ -7,7 +7,7 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
  * {@link UiAbstractImage} for an icon. Unlike a {@link UiImage} that can show images from any
- * {@link UiImage#getSource() source} (URL) a {@link UiIcon} can only show icons out of a predefined set of icons
+ * {@link UiImage#getUrl() source} (URL) a {@link UiIcon} can only show icons out of a predefined set of icons
  * shipped with the implementation. By default the icons of FontAwesome are used. In order to be portable the
  * {@link #getIconId() icon IDs} of the icons used by {@code mmm-ui} use their own naming. Even when using FontAwesome
  * this allows to replace the FontAwesome-icon used for warning, error, etc. with a simple modification of a style-sheet

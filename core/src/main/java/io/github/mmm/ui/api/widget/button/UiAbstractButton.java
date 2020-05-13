@@ -5,13 +5,14 @@ package io.github.mmm.ui.api.widget.button;
 import io.github.mmm.ui.api.widget.UiAtomicWidget;
 import io.github.mmm.ui.api.widget.UiClickableWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.link.UiInternalLink;
 
 /**
  * This is the abstract interface for an {@link UiRegularWidget regular widget} that represents a <em>button</em> what
  * is a widget that can be clicked by the end-user in order to trigger some action.
  *
  * @see UiButton
- * @see UiLink
+ * @see UiInternalLink
  *
  * @since 1.0.0
  */

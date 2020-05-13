@@ -5,6 +5,15 @@
 
 /**
  * Provides the API for the universal user-interface framework.
+ * 
+ * @uses io.github.mmm.ui.api.factory.UiToggleGroupFactory
+ * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty
+ * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype
+ * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
+ * @uses io.github.mmm.ui.api.binding.UiActionBinding
+ * @uses io.github.mmm.ui.api.UiScreen
+ * @uses io.github.mmm.ui.api.UiLocalizer
+ * @uses io.github.mmm.ui.api.UiContext
  */
 @SuppressWarnings("rawtypes") //
 module io.github.mmm.ui.api.core {
@@ -60,6 +69,8 @@ module io.github.mmm.ui.api.core {
   exports io.github.mmm.ui.api.widget.img;
 
   exports io.github.mmm.ui.api.widget.input;
+
+  exports io.github.mmm.ui.api.widget.link;
 
   exports io.github.mmm.ui.api.widget.panel;
 

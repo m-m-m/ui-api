@@ -4,17 +4,17 @@ package io.github.mmm.ui.api.datatype.media;
 
 import io.github.mmm.ui.api.attribute.AttributeReadLanguage;
 import io.github.mmm.ui.api.attribute.AttributeReadMimetype;
-import io.github.mmm.ui.api.attribute.AttributeReadSource;
+import io.github.mmm.ui.api.attribute.AttributeReadUrl;
 import io.github.mmm.ui.api.widget.AbstractUiWidget;
 
 /**
- * Datatype representing a single source of a {@link UiMedia}. It {@link #getSource() points} to the actual content.
+ * Datatype representing a single source of a {@link UiMedia}. It {@link #getUrl() points} to the actual content.
  *
  * @since 1.0.0
  */
-public final class UiMediaSource implements AttributeReadSource, AttributeReadMimetype, AttributeReadLanguage {
+public final class UiMediaSource implements AttributeReadUrl, AttributeReadMimetype, AttributeReadLanguage {
 
-  private final String source;
+  private final String url;
 
   private final String mimetype;
 
@@ -23,36 +23,36 @@ public final class UiMediaSource implements AttributeReadSource, AttributeReadMi
   /**
    * The constructor.
    *
-   * @param source the {@link #getSource() source}.
+   * @param url the {@link #getUrl() URL}.
    * @param mimetype the {@link #getMimetype() mimetype}.
    */
-  public UiMediaSource(String source, String mimetype) {
+  public UiMediaSource(String url, String mimetype) {
 
-    this(source, mimetype, null);
+    this(url, mimetype, null);
   }
 
   /**
    * The constructor.
    *
-   * @param source the {@link #getSource() source}.
+   * @param url the {@link #getUrl() URL}.
    * @param mimetype the {@link #getMimetype() mimetype}.
    * @param language the {@link #getLanguage() language}.
    */
-  public UiMediaSource(String source, String mimetype, String language) {
+  public UiMediaSource(String url, String mimetype, String language) {
 
     super();
-    if (AbstractUiWidget.isEmpty(source)) {
-      throw new IllegalArgumentException("source=" + source);
+    if (AbstractUiWidget.isEmpty(url)) {
+      throw new IllegalArgumentException("url=" + url);
     }
-    this.source = source;
+    this.url = url;
     this.mimetype = mimetype;
     this.language = language;
   }
 
   @Override
-  public String getSource() {
+  public String getUrl() {
 
-    return this.source;
+    return this.url;
   }
 
   @Override

@@ -8,14 +8,15 @@ import io.github.mmm.ui.api.event.UiEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.link.UiAbstractLink;
 
 /**
- * This is the interface for an normal {@link UiAbstractButton button}. Unlike a {@link UiLink} it typically changes
+ * This is the interface for an normal {@link UiAbstractButton button}. Unlike a {@link UiAbstractLink} it typically changes
  * some state. Only use a {@link UiButton} for navigation in case the navigation target depends on some other widget or
  * selection. E.g. in a master/detail panel you may select an element from a list and have buttons to delete or edit the
  * selected element. While the "edit" button will only navigate to another dialog the result depends on the selected
- * element. If the navigation target will be independent from external state always prefer a {@link UiLink} instead.<br>
- * Here you can see an example (with {@link #setText(String) label} "Click me"):
+ * element. If the navigation target will be independent from external state always prefer a {@link UiAbstractLink} instead.<br>
+ * Here you can see an example (with {@link #setText(String) setText("Click me")}):
  *
  * <pre>
  * <button type="button">Click me</button>

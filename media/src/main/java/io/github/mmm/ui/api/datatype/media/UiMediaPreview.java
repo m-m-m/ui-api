@@ -2,49 +2,49 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.datatype.media;
 
-import io.github.mmm.ui.api.attribute.AttributeReadSource;
+import io.github.mmm.ui.api.attribute.AttributeReadUrl;
 import io.github.mmm.ui.api.widget.AbstractUiWidget;
 
 /**
- * Datatype representing a preview of a {@link UiMedia}. It {@link #getSource() points} to a preview-image (called
+ * Datatype representing a preview of a {@link UiMedia}. It {@link #getUrl() points} to a preview-image (called
  * {@code poster} in HTML) .
  *
  * @since 1.0.0
  */
-public final class UiMediaPreview implements AttributeReadSource {
+public final class UiMediaPreview implements AttributeReadUrl {
 
-  private final String source;
+  private final String url;
 
   /**
    * The constructor.
    *
-   * @param source the {@link #getSource() source}.
+   * @param url the {@link #getUrl() URL}.
    */
-  public UiMediaPreview(String source) {
+  public UiMediaPreview(String url) {
 
     super();
-    if (AbstractUiWidget.isEmpty(source)) {
-      throw new IllegalArgumentException("source=" + source);
+    if (AbstractUiWidget.isEmpty(url)) {
+      throw new IllegalArgumentException("url=" + url);
     }
-    this.source = source;
+    this.url = url;
   }
 
   @Override
-  public String getSource() {
+  public String getUrl() {
 
-    return this.source;
+    return this.url;
   }
 
   /**
-   * @param source the {@link #getSource() source}.
+   * @param url the {@link #getUrl() url}.
    * @return a new {@link UiMediaPreview} instance.
    */
-  public static UiMediaPreview of(String source) {
+  public static UiMediaPreview of(String url) {
 
-    if ((source == null) || source.isEmpty()) {
+    if ((url == null) || url.isEmpty()) {
       return null;
     }
-    return new UiMediaPreview(source);
+    return new UiMediaPreview(url);
   }
 
 }

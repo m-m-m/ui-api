@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.button;
+package io.github.mmm.ui.api.widget.link;
 
 import io.github.mmm.ui.api.binding.UiActionBinding;
 import io.github.mmm.ui.api.event.UiClickEventListener;
@@ -9,13 +9,15 @@ import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.button.UiAbstractButton;
+import io.github.mmm.ui.api.widget.button.UiButton;
 
 /**
  * {@link UiRegularWidget} that represents a hyperlink (link). A link is some text that is highlighted and can be
  * clicked in order to navigate somewhere.<br>
- * <b>ATTENTION:</b> For usability a {@link UiLink} shall invoke an action that navigates somewhere. For actions that
- * change some state, load additional data, or do something that does not switch the current dialog use other widgets,
- * typically {@link UiButton} instead.<br>
+ * <b>ATTENTION:</b> For usability a {@link UiInternalLink} shall invoke an action that navigates somewhere. For actions
+ * that change some state, load additional data, or do something that does not switch the current dialog use other
+ * widgets, typically {@link UiButton} instead.<br>
  * Here you can see an example (with {@link #setText(String) label} "Click me"):
  *
  * <pre>
@@ -24,17 +26,7 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
  *
  * @since 1.0.0
  */
-public interface UiLink extends UiAbstractButton, UiNativeWidget {
-
-  /**
-   * @return the hyperlink reference. Typically an URL to open when the link is clicked.
-   */
-  String getHref();
-
-  /**
-   * @param href the new value of {@link #getHref()}.
-   */
-  void setHref(String href);
+public abstract interface UiInternalLink extends UiAbstractButton, UiAbstractLink, UiNativeWidget {
 
   /**
    * @param label the {@link UiButton#getText() label}.
@@ -42,9 +34,9 @@ public interface UiLink extends UiAbstractButton, UiNativeWidget {
    * @return the new {@link UiButton}.
    * @see #of(UiAction)
    */
-  static UiLink of(String label, UiClickEventListener listener) {
+  static UiInternalLink of(String label, UiClickEventListener listener) {
 
-    UiLink widget = UiWidgetFactoryNative.get().create(UiLink.class);
+    UiInternalLink widget = UiWidgetFactoryNative.get().create(UiInternalLink.class);
     widget.setText(label);
     if (listener != null) {
       widget.addListener(listener);
@@ -56,9 +48,9 @@ public interface UiLink extends UiAbstractButton, UiNativeWidget {
    * @param action the {@link UiAction}.
    * @return the new {@link UiButton}.
    */
-  static UiLink of(UiAction action) {
+  static UiInternalLink of(UiAction action) {
 
-    UiLink button = UiWidgetFactoryNative.get().create(UiLink.class);
+    UiInternalLink button = UiWidgetFactoryNative.get().create(UiInternalLink.class);
     UiActionBinding.get().bind(action, button);
     return button;
   }

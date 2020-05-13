@@ -45,7 +45,7 @@ public interface UiMedia {
   /**
    * @param sources the {@link UiMediaSource}s. Has to be at least one.
    * @param tracks the {@link UiMediaTrack}s.
-   * @param previewSource the {@link UiMediaPreview#getSource() source} of the {@link #getPreview() preview}.
+   * @param previewSource the {@link UiMediaPreview#getUrl() source} of the {@link #getPreview() preview}.
    * @return the {@link UiMedia} instance with {@link UiMediaType#VIDEO}.
    */
   static UiMedia ofVideo(UiMediaSource[] sources, UiMediaTrack[] tracks, String previewSource) {
@@ -75,7 +75,7 @@ public interface UiMedia {
   /**
    * @param sources the {@link UiMediaSource}s. Has to be at least one.
    * @param tracks the {@link UiMediaTrack}s.
-   * @param previewSource the {@link UiMediaPreview#getSource() source} of the {@link #getPreview() preview}.
+   * @param previewSource the {@link UiMediaPreview#getUrl() source} of the {@link #getPreview() preview}.
    * @return the {@link UiMedia} instance with {@link UiMediaType#AUDIO}.
    */
   static UiMedia ofAudio(UiMediaSource[] sources, UiMediaTrack[] tracks, String previewSource) {

@@ -3,25 +3,25 @@
 package io.github.mmm.ui.api.widget.img;
 
 import io.github.mmm.ui.api.attribute.AttributeWriteSize;
-import io.github.mmm.ui.api.attribute.AttributeWriteSource;
+import io.github.mmm.ui.api.attribute.AttributeWriteUrl;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
- * A regular {@link UiAbstractImage image} provided from a {@link #getSource() source URI}.
+ * A regular {@link UiAbstractImage image} provided from a {@link #getUrl() source URI}.
  *
  * @since 1.0.0
  */
-public interface UiImage extends UiAbstractImage, AttributeWriteSource, AttributeWriteSize, UiNativeWidget {
+public interface UiImage extends UiAbstractImage, AttributeWriteUrl, AttributeWriteSize, UiNativeWidget {
 
   /**
-   * @param source the {@link UiImage#getSource() source}.
+   * @param url the {@link #getUrl() URL}.
    * @return the new {@link UiImage}.
    */
-  static UiImage of(String source) {
+  static UiImage of(String url) {
 
     UiImage widget = UiWidgetFactoryNative.get().create(UiImage.class);
-    widget.setSource(source);
+    widget.setUrl(url);
     return widget;
   }
 }

@@ -3,15 +3,15 @@
 package io.github.mmm.ui.api.datatype.media;
 
 import io.github.mmm.ui.api.attribute.AttributeReadLanguage;
-import io.github.mmm.ui.api.attribute.AttributeReadSource;
+import io.github.mmm.ui.api.attribute.AttributeReadUrl;
 import io.github.mmm.ui.api.widget.AbstractUiWidget;
 
 /**
- * Datatype representing a track of a {@link UiMedia}. It {@link #getSource() points} to metadata (e.g. captions).
+ * Datatype representing a track of a {@link UiMedia}. It {@link #getUrl() points} to metadata (e.g. captions).
  *
  * @since 1.0.0
  */
-public final class UiMediaTrack implements AttributeReadSource, AttributeReadLanguage {
+public final class UiMediaTrack implements AttributeReadUrl, AttributeReadLanguage {
 
   /** Supported {@link #getKind() kind} {@value}. */
   public static final String KIND_CAPTIONS = "captions";
@@ -27,7 +27,7 @@ public final class UiMediaTrack implements AttributeReadSource, AttributeReadLan
   /**
    * The constructor.
    *
-   * @param source the {@link #getSource() source}.
+   * @param source the {@link #getUrl() source}.
    * @param kind the {@link #getKind() kind}.
    * @param language the {@link #getLanguage() language}.
    * @param label the {@link #getLabel() label}.
@@ -45,7 +45,7 @@ public final class UiMediaTrack implements AttributeReadSource, AttributeReadLan
   }
 
   @Override
-  public String getSource() {
+  public String getUrl() {
 
     return this.source;
   }
