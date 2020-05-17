@@ -23,6 +23,8 @@ module io.github.mmm.ui.api.all {
 
   requires transitive io.github.mmm.ui.api.menu;
 
+  requires transitive io.github.mmm.ui.api.number;
+
   requires transitive io.github.mmm.ui.api.tab;
 
   requires transitive io.github.mmm.ui.api.temporal;

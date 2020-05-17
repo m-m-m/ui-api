@@ -5,7 +5,7 @@
 
 /**
  * Provides the API for the universal user-interface framework.
- * 
+ *
  * @uses io.github.mmm.ui.api.factory.UiToggleGroupFactory
  * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty
  * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype

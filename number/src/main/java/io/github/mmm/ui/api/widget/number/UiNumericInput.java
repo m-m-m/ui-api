@@ -1,8 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.input;
+package io.github.mmm.ui.api.widget.number;
 
 import io.github.mmm.base.range.WritableRange;
+import io.github.mmm.ui.api.widget.input.UiInput;
 
 /**
  * {@link UiInput} for a {@link Number} {@link #getValue() value}.

@@ -1,6 +1,10 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.input;
+package io.github.mmm.ui.api.widget.number;
+
+import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.input.UiTextInput;
+import io.github.mmm.ui.api.widget.input.UiTextualInput;
 
 /**
  * {@link UiInput} for a {@link Number} {@link #getValue() value}. Will allow to enter the time as text similar to
@@ -14,7 +18,7 @@ package io.github.mmm.ui.api.widget.input;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public interface UiNumberInput<V extends Number> extends UiTextualInput<V>, UiNumericInput<V> {
+public abstract interface UiNumberInput<V extends Number> extends UiTextualInput<V>, UiNumericInput<V> {
 
   /**
    * @return the step value to increment or decrement the current value via icon buttons.
