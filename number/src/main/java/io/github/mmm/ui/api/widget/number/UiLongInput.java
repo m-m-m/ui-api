@@ -6,25 +6,27 @@ import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
- * {@link UiSlider} for an {@link Integer} {@link #getValue() value}.<br>
+ * {@link UiNumberInput} for a {@link Long} {@link #getValue() value}.<br>
  * Example:
  *
  * <pre>
- * <input type="range">
+ * <input type="number" placeholder="placeholder">
  * </pre>
  *
  * @since 1.0.0
  */
-public interface UiIntegerSlider extends UiSlider<Integer>, UiNativeWidget {
+public interface UiLongInput extends UiNumberInput<Long>, UiNativeWidget {
 
   /**
    * @param name the {@link #getName() name} (label).
-   * @return the new {@link UiIntegerSlider}.
+   * @return the new {@link UiLongInput}.
    */
-  static UiIntegerSlider of(String name) {
+  static UiLongInput of(String name) {
 
-    UiIntegerSlider widget = UiWidgetFactoryNative.get().create(UiIntegerSlider.class);
-    widget.setName(name);
+    UiLongInput widget = UiWidgetFactoryNative.get().create(UiLongInput.class);
+    if (name != null) {
+      widget.setName(name);
+    }
     return widget;
   }
 

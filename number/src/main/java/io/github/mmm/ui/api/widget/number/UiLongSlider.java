@@ -6,7 +6,7 @@ import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 
 /**
- * {@link UiSlider} for an {@link Integer} {@link #getValue() value}.<br>
+ * {@link UiSlider} for a {@link Long} {@link #getValue() value}.<br>
  * Example:
  *
  * <pre>
@@ -15,15 +15,15 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
  *
  * @since 1.0.0
  */
-public interface UiIntegerSlider extends UiSlider<Integer>, UiNativeWidget {
+public interface UiLongSlider extends UiSlider<Long>, UiNativeWidget {
 
   /**
    * @param name the {@link #getName() name} (label).
-   * @return the new {@link UiIntegerSlider}.
+   * @return the new {@link UiLongSlider}.
    */
-  static UiIntegerSlider of(String name) {
+  static UiLongSlider of(String name) {
 
-    UiIntegerSlider widget = UiWidgetFactoryNative.get().create(UiIntegerSlider.class);
+    UiLongSlider widget = UiWidgetFactoryNative.get().create(UiLongSlider.class);
     widget.setName(name);
     return widget;
   }
