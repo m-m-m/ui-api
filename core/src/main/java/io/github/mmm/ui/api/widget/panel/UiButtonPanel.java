@@ -16,6 +16,9 @@ import io.github.mmm.ui.api.widget.button.UiAbstractButton;
  */
 public interface UiButtonPanel extends UiAbstractButtonContainer, UiRegularWidget, UiNativeWidget {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for a button panel. */
+  String STYLE = "ui-buttons";
+
   /**
    * @return the new {@link UiButtonPanel}.
    */
