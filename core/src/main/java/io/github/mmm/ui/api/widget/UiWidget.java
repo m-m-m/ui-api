@@ -320,6 +320,18 @@ public interface UiWidget
   }
 
   /**
+   * Resets this widget recursively including its potential
+   * {@link io.github.mmm.ui.api.widget.composite.UiComposite#getChild(int) children} to its original state.
+   * {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget}s will retain their
+   * {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget#getOriginalValue() original value}. Further,
+   * {@link #isModified() modified flags} are reset so all involved widgets will not be {@link #isModified() modified}
+   * after calling this method.
+   */
+  default void reset() {
+
+  }
+
+  /**
    * This method disposes this widget. It is detached from the UI and resources are deallocated. A disposed widget can
    * not be used or displayed anymore.
    */

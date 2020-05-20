@@ -25,4 +25,10 @@ public interface UiAbstractCompositeInput<C extends UiWidget, V>
     return UiFailureComposite.super.isValid();
   }
 
+  @Override
+  default void reset() {
+
+    UiFailureComposite.super.reset();
+  }
+
 }

@@ -27,6 +27,12 @@ public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiColl
     return UiValuedComposite.super.isValid();
   }
 
+  @Override
+  default void reset() {
+
+    UiValuedComposite.super.reset();
+  }
+
   /**
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiFormGroup}.

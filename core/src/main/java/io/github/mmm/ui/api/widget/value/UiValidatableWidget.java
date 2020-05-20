@@ -89,8 +89,8 @@ public abstract interface UiValidatableWidget<V>
    *         return the current value as entered by the end-user while this method will still return the original value.
    *         <br>
    *         <b>ATTENTION:</b> The original value shall never be modified to avoid undesired side effects. Various
-   *         features such as {@link #resetValue()} rely on this fact.
-   * @see #resetValue()
+   *         features such as {@link #reset()} rely on this fact.
+   * @see #reset()
    */
   V getOriginalValue();
 
@@ -99,12 +99,12 @@ public abstract interface UiValidatableWidget<V>
    */
   void setOriginalValue(V originalValue);
 
-  /**
-   * Rests the current {@link #getValue() value} to the {@link #getOriginalValue() original value}.
-   */
-  default void resetValue() {
+  @Override
+  default void reset() {
 
+    UiValuedWidget.super.reset();
     setValue(getOriginalValue());
+    setValidationFailure(null);
   }
 
   /**
