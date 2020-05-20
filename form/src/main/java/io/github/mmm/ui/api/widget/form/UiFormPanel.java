@@ -21,6 +21,9 @@ import io.github.mmm.ui.api.widget.input.UiInput;
  */
 public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>, UiRegularWidget, UiNativeWidget {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for a form panel. */
+  String STYLE = "ui-form";
+
   /**
    * @return the new {@link UiFormPanel}.
    */
