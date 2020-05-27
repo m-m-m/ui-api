@@ -11,7 +11,7 @@ import io.github.mmm.ui.api.widget.input.UiAbstractInput;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class UiCustomFormPanel<V> extends UiCustomValuedComposite<UiFormPanel<V>, UiAbstractInput<?>, V>
+public class UiCustomFormPanel<V> extends UiCustomValuedComposite<V, UiAbstractInput<?>, UiFormPanel<V>>
     implements UiFormPanel<V> {
 
   /**

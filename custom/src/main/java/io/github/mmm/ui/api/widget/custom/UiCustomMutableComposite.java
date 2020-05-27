@@ -8,11 +8,11 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
 /**
  * {@link AbstractUiCustomWidget} that is a {@link UiMutableComposite}.
  *
- * @param <W> type of the {@link #getDelegate() delegate}.
  * @param <C> type of the {@link #getChild(int) child widgets}.
+ * @param <W> type of the {@link #getDelegate() delegate}.
  * @since 1.0.0
  */
-public abstract class UiCustomDynamicComposite<W extends UiMutableComposite<C>, C extends UiWidget>
+public abstract class UiCustomMutableComposite<C extends UiWidget, W extends UiMutableComposite<C>>
     extends UiCustomComposite<W, C> implements UiMutableComposite<C> {
 
   /**
@@ -20,7 +20,7 @@ public abstract class UiCustomDynamicComposite<W extends UiMutableComposite<C>, 
    *
    * @param delegate is the {@link #getDelegate() delegate}.
    */
-  public UiCustomDynamicComposite(W delegate) {
+  public UiCustomMutableComposite(W delegate) {
 
     super(delegate);
   }

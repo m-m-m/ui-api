@@ -2,42 +2,27 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.custom;
 
-import io.github.mmm.ui.api.binding.UiValueBinding;
-import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.composite.UiValuedComposite;
+import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
 import io.github.mmm.validation.Validator;
 
 /**
- * {@link AbstractUiCustomWidget} that is a {@link UiValuedComposite}.
+ * {@link AbstractUiCustomWidget} adapting a {@link UiValidatableWidget}.
  *
  * @param <W> type of the {@link #getDelegate() delegate}.
- * @param <C> type of the {@link #getChild(int) child widgets}.
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract class UiCustomValuedComposite<V, C extends UiWidget, W extends UiValuedComposite<C, V>>
-    extends UiCustomMutableComposite<C, W> implements UiValuedComposite<C, V> {
+public abstract class UiCustomValidatableWidget<V, W extends UiValidatableWidget<V>> extends UiCustomValuedWidget<V, W>
+    implements UiValidatableWidget<V> {
 
   /**
    * The constructor.
    *
    * @param delegate the {@link #getDelegate() delegate}.
    */
-  public UiCustomValuedComposite(W delegate) {
+  public UiCustomValidatableWidget(W delegate) {
 
     super(delegate);
-  }
-
-  @Override
-  public void initBinding(UiValueBinding<V> binding) {
-
-    this.delegate.initBinding(binding);
-  }
-
-  @Override
-  public V getValue() {
-
-    return this.delegate.getValue();
   }
 
   @Override
