@@ -39,7 +39,7 @@ public class UiActionBindingImpl implements UiActionBinding {
     button.setText(label);
     String tooltip = action.getTooltip();
     if (tooltip == null) {
-      tooltip = localizer.localize(id, UiLocalizer.CONTEXT_TOOLTIP, true);
+      tooltip = localizer.localize(id + UiLocalizer.KEY_TOOLTIP);
     }
     if (tooltip != null) {
       button.setTooltip(tooltip);
@@ -48,10 +48,10 @@ public class UiActionBindingImpl implements UiActionBinding {
     if (action.requireConfirmation()) {
       String message = action.getConfirmationMessage();
       if (message == null) {
-        message = localizer.localize(UiLocalizer.CONTEXT_CONFIRM, id, true);
+        message = localizer.localize(id + UiLocalizer.KEY_CONFIRM);
       }
       if (message == null) {
-        message = localizer.localize(UiLocalizer.CONTEXT_CONFIRM);
+        message = localizer.localize(UiLocalizer.KEY_CONFIRM);
       }
       final String finalMessage = message;
       listener = (e) -> {
