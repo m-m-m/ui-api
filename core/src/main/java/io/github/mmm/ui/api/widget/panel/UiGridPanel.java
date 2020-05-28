@@ -17,6 +17,9 @@ import io.github.mmm.ui.api.widget.composite.UiRemovableComposite;
  */
 public interface UiGridPanel extends UiRemovableComposite<UiGridRow>, UiRegularWidget, UiNativeWidget {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name this widget. */
+  String STYLE = "ui-grid";
+
   /**
    * @param children the optional {@link UiGridRow#getChild(int) children} to add horizontally in the new
    *        {@link UiGridRow row}.
