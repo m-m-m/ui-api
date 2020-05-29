@@ -4,68 +4,70 @@ package io.github.mmm.ui.api.widget.panel;
 
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.composite.UiRemovableComposite;
 
 /**
- * {@link UiMutablePanel} that represents a row in a {@link UiGridPanel}.
+ * {@link UiMutablePanel} that represents a row in a {@link UiGridPanel}.<br>
+ * <b>ATTENTION:</b> Unlike other {@link io.github.mmm.ui.api.widget.composite.UiMutableComposite}s where the
+ * {@link #getChildIndex(UiRegularWidget) index} is the position of a linear list of children, here the {@code index} is
+ * the column in this grid row. This allows a more intuitive API usage when features like {@code colspan} are used. As a
+ * result {@link #getChildCount()} will return the number of columns in this row or in other words the maximum column
+ * number where a child has been set.
  *
  * @since 1.0.0
  */
-public interface UiGridRow extends UiMutablePanel {
+public interface UiGridRow extends UiRemovableComposite<UiRegularWidget> {
 
   /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name this widget. */
   String STYLE = "ui-gridrow";
 
-  @Override
-  default void addChild(UiRegularWidget child, int index) {
-
-    addChild(child, index, 1, 1);
-  }
-
   /**
-   * Inserts the given {@code child} at the given {@code index} with the given {@code colspan}.
+   * Sets the given {@code child} in the call at the given {@code column}. A potentially existing child in the specified
+   * cell will be replaced.
    *
-   * @see #addChild(UiRegularWidget, int)
-   *
-   * @param child is the {@link UiWidget} to add as child of this composite.
-   * @param index is the {@link #getChild(int) index} of the new child. It has to be in the range from {@code 0} to
-   *        {@link #getChildCount()}.
-   * @param colspan the number of columns the given {@code child} widget should span. The default is {@code 1} for a
-   *        single column/cell. Use a higher number to join multiple cells to the right.
+   * @param child is the {@link UiWidget} to set as child in the given {@code column}. May be {@code null} to clear the
+   *        specified {@code column}.
+   * @param column is the column where to place the given {@code child}. May internally create empty cells to the left
+   *        as needed.
    */
-  default void addChild(UiRegularWidget child, int index, int colspan) {
+  default void setChild(UiRegularWidget child, int column) {
 
-    addChild(child, index, colspan, 1);
+    setChild(child, column, 1, 1);
   }
 
   /**
-   * Inserts the given {@code child} at the given {@code index} with the given {@code colspan} and {@code rowspan}.
+   * Sets the given {@code child} in the call at the given {@code column} with the given {@code colspan}. A potentially
+   * existing child in the specified cell will be replaced.
    *
-   * @see #addChild(UiRegularWidget, int)
+   * @param child is the {@link UiWidget} to set as child in the given {@code column}. May be {@code null} to clear the
+   *        specified {@code column}.
+   * @param column is the column where to place the given {@code child}. May internally create empty cells to the left
+   *        as needed.
+   * @param colspan the number of columns the given {@code child} widget should span. The default is {@code 1} for a
+   *        single column/cell. Use a higher number to join multiple cells.
+   */
+  default void setChild(UiRegularWidget child, int column, int colspan) {
+
+    setChild(child, column, colspan, 1);
+  }
+
+  /**
+   * Sets the given {@code child} in the call at the given {@code column} with the given {@code colspan} and
+   * {@code rowspan}. A potentially existing child in the specified cell will be replaced.<br>
+   * <b>ATTENTION:</b> When using {@code colspan} you have to manually ensure consistency or results and behaviour is
+   * unspecified. See e.g. when setting a child into cell at {@code column} with index {@code 0} and with a
+   * {@code colspan} of e.g. {@code 2} you shall not set another child into cell at {@code column} with index {@code 1}
+   * as this is already occupied by the previous child.
    *
-   * @param child is the {@link UiWidget} to add as child of this composite.
-   * @param index is the {@link #getChild(int) index} of the new child. It has to be in the range from {@code 0} to
-   *        {@link #getChildCount()}.
+   * @param child is the {@link UiWidget} to set as child in the given {@code column}. May be {@code null} to clear the
+   *        specified {@code column}.
+   * @param column is the column where to place the given {@code child}. May internally create empty cells to the left
+   *        as needed.
    * @param colspan the number of columns the given {@code child} widget should span. The default is {@code 1} for a
    *        single column/cell. Use a higher number to join multiple cells.
    * @param rowspan the number of rows the given {@code child} widget should span. The default is {@code 1} for a single
    *        row/cell. Use a higher number to join multiple cells downwards.
    */
-  void addChild(UiRegularWidget child, int index, int colspan, int rowspan);
-
-  /**
-   * Sets the given {@code child} at the given {@code index} with the given {@code colspan} and {@code rowspan}. Any
-   * potential child in the specified cell will be replaced.
-   *
-   * @see #addChild(UiRegularWidget, int, int, int)
-   *
-   * @param child is the {@link UiWidget} to add as child of this composite.
-   * @param index is the {@link #getChild(int) index} of the new child. It has to be in the range from {@code 0} to
-   *        {@link #getChildCount()}.
-   * @param colspan the number of columns the given {@code child} widget should span. The default is {@code 1} for a
-   *        single column/cell. Use a higher number to join multiple cells.
-   * @param rowspan the number of rows the given {@code child} widget should span. The default is {@code 1} for a single
-   *        row/cell. Use a higher number to join multiple cells downwards.
-   */
-  void setChild(UiRegularWidget child, int index, int colspan, int rowspan);
+  void setChild(UiRegularWidget child, int column, int colspan, int rowspan);
 
 }
