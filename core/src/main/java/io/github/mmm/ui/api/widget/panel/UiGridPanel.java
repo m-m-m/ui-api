@@ -41,22 +41,20 @@ public interface UiGridPanel extends UiRemovableComposite<UiGridRow>, UiRegularW
   }
 
   /**
-   * @param rowIndex the {@link #getChild(int) row index} where to insert the new {@link UiGridRow row}.
-   * @param children the optional {@link UiGridRow#getChild(int) children} to add horizontally in the new
-   *        {@link UiGridRow row}.
+   * @param index the {@link #getChild(int) child index} where to insert the new {@link UiGridRow row}.
    * @return the new {@link UiGridRow} that has been added.
    */
-  UiGridRow addRow(int rowIndex);
+  UiGridRow addRow(int index);
 
   /**
-   * @param rowIndex the {@link #getChild(int) row index} where to insert the new {@link UiGridRow row}.
+   * @param index the {@link #getChild(int) child index} where to insert the new {@link UiGridRow row}.
    * @param children the optional {@link UiGridRow#getChild(int) children} to add horizontally in the new
    *        {@link UiGridRow row}.
    * @return the new {@link UiGridRow} that has been added.
    */
-  default UiGridRow addRow(int rowIndex, UiRegularWidget... children) {
+  default UiGridRow addRow(int index, UiRegularWidget... children) {
 
-    UiGridRow row = addRow(rowIndex);
+    UiGridRow row = addRow(index);
     if (children != null) {
       for (UiRegularWidget child : children) {
         row.addChild(child);
