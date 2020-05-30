@@ -11,7 +11,7 @@ import io.github.mmm.ui.api.widget.composite.UiRemovableComposite;
  * {@link UiRemovableComposite} that allows to layout child {@link UiRegularWidget widgets} in a grid. To simplify API
  * usage the grid is organized in {@link UiGridRow}s what allows you to {@link #removeChild(int) remove} entire rows or
  * to {@link #addRow(int) insert} new rows. For advanced usage {@link UiGridRow} even allows to
- * {@link UiGridRow#setChild(UiRegularWidget, int, int, int) add its children with column and row-span}.
+ * {@link UiGridRow#addChild(UiRegularWidget, int, int, int) add its children with column and row-span}.
  *
  * @since 1.0.0
  */
@@ -58,9 +58,8 @@ public interface UiGridPanel extends UiRemovableComposite<UiGridRow>, UiRegularW
 
     UiGridRow row = addRow(rowIndex);
     if (children != null) {
-      int columnIndex = 0;
       for (UiRegularWidget child : children) {
-        row.setChild(child, columnIndex++);
+        row.addChild(child);
       }
     }
     return row;
