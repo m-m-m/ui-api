@@ -199,4 +199,16 @@ public abstract class AbstractUiCustomWidget<W extends UiWidget> extends Abstrac
     return this.delegate.validateDown(state);
   }
 
+  @Override
+  public String getTooltip() {
+
+    return this.delegate.getTooltip();
+  }
+
+  @Override
+  public void setTooltip(String tooltip) {
+
+    this.delegate.setTooltip(tooltip);
+  }
+
 }

@@ -6,6 +6,7 @@ import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
  * {@link UiAbstractImage} for an icon. Unlike a {@link UiImage} that can show images from any {@link UiImage#getUrl()
@@ -16,7 +17,7 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
  *
  * @since 1.0.0
  */
-public interface UiIcon extends UiAbstractImage, UiNativeWidget {
+public interface UiIcon extends UiAbstractImage, UiRegularWidget, UiNativeWidget {
 
   /** {@link #getIconId() ID} for error icon. */
   String ID_ERROR = CaseHelper.toLowerCase(UiSeverity.ERROR.getName());

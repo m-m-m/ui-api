@@ -6,13 +6,15 @@ import io.github.mmm.ui.api.attribute.AttributeWriteSize;
 import io.github.mmm.ui.api.attribute.AttributeWriteUrl;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
  * A regular {@link UiAbstractImage image} provided from a {@link #getUrl() source URI}.
  *
  * @since 1.0.0
  */
-public interface UiImage extends UiAbstractImage, AttributeWriteUrl, AttributeWriteSize, UiNativeWidget {
+public interface UiImage
+    extends UiAbstractImage, AttributeWriteUrl, AttributeWriteSize, UiRegularWidget, UiNativeWidget {
 
   /**
    * @param url the {@link #getUrl() URL}.

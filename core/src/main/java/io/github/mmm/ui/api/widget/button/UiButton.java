@@ -8,6 +8,7 @@ import io.github.mmm.ui.api.event.UiEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.link.UiAbstractLink;
 
 /**
@@ -25,7 +26,7 @@ import io.github.mmm.ui.api.widget.link.UiAbstractLink;
  *
  * @since 1.0.0
  */
-public interface UiButton extends UiAbstractButton, UiNativeWidget {
+public interface UiButton extends UiAbstractButton, UiRegularWidget, UiNativeWidget {
 
   /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for a button. */
   String STYLE = "ui-button";

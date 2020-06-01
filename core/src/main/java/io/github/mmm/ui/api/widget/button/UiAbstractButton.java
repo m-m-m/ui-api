@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.button;
 
-import io.github.mmm.ui.api.widget.UiAtomicWidget;
 import io.github.mmm.ui.api.widget.UiClickableWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.link.UiInternalLink;
@@ -16,6 +15,6 @@ import io.github.mmm.ui.api.widget.link.UiInternalLink;
  *
  * @since 1.0.0
  */
-public abstract interface UiAbstractButton extends UiAtomicWidget, UiClickableWidget {
+public abstract interface UiAbstractButton extends UiClickableWidget {
 
 }

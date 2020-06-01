@@ -2,13 +2,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
-import io.github.mmm.ui.api.widget.UiAtomicWidget;
 import io.github.mmm.ui.api.widget.UiLabel;
 import io.github.mmm.ui.api.widget.value.UiValidatableWidget;
 import io.github.mmm.ui.api.widget.value.UiValuedWidget;
 
 /**
- * {@link UiValuedWidget} for an {@link UiAtomicWidget atomic} input field.
+ * {@link UiValuedWidget} for an input field.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0

@@ -4,19 +4,18 @@ package io.github.mmm.ui.api.widget.input;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
-import io.github.mmm.ui.api.widget.UiAtomicWidget;
 import io.github.mmm.ui.api.widget.UiLabel;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.value.UiValuedWidget;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
- * {@link UiValuedWidget} for an {@link UiAtomicWidget atomic} input field.
+ * {@link UiValuedWidget} for an {@link UiRegularWidget regular} input field.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract interface UiInput<V> extends UiAbstractInput<V>, UiAtomicWidget {
+public abstract interface UiInput<V> extends UiAbstractInput<V>, UiRegularWidget {
 
   /**
    * @return {@code true} if the {@link #getNameWidget() name widget} has already been created, {@code false} otherwise.

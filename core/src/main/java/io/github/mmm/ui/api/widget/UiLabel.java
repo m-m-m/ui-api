@@ -10,7 +10,7 @@ import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
  *
  * @since 1.0.0
  */
-public interface UiLabel extends UiAtomicWidget, AttributeWriteText, UiNativeWidget {
+public interface UiLabel extends UiRegularWidget, AttributeWriteText, UiNativeWidget {
 
   /**
    * @param text the {@link UiLabel#getText() text}.

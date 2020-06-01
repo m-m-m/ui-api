@@ -11,7 +11,7 @@ import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
  *
  * @since 1.0.0
  */
-public interface UiText extends UiAtomicWidget, AttributeWriteText, UiNativeWidget {
+public interface UiText extends UiRegularWidget, AttributeWriteText, UiNativeWidget {
 
   /**
    * @return the {@link UiTextAlignment}.

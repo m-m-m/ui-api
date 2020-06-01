@@ -3,15 +3,15 @@
 package io.github.mmm.ui.api.widget.img;
 
 import io.github.mmm.ui.api.attribute.AttributeWriteAltText;
-import io.github.mmm.ui.api.widget.UiAtomicWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
- * {@link UiAtomicWidget} for a picture.
+ * {@link UiWidget} for an image/picture.
  *
  * @since 1.0.0
  * @see UiImage
  * @see UiIcon
  */
-public interface UiAbstractImage extends UiAtomicWidget, AttributeWriteAltText {
+public interface UiAbstractImage extends UiWidget, AttributeWriteAltText {
 
 }

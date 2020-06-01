@@ -26,7 +26,7 @@ import io.github.mmm.ui.api.widget.button.UiButton;
  *
  * @since 1.0.0
  */
-public abstract interface UiInternalLink extends UiAbstractButton, UiAbstractLink, UiNativeWidget {
+public abstract interface UiInternalLink extends UiAbstractButton, UiAbstractLink, UiRegularWidget, UiNativeWidget {
 
   /**
    * @param label the {@link UiButton#getText() label}.

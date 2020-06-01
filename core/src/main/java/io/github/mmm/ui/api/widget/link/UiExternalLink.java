@@ -5,6 +5,7 @@ package io.github.mmm.ui.api.widget.link;
 import io.github.mmm.ui.api.attribute.AttributeWriteUrl;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.button.UiButton;
 
 /**
@@ -18,7 +19,7 @@ import io.github.mmm.ui.api.widget.button.UiButton;
  *
  * @since 1.0.0
  */
-public interface UiExternalLink extends UiAbstractLink, AttributeWriteUrl, UiNativeWidget {
+public interface UiExternalLink extends UiAbstractLink, AttributeWriteUrl, UiRegularWidget, UiNativeWidget {
 
   /**
    * @param text the {@link UiButton#getText() label text}.
