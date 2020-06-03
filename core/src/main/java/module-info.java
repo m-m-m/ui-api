@@ -60,8 +60,6 @@ module io.github.mmm.ui.api.core {
 
   exports io.github.mmm.ui.api.widget;
 
-  exports io.github.mmm.ui.api.widget.attribute;
-
   exports io.github.mmm.ui.api.widget.button;
 
   exports io.github.mmm.ui.api.widget.composite;

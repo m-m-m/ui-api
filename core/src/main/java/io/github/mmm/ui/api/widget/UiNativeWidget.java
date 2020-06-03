@@ -12,8 +12,6 @@ package io.github.mmm.ui.api.widget;
  * these interfaces except for {@link UiNativeWidget} itself can be created via
  * {@link io.github.mmm.ui.api.factory.UiWidgetFactoryNative}.
  *
- * @see io.github.mmm.ui.api.UiContext
- *
  * @since 1.0.0
  */
 public abstract interface UiNativeWidget extends UiWidget {

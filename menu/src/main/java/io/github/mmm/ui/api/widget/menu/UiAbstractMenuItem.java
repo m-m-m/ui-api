@@ -2,16 +2,18 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.menu;
 
-import io.github.mmm.ui.api.widget.UiWidget;
-
 /**
- * {@link UiWidget widget} representing a <em>menu item</em>. A menu item is an entry that can be added to a
- * {@link UiMenu}.
+ * {@link UiAbstractMenuEntry} for a menu item. It is a leaf in the menu or navigation tree and is one of the following
+ * items:
+ * <ul>
+ * <li>{@link UiMenuItem}</li>
+ * <li>{@link UiMenuItemCheckbox}</li>
+ * <li>{@link UiMenuItemRadioButton}</li>
+ * <li>{@link UiMenuItemSeparator}</li>
+ * </ul>
  *
  * @since 1.0.0
  */
-public abstract interface UiAbstractMenuItem extends UiWidget {
-
-  // nothing to add
+public abstract interface UiAbstractMenuItem extends UiAbstractMenuEntry {
 
 }

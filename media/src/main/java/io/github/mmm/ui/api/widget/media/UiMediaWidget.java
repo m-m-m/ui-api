@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.media;
 
-import io.github.mmm.ui.api.attribute.AttributeManageMedia;
+import io.github.mmm.ui.api.attribute.AttributeFeatureMedia;
 import io.github.mmm.ui.api.datatype.media.UiMedia;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
@@ -12,7 +12,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  *
  * @since 1.0.0
  */
-public abstract interface UiMediaWidget extends UiRegularWidget, AttributeManageMedia {
+public abstract interface UiMediaWidget extends UiRegularWidget, AttributeFeatureMedia {
 
   /**
    * @return the {@link UiMedia} or {@code null} in not {@link #setMedia(UiMedia) set}.

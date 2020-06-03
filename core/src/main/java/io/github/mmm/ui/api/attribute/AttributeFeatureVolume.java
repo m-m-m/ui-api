@@ -7,39 +7,7 @@ package io.github.mmm.ui.api.attribute;
  *
  * @since 1.0.0
  */
-public abstract interface AttributeManageMedia {
-
-  /**
-   * @return {@code true} if the media is currently playing, {@code false} otherwise (if paused or nothing to play).
-   */
-  boolean isPlaying();
-
-  /**
-   * @param playing is the new value of {@link #isPlaying()}. Use {@code true} to play or resume and {@code false} to
-   *        pause. Please note that if no media is present or it is invalid, it will not get into {@link #isPlaying()
-   *        playing} state even after providing {@code true}
-   */
-  void setPlaying(boolean playing);
-
-  /**
-   * Start or resume the media.
-   *
-   * @see #setPlaying(boolean)
-   */
-  default void play() {
-
-    setPlaying(true);
-  }
-
-  /**
-   * Pause the media.
-   *
-   * @see #setPlaying(boolean)
-   */
-  default void pause() {
-
-    setPlaying(false);
-  }
+public abstract interface AttributeFeatureVolume {
 
   /**
    * This method gets the volume of this object. Please note that the actual volume might be influenced by the mixer of
@@ -82,23 +50,5 @@ public abstract interface AttributeManageMedia {
 
     setMuted(false);
   }
-
-  /**
-   * @return the current position of the playback as factor in the range from {@code 0} (0%, start) to {@code 1} (100%,
-   *         end).
-   */
-  double getPosition();
-
-  /**
-   * @param position is the new value of {@link #getPosition()}. If negative, set to {@code 0} and if greater than
-   *        {@code 1} set to {@code 1}.
-   */
-  void setPosition(double position);
-
-  /**
-   * @return the duration of the current media in seconds. Will be {@code 0} if no media is present, media is invalid or
-   *         empty.
-   */
-  double getDuration();
 
 }

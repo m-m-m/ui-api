@@ -1,10 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.attribute;
+package io.github.mmm.ui.api.widget.value;
 
 import io.github.mmm.ui.api.attribute.AttributeWriteSelected;
 import io.github.mmm.ui.api.widget.UiActiveWidget;
-import io.github.mmm.ui.api.widget.value.UiValuedWidget;
 
 /**
  * {@link UiValuedWidget} with {@link Boolean} value that represents a {@link #isSelected() selection} (e.g. checkbox,

@@ -3,26 +3,15 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write the {@link #isCollapsed() collapsed} and {@link #isCollapsible() collapsible} flags.
+ * Interface to read and write the {@link #isCollapsible() collapsible} flag.
  *
  * @since 1.0.0
  */
 public abstract interface AttributeWriteCollapsible {
 
   /**
-   * @return {@code true} if this object is currently collapsed (minimized, hiding its details), {@code false} otherwise
-   *         (if expanded).
-   */
-  boolean isCollapsed();
-
-  /**
-   * @param collapsed the new value of {@link #isCollapsed()}.
-   */
-  void setCollapsed(boolean collapsed);
-
-  /**
-   * @return {@code true} if this widget can be {@link #setCollapsed(boolean) collapsed and expanded} by the end-user
-   *         (e.g. via some icon button), {@code false} otherwise.
+   * @return {@code true} if this widget can be {@link AttributeWriteCollapsed#setCollapsed(boolean) collapsed and
+   *         expanded} by the end-user (e.g. via some icon button), {@code false} otherwise.
    */
   boolean isCollapsible();
 

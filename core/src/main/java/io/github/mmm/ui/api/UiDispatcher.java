@@ -9,7 +9,7 @@ import io.github.mmm.ui.impl.UiDispatcherProvider;
 /**
  * This is the interface for the dispatcher of asynchronous processing.
  *
- * @see UiContext#getDispatcher()
+ * @see #get()
  *
  * @since 1.0.0
  */
