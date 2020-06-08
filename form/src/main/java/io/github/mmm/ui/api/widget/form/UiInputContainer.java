@@ -50,4 +50,50 @@ public interface UiInputContainer<V> extends UiMutableSingleComposite<UiInput<V>
     return widget;
   }
 
+  /**
+   * a Method to create a suffix field to an input field, usually used for Units.
+   *
+   * @param suffix string value of suffix content e.g: Kg, mA.
+   */
+  void setSuffix(String suffix);
+
+  /**
+   * Check Suffix availability.
+   *
+   * @return true if the current inputWidget has a suffix.
+   */
+  default boolean hasSuffix() {
+
+    String suffix = getSuffix();
+    return (suffix != null && !suffix.isEmpty());
+  };
+
+  /**
+   * @return the text content of the suffix.
+   */
+  String getSuffix();
+
+  /**
+   * a Method to create a prefix field to an input field, usually used for phone numbers.
+   *
+   * @param prefix string value of prefix content e.g: +49-1 .
+   */
+  void setPrefix(String prefix);
+
+  /**
+   * Check Prefix availability.
+   *
+   * @return treu if the current inputWidget has a prefix.
+   */
+  default boolean hasPrefix() {
+
+    String prefix = getPrefix();
+    return (prefix != null && !prefix.isEmpty());
+  };
+
+  /**
+   * @return the text content of the Prefix
+   */
+  String getPrefix();
+
 }
