@@ -3,8 +3,8 @@
 package io.github.mmm.ui.api.widget.custom;
 
 import io.github.mmm.ui.api.widget.UiLabel;
-import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.input.UiInput;
+import io.github.mmm.ui.api.widget.input.UiInputContainer;
 
 /**
  * {@link AbstractUiCustomWidget} adapting a {@link UiInput}. Extend it to build reusable custom {@link UiInput}s.
@@ -68,7 +68,7 @@ public class UiCustomInput<V, W extends UiInput<V>> extends UiCustomValidatableW
   }
 
   @Override
-  public UiRegularWidget getContainerWidget() {
+  public UiInputContainer<V> getContainerWidget() {
 
     return this.delegate.getContainerWidget();
   }
