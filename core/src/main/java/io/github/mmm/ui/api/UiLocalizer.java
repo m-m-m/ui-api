@@ -15,8 +15,8 @@ public interface UiLocalizer {
   String KEY_DEFAULT_VALIDATION_FAILURE = "_invalid";
 
   /**
-   * The {@link #localize(String) key} or key-suffix for the
-   * {@link io.github.mmm.ui.api.widget.UiAtomicWidget#getTooltip() tooltip}.
+   * The {@link #localize(String) key} or key-suffix for the {@link io.github.mmm.ui.api.widget.UiWidget#getTooltip()
+   * tooltip}.
    */
   String KEY_TOOLTIP = "_tooltip";
 
@@ -25,6 +25,12 @@ public interface UiLocalizer {
    * {@link io.github.mmm.ui.api.event.action.UiAction#requireConfirmation() confirmation}.
    */
   String KEY_CONFIRM = "_confirm";
+
+  /**
+   * The {@link #localize(String) key} or key-suffix for the {@link io.github.mmm.ui.api.widget.img.UiIcon#getIconId()
+   * icon ID}.
+   */
+  String KEY_ICON = "_icon";
 
   /**
    * @return the {@link Locale} of the current user.
@@ -67,8 +73,8 @@ public interface UiLocalizer {
    *        of the key can be resolved and more appropriate localizations can be chosen. A common case is to localize
    *        properties of beans. Here the bean is provided as context so you have the freedom to choose a specific
    *        localization for a general property key such as "name" depending on the bean that defines the property
-   *        without changing the actual UI code. Finally, the context may be a variant such as {@link #KEY_TOOLTIP}
-   *        to derive a localized message for a different purpose.
+   *        without changing the actual UI code. Finally, the context may be a variant such as {@link #KEY_TOOLTIP} to
+   *        derive a localized message for a different purpose.
    * @param contextOnly - {@code true} to return {@code null} in case no context specific localization is available and
    *        omit further fallback, {@code false} otherwise. When {@code true} is provided here, the {@code context}
    *        should not be {@code null} or this method will simply return {@code null}.

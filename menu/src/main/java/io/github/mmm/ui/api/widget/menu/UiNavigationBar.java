@@ -2,7 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.menu;
 
+import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
  * {@link UiAbstractMenuBar} that represents a vertical navigation bar. An example may look like this:<br>
@@ -19,9 +21,16 @@ import io.github.mmm.ui.api.widget.UiNativeWidget;
  * @since 1.0.0
  */
 public interface UiNavigationBar
-    extends UiAbstractMenuBar<UiAbstractMenuEntry>, UiAbstractMenuWithItems, UiNativeWidget {
+    extends UiAbstractMenuBar<UiAbstractMenuEntry>, UiAbstractMenuWithItems, UiRegularWidget, UiNativeWidget {
 
   /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for this widget. */
   String STYLE = "ui-navbar";
 
+  /**
+   * @return the new {@link UiNavigationBar}.
+   */
+  static UiNavigationBar of() {
+
+    return UiWidgetFactoryNative.get().create(UiNavigationBar.class);
+  }
 }

@@ -9,9 +9,6 @@ package io.github.mmm.ui.api.attribute;
  */
 public abstract interface AttributeReadId {
 
-  /** Use this character to compose hierarchical {@link #getId() IDs}. */
-  String ID_SEPARATOR = "_";
-
   /**
    * This method gets the unique identifier of this object. <br>
    * <b>ATTENTION:</b><br>
@@ -20,7 +17,6 @@ public abstract interface AttributeReadId {
    * hash or period) will cause complications with CSS selectors.
    *
    * @return the ID of this object.
-   * @see #ID_SEPARATOR
    */
   String getId();
 

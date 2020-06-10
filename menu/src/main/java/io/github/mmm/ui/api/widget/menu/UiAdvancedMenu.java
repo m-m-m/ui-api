@@ -2,8 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.menu;
 
-import io.github.mmm.ui.api.event.UiEvent;
-import io.github.mmm.ui.api.event.UiEventListener;
+import io.github.mmm.ui.api.event.UiClickEventListener;
 
 /**
  * {@link UiMenu} with advanced features such as support for {@link UiMenuItemCheckbox} and
@@ -24,33 +23,30 @@ public interface UiAdvancedMenu extends UiMenu {
 
   /**
    * @param text the new {@link UiMenuItemCheckbox#getText() label text} of the {@link UiMenuItemCheckbox} to create.
-   * @param listener the {@link UiEventListener} to listen for {@link UiEvent}s such as
-   *        {@link io.github.mmm.ui.api.event.UiClickEvent}.
+   * @param listener the {@link UiClickEventListener} to listen for {@link io.github.mmm.ui.api.event.UiClickEvent}s.
    * @return the created and added {@link UiMenuItemCheckbox}.
    */
-  default UiMenuItemCheckbox addCheckbox(String text, UiEventListener listener) {
+  default UiMenuItemCheckbox addCheckbox(String text, UiClickEventListener listener) {
 
     return addCheckbox(text, listener, -1);
   }
 
   /**
    * @param text the new {@link UiMenuItemCheckbox#getText() label text} of the {@link UiMenuItemCheckbox} to create.
-   * @param listener the {@link UiEventListener} to listen for {@link UiEvent}s such as
-   *        {@link io.github.mmm.ui.api.event.UiClickEvent}.
+   * @param listener the {@link UiClickEventListener} to listen for {@link io.github.mmm.ui.api.event.UiClickEvent}s.
    * @param index is the {@link #getChildIndex(UiAbstractMenuEntry) index} where to insert the new
    *        {@link UiMenuItemCheckbox}.
    * @return the created and added {@link UiMenuItemCheckbox}.
    */
-  UiMenuItemCheckbox addCheckbox(String text, UiEventListener listener, int index);
+  UiMenuItemCheckbox addCheckbox(String text, UiClickEventListener listener, int index);
 
   /**
    * @param text the new {@link UiMenuItemRadioButton#getText() label text} of the {@link UiMenuItemRadioButton} to
    *        create.
-   * @param listener the {@link UiEventListener} to listen for {@link UiEvent}s such as
-   *        {@link io.github.mmm.ui.api.event.UiClickEvent}.
+   * @param listener the {@link UiClickEventListener} to listen for {@link io.github.mmm.ui.api.event.UiClickEvent}s.
    * @return the created and added {@link UiMenuItemRadioButton}.
    */
-  default UiMenuItemRadioButton addRadioButton(String text, UiEventListener listener) {
+  default UiMenuItemRadioButton addRadioButton(String text, UiClickEventListener listener) {
 
     return addRadioButton(text, listener, -1);
   }
@@ -58,12 +54,11 @@ public interface UiAdvancedMenu extends UiMenu {
   /**
    * @param text the new {@link UiMenuItemRadioButton#getText() label text} of the {@link UiMenuItemRadioButton} to
    *        create.
-   * @param listener the {@link UiEventListener} to listen for {@link UiEvent}s such as
-   *        {@link io.github.mmm.ui.api.event.UiClickEvent}.
+   * @param listener the {@link UiClickEventListener} to listen for {@link io.github.mmm.ui.api.event.UiClickEvent}s.
    * @param index is the {@link #getChildIndex(UiAbstractMenuEntry) index} where to insert the new
    *        {@link UiMenuItemRadioButton}.
    * @return the created and added {@link UiMenuItemRadioButton}.
    */
-  UiMenuItemRadioButton addRadioButton(String text, UiEventListener listener, int index);
+  UiMenuItemRadioButton addRadioButton(String text, UiClickEventListener listener, int index);
 
 }

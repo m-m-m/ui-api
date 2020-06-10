@@ -5,6 +5,8 @@
 
 /**
  * Provides the API for dialog controllers and routing.
+ * 
+ * @uses io.github.mmm.ui.api.controller.UiNavigationManager
  */
 module io.github.mmm.ui.api.controller {
 
@@ -13,5 +15,7 @@ module io.github.mmm.ui.api.controller {
   uses io.github.mmm.ui.api.controller.UiNavigationManager;
 
   exports io.github.mmm.ui.api.controller;
+
+  exports io.github.mmm.ui.api.controller.action;
 
 }

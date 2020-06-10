@@ -2,24 +2,25 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.attribute;
 
-import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.img.UiImage;
+import io.github.mmm.ui.api.widget.img.UiAbstractImage;
 
 /**
- * {@link UiWidget} with a {@link #getImage() image} (icon).
+ * Interface to {@link #getImage() read} and {@link #setImage(UiAbstractImage) write} an {@link #getImage() image or
+ * icon}.
  *
  * @since 1.0.0
  */
 public abstract interface AttributeWriteImage {
 
   /**
-   * @return the {@link UiImage} of this widget (typically an icon). Will be {@code null} if not set.
+   * @return the {@link UiAbstractImage image or icon} of this widget (typically a
+   *         {@link io.github.mmm.ui.api.widget.img.UiIcon}). Will be {@code null} if not set.
    */
-  UiImage getImage();
+  UiAbstractImage getImage();
 
   /**
    * @param image is the new {@link #getImage() image}. May be {@code null} to remove an existing image.
    */
-  void setImage(UiImage image);
+  void setImage(UiAbstractImage image);
 
 }
