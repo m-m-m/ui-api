@@ -20,6 +20,18 @@ public interface UiInputContainer<V> extends UiMutableSingleComposite<UiInput<V>
   /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for an input container. */
   String STYLE = "ui-input";
 
+  /** The style or element name for the suffix container */
+  String STYLE_SUFFIX = "ui-suffix";
+
+  /** The style or element name for the prefix container */
+  String STYLE_PREFIX = "ui-prefix";
+
+  /** The style or element name for the input field attached to a suffix */
+  String STYLE_INPUT_WSUFFIX = "ui-input-field-wSuffix";
+
+  /** The style or element name for the input field attached to a prefix */
+  String STYLE_INPUT_WPREFIX = "ui-input-field-wPrefix";
+
   /**
    * @return the contained {@link UiInput}. Will initially be {@code null} but is set on initialization and will never
    *         be {@code null} if retrieved via {@link UiInput#getContainerWidget()}.
