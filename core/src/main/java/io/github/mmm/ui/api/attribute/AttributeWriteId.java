@@ -16,7 +16,6 @@ public abstract interface AttributeWriteId extends AttributeReadId {
    *
    * @param id is the new {@link #getId() ID} for the object.
    * @see #getId()
-   * @see #ID_SEPARATOR
    */
   void setId(String id);
 

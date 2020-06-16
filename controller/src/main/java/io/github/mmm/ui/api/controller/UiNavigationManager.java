@@ -4,7 +4,7 @@ package io.github.mmm.ui.api.controller;
 
 import io.github.mmm.base.exception.ObjectNotFoundException;
 import io.github.mmm.event.EventSource;
-import io.github.mmm.ui.api.widget.UiWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.impl.controller.UiNavigationManagerProvider;
 
 /**
@@ -19,7 +19,7 @@ public interface UiNavigationManager extends EventSource<UiNavigationEvent, UiNa
    * @param id the {@link UiController#getId() ID} of the requested {@link UiController}.
    * @return the requested {@link UiController} or {@code null} if no such {@link UiController} exists.
    */
-  <W extends UiWidget> UiController<W> getController(String id);
+  <W extends UiRegularWidget> UiController<W> getController(String id);
 
   /**
    * @param <W> type of the {@link UiController#getView() view}.
@@ -27,29 +27,13 @@ public interface UiNavigationManager extends EventSource<UiNavigationEvent, UiNa
    * @return the requested {@link UiController}.
    * @throws ObjectNotFoundException if no {@link UiController} exists with the given {@code id}.
    */
-  default <W extends UiWidget> UiController<W> getRequiredController(String id) {
+  default <W extends UiRegularWidget> UiController<W> getRequiredController(String id) {
 
     UiController<W> controller = getController(id);
     if (controller == null) {
       throw new ObjectNotFoundException("UiController", id);
     }
     return controller;
-  }
-
-  /**
-   * @param <W> type of the {@link UiController#getView() view}.
-   * @param type is the {@link UiController#getType() type} of the requested {@link UiController}.
-   * @return the current {@link UiController} with the given {@code type} or {@code null} if no {@link UiController} is
-   *         currently active for the given {@code type}.
-   */
-  <W extends UiWidget> UiController<W> getCurrentDialog(String type);
-
-  /**
-   * @return the current {@link UiController#TYPE_MAIN main} {@link UiController}.
-   */
-  default UiController<?> getCurrentMainDialog() {
-
-    return getCurrentDialog(UiController.TYPE_MAIN);
   }
 
   /**

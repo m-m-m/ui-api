@@ -1,7 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.custom;
+package io.github.mmm.ui.api.widget.custom.form;
 
+import io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget;
+import io.github.mmm.ui.api.widget.custom.composite.UiCustomValuedComposite;
 import io.github.mmm.ui.api.widget.form.UiFormPanel;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 

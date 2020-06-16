@@ -39,6 +39,15 @@ public abstract interface UiAction extends UiEventListener {
   }
 
   /**
+   * @return the custom {@link io.github.mmm.ui.api.widget.img.UiIcon#getIconId() icon ID} for this action. If
+   *         {@code null} typically no icon is used, but it may be derived from {@link #getId() ID} via localization.
+   */
+  default String getIconId() {
+
+    return null;
+  }
+
+  /**
    * @return {@code true} if the user should confirm a question popup before this action is
    *         {@link #onEvent(io.github.mmm.ui.api.event.UiEvent) invoked}.
    */

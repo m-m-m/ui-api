@@ -7,6 +7,7 @@ import io.github.mmm.ui.api.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.api.binding.UiValueBinding;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.composite.UiCollapsibleComposite;
 import io.github.mmm.ui.api.widget.composite.UiValuedComposite;
 import io.github.mmm.ui.api.widget.input.UiAbstractInput;
@@ -19,7 +20,7 @@ import io.github.mmm.ui.api.widget.input.UiInput;
  * @since 1.0.0
  */
 public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiCollapsibleComposite<UiInput<?>>,
-    UiAbstractCompositeInput<UiInput<?>, V>, UiNativeWidget {
+    UiAbstractCompositeInput<UiInput<?>, V>, UiRegularWidget, UiNativeWidget {
 
   @Override
   default boolean isValid() {

@@ -78,6 +78,8 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   void setEnabled(boolean enabled, BitMask mask);
 
   /**
+   * Recursively checks if this widget is visible including all its {@link #getParent() parents}.
+   *
    * @see #isVisible(BitMask)
    */
   @Override
@@ -171,8 +173,8 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
 
   /**
    * A {@link io.github.mmm.ui.api.widget.composite.UiComposite} is only valid if all its children are valid (recursive
-   * check). An {@link UiAtomicWidget atomic widget} that does not implement
-   * {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget} will always return {@code true} here.
+   * check). An atomic widget that does not implement {@link io.github.mmm.ui.api.widget.value.UiValidatableWidget} will
+   * always return {@code true} here.
    *
    * @see io.github.mmm.ui.api.widget.value.UiValidatableWidget
    * @see #validate()

@@ -11,4 +11,10 @@ module io.github.mmm.ui.api.custom {
 
   exports io.github.mmm.ui.api.widget.custom;
 
+  exports io.github.mmm.ui.api.widget.custom.composite;
+
+  exports io.github.mmm.ui.api.widget.custom.form;
+
+  exports io.github.mmm.ui.api.widget.custom.panel;
+
 }
