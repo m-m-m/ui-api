@@ -27,10 +27,6 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-custom</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>mmm-ui-api-data</artifactId>
     </dependency>
     <dependency>

@@ -1,10 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.custom.composite;
+package io.github.mmm.ui.api.widget.composite;
 
+import io.github.mmm.ui.api.widget.AbstractUiCustomWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
-import io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget;
 
 /**
  * {@link AbstractUiCustomWidget} that is a {@link UiMutableComposite}.
@@ -14,7 +13,7 @@ import io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget;
  * @since 1.0.0
  */
 public abstract class UiCustomMutableComposite<C extends UiWidget, W extends UiMutableComposite<C>>
-    extends UiCustomComposite<W, C> implements UiMutableComposite<C> {
+    extends UiCustomRemovableComposite<C, W> implements UiMutableComposite<C> {
 
   /**
    * The constructor.
@@ -36,18 +35,6 @@ public abstract class UiCustomMutableComposite<C extends UiWidget, W extends UiM
   public void addChild(C child, int index) {
 
     this.delegate.addChild(child, index);
-  }
-
-  @Override
-  public boolean removeChild(C child) {
-
-    return this.delegate.removeChild(child);
-  }
-
-  @Override
-  public C removeChild(int index) {
-
-    return this.delegate.removeChild(index);
   }
 
 }

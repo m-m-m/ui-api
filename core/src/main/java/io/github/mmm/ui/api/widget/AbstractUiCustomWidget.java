@@ -1,15 +1,11 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.custom;
+package io.github.mmm.ui.api.widget;
 
 import io.github.mmm.ui.api.datatype.UiStyles;
 import io.github.mmm.ui.api.datatype.UiValidState;
 import io.github.mmm.ui.api.datatype.bitmask.BitMask;
 import io.github.mmm.ui.api.event.UiEventListener;
-import io.github.mmm.ui.api.widget.AbstractUiWidget;
-import io.github.mmm.ui.api.widget.UiCustomWidget;
-import io.github.mmm.ui.api.widget.UiNativeWidget;
-import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.composite.UiComposite;
 
 /**

@@ -31,13 +31,15 @@ public abstract interface UiValidatableWidget<V>
   default V getValue() {
 
     try {
-      return getValueOrThrow();
+      V value = getValueOrThrow();
+      setValidationFailure(null, true);
+      return value;
     } catch (Exception e) {
       String error = e.getMessage();
       if ((error == null) || error.isEmpty()) {
         error = e.getClass().getSimpleName();
       }
-      setValidationFailure(error);
+      setValidationFailure(error, true);
       return null;
     }
   }

@@ -1,10 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.custom.panel;
+package io.github.mmm.ui.api.widget.panel;
 
 import io.github.mmm.ui.api.widget.UiRegularWidget;
-import io.github.mmm.ui.api.widget.custom.composite.UiCustomMutableComposite;
-import io.github.mmm.ui.api.widget.panel.UiMutablePanel;
+import io.github.mmm.ui.api.widget.composite.UiCustomMutableComposite;
 
 /**
  * {@link UiCustomMutableComposite} that is a {@link UiMutablePanel}.

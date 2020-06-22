@@ -15,8 +15,6 @@ module io.github.mmm.ui.api.all {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  requires transitive io.github.mmm.ui.api.custom;
-
   requires transitive io.github.mmm.ui.api.data;
 
   requires transitive io.github.mmm.ui.api.format;

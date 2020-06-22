@@ -34,12 +34,20 @@ public interface UiScrollPanel extends UiMutableSingleComposite<UiRegularWidget>
   void setVerticalScrolling(UiScrollBarVisibility scrolling);
 
   /**
+   * @return the new {@link UiVerticalPanel}.
+   */
+  static UiScrollPanel of() {
+
+    return UiWidgetFactoryNative.get().create(UiScrollPanel.class);
+  }
+
+  /**
    * @param child the {@link UiRegularWidget}s to {@link #setChild(UiRegularWidget) set as child}.
    * @return the new {@link UiVerticalPanel}.
    */
   static UiScrollPanel of(UiRegularWidget child) {
 
-    UiScrollPanel widget = UiWidgetFactoryNative.get().create(UiScrollPanel.class);
+    UiScrollPanel widget = of();
     if (child != null) {
       widget.setChild(child);
     }

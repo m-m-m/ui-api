@@ -1,10 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.custom.composite;
+package io.github.mmm.ui.api.widget.composite;
 
+import io.github.mmm.ui.api.widget.AbstractUiCustomWidget;
 import io.github.mmm.ui.api.widget.UiWidget;
-import io.github.mmm.ui.api.widget.composite.UiComposite;
-import io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget;
 
 /**
  * {@link AbstractUiCustomWidget} that is a {@link UiComposite}.
@@ -13,7 +12,7 @@ import io.github.mmm.ui.api.widget.custom.AbstractUiCustomWidget;
  * @param <C> type of the {@link #getChild(int) child widgets}.
  * @since 1.0.0
  */
-public class UiCustomComposite<W extends UiComposite<C>, C extends UiWidget> extends AbstractUiCustomWidget<W>
+public class UiCustomComposite<C extends UiWidget, W extends UiComposite<C>> extends AbstractUiCustomWidget<W>
     implements UiComposite<C> {
 
   /**

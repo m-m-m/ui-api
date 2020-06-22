@@ -29,6 +29,17 @@ public abstract interface AttributeWriteValidationFailure extends AttributeReadV
    * @param validationFailure is the validation failure text. The empty string or {@code null} will clear the error and
    *        mark the field as valid. Otherwise the field will be invalid.
    */
-  void setValidationFailure(String validationFailure);
+  default void setValidationFailure(String validationFailure) {
+
+    setValidationFailure(validationFailure, false);
+  }
+
+  /**
+   * @param validationFailure is the validation failure text. The empty string or {@code null} will clear the error and
+   *        mark the field as valid. Otherwise the field will be invalid.
+   * @param valueException - {@code true} if invoked from {@link AttributeReadValue#getValue()} due to an exception,
+   *        {@code false} otherwise.
+   */
+  void setValidationFailure(String validationFailure, boolean valueException);
 
 }
