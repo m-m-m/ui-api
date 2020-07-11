@@ -36,9 +36,6 @@ public abstract class AbstractUiNotifier implements UiNotifier {
     if ((title == null) || title.isEmpty()) {
       title = UiLocalizer.get().localize(severity.getName());
     }
-    if (title == null) {
-      title = severity.getName();
-    }
     UiPopup popup = UiPopup.of(title);
     popup.setTitle(title);
     UiText text = UiText.of(message);

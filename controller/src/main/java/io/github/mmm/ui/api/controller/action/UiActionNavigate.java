@@ -37,11 +37,7 @@ public interface UiActionNavigate extends UiAction {
       public String getLabel() {
 
         String id = place.getId();
-        String label = UiLocalizer.get().localize(id);
-        if (label == null) {
-          label = id;
-        }
-        return label;
+        return UiLocalizer.get().localize(id);
       }
 
       @Override

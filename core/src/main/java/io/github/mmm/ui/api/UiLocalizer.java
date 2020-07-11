@@ -38,20 +38,55 @@ public interface UiLocalizer {
   Locale getLocale();
 
   /**
-   * Please read JavaDoc of {@link #localize(String, Object, boolean)} before using.
+   * Please read JavaDoc of {@link #localizeOrNull(String, Object, boolean)} before using.
+   *
+   * @param key the {@link java.util.ResourceBundle#getString(String) key}.
+   * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Will be {@code key} if no
+   *         localization is available.
+   * @see #localizeOrNull(String, Object)
+   */
+  default String localize(String key) {
+
+    String result = localizeOrNull(key);
+    if (result == null) {
+      result = key;
+    }
+    return result;
+  }
+
+  /**
+   * Please read JavaDoc of {@link #localizeOrNull(String, Object, boolean)} before using.
+   *
+   * @param key the {@link java.util.ResourceBundle#getString(String) key}.
+   * @param context the optional context of the key to localize. If not {@code null} it can identify a more specific
+   *        {@link java.util.ResourceBundle}.
+   * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Will be {@code key} if no
+   *         localization is available.
+   */
+  default String localize(String key, Object context) {
+
+    String result = localizeOrNull(key, context);
+    if (result == null) {
+      result = key;
+    }
+    return result;
+  }
+
+  /**
+   * Please read JavaDoc of {@link #localizeOrNull(String, Object, boolean)} before using.
    *
    * @param key the {@link java.util.ResourceBundle#getString(String) key}.
    * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Will be {@code null} if no
    *         localization is available.
-   * @see #localize(String, Object)
+   * @see #localizeOrNull(String, Object)
    */
-  default String localize(String key) {
+  default String localizeOrNull(String key) {
 
-    return localize(key, null);
+    return localizeOrNull(key, null);
   }
 
   /**
-   * Please read JavaDoc of {@link #localize(String, Object, boolean)} before using.
+   * Please read JavaDoc of {@link #localizeOrNull(String, Object, boolean)} before using.
    *
    * @param key the {@link java.util.ResourceBundle#getString(String) key}.
    * @param context the optional context of the key to localize. If not {@code null} it can identify a more specific
@@ -59,9 +94,9 @@ public interface UiLocalizer {
    * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Will be {@code null} if no
    *         localization is available.
    */
-  default String localize(String key, Object context) {
+  default String localizeOrNull(String key, Object context) {
 
-    return localize(key, context, false);
+    return localizeOrNull(key, context, false);
   }
 
   /**
@@ -81,7 +116,7 @@ public interface UiLocalizer {
    * @return the {@link java.util.ResourceBundle#getString(String) localized text}. Will be {@code null} if no
    *         localization is available.
    */
-  String localize(String key, Object context, boolean contextOnly);
+  String localizeOrNull(String key, Object context, boolean contextOnly);
 
   /**
    * @return the instance of this {@link UiLocalizer}.

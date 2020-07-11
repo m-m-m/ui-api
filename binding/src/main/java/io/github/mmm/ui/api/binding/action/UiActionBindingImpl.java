@@ -42,10 +42,10 @@ public class UiActionBindingImpl implements UiActionBinding {
     if (action.requireConfirmation()) {
       String message = action.getConfirmationMessage();
       if (message == null) {
-        message = UiLocalizer.get().localize(action.getId() + UiLocalizer.KEY_CONFIRM);
+        message = UiLocalizer.get().localizeOrNull(action.getId() + UiLocalizer.KEY_CONFIRM);
       }
       if (message == null) {
-        message = UiLocalizer.get().localize(UiLocalizer.KEY_CONFIRM);
+        message = UiLocalizer.get().localizeOrNull(UiLocalizer.KEY_CONFIRM);
       }
       final String finalMessage = message;
       listener = (e) -> {
@@ -64,7 +64,7 @@ public class UiActionBindingImpl implements UiActionBinding {
 
     String label = action.getLabel();
     if (label == null) {
-      label = localizer.localize(id);
+      label = localizer.localizeOrNull(id);
       if (label == null) {
         label = CaseHelper.capitalize(id);
       }
@@ -76,7 +76,7 @@ public class UiActionBindingImpl implements UiActionBinding {
 
     String tooltip = action.getTooltip();
     if (tooltip == null) {
-      tooltip = localizer.localize(id + UiLocalizer.KEY_TOOLTIP);
+      tooltip = localizer.localizeOrNull(id + UiLocalizer.KEY_TOOLTIP);
     }
     if (tooltip != null) {
       button.setTooltip(tooltip);
@@ -87,7 +87,7 @@ public class UiActionBindingImpl implements UiActionBinding {
 
     String iconId = action.getIconId();
     if (iconId == null) {
-      iconId = UiLocalizer.get().localize(action.getId() + UiLocalizer.KEY_ICON);
+      iconId = UiLocalizer.get().localizeOrNull(action.getId() + UiLocalizer.KEY_ICON);
     }
     if ((iconId != null) && !iconId.isEmpty()) {
       button.setImage(UiIcon.of(iconId));

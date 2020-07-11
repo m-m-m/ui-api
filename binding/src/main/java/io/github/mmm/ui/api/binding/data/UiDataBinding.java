@@ -283,7 +283,7 @@ public class UiDataBinding {
   protected String localizeLabel(ReadableProperty<?> property, Object source) {
 
     String name = property.getName();
-    String result = UiLocalizer.get().localize(name, source);
+    String result = UiLocalizer.get().localizeOrNull(name, source);
     if (result == null) {
       result = name;
     }
