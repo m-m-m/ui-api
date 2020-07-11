@@ -6,6 +6,8 @@ import io.github.mmm.event.EventListener;
 
 /**
  * {@link EventListener} for {@link UiEvent}.
+ * 
+ * @since 1.0.0
  */
 public interface UiEventListener extends EventListener<UiEvent> {
 

@@ -6,6 +6,8 @@ import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
  * {@link UiEvent} for a click.
+ * 
+ * @since 1.0.0
  */
 public class UiClickEvent extends UiEvent {
 

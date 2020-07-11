@@ -11,6 +11,9 @@ package io.github.mmm.ui.api.attribute;
  */
 public abstract interface AttributeWriteSelected {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} if selected. */
+  String STYLE_SELECTED = "selected";
+
   /**
    * @return {@code true} if this option is selected (checked or active option), {@code false} otherwise.
    */

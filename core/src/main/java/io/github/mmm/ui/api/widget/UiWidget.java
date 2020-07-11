@@ -4,7 +4,9 @@ package io.github.mmm.ui.api.widget;
 
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.api.attribute.AttributeReadValid;
+import io.github.mmm.ui.api.attribute.AttributeWriteEnabled;
 import io.github.mmm.ui.api.attribute.AttributeWriteId;
+import io.github.mmm.ui.api.attribute.AttributeWriteReadOnly;
 import io.github.mmm.ui.api.attribute.AttributeWriteTooltip;
 import io.github.mmm.ui.api.attribute.AttributeWriteVisible;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
@@ -35,8 +37,8 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  *
  * @since 1.0.0
  */
-public interface UiWidget extends EventSource<UiEvent, UiEventListener>, AttributeReadValid, AttributeWriteVisible,
-    AttributeWriteId, AttributeWriteTooltip {
+public interface UiWidget extends EventSource<UiEvent, UiEventListener>, AttributeWriteId, AttributeReadValid,
+    AttributeWriteVisible, AttributeWriteEnabled, AttributeWriteReadOnly, AttributeWriteTooltip {
 
   /**
    * @return the {@link UiStyles} of this widget. Use to add or remove custom styles.
@@ -44,9 +46,11 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   UiStyles getStyles();
 
   /**
-   * @return {@code true} if enabled, {@code false} if disabled (end-user cannot interact with this widget or its
-   *         children and active widgets are visually grayed out).
+   * Recursively checks if this widget is enabled including all its {@link #getParent() parents}.
+   *
+   * @see #isEnabled(BitMask)
    */
+  @Override
   default boolean isEnabled() {
 
     return isEnabled(null);
@@ -60,10 +64,7 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
    */
   boolean isEnabled(BitMask mask);
 
-  /**
-   * @param enabled the new {@link #isEnabled() enabled state}. Use {@code true} to enable and {@code false} to disable
-   *        this widget.
-   */
+  @Override
   default void setEnabled(boolean enabled) {
 
     setEnabled(enabled, UiEnabledFlags.DEFAULT);
@@ -110,9 +111,10 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   void setVisible(boolean visible, BitMask mask);
 
   /**
-   * @return {@code true} if this input widget is read-only (value can not be edited by the user and is displayed as
-   *         view only like a label), {@code false} otherwise.
+   * @return {@code true} if this widget is read-only (value can not be edited by the user and is displayed as view only
+   *         like a label), {@code false} otherwise.
    */
+  @Override
   default boolean isReadOnly() {
 
     return true;
@@ -121,13 +123,14 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
   /**
    * Switches this widget between view (read-only {@code true}) and edit (read-only {@code false}) mode. This may also
    * have effects such that a {@link io.github.mmm.ui.api.widget.panel.UiButtonPanel} is showing a "Save" button only in
-   * edit mode, while it shows a "Edit" button in view mode that switches to edit mode.<br>
+   * edit mode, while it shows an "Edit" button in read-only mode that switches to edit mode.<br>
    * A {@link io.github.mmm.ui.api.widget.composite.UiComposite} will propagate the read-only state to all its children
    * when this method is called. Please note that several widgets such as {@link UiLabel} are always read-only. In such
    * case this method will have no effect.
    *
    * @param readOnly the new value of {@link #isReadOnly()}.
    */
+  @Override
   void setReadOnly(boolean readOnly);
 
   /**

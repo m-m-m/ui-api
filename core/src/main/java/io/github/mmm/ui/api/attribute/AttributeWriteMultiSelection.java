@@ -10,6 +10,9 @@ package io.github.mmm.ui.api.attribute;
  */
 public abstract interface AttributeWriteMultiSelection extends AttributeReadMultiSelection {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} for selection cells (header/body). */
+  String STYLE_SELECTION = "sel";
+
   /**
    * @param multiSelection the new value of {@link #isMultiSelection()}. Should be set once after creation of this
    *        widget. Changing selection mode dynamically after attaching this widget and making it visible may not be
