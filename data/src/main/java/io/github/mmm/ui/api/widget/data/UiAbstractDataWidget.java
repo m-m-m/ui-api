@@ -16,21 +16,13 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 public abstract interface UiAbstractDataWidget<R>
     extends UiRegularWidget, AttributeWriteSelection<R>, AttributeWriteSelections<R>, AttributeWriteMultiSelection {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} for an data widget. */
+  String STYLE = "ui-data";
+
   /**
    * @param rowTemplate the template instance of a row.
    */
   void setRowTemplate(R rowTemplate);
-
-  /**
-   * @return {@code true} to show an internal first {@link UiColumn column} that displays the row numbers (like in
-   *         Microsoft Excel), {@code false} otherwise.
-   */
-  boolean isShowRowNumbers();
-
-  /**
-   * @param showRowNumbers - {@code true} to show an internal {@link UiColumn column}
-   */
-  void setShowRowNumbers(boolean showRowNumbers);
 
   /**
    * Interface to read and write the value of a property of the data model.
@@ -39,6 +31,12 @@ public abstract interface UiAbstractDataWidget<R>
    * @param <C> type of the property value (cell value).
    */
   interface ColumnAdapter<D, C> {
+
+    /**
+     * @return the {@link Class} reflecting the cell value (e.g. {@link String}, {@link Boolean}, {@link Integer},
+     *         {@link java.math.BigDecimal}, etc.).
+     */
+    Class<C> getType();
 
     /**
      * Getter to read the property value from the data model.

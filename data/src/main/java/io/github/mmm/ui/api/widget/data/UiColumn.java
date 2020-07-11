@@ -10,7 +10,10 @@ import io.github.mmm.ui.api.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
- * {@link UiWidget} for a column of a {@link UiAbstractDataWidget}.
+ * {@link UiWidget} for a column of a {@link UiAbstractDataWidget}.<br>
+ * By default a column is {@link #isReadOnly() read-only}. If you {@link #setReadOnly(boolean) set read-only} to
+ * {@code false}, the cells in this column will be editable. In case you {@link #setReadOnlyFixed(Boolean) set read-only
+ * fixed} to {@link Boolean#TRUE}, you can force the cells of this row to be immutable even for inline editing.
  *
  * @param <R> type of the row data. Typically a {@link io.github.mmm.bean.Bean}.
  * @param <V> type of the value for the cells in this column.

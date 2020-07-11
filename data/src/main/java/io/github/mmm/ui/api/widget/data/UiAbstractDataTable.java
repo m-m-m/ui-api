@@ -3,7 +3,9 @@
 package io.github.mmm.ui.api.widget.data;
 
 import io.github.mmm.base.sort.SortOrder;
+import io.github.mmm.ui.api.attribute.AttributeWriteShowRowNumbers;
 import io.github.mmm.value.PropertyPath;
+import io.github.mmm.value.TypedPropertyPath;
 
 /**
  * Abstract interface for widgets showing complex data in columns such as {@link UiDataTable}.
@@ -11,7 +13,7 @@ import io.github.mmm.value.PropertyPath;
  * @param <R> type of the data for the rows displayed by this widget. Typically a {@link io.github.mmm.bean.Bean}.
  * @since 1.0.0
  */
-public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R> {
+public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>, AttributeWriteShowRowNumbers {
 
   /**
    * @return the number of {@link #getColumn(int) columns} of this data widget.
@@ -25,7 +27,7 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
    * @return the new {@link UiColumn}.
    * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
    */
-  <V> UiColumn<R, V> createColumn(PropertyPath<V> property);
+  <V> UiColumn<R, V> createColumn(TypedPropertyPath<V> property);
 
   /**
    * @param title the {@link UiColumn#getTitle() column header title}.
@@ -47,27 +49,50 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
   UiColumn<R, ?> getColumn(int index);
 
   /**
-   * @param column the {@link UiColumn} to add. Has to be {@link #createColumn(PropertyPath) created} by this data
+   * @param column the {@link UiColumn} to add. Has to be {@link #createColumn(TypedPropertyPath) created} by this data
    *        widget.
    */
-  void addColumn(UiColumn<R, ?> column);
+  default void addColumn(UiColumn<R, ?> column) {
+
+    addColumn(column, -1);
+  }
+
+  /**
+   * @param column the {@link UiColumn} to add. Has to be {@link #createColumn(TypedPropertyPath) created} by this data
+   *        widget.
+   * @param index the index where to add the new column.
+   */
+  void addColumn(UiColumn<R, ?> column, int index);
 
   /**
    * @param <V> type of the cell values of the {@link UiColumn}.
    * @param property the {@link PropertyPath property} of the row data.
+   * @param index the index where to add the new column.
    * @return the new {@link UiColumn}.
    * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
    */
-  default <V> UiColumn<R, V> addColumn(PropertyPath<V> property) {
+  default <V> UiColumn<R, V> addColumn(TypedPropertyPath<V> property) {
+
+    return addColumn(property, -1);
+  }
+
+  /**
+   * @param <V> type of the cell values of the {@link UiColumn}.
+   * @param property the {@link PropertyPath property} of the row data.
+   * @param index the index where to add the new column.
+   * @return the new {@link UiColumn}.
+   * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
+   */
+  default <V> UiColumn<R, V> addColumn(TypedPropertyPath<V> property, int index) {
 
     UiColumn<R, V> column = createColumn(property);
-    addColumn(column);
+    addColumn(column, index);
     return column;
   }
 
   /**
-   * @param columns the {@link UiColumn}s to add. Have to be {@link #createColumn(PropertyPath) created} by this data
-   *        widget.
+   * @param columns the {@link UiColumn}s to add. Have to be {@link #createColumn(TypedPropertyPath) created} by this
+   *        data widget.
    */
   @SuppressWarnings("unchecked")
   default void addColumns(UiColumn<R, ?>... columns) {
