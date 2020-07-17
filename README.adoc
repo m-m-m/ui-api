@@ -18,7 +18,7 @@ You can write portable UI code that can run
 * as dummy implementation for automated unit tests using https://github.com/m-m-m/ui-test[mmm-ui-test]
 * ...in the future we might implement more alternatives such as iOS or SWT
 
-For motivation and details see the https://m-m-m.github.io/docs/api/io.github.mmm.ui.api.core/module-summary.html[documnetation].
+For motivation and details see the https://github.com/m-m-m/ui-api/wiki[wiki] or https://m-m-m.github.io/docs/api/io.github.mmm.ui.api.core/module-summary.html[JavaDoc].
 
 === Usage
 
