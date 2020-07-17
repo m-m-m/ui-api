@@ -10,6 +10,11 @@ package io.github.mmm.ui.api.attribute;
 public abstract interface AttributeWritePrefix {
 
   /**
+   * The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} for the {@link #getPrefix() prefix} widget.
+   */
+  String STYLE_PREFIX = "ui-prefix";
+
+  /**
    * @return the optional prefix text shown in front of the actual input (e.g. for a currency like $ or £). Will be
    *         {@code null} if not set.
    */

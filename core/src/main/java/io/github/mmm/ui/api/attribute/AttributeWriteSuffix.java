@@ -10,6 +10,11 @@ package io.github.mmm.ui.api.attribute;
 public abstract interface AttributeWriteSuffix {
 
   /**
+   * The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} for the {@link #getSuffix() suffix} widget.
+   */
+  String STYLE_SUFFIX = "ui-suffix";
+
+  /**
    * @return the optional suffix text shown after of the actual input (e.g. for a unit, currencies like €, etc.). Will
    *         be {@code null} if not set.
    */
