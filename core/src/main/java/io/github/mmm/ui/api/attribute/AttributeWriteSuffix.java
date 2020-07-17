@@ -15,6 +15,12 @@ public abstract interface AttributeWriteSuffix {
   String STYLE_SUFFIX = "ui-suffix";
 
   /**
+   * The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} for the input widget if followed by a
+   * {@link #getSuffix() suffix}.
+   */
+  String STYLE_WITH_SUFFIX = "with-suffix";
+
+  /**
    * @return the optional suffix text shown after of the actual input (e.g. for a unit, currencies like €, etc.). Will
    *         be {@code null} if not set.
    */
