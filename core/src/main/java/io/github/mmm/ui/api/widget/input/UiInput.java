@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.input;
 
+import io.github.mmm.ui.api.attribute.AttributeWritePrefix;
+import io.github.mmm.ui.api.attribute.AttributeWriteSuffix;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.UiLabel;
@@ -15,7 +17,8 @@ import io.github.mmm.value.ReadableTypedValue;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public abstract interface UiInput<V> extends UiAbstractInput<V>, UiRegularWidget {
+public abstract interface UiInput<V>
+    extends UiAbstractInput<V>, UiRegularWidget, AttributeWritePrefix, AttributeWriteSuffix {
 
   /**
    * @return {@code true} if the {@link #getNameWidget() name widget} has already been created, {@code false} otherwise.

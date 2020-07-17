@@ -73,4 +73,28 @@ public class UiCustomInput<V, W extends UiInput<V>> extends UiCustomValidatableW
     return this.delegate.getContainerWidget();
   }
 
+  @Override
+  public String getPrefix() {
+
+    return this.delegate.getPrefix();
+  }
+
+  @Override
+  public void setPrefix(String prefix) {
+
+    this.delegate.setPrefix(prefix);
+  }
+
+  @Override
+  public String getSuffix() {
+
+    return this.delegate.getSuffix();
+  }
+
+  @Override
+  public void setSuffix(String suffix) {
+
+    this.delegate.setSuffix(suffix);
+  }
+
 }
