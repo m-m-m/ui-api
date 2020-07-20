@@ -5,6 +5,8 @@
 
 /**
  * Provides the API for binding of UI with properties and beans.
+ * 
+ * @uses io.github.mmm.ui.api.notifier.UiNotifier
  */
 module io.github.mmm.ui.api.window {
 

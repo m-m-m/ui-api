@@ -7,7 +7,7 @@
     <artifactId>mmm-ui-api-parent</artifactId>
     <version>${revision}${changelist}</version>
   </parent>
-  <artifactId>mmm-ui-api-menu</artifactId>
+  <artifactId>mmm-ui-api-navigation</artifactId>
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description>API for menu widgets.</description>
