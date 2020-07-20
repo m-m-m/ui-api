@@ -7,6 +7,8 @@ import io.github.mmm.ui.api.widget.UiWidget;
 /**
  * Abstract {@link UiWidget} for any entry of a {@link UiAbstractMenuBar menu or navigation bar}. Such entry is either a
  * {@link UiMenu} or a {@link UiAbstractMenuItem}.
+ * 
+ * @since 1.0.0
  */
 public abstract interface UiAbstractMenuEntry extends UiWidget {
 

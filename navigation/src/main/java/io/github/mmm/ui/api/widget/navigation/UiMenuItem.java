@@ -6,6 +6,8 @@ import io.github.mmm.ui.api.widget.button.UiAbstractButton;
 
 /**
  * {@link UiAbstractMenuItem} for a normal menu item.
+ * 
+ * @since 1.0.0
  */
 public abstract interface UiMenuItem extends UiAbstractMenuItem, UiAbstractButton {
 

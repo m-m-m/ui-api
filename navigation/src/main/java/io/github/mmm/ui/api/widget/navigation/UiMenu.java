@@ -8,6 +8,8 @@ import io.github.mmm.ui.api.attribute.AttributeWriteText;
  * {@link UiAbstractMenuEntry Navigation entry} that represents a group of other {@link UiAbstractMenuEntry navigation
  * entries}. If created via a {@link UiMenuBar} this will be a menu that can be opened and if created from a
  * {@link UiNavigationBar} it will be a link that collapses or expands its {@link #getChild(int) children}.
+ * 
+ * @since 1.0.0
  */
 public interface UiMenu extends UiAbstractMenuEntry, UiAbstractMenuWithItems, AttributeWriteText {
 
