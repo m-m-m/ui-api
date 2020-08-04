@@ -7,33 +7,12 @@ import io.github.mmm.ui.impl.factory.UiWidgetFactoryPropertyImpl;
 import io.github.mmm.value.ReadableTypedValue;
 
 /**
- * Interface for a factory used to {@link #create(Class, boolean) create} {@link UiInput}. API-Users should use
- * {@link UiInput#of(ReadableTypedValue)} instead.
+ * Interface for a factory used to {@link #create(ReadableTypedValue, boolean) create} {@link UiInput}s for properties.
+ * API-Users should use {@link UiInput#of(ReadableTypedValue)} instead.
  *
  * @since 1.0.0
  */
 public abstract interface UiWidgetFactoryProperty {
-
-  /**
-   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
-   * @param propertyType is the {@link Class} reflecting the {@link UiSingleWidgetFactoryProperty#getType() property}.
-   * @return the new {@link UiInput}.
-   * @see UiSingleWidgetFactoryProperty#create()
-   */
-  default <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType) {
-
-    return create(propertyType, true);
-  }
-
-  /**
-   * @param <V> type of the {@link UiSingleWidgetFactoryDatatype#getType() datatype}.
-   * @param propertyType is the {@link Class} reflecting the {@link UiSingleWidgetFactoryProperty#getType() property}.
-   * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype} has to be
-   *        registered for the given {@code datatype}, {@code false} otherwise.
-   * @return the new {@link UiInput}.
-   * @see UiSingleWidgetFactoryProperty#create()
-   */
-  <V> UiInput<V> create(Class<? extends ReadableTypedValue<V>> propertyType, boolean required);
 
   /**
    * @param <V> type of the {@link ReadableTypedValue property}.
@@ -55,16 +34,7 @@ public abstract interface UiWidgetFactoryProperty {
    * @return the {@link UiInput} for the given {@code property}. May be {@code null} if {@code required} is
    *         {@code false}.
    */
-  @SuppressWarnings("unchecked")
-  default <V> UiInput<V> create(ReadableTypedValue<V> property, boolean required) {
-
-    Class<? extends ReadableTypedValue<V>> propertyType = (Class<? extends ReadableTypedValue<V>>) property.getClass();
-    UiInput<V> input = create(propertyType, false);
-    if (input == null) {
-      input = UiWidgetFactoryDatatype.get().create(property.getValueClass(), required);
-    }
-    return input;
-  }
+  <V> UiInput<V> create(ReadableTypedValue<V> property, boolean required);
 
   /**
    * @return the instance of this interface.

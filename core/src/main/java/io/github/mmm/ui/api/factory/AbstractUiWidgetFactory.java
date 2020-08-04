@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
 
+import io.github.mmm.base.exception.DuplicateObjectException;
+import io.github.mmm.base.exception.ObjectNotFoundException;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
@@ -40,11 +42,50 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
    */
   protected void registerFactory(F factory) {
 
-    F duplicate = this.factoryMap.putIfAbsent(factory.getType(), factory);
-    if (duplicate != null) {
-      throw new IllegalStateException("Duplicate factory " + factory.getClass().getName() + " and "
-          + duplicate.getClass().getName() + " for " + factory.getType().getName());
+    Class<?> type = factory.getType();
+    if (type == null) {
+      registerFactoryWithoutType(factory);
+    } else {
+      F existing = this.factoryMap.putIfAbsent(type, factory);
+      if (existing != null) {
+        F mergedFactory = merge(existing, factory);
+        if (mergedFactory == null) {
+          throw new DuplicateObjectException(factory, UiSingleWidgetFactory.class.getSimpleName(), existing);
+        } else if (mergedFactory != existing) {
+          this.factoryMap.put(type, mergedFactory);
+        }
+      }
     }
+  }
+
+  /**
+   * @param existingFactory the existing {@link UiSingleWidgetFactory} to merge.
+   * @param newFactory the new {@link UiSingleWidgetFactory} to merge.
+   * @return the merged {@link UiSingleWidgetFactory} or {@code null} if not able to merge and a
+   *         {@link DuplicateObjectException} shall be thrown.
+   */
+  protected F merge(F existingFactory, F newFactory) {
+
+    return null;
+  }
+
+  /**
+   * @param factory the {@link UiSingleWidgetFactory} without a {@link UiSingleWidgetFactory#getType() type} to
+   *        register.
+   */
+  protected void registerFactoryWithoutType(F factory) {
+
+    throw new IllegalStateException("Illegal factory without type: " + factory.getClass().getName());
+  }
+
+  /**
+   * @param type the {@link UiSingleWidgetFactory#getType() type} of the according {@link UiSingleWidgetFactory}.
+   * @return the {@link UiSingleWidgetFactory} {@link UiSingleWidgetFactory#getType() of} the given {@code type} or
+   *         {@code null} if no such factory is registered.
+   */
+  protected F getForType(Class<?> type) {
+
+    return this.factoryMap.get(type);
   }
 
   /**
@@ -63,9 +104,7 @@ public class AbstractUiWidgetFactory<F extends UiSingleWidgetFactory<?>> {
       if (!required) {
         return null;
       }
-      System.out.println("No Factory registered for " + type.getName());
-      // throw new ObjectNotFoundException("WidgetFactory", type.getName());
-      throw new IllegalArgumentException(type.getName());
+      throw new ObjectNotFoundException(UiSingleWidgetFactory.class.getSimpleName(), type.getName());
     }
     return (W) factory.create();
   }

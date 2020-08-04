@@ -88,11 +88,9 @@ public abstract interface UiInput<V>
    * @return the {@link UiInput} for the given {@code property}. May be {@code null} if {@code required} is
    *         {@code false}.
    */
-  @SuppressWarnings("unchecked")
   static <V> UiInput<V> of(ReadableTypedValue<V> property, boolean required) {
 
-    Class<? extends ReadableTypedValue<V>> propertyType = (Class<? extends ReadableTypedValue<V>>) property.getClass();
-    UiInput<V> input = UiWidgetFactoryProperty.get().create(propertyType, false);
+    UiInput<V> input = UiWidgetFactoryProperty.get().create(property, false);
     if (input == null) {
       input = of(property.getValueClass(), required);
     }
