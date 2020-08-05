@@ -23,6 +23,7 @@
   <modules>
     <module>all</module>
     <module>binding</module>
+    <module>breadcrumb</module>
     <module>controller</module>
     <module>core</module>
     <module>chart</module>
@@ -47,6 +48,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-ui-api-binding</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>mmm-ui-api-breadcrumb</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

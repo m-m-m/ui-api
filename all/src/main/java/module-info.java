@@ -9,6 +9,8 @@ module io.github.mmm.ui.api.all {
 
   requires transitive io.github.mmm.ui.api.binding;
 
+  requires transitive io.github.mmm.ui.api.breadcrumb;
+
   requires transitive io.github.mmm.ui.api.chart;
 
   requires transitive io.github.mmm.ui.api.controller;
