@@ -1,9 +1,9 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.widget.navigation;
+package io.github.mmm.ui.api.widget.menu;
 
 import io.github.mmm.ui.api.widget.UiNativeWidget;
-import io.github.mmm.ui.impl.widget.navigation.UiMenuBarProvider;
+import io.github.mmm.ui.impl.widget.menu.UiMenuBarProvider;
 
 /**
  * {@link UiAbstractMenuBar} representing a regular <em>menu bar</em>. It is {@link #getChild(int) contains}
