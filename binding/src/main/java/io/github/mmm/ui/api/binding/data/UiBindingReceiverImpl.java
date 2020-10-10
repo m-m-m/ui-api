@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.mmm.bean.ReadableBean;
 import io.github.mmm.bean.WritableBean;
 import io.github.mmm.property.ReadableProperty;
 import io.github.mmm.ui.api.binding.UiValueBinding;
@@ -60,7 +61,7 @@ public class UiBindingReceiverImpl<B extends WritableBean> implements UiBindingR
         return this.value;
       }
     }
-    B result = WritableBean.newInstance(this.bean);
+    B result = ReadableBean.newInstance(this.bean);
     for (Map.Entry<String, UiAbstractInput<?>> entry : this.propertyName2InputMap.entrySet()) {
       String propertyName = entry.getKey();
       UiAbstractInput<?> input = entry.getValue();
