@@ -15,10 +15,10 @@ import io.github.mmm.ui.api.widget.UiWidget;
  * {@link io.github.mmm.ui.api.widget.window.UiAbstractWindow winodw} or
  * {@link io.github.mmm.ui.api.widget.window.UiPopup popup}.
  *
- * @param <W> type of the {@link #getView() view}.
+ * @param <V> type of the {@link #getView() view}.
  * @since 1.0.0
  */
-public interface UiController<W extends UiRegularWidget>
+public interface UiController<V extends UiRegularWidget>
     extends AttributeReadTitle, AttributeReadId, AttributeReadVisible {
 
   /** The {@link #getId() id} of the root {@link UiController}. */
@@ -92,7 +92,7 @@ public interface UiController<W extends UiRegularWidget>
    * @return the view of this {@link UiController}. The view is the actual UI represented by a {@link UiWidget},
    *         typically a {@link io.github.mmm.ui.api.widget.UiRegularWidget regular widget}.
    */
-  W getView();
+  V getView();
 
   /**
    * Embeds the {@link UiController#getView() view} of the given child {@link UiController} into the

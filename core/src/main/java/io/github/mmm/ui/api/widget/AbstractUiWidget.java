@@ -31,6 +31,7 @@ public abstract class AbstractUiWidget implements UiWidget {
    */
   protected static void setParent(UiWidget widget, UiComposite<?> parent) {
 
+    assert (widget != null);
     ((AbstractUiWidget) widget).setParent(parent);
   }
 
