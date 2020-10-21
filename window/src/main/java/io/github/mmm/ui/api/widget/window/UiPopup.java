@@ -46,9 +46,7 @@ public interface UiPopup extends UiChildWindow, UiNativeWidget {
   static UiPopup of(String title) {
 
     UiPopup widget = UiWidgetFactoryNative.get().create(UiPopup.class);
-    if (title != null) {
-      widget.setTitle(title);
-    }
+    UiAbstractWindow.initTitle(widget, title);
     return widget;
   }
 }

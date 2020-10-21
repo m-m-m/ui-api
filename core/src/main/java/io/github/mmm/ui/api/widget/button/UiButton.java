@@ -9,6 +9,7 @@ import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.link.UiAbstractLink;
 
 /**
@@ -32,15 +33,15 @@ public interface UiButton extends UiAbstractButton, UiRegularWidget, UiNativeWid
   String STYLE = "ui-button";
 
   /**
-   * @param label the {@link UiButton#getText() label}.
+   * @param text the {@link UiButton#getText() label text}.
    * @param listener the {@link UiEventListener}.
    * @return the new {@link UiButton}.
    * @see #of(UiAction)
    */
-  static UiButton of(String label, UiClickEventListener listener) {
+  static UiButton of(String text, UiClickEventListener listener) {
 
     UiButton widget = UiWidgetFactoryNative.get().create(UiButton.class);
-    widget.setText(label);
+    UiWidget.initText(widget, text);
     if (listener != null) {
       widget.addListener(listener);
     }

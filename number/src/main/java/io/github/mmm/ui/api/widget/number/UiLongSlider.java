@@ -4,6 +4,7 @@ package io.github.mmm.ui.api.widget.number;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 
 /**
  * {@link UiSlider} for a {@link Long} {@link #getValue() value}.<br>
@@ -24,7 +25,7 @@ public interface UiLongSlider extends UiSlider<Long>, UiNativeWidget {
   static UiLongSlider of(String name) {
 
     UiLongSlider widget = UiWidgetFactoryNative.get().create(UiLongSlider.class);
-    widget.setName(name);
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

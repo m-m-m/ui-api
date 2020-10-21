@@ -63,9 +63,7 @@ public interface UiPasswordInput extends UiStringInput, UiNativeWidget {
   static UiPasswordInput of(String name, String autocomplete) {
 
     UiPasswordInput widget = UiWidgetFactoryNative.get().create(UiPasswordInput.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     if (autocomplete != null) {
       widget.setAutocomplete(autocomplete);
     }

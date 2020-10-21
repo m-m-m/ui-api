@@ -35,9 +35,7 @@ public interface UiComboBox<V> extends UiAbstractSingleChoice<V>, UiTextualInput
   static <V> UiComboBox<V> of(String name) {
 
     UiComboBox<V> widget = UiWidgetFactoryNative.get().create(UiComboBox.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

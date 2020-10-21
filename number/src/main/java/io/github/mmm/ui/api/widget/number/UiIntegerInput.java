@@ -4,6 +4,7 @@ package io.github.mmm.ui.api.widget.number;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 
 /**
  * {@link UiNumberInput} for an {@link Integer} {@link #getValue() value}.<br>
@@ -24,9 +25,7 @@ public interface UiIntegerInput extends UiNumberInput<Integer>, UiNativeWidget {
   static UiIntegerInput of(String name) {
 
     UiIntegerInput widget = UiWidgetFactoryNative.get().create(UiIntegerInput.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

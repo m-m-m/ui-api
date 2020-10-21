@@ -19,7 +19,7 @@ public interface UiLabel extends UiRegularWidget, AttributeWriteText, UiNativeWi
   static UiLabel of(String text) {
 
     UiLabel widget = UiWidgetFactoryNative.get().create(UiLabel.class);
-    widget.setText(text);
+    UiWidget.initText(widget, text);
     return widget;
   }
 

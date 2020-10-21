@@ -25,9 +25,7 @@ public interface UiCheckbox extends UiAbstractCheckbox, UiInput<Boolean>, UiNati
   static UiCheckbox of(String name) {
 
     UiCheckbox widget = UiWidgetFactoryNative.get().create(UiCheckbox.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

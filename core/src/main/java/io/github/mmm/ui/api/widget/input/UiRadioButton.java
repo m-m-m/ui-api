@@ -27,9 +27,7 @@ public interface UiRadioButton extends UiAbstractRadioButton, UiInput<Boolean>, 
   static UiRadioButton of(String name) {
 
     UiRadioButton widget = UiWidgetFactoryNative.get().create(UiRadioButton.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

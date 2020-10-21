@@ -6,6 +6,7 @@ import java.math.BigInteger;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 
 /**
  * {@link UiNumberInput} for a {@link BigInteger} {@link #getValue() value}.<br>
@@ -26,9 +27,7 @@ public interface UiBigIntegerInput extends UiNumberInput<BigInteger>, UiNativeWi
   static UiBigIntegerInput of(String name) {
 
     UiBigIntegerInput widget = UiWidgetFactoryNative.get().create(UiBigIntegerInput.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

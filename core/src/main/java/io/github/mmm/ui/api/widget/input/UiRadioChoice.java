@@ -41,9 +41,7 @@ public interface UiRadioChoice<V> extends UiAbstractSingleChoice<V>, UiNativeWid
   static <V> UiRadioChoice<V> of(String name) {
 
     UiRadioChoice<V> widget = UiWidgetFactoryNative.get().create(UiRadioChoice.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

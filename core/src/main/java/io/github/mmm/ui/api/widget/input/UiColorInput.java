@@ -25,7 +25,7 @@ public interface UiColorInput extends UiInput<Color>, UiNativeWidget {
   static UiColorInput of(String name) {
 
     UiColorInput widget = UiWidgetFactoryNative.get().create(UiColorInput.class);
-    widget.setName(name);
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

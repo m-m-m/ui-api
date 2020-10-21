@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 
 /**
  * {@link UiNumberInput} for a {@link BigDecimal} {@link #getValue() value}.<br>
@@ -26,9 +27,7 @@ public interface UiBigDecimalInput extends UiNumberInput<BigDecimal>, UiNativeWi
   static UiBigDecimalInput of(String name) {
 
     UiBigDecimalInput widget = UiWidgetFactoryNative.get().create(UiBigDecimalInput.class);
-    if (name != null) {
-      widget.setName(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

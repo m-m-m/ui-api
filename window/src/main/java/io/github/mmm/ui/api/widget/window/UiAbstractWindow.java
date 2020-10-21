@@ -2,8 +2,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.window;
 
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.attribute.AttributeReadPosition;
 import io.github.mmm.ui.api.attribute.AttributeReadSize;
+import io.github.mmm.ui.api.attribute.AttributeWritePlaceholder;
 import io.github.mmm.ui.api.attribute.AttributeWriteResizable;
 import io.github.mmm.ui.api.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
@@ -65,6 +67,36 @@ public abstract interface UiAbstractWindow
   default void close() {
 
     setVisible(false);
+  }
+
+  /**
+   * @param window the {@link UiAbstractWindow} to initialize with the given {@code title}.
+   * @param title the {@link #getTitle() title} to {@link #setTitle(String) set}. May be {@code null} in which case this
+   *        method has no effect.
+   * @param context the optional context for {@link UiLocalizer#localize(String, Object) localization}. May be
+   *        {@code null}.
+   */
+  static void initTitle(UiAbstractWindow window, String title) {
+
+    initTitle(window, title, null);
+  }
+
+  /**
+   * @param window the {@link UiAbstractWindow} to initialize with the given {@code title}.
+   * @param title the {@link #getTitle() title} to {@link #setTitle(String) set}. May be {@code null} in which case this
+   *        method has no effect.
+   * @param context the optional context for {@link UiLocalizer#localize(String, Object) localization}. May be
+   *        {@code null}.
+   */
+  static void initTitle(UiAbstractWindow window, String title, Object context) {
+
+    if (title != null) {
+      String l10n = UiLocalizer.get().localize(title, context);
+      window.setTitle(l10n);
+      if (window instanceof AttributeWritePlaceholder) {
+        ((AttributeWritePlaceholder) window).setPlaceholder(l10n);
+      }
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
 import io.github.mmm.ui.api.widget.button.UiButton;
 
@@ -29,15 +30,15 @@ import io.github.mmm.ui.api.widget.button.UiButton;
 public abstract interface UiInternalLink extends UiAbstractButton, UiAbstractLink, UiRegularWidget, UiNativeWidget {
 
   /**
-   * @param label the {@link UiButton#getText() label}.
+   * @param text the {@link UiButton#getText() label text}.
    * @param listener the {@link UiEventListener}.
    * @return the new {@link UiButton}.
    * @see #of(UiAction)
    */
-  static UiInternalLink of(String label, UiClickEventListener listener) {
+  static UiInternalLink of(String text, UiClickEventListener listener) {
 
     UiInternalLink widget = UiWidgetFactoryNative.get().create(UiInternalLink.class);
-    widget.setText(label);
+    UiWidget.initText(widget, text);
     if (listener != null) {
       widget.addListener(listener);
     }

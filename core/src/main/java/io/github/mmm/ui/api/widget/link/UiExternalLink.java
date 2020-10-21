@@ -6,6 +6,7 @@ import io.github.mmm.ui.api.attribute.AttributeWriteUrl;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
+import io.github.mmm.ui.api.widget.UiWidget;
 import io.github.mmm.ui.api.widget.button.UiButton;
 
 /**
@@ -29,7 +30,7 @@ public interface UiExternalLink extends UiAbstractLink, AttributeWriteUrl, UiReg
   static UiExternalLink of(String text, String url) {
 
     UiExternalLink widget = UiWidgetFactoryNative.get().create(UiExternalLink.class);
-    widget.setText(text);
+    UiWidget.initText(widget, text);
     if (url != null) {
       widget.setUrl(url);
     }

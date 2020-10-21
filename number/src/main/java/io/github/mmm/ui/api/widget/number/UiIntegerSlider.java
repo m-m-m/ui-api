@@ -4,6 +4,7 @@ package io.github.mmm.ui.api.widget.number;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 
 /**
  * {@link UiSlider} for an {@link Integer} {@link #getValue() value}.<br>
@@ -24,7 +25,7 @@ public interface UiIntegerSlider extends UiSlider<Integer>, UiNativeWidget {
   static UiIntegerSlider of(String name) {
 
     UiIntegerSlider widget = UiWidgetFactoryNative.get().create(UiIntegerSlider.class);
-    widget.setName(name);
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

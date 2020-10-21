@@ -3,10 +3,12 @@
 package io.github.mmm.ui.api.widget;
 
 import io.github.mmm.event.EventSource;
+import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.attribute.AttributeReadValid;
 import io.github.mmm.ui.api.attribute.AttributeWriteEnabled;
 import io.github.mmm.ui.api.attribute.AttributeWriteId;
 import io.github.mmm.ui.api.attribute.AttributeWriteReadOnly;
+import io.github.mmm.ui.api.attribute.AttributeWriteText;
 import io.github.mmm.ui.api.attribute.AttributeWriteTooltip;
 import io.github.mmm.ui.api.attribute.AttributeWriteVisible;
 import io.github.mmm.ui.api.datatype.UiEnabledFlags;
@@ -348,5 +350,32 @@ public interface UiWidget extends EventSource<UiEvent, UiEventListener>, Attribu
    *         otherwise.
    */
   boolean isDisposed();
+
+  /**
+   * @param <W> type of the {@link UiWidget}.
+   * @param widget the {@link UiWidget} to initialize with the given {@code text}.
+   * @param text the {@link AttributeWriteText#getText() text} to {@link AttributeWriteText#setText(String) set}. May be
+   *        {@code null} in which case this method has no effect.
+   */
+  static <W extends UiWidget & AttributeWriteText> void initText(W widget, String text) {
+
+    initText(widget, text, null);
+  }
+
+  /**
+   * @param <W> type of the {@link UiWidget}.
+   * @param widget the {@link UiWidget} to initialize with the given {@code text}.
+   * @param text the {@link AttributeWriteText#getText() text} to {@link AttributeWriteText#setText(String) set}. May be
+   *        {@code null} in which case this method has no effect.
+   * @param context the optional context for {@link UiLocalizer#localize(String, Object) localization}. May be
+   *        {@code null}.
+   */
+  static <W extends UiWidget & AttributeWriteText> void initText(W widget, String text, Object context) {
+
+    if (text != null) {
+      String l10n = UiLocalizer.get().localize(text, context);
+      widget.setText(l10n);
+    }
+  }
 
 }

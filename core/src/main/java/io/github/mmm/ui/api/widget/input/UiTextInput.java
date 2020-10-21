@@ -22,10 +22,7 @@ public interface UiTextInput extends UiStringInput, UiNativeWidget {
   static UiTextInput of(String name) {
 
     UiTextInput widget = UiWidgetFactoryNative.get().create(UiTextInput.class);
-    if (name != null) {
-      widget.setName(name);
-      widget.setPlaceholder(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

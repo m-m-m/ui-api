@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
+import io.github.mmm.ui.api.widget.input.UiAbstractInput;
 import io.github.mmm.ui.api.widget.input.UiTextInput;
 import io.github.mmm.ui.api.widget.input.UiTextualInput;
 
@@ -28,10 +29,7 @@ public interface UiDateInput extends UiTextualInput<LocalDate>, UiNativeWidget {
   static UiDateInput of(String name) {
 
     UiDateInput widget = UiWidgetFactoryNative.get().create(UiDateInput.class);
-    if (name != null) {
-      widget.setName(name);
-      widget.setPlaceholder(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 

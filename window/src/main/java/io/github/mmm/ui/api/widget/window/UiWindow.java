@@ -18,9 +18,7 @@ public interface UiWindow extends UiChildWindow, UiNativeWidget {
   static UiWindow of(String title) {
 
     UiWindow window = UiWidgetFactoryNative.get().create(UiWindow.class);
-    if (title != null) {
-      window.setTitle(title);
-    }
+    UiAbstractWindow.initTitle(window, title);
     return window;
   }
 

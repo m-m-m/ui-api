@@ -22,10 +22,7 @@ public interface UiTextArea extends UiStringInput, UiNativeWidget {
   static UiTextArea of(String name) {
 
     UiTextArea widget = UiWidgetFactoryNative.get().create(UiTextArea.class);
-    if (name != null) {
-      widget.setName(name);
-      widget.setPlaceholder(name);
-    }
+    UiAbstractInput.initName(widget, name);
     return widget;
   }
 
