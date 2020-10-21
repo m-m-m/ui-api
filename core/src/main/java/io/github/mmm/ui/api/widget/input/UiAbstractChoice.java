@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import io.github.mmm.ui.api.UiLocalizer;
+
 /**
  * {@link UiInput} for a choice out of a pre-define {@link List} of {@link #getOptions() options}.
  *
@@ -70,4 +72,33 @@ public abstract interface UiAbstractChoice<O, V> extends UiInput<V> {
    * @param formatter the new value of {@link #getFormatter()}.
    */
   void setFormatter(Function<O, String> formatter);
+
+  /**
+   * This method is intended for internal reuse.
+   *
+   * @param option the option to format.
+   * @return the formatted and localized {@link String}.
+   */
+  default String format(O option) {
+
+    Function<O, String> formatter = getFormatter();
+    String string = formatter.apply(option);
+    if (string != null) {
+      Class<?> context = null;
+      List<O> options = getOptions();
+      if (option == null) {
+        int size = options.size();
+        for (int i = 0; i < size; i++) {
+          context = options.get(i).getClass();
+          if (context != null) {
+            break;
+          }
+        }
+      } else {
+        context = option.getClass();
+      }
+      string = UiLocalizer.get().localize(string, context);
+    }
+    return string;
+  }
 }
