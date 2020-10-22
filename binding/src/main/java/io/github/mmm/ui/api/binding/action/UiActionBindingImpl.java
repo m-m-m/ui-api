@@ -9,6 +9,7 @@ import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.binding.UiActionBinding;
 import io.github.mmm.ui.api.event.UiClickEventListener;
+import io.github.mmm.ui.api.event.UiEvent;
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.notifier.UiNotifier;
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
@@ -38,7 +39,12 @@ public class UiActionBindingImpl implements UiActionBinding {
 
   private void bindListener(UiAction action, UiAbstractButton button) {
 
-    UiClickEventListener listener = e -> action.onEvent(e);
+    UiClickEventListener listener = e -> onAction(action, e);
+    button.addListener(listener);
+  }
+
+  private void onAction(UiAction action, UiEvent event) {
+
     if (action.requireConfirmation()) {
       String message = action.getConfirmationMessage();
       if (message == null) {
@@ -48,16 +54,15 @@ public class UiActionBindingImpl implements UiActionBinding {
         message = UiLocalizer.get().localizeOrNull(UiLocalizer.KEY_CONFIRM);
       }
       final String finalMessage = message;
-      listener = (e) -> {
-        Consumer<Boolean> callback = (choice) -> {
-          if (Boolean.TRUE.equals(choice)) {
-            action.onEvent(e);
-          }
-        };
-        UiNotifier.get().showPopupYesNo(finalMessage, null, callback);
+      Consumer<Boolean> callback = (choice) -> {
+        if (Boolean.TRUE.equals(choice)) {
+          action.onEvent(event);
+        }
       };
+      UiNotifier.get().showPopupYesNo(finalMessage, null, callback);
+    } else {
+      action.onEvent(event);
     }
-    button.addListener(listener);
   }
 
   private void bindLabelText(UiAction action, UiAbstractButton button, UiLocalizer localizer, String id) {
