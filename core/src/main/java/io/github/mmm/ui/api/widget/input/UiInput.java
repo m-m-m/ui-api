@@ -20,6 +20,9 @@ import io.github.mmm.value.ReadableTypedValue;
 public abstract interface UiInput<V>
     extends UiAbstractInput<V>, UiRegularWidget, AttributeWritePrefix, AttributeWriteSuffix {
 
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name of any {@link UiInput}. */
+  String STYLE_INPUT = "ui-input";
+
   /**
    * @return {@code true} if the {@link #getNameWidget() name widget} has already been created, {@code false} otherwise.
    *         Helpful to avoid unintended lazy initialization.

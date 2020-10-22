@@ -13,7 +13,7 @@ import io.github.mmm.ui.api.widget.composite.UiMutableComposite;
  */
 public interface UiGridRow extends UiMutableComposite<UiRegularWidget> {
 
-  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name this widget. */
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name of this widget. */
   String STYLE = "ui-gridrow";
 
   @Override

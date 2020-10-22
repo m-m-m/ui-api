@@ -2,9 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.panel;
 
+import io.github.mmm.ui.api.attribute.AttributeWriteReadOnly;
 import io.github.mmm.ui.api.event.UiEvent;
-import io.github.mmm.ui.api.event.action.UiAction;
-import io.github.mmm.ui.api.event.action.UiActionCancel;
+import io.github.mmm.ui.api.event.action.UiActionDiscard;
 import io.github.mmm.ui.api.event.action.UiActionEdit;
 import io.github.mmm.ui.api.event.action.UiActionReset;
 import io.github.mmm.ui.api.event.action.UiActionSave;
@@ -27,16 +27,20 @@ public class UiCustomEditorButtonPanel extends UiCustomMutableComposite<UiAbstra
 
   private final UiButton reset;
 
-  private final UiButton cancel;
+  private final UiButton discard;
+
+  private final AttributeWriteReadOnly editor;
 
   /**
    * The constructor.
    *
    * @param saveAction the {@link UiActionSave}.
    * @param resetAction the {@link UiActionReset}.
-   * @param cancelAction the {@link UiActionCancel}.
+   * @param discardAction the {@link UiActionDiscard}.
+   * @param editor the editor widget implementing {@link AttributeWriteReadOnly}.
    */
-  public UiCustomEditorButtonPanel(UiActionSave saveAction, UiActionReset resetAction, UiAction cancelAction) {
+  public UiCustomEditorButtonPanel(UiActionSave saveAction, UiActionReset resetAction, UiActionDiscard discardAction,
+      AttributeWriteReadOnly editor) {
 
     super(UiButtonPanel.of());
     UiActionEdit onEdit = this::onEdit;
@@ -48,14 +52,15 @@ public class UiCustomEditorButtonPanel extends UiCustomMutableComposite<UiAbstra
     this.reset = UiButton.of(resetAction);
     this.reset.setVisible(false);
     this.delegate.addChild(this.reset);
-    this.cancel = UiButton.of(cancelAction);
-    this.cancel.setVisible(false);
-    this.delegate.addChild(this.cancel);
+    this.discard = UiButton.of(discardAction);
+    this.discard.setVisible(false);
+    this.delegate.addChild(this.discard);
+    this.editor = editor;
   }
 
   private void onEdit(UiEvent event) {
 
-    setReadOnly(false);
+    this.editor.setReadOnly(false);
   }
 
   @Override
@@ -64,8 +69,18 @@ public class UiCustomEditorButtonPanel extends UiCustomMutableComposite<UiAbstra
     this.edit.setVisible(readOnly);
     this.save.setVisible(!readOnly);
     this.reset.setVisible(!readOnly);
-    this.cancel.setVisible(!readOnly);
+    this.discard.setVisible(!readOnly);
     super.setReadOnly(readOnly);
+  }
+
+  @Override
+  public void setReadOnlyFixed(Boolean readOnlyFixed) {
+
+    if (readOnlyFixed != null) {
+      this.edit.setVisible(false);
+      this.discard.setVisible(false);
+    }
+    super.setReadOnlyFixed(readOnlyFixed);
   }
 
 }

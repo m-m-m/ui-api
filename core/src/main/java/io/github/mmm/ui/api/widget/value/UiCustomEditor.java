@@ -150,9 +150,6 @@ public class UiCustomEditor<V> extends AbstractUiCustomWidget<UiVerticalPanel>
     @Override
     public void onEvent(UiEvent event) {
 
-      if (!UiCustomEditor.this.form.isModified()) {
-        return;
-      }
       UiCustomEditor.this.form.reset();
       setReadOnly(true);
     }

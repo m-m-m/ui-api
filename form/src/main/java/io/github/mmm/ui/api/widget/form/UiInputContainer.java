@@ -19,7 +19,7 @@ import io.github.mmm.ui.api.widget.input.UiInput;
 public interface UiInputContainer<V> extends UiMutableSingleComposite<UiInput<V>>, UiRegularWidget, UiNativeWidget {
 
   /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name for an input container. */
-  String STYLE = "ui-input";
+  String STYLE = "ui-inputcontainer";
 
   /**
    * @return the contained {@link UiInput}. Will initially be {@code null} but is set on initialization and will never

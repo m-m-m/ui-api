@@ -17,7 +17,7 @@ import io.github.mmm.ui.api.widget.composite.UiRemovableComposite;
  */
 public interface UiGridPanel extends UiRemovableComposite<UiGridRow>, UiRegularWidget, UiNativeWidget {
 
-  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name this widget. */
+  /** The {@link io.github.mmm.ui.api.datatype.UiStyles#add(String) style} or element name of this widget. */
   String STYLE = "ui-grid";
 
   /**
