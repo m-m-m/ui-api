@@ -33,6 +33,18 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
    */
   default C getChildSibling(C child, int offset) {
 
+    return getChildSibling(child, offset, true);
+  }
+
+  /**
+   * @param child the current {@link #getChild(int) child}.
+   * @param offset the sibling offset - e.g. {@code 1} will get next sibling and {@code -1} will get previous sibling.
+   * @param wrap - {@code true} to wrap in the list of children (jump from the last to the first and vice versa),
+   *        {@code false} otherwise (to return {@code null} if the end or the start of the children has been exceeded).
+   * @return the requested child sibling or {@code null} if no such child exists.
+   */
+  default C getChildSibling(C child, int offset, boolean wrap) {
+
     int i = getChildIndex(child);
     if (i < 0) {
       return null;
@@ -42,10 +54,12 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
       return child;
     }
     i = i + offset;
-    if (i < 0) {
-      i = i + size;
-    } else if (i >= size) {
-      i = i - size;
+    if (wrap) {
+      if (i < 0) {
+        i = i + size;
+      } else if (i >= size) {
+        i = i - size;
+      }
     }
     return getChild(i);
   }
