@@ -10,4 +10,10 @@ package io.github.mmm.ui.api.widget.menu;
  */
 public interface UiMenuItemSeparator extends UiAbstractMenuItem {
 
+  @Override
+  default String getText() {
+
+    return "-";
+  }
+
 }
