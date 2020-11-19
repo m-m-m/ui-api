@@ -27,6 +27,30 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
   C getChild(int index);
 
   /**
+   * @param child the current {@link #getChild(int) child}.
+   * @param offset the sibling offset - e.g. {@code 1} will get next sibling and {@code -1} will get previous sibling.
+   * @return the requested child sibling or {@code null} if no such child exists.
+   */
+  default C getChildSibling(C child, int offset) {
+
+    int i = getChildIndex(child);
+    if (i < 0) {
+      return null;
+    }
+    int size = getChildCount();
+    if (size == 1) {
+      return child;
+    }
+    i = i + offset;
+    if (i < 0) {
+      i = i + size;
+    } else if (i >= size) {
+      i = i - size;
+    }
+    return getChild(i);
+  }
+
+  /**
    * @param child the {@link #getChild(int) child} to look for.
    * @return the index of the given {@code child} or {@code -1} if no such {@link #getChild(int) child} exists.
    */
