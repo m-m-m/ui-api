@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read the {@link #isVisible() visibility}.
+ * Interface to {@link #isVisible() read} the {@link #isVisible() visibility}.
  *
  * @since 1.0.0
  */

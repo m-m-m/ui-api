@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read {@link #getLanguage() language}.
+ * Interface to {@link #getLanguage() read} the {@link #getLanguage() language}.
  *
  * @since 1.0.0
  */

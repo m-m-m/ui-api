@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getPrefix() read} and {@link #setPrefix(String) write} a {@link #getPrefix() prefix}.
+ * Interface to {@link #getPrefix() read} and {@link #setPrefix(String) write} the {@link #getPrefix() prefix}.
  *
  * @since 1.0.0
  */

@@ -4,7 +4,7 @@ package io.github.mmm.ui.api.attribute;
 
 /**
  * Interface to {@link #isResizable() read} and {@link #setResizable(boolean) write} the {@link #isResizable() resizable
- * flag} of an object.
+ * flag}.
  *
  * @since 1.0.0
  */

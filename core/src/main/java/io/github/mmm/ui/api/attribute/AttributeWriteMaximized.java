@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and {@link #setMaximized(boolean) write} the {@link #isMaximized() maximized} state.
+ * Interface to {@link #isMaximized() read} and {@link #setMaximized(boolean) write} the {@link #isMaximized() maximized
+ * state}.
  *
  * @since 1.0.0
  */

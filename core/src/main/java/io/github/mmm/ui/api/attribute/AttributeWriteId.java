@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write an {@link #getId() ID}.
+ * Interface to {@link #getId() read} and {@link #setId(String) write} an {@link #getId() ID}.
  *
  * @since 1.0.0
  */

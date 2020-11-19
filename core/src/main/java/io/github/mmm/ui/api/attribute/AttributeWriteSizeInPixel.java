@@ -3,7 +3,9 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write the size of an object in {@link io.github.mmm.ui.api.datatype.UiSizeUnit#PIXEL pixel}.
+ * Interface to read and {@link #setSizeInPixel(double, double) write} the {@link #setSizeInPixel(double, double) size}
+ * in {@link io.github.mmm.ui.api.datatype.UiSizeUnit#PIXEL pixel} composed of {@link #getWidthInPixel() width} and
+ * {@link #getHeightInPixel() height}.
  *
  * @since 1.0.0
  */

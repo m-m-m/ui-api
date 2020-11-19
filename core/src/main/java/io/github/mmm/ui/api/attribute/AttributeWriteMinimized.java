@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and {@link #setMinimized(boolean) write} the {@link #isMinimized() minimized} state.
+ * Interface to {@link #isMinimized() read} and {@link #setMinimized(boolean) write} the {@link #isMinimized() minimized
+ * state}.
  *
  * @since 1.0.0
  */

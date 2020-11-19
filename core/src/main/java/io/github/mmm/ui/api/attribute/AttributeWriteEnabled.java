@@ -3,8 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #isEnabled() read} and {@link #setEnabled(boolean) write} the {@link #isEnabled() enabled flag}
- * of an object.
+ * Interface to {@link #isEnabled() read} and {@link #setEnabled(boolean) write} the {@link #isEnabled() enabled flag}.
  *
  * @since 1.0.0
  */

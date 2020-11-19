@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getPlaceholder() read} and {@link #setPlaceholder(String) write} a {@link #getPlaceholder()
+ * Interface to {@link #getPlaceholder() read} and {@link #setPlaceholder(String) write} the {@link #getPlaceholder()
  * placeholder}.
  *
  * @since 1.0.0

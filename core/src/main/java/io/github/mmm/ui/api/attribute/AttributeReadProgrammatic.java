@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read an {@link #isProgrammatic() programmatic flag}.
+ * Interface to {@link #isProgrammatic() read} the {@link #isProgrammatic() programmatic flag}.
  *
  * @since 1.0.0
  */

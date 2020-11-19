@@ -4,10 +4,9 @@ package io.github.mmm.ui.api.attribute;
 
 import io.github.mmm.ui.api.datatype.UiSize;
 import io.github.mmm.ui.api.datatype.UiSizeUnit;
-import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
- * {@link UiWidget} that has a {@link #setSize(UiSize, UiSize) size} of {@link #getWidth() width} and
+ * Interface to read and {@link #setSize(UiSize, UiSize) write} the size composed of {@link #getWidth() width} and
  * {@link #getHeight() height}.
  *
  * @since 1.0.0

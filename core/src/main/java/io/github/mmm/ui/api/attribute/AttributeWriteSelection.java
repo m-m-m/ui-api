@@ -3,8 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getSelection() read} and {@link #setSelection(Object) write} a {@link #getSelection()
- * single-selection}.
+ * Interface to {@link #getSelection() read} and {@link #setSelection(Object) write} the (single-){@link #getSelection()
+ * selection}.
  *
  * @param <V> type of the elements to select.
  * @since 1.0.0

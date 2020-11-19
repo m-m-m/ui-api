@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read position as {@link #getX() X} and {@link #getY() Y} coordinates.
+ * Interface to read the position as {@link #getX() X} and {@link #getY() Y} coordinates.
  *
  * @since 1.0.0
  */

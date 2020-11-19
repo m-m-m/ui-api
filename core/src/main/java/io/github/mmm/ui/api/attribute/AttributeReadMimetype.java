@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read {@link #getMimetype() mimetype}.
+ * Interface to {@link #getMimetype() read} the {@link #getMimetype() mimetype}.
  *
  * @since 1.0.0
  */

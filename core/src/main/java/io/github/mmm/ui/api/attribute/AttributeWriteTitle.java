@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read a {@link #getTitle() title}.
+ * Interface to {@link #getTitle() read} and {@link #setTitle(String) write} the {@link #getTitle() title}.
  *
  * @since 1.0.0
  */

@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write an {@link #getAltText() alternative text}.
+ * Interface to {@link #getAltText() read} and {@link #setAltText(String) write} the {@link #getAltText() alternative
+ * text}.
  *
  * @since 1.0.0
  */

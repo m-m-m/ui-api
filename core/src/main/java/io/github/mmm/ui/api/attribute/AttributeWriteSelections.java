@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Interface to {@link #getSelections() read} and {@link #setSelections(Collection) write} a {@link #getSelections()
- * multi-selection}.
+ * Interface to {@link #getSelections() read} and {@link #setSelections(Collection) write} the
+ * (multi-){@link #getSelections() selections}.
  *
  * @param <V> type of the elements to select.
  * @since 1.0.0

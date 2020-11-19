@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write the {@link #isCollapsed() collapsed} flag.
+ * Interface to {@link #isCollapsed() read} and {@link #setCollapsed(boolean) write} the {@link #isCollapsed()
+ * collapsed} flag.
  *
  * @since 1.0.0
  */

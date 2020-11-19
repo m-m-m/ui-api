@@ -6,7 +6,7 @@ import io.github.mmm.ui.api.widget.UiLabel;
 
 /**
  * Interface to {@link #isReadOnly() read} and {@link #setReadOnly(boolean) write} the {@link #isReadOnly() read-only
- * flag} of an object.
+ * flag}.
  *
  * @since 1.0.0
  */

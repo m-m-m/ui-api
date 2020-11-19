@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read the {@link #isValid() valid flag}.
+ * Interface to {@link #isValid() read} the {@link #isValid() valid flag}.
  *
  * @since 1.0.0
  */

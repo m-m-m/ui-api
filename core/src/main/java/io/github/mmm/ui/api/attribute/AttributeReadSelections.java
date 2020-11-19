@@ -5,7 +5,7 @@ package io.github.mmm.ui.api.attribute;
 import java.util.List;
 
 /**
- * Interface to read a {@link #getSelections() multi-selection}.
+ * Interface to {@link #getSelections() read} the {@link #getSelections() multi-selection}.
  *
  * @param <V> type of the elements to select.
  * @since 1.0.0

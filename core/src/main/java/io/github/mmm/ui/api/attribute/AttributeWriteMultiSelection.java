@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #isMultiSelection() read} and {@link #setMultiSelection(boolean) write} a
+ * Interface to {@link #isMultiSelection() read} and {@link #setMultiSelection(boolean) write} the
  * {@link #isMultiSelection() multi-selection flag}.
  *
  * @since 1.0.0

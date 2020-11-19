@@ -6,7 +6,6 @@ package io.github.mmm.ui.api.attribute;
  * Interface to {@link #isSelected() read} and {@link #setSelected(boolean) write} the {@link #isSelected() selected
  * flag}.
  *
- *
  * @since 1.0.0
  */
 public abstract interface AttributeWriteSelected {

@@ -4,7 +4,7 @@ package io.github.mmm.ui.api.attribute;
 
 /**
  * Interface to {@link #isShowRowNumbers() read} and {@link #setShowRowNumbers(boolean) write} the
- * {@link #isShowRowNumbers() show line numbers} flag.
+ * {@link #isShowRowNumbers() show row numbers flag}.
  *
  * @since 1.0.0
  */

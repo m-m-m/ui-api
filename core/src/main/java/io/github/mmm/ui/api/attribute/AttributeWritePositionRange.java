@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write min/max ranges for the {@link #setPosition(double, double) position}.
+ * Interface to read and write the minimum and maximum values for the {@link #setPosition(double, double) position}.
  *
  * @since 1.0.0
  */

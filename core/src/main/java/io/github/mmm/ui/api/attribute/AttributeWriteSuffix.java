@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getSuffix() read} and {@link #setSuffix(String) write} a {@link #getSuffix() suffix}.
+ * Interface to {@link #getSuffix() read} and {@link #setSuffix(String) write} the {@link #getSuffix() suffix}.
  *
  * @since 1.0.0
  */

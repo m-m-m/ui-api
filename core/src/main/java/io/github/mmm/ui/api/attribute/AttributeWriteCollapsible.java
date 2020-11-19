@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write the {@link #isCollapsible() collapsible} flag.
+ * Interface to {@link #isCollapsible() read} and {@link #setCollapsible(boolean) write} the {@link #isCollapsible()
+ * collapsible} flag.
  *
  * @since 1.0.0
  */

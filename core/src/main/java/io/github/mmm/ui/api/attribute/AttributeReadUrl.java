@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read a {@link #getUrl() URL}.
+ * Interface to {@link #getUrl() read} the {@link #getUrl() URL}.
  *
  * @since 1.0.0
  */

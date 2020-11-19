@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to read and write a {@link #getTooltip() tooltip}.
+ * Interface to {@link #getTooltip() read} and {@link #setTooltip(String) write} the {@link #getTooltip() tooltip}.
  *
  * @since 1.0.0
  */

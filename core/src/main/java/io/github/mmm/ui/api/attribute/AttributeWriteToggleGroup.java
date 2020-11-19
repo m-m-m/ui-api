@@ -5,7 +5,8 @@ package io.github.mmm.ui.api.attribute;
 import io.github.mmm.ui.api.UiToggleGroup;
 
 /**
- * Interface to {@link #getToggleGroup() read} and {@link #setToggleGroup(UiToggleGroup) write} a {@link UiToggleGroup}.
+ * Interface to {@link #getToggleGroup() read} and {@link #setToggleGroup(UiToggleGroup) write} the
+ * {@link UiToggleGroup}.
  *
  * @since 1.0.0
  */
