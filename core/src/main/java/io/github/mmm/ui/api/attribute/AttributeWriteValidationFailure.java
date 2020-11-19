@@ -2,10 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.attribute;
 
-import io.github.mmm.ui.api.widget.UiWidget;
-
 /**
- * {@link UiWidget} with {@link #getValidationFailure() validation failure}.
+ * Interface to {@link #getValidationFailure() read} and {@link #setValidationFailure(String) write} the
+ * {@link #getValidationFailure() validation failure}.
  *
  * @since 1.0.0
  */

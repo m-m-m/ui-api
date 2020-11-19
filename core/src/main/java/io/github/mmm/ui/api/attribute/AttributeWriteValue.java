@@ -3,7 +3,7 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getValue() read} and {@link #setValue(Object) write} a value.
+ * Interface to {@link #getValue() read} and {@link #setValue(Object) write} the {@link #getValue() value}.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0

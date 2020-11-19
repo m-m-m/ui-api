@@ -3,7 +3,8 @@
 package io.github.mmm.ui.api.attribute;
 
 /**
- * Interface to {@link #getValue() read} and {@link #setValue(Object, boolean) write} a value.
+ * Interface to {@link #getValue() read} and {@link #setValue(Object, boolean) write} the {@link #getValue() value} with
+ * ability to provide a flag if the value shall be {@link #setValue(Object, boolean) set on behalf of the user}.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
