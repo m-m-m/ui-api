@@ -50,7 +50,7 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
       return null;
     }
     int size = getChildCount();
-    if (size == 1) {
+    if (wrap && (size == 1)) {
       return child;
     }
     i = i + offset;
