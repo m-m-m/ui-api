@@ -2,6 +2,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.composite;
 
+import java.util.Objects;
+
 import io.github.mmm.ui.api.datatype.UiPropagation;
 import io.github.mmm.ui.api.widget.UiWidget;
 
@@ -25,6 +27,25 @@ public abstract interface UiComposite<C extends UiWidget> extends UiWidget {
    * @see java.util.List#get(int)
    */
   C getChild(int index);
+
+  /**
+   * Searches the (first) {@link #getChild(int) child} (non-recursive) with the given {@link #getId() ID}.
+   *
+   * @param id the {@link #getId() ID} of the given {@link #getChild(int) child}.
+   * @return the {@link #getChild(int) child} having the given {@link #getId() ID} or {@code null} if no such child
+   *         exists.
+   */
+  default C getChildById(String id) {
+
+    int count = getChildCount();
+    for (int i = 0; i < count; i++) {
+      C child = getChild(i);
+      if ((child != null) && Objects.equals(id, child.getId())) {
+        return child;
+      }
+    }
+    return null;
+  }
 
   /**
    * @param child the current {@link #getChild(int) child}.
