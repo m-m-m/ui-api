@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.event;
 
+import io.github.mmm.ui.api.attribute.AttributeReadVisible;
 import io.github.mmm.ui.api.widget.UiWidget;
 
 /**
@@ -10,7 +11,7 @@ import io.github.mmm.ui.api.widget.UiWidget;
  * @see UiWidget#setVisible(boolean)
  * @since 1.0.0
  */
-public abstract class UiVisibilityEvent extends UiEvent {
+public abstract class UiVisibilityEvent extends UiEvent implements AttributeReadVisible {
 
   /**
    * The constructor.

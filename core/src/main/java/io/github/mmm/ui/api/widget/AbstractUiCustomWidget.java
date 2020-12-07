@@ -148,6 +148,12 @@ public abstract class AbstractUiCustomWidget<W extends UiWidget> extends Abstrac
   }
 
   @Override
+  public boolean isAttached() {
+
+    return this.delegate.isAttached();
+  }
+
+  @Override
   public UiStyles getStyles() {
 
     return this.delegate.getStyles();

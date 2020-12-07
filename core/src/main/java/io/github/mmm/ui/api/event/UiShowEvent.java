@@ -42,6 +42,12 @@ public class UiShowEvent extends UiVisibilityEvent {
     return TYPE;
   }
 
+  @Override
+  public boolean isVisible() {
+
+    return true;
+  }
+
   /**
    * @param source the {@link #getSource() source widget}.
    * @param programmaticEventType the {@link UiEventType} marked as programmatic.

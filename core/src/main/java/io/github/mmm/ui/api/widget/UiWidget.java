@@ -4,6 +4,7 @@ package io.github.mmm.ui.api.widget;
 
 import io.github.mmm.event.EventSource;
 import io.github.mmm.ui.api.UiLocalizer;
+import io.github.mmm.ui.api.attribute.AttributeReadAttached;
 import io.github.mmm.ui.api.attribute.AttributeReadValid;
 import io.github.mmm.ui.api.attribute.AttributeWriteEnabled;
 import io.github.mmm.ui.api.attribute.AttributeWriteId;
@@ -40,7 +41,7 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  * @since 1.0.0
  */
 public interface UiWidget extends EventSource<UiEvent, UiEventListener>, AttributeWriteId, AttributeReadValid,
-    AttributeWriteVisible, AttributeWriteEnabled, AttributeWriteReadOnly, AttributeWriteTooltip {
+    AttributeWriteVisible, AttributeWriteEnabled, AttributeWriteReadOnly, AttributeWriteTooltip, AttributeReadAttached {
 
   /**
    * @return the {@link UiStyles} of this widget. Use to add or remove custom styles.

@@ -42,6 +42,12 @@ public class UiDisableEvent extends UiEnablingEvent {
     return TYPE;
   }
 
+  @Override
+  public boolean isEnabled() {
+
+    return false;
+  }
+
   /**
    * @param source the {@link #getSource() source widget}.
    * @param programmaticEventType the {@link UiEventType} marked as programmatic.
