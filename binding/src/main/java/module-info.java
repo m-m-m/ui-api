@@ -5,6 +5,8 @@
 
 /**
  * Provides the API for binding of UI with properties and beans.
+ *
+ * @provides io.github.mmm.ui.api.binding.UiActionBinding
  */
 module io.github.mmm.ui.api.binding {
 
