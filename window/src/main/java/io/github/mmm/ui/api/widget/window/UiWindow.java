@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.window;
 
+import io.github.mmm.ui.api.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
@@ -18,7 +19,7 @@ public interface UiWindow extends UiChildWindow, UiNativeWidget {
   static UiWindow of(String title) {
 
     UiWindow window = UiWidgetFactoryNative.get().create(UiWindow.class);
-    UiAbstractWindow.initTitle(window, title);
+    AttributeWriteTitle.setTitle(window, title);
     return window;
   }
 

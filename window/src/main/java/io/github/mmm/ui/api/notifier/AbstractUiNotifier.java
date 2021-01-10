@@ -2,7 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.notifier;
 
-import io.github.mmm.ui.api.UiLocalizer;
+import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
@@ -31,20 +31,18 @@ public abstract class AbstractUiNotifier implements UiNotifier {
   }
 
   @Override
-  public UiPopup createPopup(String message, UiSeverity severity, String title, String details, UiAction... actions) {
+  public UiPopup createPopup(UiNotification notification, UiAction... actions) {
 
-    if ((title == null) || title.isEmpty()) {
-      title = UiLocalizer.get().localize(severity.getName());
-    }
-    UiPopup popup = UiPopup.of(title);
-    popup.setTitle(title);
-    UiText text = UiText.of(message);
+    UiPopup popup = UiPopup.of(notification.getTitle());
+    UiText text = UiText.of(notification.getMessage());
     UiRegularWidget child = text;
+    UiSeverity severity = notification.getSeverity();
     if (severity != null) {
       UiIcon icon = UiIcon.of(severity.getName());
       icon.setSize(3);
       child = UiHorizontalPanel.of(icon, text);
     }
+    String details = notification.getDetails();
     if ((details != null) && !details.isEmpty()) {
       UiScrollPanel scrollPanel = UiScrollPanel.of(UiText.of(details));
       UiCollapsiblePanel detailsPanel = UiCollapsiblePanel.of(scrollPanel);
@@ -58,6 +56,8 @@ public abstract class AbstractUiNotifier implements UiNotifier {
       button.addListener(closeListener);
       buttonPanel.addChild(button);
     }
+    popup.getSize().setWidthInPixel(400);
+    popup.getSize().setHeightInPixel(100);
     return popup;
   }
 

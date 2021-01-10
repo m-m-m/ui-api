@@ -2,11 +2,9 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.notifier;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Map;
 import java.util.function.Consumer;
 
+import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.event.action.UiAction;
 import io.github.mmm.ui.api.event.action.UiActionNo;
@@ -23,151 +21,64 @@ import io.github.mmm.ui.impl.notifier.UiNotifierProvider;
 public interface UiNotifier {
 
   /**
-   * This method opens a notification (growl) information message. This will typically appear at the bottom right and
-   * fade out automatically after a delay.
+   * This method shows a {@link UiNotification} to the end-user. Typically it will show a growl box appearing at the
+   * bottom right that fades out automatically after a while so the end-user is not disturbed. However, it is possible
+   * to configure that {@link UiNotification}s of a higher {@link UiNotification#getSeverity() severity} (e.g.
+   * {@link UiSeverity#ERROR}) will be {@link #showPopupOk(UiNotification) shown as popup}.
    *
-   * @see #showNotification(String, UiSeverity)
-   *
-   * @param message is the message to display.
+   * @param notification the {@link UiNotification} to show.
    */
-  default void showNotification(String message) {
+  void show(UiNotification notification);
 
-    showNotification(message, UiSeverity.INFORMATION);
+  /**
+   * Shows an error to the end-user
+   *
+   * @param error the {@link Throwable} that has been catched.
+   * @see #show(UiNotification)
+   */
+  default void show(Throwable error) {
+
+    show(UiNotification.of(error));
   }
 
   /**
-   * This method opens a notification (growl) message. This will typically appear at the bottom right and fade out
-   * automatically after a delay.
-   *
-   * @see #showPopupOk(String, UiSeverity, String)
-   *
-   * @param message is the message to display.
-   * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
+   * @param message the {@link UiNotification#getMessage() message} to show.
+   * @see #show(UiNotification)
    */
-  void showNotification(String message, UiSeverity severity);
+  default void showInfo(String message) {
+
+    show(UiNotification.ofInfo(message));
+  }
 
   /**
-   * This method opens a confirmation {@link UiPopup popup window} with the given {@code message}. The title of the
-   * popup is automatically derived from the given {@link UiSeverity}.
+   * This method creates a {@link UiPopup popup window} with the given {@code message}. It is the most generic and
+   * flexible but also the most inconvenient {@code showPopup} method variant.
    *
-   * @see #showPopupOk(String, UiSeverity, String)
-   *
-   * @param message is the message to display.
+   * @param notification the {@link UiNotification} to show.
+   * @param actions are the {@link UiAction}s for the buttons to close (answer, confirm, or cancel) the popup. Has to be
+   *        at least one {@link UiAction}.
    * @return the {@link UiPopup}.
    */
-  default UiPopup showPopupOk(String message) {
-
-    return showPopupOk(message, UiSeverity.INFORMATION);
-  }
+  UiPopup createPopup(UiNotification notification, UiAction... actions);
 
   /**
-   * This method opens a confirmation {@link UiPopup popup window} with the given {@code message}. The title of the
-   * popup is automatically derived from the given {@link UiSeverity}.
-   *
-   * @see #showPopupOk(String, UiSeverity, String)
-   *
-   * @param message is the message to display.
-   * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(String message, UiSeverity severity) {
-
-    return showPopupOk(message, severity, null, null);
-  }
-
-  /**
-   * This method opens a confirmation {@link UiPopup popup window} with the given {@code message} and an .
-   *
-   * @param message is the message to display.
-   * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
-   * @param title is the title that will be displayed in the title-bar of the popup.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(String message, UiSeverity severity, String title) {
-
-    return showPopupOk(message, severity, title, null);
-  }
-
-  /**
-   * This method opens a confirmation {@link UiPopup popup window} with the given {@code message} and an "OK" button.
-   *
-   * @param message is the message to display.
-   * @param title is the title that will be displayed in the title-bar of the popup.
-   * @param severity is the {@link UiSeverity}. Should NOT be {@link UiSeverity#QUESTION}.
-   * @param action is the {@link UiActionOk}.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(String message, UiSeverity severity, String title, UiActionOk action) {
-
-    return showPopup(message, severity, title, null, UiActionOk.notNull(action));
-  }
-
-  /**
-   * This method opens a confirmation {@link UiPopup popup window} showing the given {@code error}. It will use
-   * {@link UiSeverity#ERROR}.
-   *
-   * @param error is the {@link Throwable} that has occurred.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(Throwable error) {
-
-    String message = error.getLocalizedMessage();
-    if (message == null) {
-      message = error.getClass().getSimpleName();
-    }
-    return showPopupOk(error, message, null);
-  }
-
-  /**
-   * This method opens a confirmation {@link UiPopup popup window} showing the given {@code error}. It will use
-   * {@link UiSeverity#ERROR}.
-   *
-   * @param error is the {@link Throwable} that has occurred.
-   * @param message is the message to display.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(Throwable error, String message) {
-
-    return showPopupOk(error, message, null);
-  }
-
-  /**
-   * This method opens a confirmation {@link UiPopup popup window} showing the given {@code error}. It will use
-   * {@link UiSeverity#ERROR}.
-   *
-   * @param error is the {@link Throwable} that has occurred.
-   * @param message is the message to display.
-   * @param action is the {@link UiActionOk}.
-   * @return the {@link UiPopup}.
-   */
-  default UiPopup showPopupOk(Throwable error, String message, UiActionOk action) {
-
-    StringWriter sw = new StringWriter(256);
-    error.printStackTrace(new PrintWriter(sw));
-    String details = sw.toString();
-    return showPopup(message, UiSeverity.ERROR, null, details, UiActionOk.notNull(action));
-  }
-
-  /**
-   * This method opens a {@link UiSeverity#QUESTION question} {@link UiPopup popup window} with the given
-   * {@code message} and two buttons for the options {@link UiActionYes yes} and {@link UiActionNo no}. <br>
+   * This method creates a {@link UiPopup popup window} with the given {@link UiNotification} and two buttons for the
+   * options {@link UiActionYes yes} and {@link UiActionNo no}. <br>
    * <b>ATTENTION:</b><br>
-   * This is a very common also also very often misused feature of UI toolkits or frameworks. A suitable example is e.g.
-   * to use this with the message "Do you really want to delete this object?". However, it would still be more explicit
-   * to have the buttons labeled with "Delete" and "Cancel" using
-   * {@link #showPopup(String, UiSeverity, String, String, UiAction...)}. An example for a misuse of this method would
-   * be the message "Do you want to delete this occurrence or the series of the appointment? Press 'Yes' to delete the
-   * series and 'No' for this occurrence.". From this bad example that confuses the user, you should learn that it is
-   * always better to use more explicit button labels.
+   * This is a very convenient but also very often misused feature of UI toolkits or frameworks. A suitable example is
+   * e.g. to use this with the message "Do you really want to delete this object?". However, it would still be more
+   * explicit to have the buttons labeled with "Delete" and "Cancel" using
+   * {@link #createPopup(UiNotification, UiAction...)}. A famous example for a misuse of this method would be the
+   * question "Do you want to delete this occurrence or the series of the appointment? Press 'Yes' to delete the series
+   * and 'No' for this occurrence.". From this bad example that confuses the user, you should learn that it is always
+   * better to use more explicit button labels.
    *
-   * @param message is the message to display.
-   * @param title is the title that will be displayed in the title-bar of the popup. May be {@code null} to use the
-   *        default title for {@link UiSeverity#QUESTION}.
+   * @param notification the {@link UiNotification} to show. Should have {@link UiSeverity#QUESTION}.
    * @param callback is the {@link Consumer} invoked after the popup has been confirmed. {@link Consumer#accept(Object)}
    *        will receive {@link Boolean#TRUE} if the user clicked "Yes" and {@link Boolean#FALSE} for "No".
    * @return the {@link UiPopup}.
    */
-  default UiPopup showPopupYesNo(String message, String title, Consumer<Boolean> callback) {
+  default UiPopup createPopupYesNo(UiNotification notification, Consumer<Boolean> callback) {
 
     UiActionYes yes = (e) -> {
       callback.accept(Boolean.TRUE);
@@ -175,51 +86,76 @@ public interface UiNotifier {
     UiActionNo no = (e) -> {
       callback.accept(Boolean.FALSE);
     };
-    return showPopup(message, UiSeverity.QUESTION, title, null, yes, no);
+    return createPopup(notification, yes, no);
   }
 
   /**
-   * This method opens a {@link UiPopup popup window} with the given {@code message}. It is the most generic and
-   * flexible but also the most inconvenient {@code showPopup} method variant.
+   * This method shows a {@link UiNotification} to the end-user in a modal popup window.<br>
+   * <b>ATTENTION</b>: It is recommended to use {@link #show(UiNotification)} instead and to avoid modal popups or
+   * allowing to configure which notifications should be shown as popup instead of hardcoding it.
    *
-   * @param message is the message to display.
-   * @param severity is the {@link UiSeverity}.
-   * @param title is the title that will be displayed in the title-bar of the popup. May be {@code null} to use the
-   *        default title for the given {@link UiSeverity}.
-   * @param callback is the {@link Consumer} invoked after the popup has been confirmed (the user has clicked on one of
-   *        the buttons). The {@link String} value received by {@link Consumer#accept(Object)} will be the ID of the
-   *        button that has been clicked what is the {@link Map#keySet() key} of the given {@code id2buttonLabelMap}.
-   * @param details the optional details. If not {@code null} details will be shown but are initially collapsed and have
-   *        to be expanded by the end user.
+   * @param notification the {@link UiNotification} to show.
    * @param actions are the {@link UiAction}s for the buttons to close (answer, confirm, or cancel) the popup. Has to be
    *        at least one {@link UiAction}.
    * @return the {@link UiPopup}.
    */
-  default UiPopup showPopup(String message, UiSeverity severity, String title, String details, UiAction... actions) {
+  default UiPopup showPopup(UiNotification notification, UiAction... actions) {
 
-    UiPopup popup = createPopup(message, severity, title, details, actions);
+    UiPopup popup = createPopup(notification, actions);
     popup.open();
     return popup;
   }
 
   /**
-   * This method creates a {@link UiPopup popup window} with the given {@code message}. It is the most generic and
-   * flexible but also the most inconvenient {@code showPopup} method variant.
+   * This method shows a {@link UiNotification} to the end-user in a modal popup window.<br>
+   * <b>ATTENTION</b>: It is recommended to use {@link #show(UiNotification)} instead and to avoid modal popups or
+   * allowing to configure which notifications should be shown as popup instead of hardcoding it.
    *
-   * @param message is the message to display.
-   * @param severity is the {@link UiSeverity}.
-   * @param title is the title that will be displayed in the title-bar of the popup. May be {@code null} to use the
-   *        default title for the given {@link UiSeverity}.
-   * @param callback is the {@link Consumer} invoked after the popup has been confirmed (the user has clicked on one of
-   *        the buttons). The {@link String} value received by {@link Consumer#accept(Object)} will be the ID of the
-   *        button that has been clicked what is the {@link Map#keySet() key} of the given {@code id2buttonLabelMap}.
-   * @param details the optional details. If not {@code null} details will be shown but are initially collapsed and have
-   *        to be expanded by the end user.
-   * @param actions are the {@link UiAction}s for the buttons to close (answer, confirm, or cancel) the popup. Has to be
-   *        at least one {@link UiAction}.
+   * @param notification the {@link UiNotification} to show.
    * @return the {@link UiPopup}.
    */
-  UiPopup createPopup(String message, UiSeverity severity, String title, String details, UiAction... actions);
+  default UiPopup showPopupOk(UiNotification notification) {
+
+    return showPopup(notification, UiActionOk.NONE);
+  }
+
+  /**
+   * This method shows a {@link UiNotification} to the end-user in a modal popup window.<br>
+   * <b>ATTENTION</b>: It is recommended to use {@link #show(UiNotification)} instead and to avoid modal popups or
+   * allowing to configure which notifications should be shown as popup instead of hardcoding it.
+   *
+   * @param notification the {@link UiNotification} to show.
+   * @param action is the optional {@link UiActionOk}.
+   * @return the {@link UiPopup}.
+   */
+  default UiPopup showPopupOk(UiNotification notification, UiActionOk action) {
+
+    return showPopup(notification, UiActionOk.notNull(action));
+  }
+
+  /**
+   * This method shows a {@link UiPopup popup window} with the given {@link UiNotification} and two buttons for the
+   * options {@link UiActionYes yes} and {@link UiActionNo no}. <br>
+   * <b>ATTENTION:</b><br>
+   * This is a very convenient but also very often misused feature of UI toolkits or frameworks. A suitable example is
+   * e.g. to use this with the message "Do you really want to delete this object?". However, it would still be more
+   * explicit to have the buttons labeled with "Delete" and "Cancel" using
+   * {@link #createPopup(UiNotification, UiAction...)}. A famous example for a misuse of this method would be the
+   * question "Do you want to delete this occurrence or the series of the appointment? Press 'Yes' to delete the series
+   * and 'No' for this occurrence.". From this bad example that confuses the user, you should learn that it is always
+   * better to use more explicit button labels.
+   *
+   * @param notification the {@link UiNotification} to show. Should have {@link UiSeverity#QUESTION}.
+   * @param callback is the {@link Consumer} invoked after the popup has been confirmed. {@link Consumer#accept(Object)}
+   *        will receive {@link Boolean#TRUE} if the user clicked "Yes" and {@link Boolean#FALSE} for "No".
+   * @return the {@link UiPopup}.
+   */
+  default UiPopup showPopupYesNo(UiNotification notification, Consumer<Boolean> callback) {
+
+    UiPopup popup = createPopupYesNo(notification, callback);
+    popup.open();
+    return popup;
+  }
 
   /**
    * @return the singleton instance of this {@link UiNotifier}.

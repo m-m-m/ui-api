@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.binding.UiActionBinding;
+import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.UiEvent;
 import io.github.mmm.ui.api.event.action.UiAction;
@@ -53,13 +54,12 @@ public class UiActionBindingImpl implements UiActionBinding {
       if (message == null) {
         message = UiLocalizer.get().localizeOrNull(UiLocalizer.KEY_CONFIRM);
       }
-      final String finalMessage = message;
       Consumer<Boolean> callback = (choice) -> {
         if (Boolean.TRUE.equals(choice)) {
           action.onEvent(event);
         }
       };
-      UiNotifier.get().showPopupYesNo(finalMessage, null, callback);
+      UiNotifier.get().showPopupYesNo(UiNotification.ofQuestion(message), callback);
     } else {
       action.onEvent(event);
     }

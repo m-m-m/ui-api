@@ -2,6 +2,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.window;
 
+import io.github.mmm.ui.api.attribute.AttributeWriteTitle;
 import io.github.mmm.ui.api.event.action.UiActionClose;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
@@ -46,7 +47,7 @@ public interface UiPopup extends UiChildWindow, UiNativeWidget {
   static UiPopup of(String title) {
 
     UiPopup widget = UiWidgetFactoryNative.get().create(UiPopup.class);
-    UiAbstractWindow.initTitle(widget, title);
+    AttributeWriteTitle.setTitle(widget, title);
     return widget;
   }
 }
