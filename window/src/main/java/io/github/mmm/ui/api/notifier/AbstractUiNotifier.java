@@ -2,6 +2,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.notifier;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
 import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.event.UiClickEventListener;
@@ -22,17 +27,63 @@ import io.github.mmm.ui.api.widget.window.UiPopup;
  */
 public abstract class AbstractUiNotifier implements UiNotifier {
 
+  private final List<UiNotification> notifications;
+
+  private final Iterable<UiNotification> history;
+
+  private Predicate<UiNotification> popupFilter = x -> false;
+
   /**
    * The constructor.
    */
   public AbstractUiNotifier() {
 
     super();
+    this.notifications = new ArrayList<>();
+    this.history = Collections.unmodifiableList(this.notifications);
   }
+
+  @Override
+  public Iterable<UiNotification> getHistory() {
+
+    return this.history;
+  }
+
+  /**
+   * @param notification the {@link UiNotification} to add to the {@link #getHistory() notifications}.
+   */
+  private void add(UiNotification notification) {
+
+    this.notifications.add(notification);
+  }
+
+  @Override
+  public void event(String message, String title) {
+
+    add(UiNotification.of(message, UiSeverity.EVENT, title));
+  }
+
+  @Override
+  public void show(UiNotification notification) {
+
+    if (this.popupFilter.test(notification)) {
+      showPopupOk(notification);
+    } else {
+      add(notification);
+      showGrowl(notification);
+    }
+  }
+
+  /**
+   * @param notification the {@link UiNotification} to show as growl message box. Such growl box will typically appear
+   *        at the bottom right and automatically fade out after some time.
+   */
+  public abstract void showGrowl(UiNotification notification);
 
   @Override
   public UiPopup createPopup(UiNotification notification, UiAction... actions) {
 
+    add(notification);
     UiPopup popup = UiPopup.of(notification.getTitle());
     UiText text = UiText.of(notification.getMessage());
     UiRegularWidget child = text;

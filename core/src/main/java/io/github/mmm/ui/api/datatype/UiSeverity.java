@@ -31,6 +31,13 @@ public class UiSeverity {
   /** {@link UiSeverity} indicating a question. */
   public static final UiSeverity QUESTION = new UiSeverity("Question");
 
+  /**
+   * {@link UiSeverity} indicating an event. Such event is more for debugging and is not directly shown to the user as
+   * growl or popup. However, events will be added to the notification history that can be inspected by the user. Like
+   * debug messages in a logfile, this can help to see what happened before or after some other {@link UiNotification}.
+   */
+  public static final UiSeverity EVENT = new UiSeverity("Event");
+
   private final String name;
 
   /**

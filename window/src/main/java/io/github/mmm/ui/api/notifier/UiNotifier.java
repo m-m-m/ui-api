@@ -158,6 +158,18 @@ public interface UiNotifier {
   }
 
   /**
+   * @param message the {@link UiNotification#getMessage() message}.
+   * @param title the {@link UiNotification#getTitle() title}.
+   */
+  void event(String message, String title);
+
+  /**
+   * @return the history of the notifications collected by this {@link UiNotifier}. It may be only a queue with the last
+   *         N number of {@link UiNotification}s to avoid memory leaks.
+   */
+  Iterable<UiNotification> getHistory();
+
+  /**
    * @return the singleton instance of this {@link UiNotifier}.
    */
   static UiNotifier get() {
