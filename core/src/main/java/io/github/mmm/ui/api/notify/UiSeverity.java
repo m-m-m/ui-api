@@ -1,6 +1,6 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.datatype;
+package io.github.mmm.ui.api.notify;
 
 /**
  * This is the interface that represents the <em>severity</em> of a message. The severity defines the default title and

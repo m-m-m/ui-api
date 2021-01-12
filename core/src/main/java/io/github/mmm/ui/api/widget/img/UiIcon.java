@@ -3,8 +3,8 @@
 package io.github.mmm.ui.api.widget.img;
 
 import io.github.mmm.base.text.CaseHelper;
-import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
+import io.github.mmm.ui.api.notify.UiSeverity;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 
@@ -57,7 +57,7 @@ public interface UiIcon extends UiAbstractImage, UiRegularWidget, UiNativeWidget
 
   /**
    * @return the ID of the pre-defined icon. E.g.
-   *         {@link io.github.mmm.ui.api.datatype.UiSeverity#WARNING}.{@link io.github.mmm.ui.api.datatype.UiSeverity#getName()
+   *         {@link io.github.mmm.ui.api.notify.UiSeverity#WARNING}.{@link io.github.mmm.ui.api.notify.UiSeverity#getName()
    *         getName()}.
    */
   String getIconId();

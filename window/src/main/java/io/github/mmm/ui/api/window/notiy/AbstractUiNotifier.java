@@ -1,16 +1,16 @@
 /* Copyright (c) The m-m-m Team, Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0 */
-package io.github.mmm.ui.api.notifier;
+package io.github.mmm.ui.api.window.notiy;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-import io.github.mmm.ui.api.datatype.UiNotification;
-import io.github.mmm.ui.api.datatype.UiSeverity;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.action.UiAction;
+import io.github.mmm.ui.api.notify.UiNotification;
+import io.github.mmm.ui.api.notify.UiSeverity;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.UiText;
 import io.github.mmm.ui.api.widget.button.UiButton;
@@ -23,9 +23,9 @@ import io.github.mmm.ui.api.widget.panel.UiVerticalPanel;
 import io.github.mmm.ui.api.widget.window.UiPopup;
 
 /**
- * Abstract base implementation of {@link UiNotifier}.
+ * Abstract base implementation of {@link UiPopupNotifier}.
  */
-public abstract class AbstractUiNotifier implements UiNotifier {
+public abstract class AbstractUiNotifier implements UiPopupNotifier {
 
   private final List<UiNotification> notifications;
 

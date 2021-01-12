@@ -5,19 +5,17 @@
 
 /**
  * Provides the API for binding of UI with properties and beans.
- * 
+ *
  * @uses io.github.mmm.ui.api.notifier.UiNotifier
  */
 module io.github.mmm.ui.api.window {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  exports io.github.mmm.ui.api.notifier;
+  exports io.github.mmm.ui.api.window.notiy;
 
   exports io.github.mmm.ui.api.widget.window;
 
   exports io.github.mmm.ui.spi.window;
-
-  uses io.github.mmm.ui.api.notifier.UiNotifier;
 
 }

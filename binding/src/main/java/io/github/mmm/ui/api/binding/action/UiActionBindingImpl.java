@@ -8,11 +8,11 @@ import java.util.function.Consumer;
 import io.github.mmm.base.text.CaseHelper;
 import io.github.mmm.ui.api.UiLocalizer;
 import io.github.mmm.ui.api.binding.UiActionBinding;
-import io.github.mmm.ui.api.datatype.UiNotification;
 import io.github.mmm.ui.api.event.UiClickEventListener;
 import io.github.mmm.ui.api.event.UiEvent;
 import io.github.mmm.ui.api.event.action.UiAction;
-import io.github.mmm.ui.api.notifier.UiNotifier;
+import io.github.mmm.ui.api.notify.UiNotification;
+import io.github.mmm.ui.api.notify.UiNotifier;
 import io.github.mmm.ui.api.widget.button.UiAbstractButton;
 import io.github.mmm.ui.api.widget.img.UiIcon;
 

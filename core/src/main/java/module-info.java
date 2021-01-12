@@ -6,11 +6,12 @@
 /**
  * Provides the API for the universal user-interface framework.
  *
+ * @uses io.github.mmm.ui.api.binding.UiActionBinding
  * @uses io.github.mmm.ui.api.factory.UiToggleGroupFactory
  * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty
  * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype
  * @uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative
- * @uses io.github.mmm.ui.api.binding.UiActionBinding
+ * @uses io.github.mmm.ui.api.notify.UiNotifier
  * @uses io.github.mmm.ui.api.UiScreen
  * @uses io.github.mmm.ui.api.UiLocalizer
  * @uses io.github.mmm.ui.api.UiContext
@@ -24,12 +25,6 @@ module io.github.mmm.ui.api.core {
 
   requires transitive io.github.mmm.value;
 
-  uses io.github.mmm.ui.api.UiContext;
-
-  uses io.github.mmm.ui.api.UiLocalizer;
-
-  uses io.github.mmm.ui.api.UiScreen;
-
   uses io.github.mmm.ui.api.binding.UiActionBinding;
 
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
@@ -39,6 +34,14 @@ module io.github.mmm.ui.api.core {
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 
   uses io.github.mmm.ui.api.factory.UiToggleGroupFactory;
+
+  uses io.github.mmm.ui.api.notify.UiNotifier;
+
+  uses io.github.mmm.ui.api.UiContext;
+
+  uses io.github.mmm.ui.api.UiLocalizer;
+
+  uses io.github.mmm.ui.api.UiScreen;
 
   exports io.github.mmm.ui.api;
 
@@ -57,6 +60,8 @@ module io.github.mmm.ui.api.core {
   exports io.github.mmm.ui.api.event.action;
 
   exports io.github.mmm.ui.api.factory;
+
+  exports io.github.mmm.ui.api.notify;
 
   exports io.github.mmm.ui.api.widget;
 
