@@ -15,8 +15,6 @@
   <description>API of Universal user-interface framework.</description>
 
   <properties>
-    <revision>1.0.0</revision>
-    <changelist>-SNAPSHOT</changelist>
     <mmm.repository>ui-api</mmm.repository>
   </properties>
 
@@ -118,7 +116,7 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>mmm-entity-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.1.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
