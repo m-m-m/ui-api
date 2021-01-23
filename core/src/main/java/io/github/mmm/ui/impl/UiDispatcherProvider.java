@@ -5,7 +5,6 @@ package io.github.mmm.ui.impl;
 import java.util.ServiceLoader;
 
 import io.github.mmm.base.config.ServiceHelper;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.UiDispatcher;
 
 /**
@@ -15,7 +14,7 @@ import io.github.mmm.ui.api.UiDispatcher;
  */
 public final class UiDispatcherProvider {
 
-  /** The {@link UiDispatcher#get() singleton instance} of {@link UiContext}. */
+  /** The {@link UiDispatcher#get() singleton instance} of {@link UiDispatcher}. */
   public static final UiDispatcher DISPATCHER = ServiceHelper.singleton(ServiceLoader.load(UiDispatcher.class));
 
   private UiDispatcherProvider() {

@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.form;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.api.binding.UiValueBinding;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
@@ -63,7 +62,6 @@ public interface UiFormGroup<V> extends UiValuedComposite<UiInput<?>, V>, UiColl
 
   /**
    * @param <V> type of the {@link #getValue() value}.
-   * @param context the {@link UiContext}.
    * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
    * @param name the {@link #getName() name} (label).
    * @return the new {@link UiFormGroup}.

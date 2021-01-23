@@ -2,12 +2,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl.widget.menu;
 
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.menu.UiMenuBar;
 
 /**
- * Abstract base implementation of {@link UiContext}.
+ * Provides the {@link UiMenuBar}.
  *
  * @since 1.0.0
  */

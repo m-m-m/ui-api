@@ -37,8 +37,6 @@ module io.github.mmm.ui.api.core {
 
   uses io.github.mmm.ui.api.notify.UiNotifier;
 
-  uses io.github.mmm.ui.api.UiContext;
-
   uses io.github.mmm.ui.api.UiLocalizer;
 
   uses io.github.mmm.ui.api.UiScreen;

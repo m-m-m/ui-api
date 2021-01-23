@@ -5,7 +5,6 @@ package io.github.mmm.ui.impl;
 import java.util.ServiceLoader;
 
 import io.github.mmm.base.config.ServiceHelper;
-import io.github.mmm.ui.api.UiContext;
 import io.github.mmm.ui.api.UiLocalizer;
 
 /**
@@ -15,7 +14,7 @@ import io.github.mmm.ui.api.UiLocalizer;
  */
 public final class UiLocalizerProvider {
 
-  /** The {@link UiLocalizer#get() singleton instance} of {@link UiContext}. */
+  /** The {@link UiLocalizer#get() singleton instance} of {@link UiLocalizer}. */
   public static final UiLocalizer LOCALIZER = ServiceHelper.singleton(ServiceLoader.load(UiLocalizer.class));
 
   private UiLocalizerProvider() {
