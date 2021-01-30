@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description>API for temporal (date and time) widgets.</description>
-  
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
