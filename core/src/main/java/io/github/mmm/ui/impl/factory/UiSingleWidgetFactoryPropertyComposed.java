@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.impl.factory;
 
-import java.nio.channels.IllegalSelectorException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class UiSingleWidgetFactoryPropertyComposed<V> implements UiSingleWidgetF
   @Override
   public UiInput<V> create() {
 
-    throw new IllegalSelectorException();
+    throw new IllegalStateException();
   }
 
   /**
