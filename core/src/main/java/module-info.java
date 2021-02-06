@@ -4,7 +4,12 @@
  */
 
 /**
- * Provides the API for the universal user-interface framework.
+ * Provides the core API for the universal user-interface framework.
+ *
+ * This clickable UML class diagram gives you and overview. Simply click on any type or package to open the according
+ * javadoc:
+ *
+ * <img src="{@docRoot}/doc-files/ui-api-core.svg"/>
  *
  * @uses io.github.mmm.ui.api.binding.UiActionBinding
  * @uses io.github.mmm.ui.api.factory.UiToggleGroupFactory
