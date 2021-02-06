@@ -16,7 +16,7 @@ import io.github.mmm.ui.api.widget.composite.UiComposite;
  *
  * @since 1.0.0
  */
-public interface UiCustomWidget<W extends UiWidget> {
+public interface UiCustomWidget<W extends UiWidget> extends UiWidget {
 
   /**
    * @return the adapted {@link UiWidget} wrapped by this custom widget.

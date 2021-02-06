@@ -22,7 +22,7 @@ import io.github.mmm.ui.api.widget.button.UiButton;
  * Here you can see an example (with {@link #setText(String) label} "Click me"):
  *
  * <pre>
- * <a href="https://en.wikipedia.org/wiki/Hyperlink">Click me</a>
+ * <a href="../UiExternalLink.html">Click me</a>
  * </pre>
  *
  * @since 1.0.0

@@ -15,7 +15,7 @@ import io.github.mmm.ui.api.widget.button.UiButton;
  * setUrl("https://en.wikipedia.org/wiki/Hyperlink")}):
  *
  * <pre>
- * <a href="https://en.wikipedia.org/wiki/Hyperlink">Click me</a>
+ * <a href="https://en.wikipedia.org/wiki/Hyperlink" target="_blank">Click me</a>
  * </pre>
  *
  * @since 1.0.0
