@@ -42,10 +42,10 @@ public abstract interface UiInput<V>
   boolean hasContainerWidget();
 
   /**
-   * @return the {@link UiRegularWidget} containing both the {@link #getNameWidget() name widget} and the actual input
+   * @return the {@link UiInputContainer} containing both the {@link #getNameWidget() name widget} and the actual input
    *         widget. Will be lazily created on the first call of this method.
    */
-  UiRegularWidget getContainerWidget();
+  UiInputContainer<V> getContainerWidget();
 
   /**
    * @param <V> type of the {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype#getType() datatype}.
