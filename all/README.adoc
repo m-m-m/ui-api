@@ -1,0 +1,28 @@
+image:https://m-m-m.github.io/logo.svg[logo,width="150",link="https://m-m-m.github.io"]
+
+image:https://img.shields.io/github/license/m-m-m/ui-api.svg?label=License["Apache License, Version 2.0",link=https://github.com/m-m-m/ui-api/blob/master/LICENSE]
+image:https://travis-ci.com/m-m-m/ui-api.svg?branch=master["build-status",link="https://travis-ci.com/m-m-m/ui-api"]
+
+== mmm-ui-api-all
+
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-all.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-all/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-all]
+
+The module `mmm-ui-api-all` aggregates all other modules of this project.
+This allows most simple usage for you while still offering a modularized design.
+More advanced or specific users also have the freedom to pick only the API modules they need instead of using all in order to minimize dependent code or even to replace a part of the API with their own code. In such cases read on to the modules below.
+
+=== Usage
+
+Maven Dependency:
+```xml
+<dependency>
+  <groupId>io.github.m-m-m</groupId>
+  <artifactId>mmm-ui-api-all</artifactId>
+</dependency>
+```
+
+Module Dependency:
+```java
+  requires transitive io.github.mmm.ui.api.all;
+```

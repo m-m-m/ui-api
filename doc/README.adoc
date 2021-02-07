@@ -1,6 +1,7 @@
 = documentation of mmm-ui-api
 
 This `mmm-ui-api` provides a portable and toolkit-agnostic API to build user-interfaces (UIs).
+For a detailed introduction see our link:motivation.adoc[motivation].
 It defines central interfaces like https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-core/latest/io.github.mmm.ui.api.core/io/github/mmm/ui/api/notify/UiNotifier.html[UiNotifier] or https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-core/latest/io.github.mmm.ui.api.core/io/github/mmm/ui/api/UiLocalizer.html[UiLocalizer] that provide functinal services for your UI.
 Such interfaces therefore have a static `get` method that allows you to get access to the singleton instance.
 
@@ -44,7 +45,11 @@ Further, input widgets extend from https://javadoc.io/doc/io.github.m-m-m/mmm-ui
 
 == Controllers
 
-TODO
+A https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-controller/latest/io.github.mmm.ui.api.controller/io/github/mmm/ui/api/controller/UiController.html[UiController] defines a routing place in your client app.
+It implements any place you can navigate to.
+Typically a `UiController` simply creates a view (dialog) and defines where to embed it into your UI.
+The https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-controller/latest/io.github.mmm.ui.api.controller/io/github/mmm/ui/api/controller/UiNavigationManager.html[UiNavigationManager] is a singleton that allows you to navigate back, forward or to new places and controllers.
+Your end-user will also be able to navigate back, forward and to specific places even if your client does not run in the browser but as JavaFx desktop app or on android.
 
 == UML Diagrams
 
@@ -54,56 +59,70 @@ Important types are colored so you can easily find the more important things.
 
 === core
 
-image:../src/main/javadoc/doc-files/ui-api-core.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-core.svg"]
+link:../core/README.adoc[mmm-ui-api-core]
+image:../src/main/javadoc/doc-files/ui-api-core.svg[mmm-ui-api-core]
 
 === window
 
-image:../src/main/javadoc/doc-files/ui-api-window.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-window.svg"]
+link:../window/README.adoc[mmm-ui-api-window]
+image:../src/main/javadoc/doc-files/ui-api-window.svg[mmm-ui-api-window]
 
 === number
 
-image:../src/main/javadoc/doc-files/ui-api-number.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-number.svg"]
+link:../number/README.adoc[mmm-ui-api-number]
+image:../src/main/javadoc/doc-files/ui-api-number.svg[mmm-ui-api-number]
 
 === temporal
 
-image:../src/main/javadoc/doc-files/ui-api-temporal.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-temporal.svg"]
+link:../temporal/README.adoc[mmm-ui-api-temporal]
+image:../src/main/javadoc/doc-files/ui-api-temporal.svg[mmm-ui-api-temporal]
 
 === data
 
-image:../src/main/javadoc/doc-files/ui-api-data.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-data.svg"]
+link:../data/README.adoc[mmm-ui-api-data]
+image:../src/main/javadoc/doc-files/ui-api-data.svg[mmm-ui-api-data]
 
 === tab
 
-image:../src/main/javadoc/doc-files/ui-api-tab.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-tab.svg"]
+link:../tab/README.adoc[mmm-ui-api-tab]
+image:../src/main/javadoc/doc-files/ui-api-tab.svg[mmm-ui-api-tab]
 
 === menu
 
-image:../src/main/javadoc/doc-files/ui-api-menu.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-menu.svg"]
+link:../menu/README.adoc[mmm-ui-api-menu]
+image:../src/main/javadoc/doc-files/ui-api-menu.svg[mmm-ui-api-menu]
 
 === chart
 
-image:../src/main/javadoc/doc-files/ui-api-chart.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-chart.svg"]
+link:../chart/README.adoc[mmm-ui-api-chart]
+image:../src/main/javadoc/doc-files/ui-api-chart.svg[mmm-ui-api-chart]
 
 === breadcrumb
 
-image:../src/main/javadoc/doc-files/ui-api-breadcrumb.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-breadcrumb.svg"]
+link:../breadcrumb/README.adoc[mmm-ui-api-breadcrumb]
+image:../src/main/javadoc/doc-files/ui-api-breadcrumb.svg[mmm-ui-api-breadcrumb]
 
 === media
 
-image:../src/main/javadoc/doc-files/ui-api-media.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-media.svg"]
+link:../media/README.adoc[mmm-ui-api-media]
+image:../src/main/javadoc/doc-files/ui-api-media.svg[mmm-ui-api-media]
 
 === form
 
-image:../src/main/javadoc/doc-files/ui-api-form.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-form.svg"]
+link:../form/README.adoc[mmm-ui-api-form]
+image:../src/main/javadoc/doc-files/ui-api-form.svg[mmm-ui-api-form]
 
 === format
 
-image:../src/main/javadoc/doc-files/ui-api-format.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-format.svg"]
+link:../format/README.adoc[mmm-ui-api-format]
+image:../src/main/javadoc/doc-files/ui-api-format.svg[mmm-ui-api-format]
 
 === controller
 
-image:../src/main/javadoc/doc-files/ui-api-controller.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-controller.svg"]
+link:../controller/README.adoc[mmm-ui-api-controller]
+image:../src/main/javadoc/doc-files/ui-api-controller.svg[mmm-ui-api-controller]
 
 === binding
 
-image:../src/main/javadoc/doc-files/ui-api-binding.svg[logo,link="https://raw.githubusercontent.com/m-m-m/ui-api/master/src/main/javadoc/doc-files/ui-api-binding.svg"]
+link:../binding/README.adoc[mmm-ui-api-binding]
+image:../src/main/javadoc/doc-files/ui-api-binding.svg[mmm-ui-api-binding]

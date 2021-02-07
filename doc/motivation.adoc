@@ -1,0 +1,101 @@
+= mmm-ui - the universal UI API
+
+Java is famous for its ecosystem, its stability and its standardization.
+In Java and JEE a lot of great APIs have been standardized that are widely accepted and adopted.
+These APIs allow multiple vendors to provide implementations while developers of applications can rely on a common API that abstracts from the implementation.
+Great examples for such APIs are JAX-WS, JAX-RS, JSON-P, JPA, etc.
+
+== The missing API
+
+However, one of the most important things never had a standard API in Java (or maybe any platform) so far:
+*The User-Interface*
+
+There have been many different implementations to build user-interfaces like AWT, Swing, SWT, Struts, JavaFx, Tapestry, Wicked, JSF, GWT, SmartGWT, etc. 
+However, all of them only focused on the implementation of a particular UI toolkit.
+That is where we all went terribly wrong.
+
+== The Problem
+
+As a result thousands of companies and enterprises invested in building complex apps with UIs but had to dump their investments after a few years (if they were lucky a decade). 
+
+As of today AWT, Swing, Struts, Tapestry, Wicked, JSF, GWT, SmartGWT, etc. are more or less dead.
+There are no more fixes for security vulnerabilities (CVEs) and maintenance is getting really hard.
+As a result billions of dollars are lost and wasted around the globe.
+Companies may still operate some applications build with those technologies but already see that the end is near.
+
+As the web is unbeatable for distribution of software and reaches all relevant platforms and devices,
+companies want to have web apps.
+However, to build powerful web apps you have to use browser technologies such as HTML, CSS, and JavaScript.
+These browser technologies are ugly, bad designed, historically grown, error-prone, and as of today still way too low-level.
+The web claims to be a free and open-standard but to build a powerful list-grid (aka data-table) with accessibility, paging, sorting, filtering, grouping, and all those features you have to buy commercial libraries as the most common widget for every data-driven company app is not supported by HTML or JavaScript out of the box.
+This already could be done in minutes with Swing 20 years ago.
+With HTML you have to build it by crafting millions of hacks and invest an incredible amount of sweat and tears.
+
+To make it short it is all summed up by this famous quote:
+
+[quote, Alan Kay (*1940), https://www.drdobbs.com/architecture-and-design/interview-with-alan-kay/240003442]
+____
+The Internet was done so well ...
+The Web, in comparison, is a joke. The Web was done by amateurs.
+____
+
+So looking at JavaScript with jQuery, dojo, YUI, Prototype, Ext JS, Sencha, AngularJS, React, Angular, Amber, Knockout, Aurelia, Vue, etc. it is even much worse. 
+Libraries and frameworks come and go more and more frequently.
+The "throwawy society" also has reached the IT and JavaScript libraries are the plastic of our planet.
+
+== Lost opportunity
+
+In last millenium Java was present in every browser.
+There was a great chance to dominate the web development and bring a structured and powerful programming approach to all devices.
+Unfortunately Sun did not understood this potential and left the poorly integrated and incredible slow bootstrapping applet technology rotting to death. 
+Nobody knows why google did not buy Sun but let Oracle do it and then sue Google for making Java technology more relevant with Android.
+To be fair this was surely just a decision of some lawyers who saw an opportunity to make easy dollars and after a valley of tears Oracle has really catched up very well to evolve Java and give it a future.
+However, one thing that Oracle still missed is that by loosing the client "market" for Java entirely the consequence is that Java itself is continuously loosing importance.
+Dual-Stack development (e.g. with Angular frontend and Java backend) may be the practice of today but is a pure pain and waste.
+The ecosystem of a programming language and platform with all its tooling and libraries is so massive that developers can hardly learn multiple of these worlds with excellence.
+Further implementing data-models, validation logic, REST services, JSON mapping, error messages, etc. redundatly both in JavaScript/TypeScript and Java is again pure waste and insane.
+
+So the longer Java does not offer a solution to build powerful web-clients, the more developers will be forced to move also their backends to JavaScript with Node.js and e.g. NestJS.
+As Java is my home-turf I want to go the other way round and build frontend and backend with pure Java again.
+
+== The solution
+
+After twenty years of coding I notice that a button is still a botton, a label still a label, and a text-input is still a text-input.
+So to create investment stability for developers/companies and escape the nonsense described above, I started creating the universal UI API for Java.
+Initially this was just a crazy idea, then an interesting PoC, and it turned out to be an approach with so big potential that there is no way to stop me and this project from evolving.
+
+As a UI API is useless without an implementation I already created multiple of them:
+
+* https://github.com/m-m-m/ui-fx[ui-fx] for JavaFx
+* https://github.com/m-m-m/ui-tvm[ui-tvm] for the web using TeaVM
+* https://github.com/m-m-m/ui-android[ui-android] for mobile apps using Android
+* https://github.com/m-m-m/ui-test[ui-test] for headless automated unit testing of UIs (with full eventing and behviour like radio-groups, etc.)
+
+To really boost developer performance the UI framework also supports dynamic beans without boilerplate code and fully automatic binding of the datamodel to the UI including validation that is shared between client and server.
+This all sounds too promising to be true?
+Check it out and start contributing.
+To really create the next generation UI API we need your feedback, ideas, improvements, bugfixes, and new features.
+The future is here - join it with us.
+
+== The status
+
+As of today only fundamentals are implemented. 
+However, already enough to prove the approach and see the incredible potential.
+We currently focus on the desktop with JavaFx and the web with TeaVM.
+On both platforms our current status already is:
+
+* fundamental widges done like `UiButton`, `UiImage`, `UiIcon`, `UiLabel`, etc.
+* basic inputs done like `UiTextInput`, `UiPasswordInput`, `UiTextArea`, `UiIntegerSlider`, `UiIntegerInput`, `UiCheckbox`, `UiRadioButton`, `UiRadioGroup`, etc. However, validation support for JavaFx is still work in progress.
+* also temporal widgets like `UiDateInput`, `UiTimeInput`, and `UiDateTimeInput` are implemented but for the web I am still woring on `java.time` support for TeaVm (see https://github.com/konsoletyper/teavm/pull/467[PR #467]).
+* panels are implemented like `UiVerticalPanel`, `UiHorizontalPanel`, `UiScollPanel`, `UiTabPanel`, `UiFormGroup`, `UiFormPanel`, etc.
+* windows are completed with `UiMainWindow`, `UiWindow`, and `UiPopup`
+* menus are done with `UiMenuBar`, `UiMenu`, `UiMenuItem`, `UiMenuItemSeparator`, etc. but not yet properly implemented for the web in `ui-tvm`.
+* Powerful databinding, actions, i18n, etc. are already included and demonstrate how much you can do with little code without loosing flexibility or control.
+* data widgets such as `UiDataTable`, `UiDataTree`, `UiDataTreeTable` are designed and partially implemented for JavaFx. For the web this will be an important challenge for the next couple of month.
+
+For android so far only the very basics are implemented and the demo does not yet include android support (see my https://github.com/m-m-m/ui-android/wiki/android-sucks[android shit storm] for reasons of the slow progress, however we will also solve this in the future).
+
+Also many other things are still in progress such as the controller framework for dialog management and navigation history accross all channels.
+Further we are building a more efficient way for RPC between client and server via command-pattern with easy async support and plans also for reactive support.
+So at the moment this framework is far from production ready.
+However, please try our demo to see the incredible potential and join us to make this dream come true.
