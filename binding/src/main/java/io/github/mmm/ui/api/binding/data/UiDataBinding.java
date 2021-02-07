@@ -29,7 +29,7 @@ import io.github.mmm.validation.Validator;
  */
 public class UiDataBinding {
 
-  private final PropertyFilter defaultPropertyFilter;
+  private final PropertyProvider defaultPropertyFilter;
 
   /**
    * The constructor.
@@ -42,13 +42,13 @@ public class UiDataBinding {
   /**
    * The constructor.
    *
-   * @param defaultPropertyFilter the {@link PropertyFilter} to use as default.
+   * @param defaultPropertyFilter the {@link PropertyProvider} to use as default.
    */
-  public UiDataBinding(PropertyFilter defaultPropertyFilter) {
+  public UiDataBinding(PropertyProvider defaultPropertyFilter) {
 
     super();
     if (defaultPropertyFilter == null) {
-      this.defaultPropertyFilter = PropertyFilterDefault.INSTANCE;
+      this.defaultPropertyFilter = PropertyProviderDefault.INSTANCE;
     } else {
       this.defaultPropertyFilter = defaultPropertyFilter;
     }
@@ -81,36 +81,31 @@ public class UiDataBinding {
    * @param bean the {@link ReadableBean} to bind.
    * @param receiver the {@link UiBindingReceiver}.
    * @param createGroup - {@code true} to create {@link UiFormGroup}s for nested beans, {@code false} otherwise.
-   * @param propertyFilter the {@link PropertyFilter}.
+   * @param propertyProvider the {@link PropertyProvider}.
    */
   public void bindBean(ReadableBean bean, UiBindingReceiver receiver, boolean createGroup,
-      PropertyFilter propertyFilter) {
+      PropertyProvider propertyProvider) {
 
     if (bean == null) {
       return;
     }
-    for (ReadableProperty<?> property : bean.getProperties()) {
-      if (!propertyFilter.filter(property)) {
-        bindProperty(property, bean, receiver, propertyFilter, createGroup);
-      }
-    }
+    propertyProvider.get(bean).forEach(p -> {
+      bindProperty(p, bean, receiver, propertyProvider, createGroup);
+    });
   }
 
   private <V> void bindProperty(ReadableProperty<V> property, ReadableBean bean, UiBindingReceiver receiver,
-      PropertyFilter propertyFilter, boolean createGroup) {
+      PropertyProvider propertyProvider, boolean createGroup) {
 
-    if (propertyFilter.filter(property)) {
-      return;
-    }
     if (property instanceof ReadableBeanProperty) {
-      bindBean((ReadableBeanProperty<?>) property, bean, receiver, propertyFilter, createGroup);
+      bindBean((ReadableBeanProperty<?>) property, bean, receiver, propertyProvider, createGroup);
     } else {
       createInput(property, bean, receiver, false);
     }
   }
 
   private <B extends WritableBean> void bindBean(ReadableBeanProperty<B> beanProperty, ReadableBean parentBean,
-      UiBindingReceiver receiver, PropertyFilter propertyFilter, boolean createGroup) {
+      UiBindingReceiver receiver, PropertyProvider propertyFilter, boolean createGroup) {
 
     B childBean = beanProperty.get();
     if (childBean == null) {
@@ -137,10 +132,10 @@ public class UiDataBinding {
   /**
    * @param <B> type of {@link WritableBean}.
    * @param bean the {@link WritableBean}.
-   * @param propertyFilter the {@link PropertyFilter}.
+   * @param propertyFilter the {@link PropertyProvider}.
    * @return the {@link UiFormGroup}.
    */
-  public <B extends WritableBean> UiFormPanel<B> createFormPanel(B bean, PropertyFilter propertyFilter) {
+  public <B extends WritableBean> UiFormPanel<B> createFormPanel(B bean, PropertyProvider propertyFilter) {
 
     UiBindingReceiverImpl<B> binding = new UiBindingReceiverImpl<>(bean);
     bindBean(bean, binding, true, propertyFilter);
@@ -160,11 +155,11 @@ public class UiDataBinding {
    * @param bean the {@link WritableBean}.
    * @param beanProperty the {@link ReadableBeanProperty}.
    * @param parentBean the parent {@link ReadableBean bean}.
-   * @param propertyFilter the {@link PropertyFilter}.
+   * @param propertyFilter the {@link PropertyProvider}.
    * @return the {@link UiFormGroup}.
    */
   public <B extends WritableBean> UiFormGroup<B> createFormGroup(B bean, ReadableBeanProperty<B> beanProperty,
-      ReadableBean parentBean, PropertyFilter propertyFilter) {
+      ReadableBean parentBean, PropertyProvider propertyFilter) {
 
     String groupName = localizeLabel(beanProperty, parentBean);
     UiBindingReceiverImpl<B> binding = new UiBindingReceiverImpl<>(bean);
