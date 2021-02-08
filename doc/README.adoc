@@ -51,6 +51,11 @@ Typically a `UiController` simply creates a view (dialog) and defines where to e
 The https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-controller/latest/io.github.mmm.ui.api.controller/io/github/mmm/ui/api/controller/UiNavigationManager.html[UiNavigationManager] is a singleton that allows you to navigate back, forward or to new places and controllers.
 Your end-user will also be able to navigate back, forward and to specific places even if your client does not run in the browser but as JavaFx desktop app or on android.
 
+== Getting started
+
+The best way to understand how things work is looking at our demo app https://github.com/m-m-m/ui-demo[mmm-ui-demo].
+If you want to create your own app based on our mmm framework, please use our https://github.com/m-m-m/archetype[app template].
+
 == UML Diagrams
 
 To quickly get an overview of the rich and therefore manybe complex `mmm-ui-api` we provide the following UML diagrams.
