@@ -3,7 +3,9 @@
 package io.github.mmm.ui.api.datatype.media;
 
 /**
+ * {@link Enum} with the available types of multimedia data.
  *
+ * @since 1.0.0
  */
 public enum UiMediaType {
 

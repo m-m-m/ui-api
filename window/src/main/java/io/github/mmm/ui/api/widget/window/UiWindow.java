@@ -9,6 +9,8 @@ import io.github.mmm.ui.api.widget.UiRegularWidget;
 
 /**
  * A normal window (no popup).
+ *
+ * @since 1.0.0
  */
 public interface UiWindow extends UiChildWindow, UiNativeWidget {
 
