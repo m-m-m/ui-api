@@ -14,7 +14,7 @@ package io.github.mmm.ui.api.widget.number;
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public interface UiSlider<V extends Number> extends UiNumericInput<V> {
+public interface UiSlider<V extends Number & Comparable<?>> extends UiNumericInput<V> {
 
   /**
    * @return {@code true} if the output ({@link #getValue() value} as text beside the slider) is visible, {@code false}

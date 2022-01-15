@@ -18,7 +18,7 @@ import io.github.mmm.ui.api.widget.input.UiTextualInput;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public abstract interface UiNumberInput<V extends Number> extends UiTextualInput<V>, UiNumericInput<V> {
+public abstract interface UiNumberInput<V extends Number & Comparable<?>> extends UiTextualInput<V>, UiNumericInput<V> {
 
   /**
    * @return the step value to increment or decrement the current value via icon buttons.

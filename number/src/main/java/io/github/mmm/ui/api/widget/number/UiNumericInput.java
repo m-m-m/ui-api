@@ -11,7 +11,7 @@ import io.github.mmm.ui.api.widget.input.UiInput;
  * @param <V> type of the {@link #getValue() value}. Typically {@link String}.
  * @since 1.0.0
  */
-public abstract interface UiNumericInput<V extends Number> extends UiInput<V> {
+public abstract interface UiNumericInput<V extends Number & Comparable<?>> extends UiInput<V> {
 
   /**
    * @return the {@link WritableRange} defining {@link WritableRange#getMin() minimum} and {@link WritableRange#getMax()
