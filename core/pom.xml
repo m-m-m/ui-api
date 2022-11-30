@@ -25,5 +25,9 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-value</artifactId>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-base-placement</artifactId>
+    </dependency>
   </dependencies>
 </project>

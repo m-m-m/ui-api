@@ -30,6 +30,8 @@ module io.github.mmm.ui.api.core {
 
   requires transitive io.github.mmm.value;
 
+  requires transitive io.github.mmm.base.placement;
+
   uses io.github.mmm.ui.api.binding.UiActionBinding;
 
   uses io.github.mmm.ui.api.factory.UiSingleWidgetFactoryNative;
