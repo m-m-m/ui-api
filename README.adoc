@@ -17,7 +17,7 @@ You can write portable UI code that can run
 * as dummy implementation for automated unit tests using https://github.com/m-m-m/ui-test[mmm-ui-test]
 * ...in the future we might implement more alternatives such as iOS or SWT
 
-For motivation and details see the https://github.com/m-m-m/ui-api/wiki[wiki] or JavaDoc (click on the badgets below).
+For motivation and details see the https://github.com/m-m-m/ui-api/wiki[wiki] or JavaDoc (click on the badge).
 In order to implement your client (with UI) you only need to depend on modules from this API.
 Therefore, you will typically build a module for your client that is portable.
 Dependencies to the implementation of this UI are only needed at runtime.
