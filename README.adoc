@@ -4,6 +4,8 @@ image:https://img.shields.io/github/license/m-m-m/ui-api.svg?label=License["Apac
 image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Build Status",link="https://github.com/m-m-m/ui-api/actions/workflows/build.yml"]
 
 == mmm-ui-api
+image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-all.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-all/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-all]
 
 The project `mmm-ui-api` provides an abstraction API for user-interfaces (UI).
 This allows to build a powerful UI independent of the actual toolkit.
@@ -21,6 +23,22 @@ Therefore, you will typically build a module for your client that is portable.
 Dependencies to the implementation of this UI are only needed at runtime.
 You can create modules for each toolkit or technology you want support for your client where you add the dependency to the specific implementation and just one or few classes to bind and launch the client. Details how to do that can be found in the documentation of the actual UI implementation or you can have a look at our https://github.com/m-m-m/ui-demo[ui-demo].
 
+The module `mmm-ui-api-all` aggregates all api modules (see below for a detailed list).
+
+=== Usage
+
+Maven Dependency:
+```xml
+<dependency>
+  <groupId>io.github.m-m-m</groupId>
+  <artifactId>mmm-ui-api-all</artifactId>
+</dependency>
+```
+
+Module Dependency:
+```java
+  requires transitive io.github.mmm.ui.api.all;
+```
 === Overview
 
 * link:doc/README.adoc[documentation] (with all overview diagrams)
