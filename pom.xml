@@ -5,7 +5,7 @@
   <parent>
     <groupId>io.github.m-m-m</groupId>
     <artifactId>mmm</artifactId>
-    <version>18</version>
+    <version>20</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
   <artifactId>mmm-ui-api-parent</artifactId>
@@ -16,7 +16,6 @@
 
   <properties>
     <mmm.repository>ui-api</mmm.repository>
-    <revision>0-SNAPSHOT</revision>
   </properties>
 
   <modules>
