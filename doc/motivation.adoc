@@ -86,7 +86,7 @@ On both platforms our current status already is:
 
 * fundamental widges done like `UiButton`, `UiImage`, `UiIcon`, `UiLabel`, etc.
 * basic inputs done like `UiTextInput`, `UiPasswordInput`, `UiTextArea`, `UiIntegerSlider`, `UiIntegerInput`, `UiCheckbox`, `UiRadioButton`, `UiRadioGroup`, etc. However, validation support for JavaFx is still work in progress.
-* also temporal widgets like `UiDateInput`, `UiTimeInput`, and `UiDateTimeInput` are implemented but for the web I am still woring on `java.time` support for TeaVm (see https://github.com/konsoletyper/teavm/pull/467[PR #467]).
+* also temporal widgets like `UiDateInput`, `UiTimeInput`, and `UiDateTimeInput` are implemented and woring with `java.time` even in the browser.
 * panels are implemented like `UiVerticalPanel`, `UiHorizontalPanel`, `UiScollPanel`, `UiTabPanel`, `UiFormGroup`, `UiFormPanel`, etc.
 * windows are completed with `UiMainWindow`, `UiWindow`, and `UiPopup`
 * menus are done with `UiMenuBar`, `UiMenu`, `UiMenuItem`, `UiMenuItemSeparator`, etc. but not yet properly implemented for the web in `ui-tvm`.
