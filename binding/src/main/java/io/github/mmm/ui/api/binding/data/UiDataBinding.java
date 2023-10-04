@@ -247,12 +247,12 @@ public class UiDataBinding {
       }
     }
     if (bindValue) {
-      property.addListener((e) -> {
+      property.addWeakListener((e) -> {
         if (!e.isChange()) {
           V value = property.get();
           input.setValue(value);
         }
-      }, true);
+      });
     }
   }
 
