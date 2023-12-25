@@ -4,7 +4,7 @@ package io.github.mmm.ui.impl.binding;
 
 import java.util.ServiceLoader;
 
-import io.github.mmm.base.config.ServiceHelper;
+import io.github.mmm.base.service.ServiceHelper;
 import io.github.mmm.ui.api.binding.UiActionBinding;
 
 /**
