@@ -36,7 +36,6 @@ public interface UiAbstractMenuWithItems extends UiAbstractMenu<UiAbstractMenuEn
 
   /**
    * @param action the {@link UiAction} to bind.
-   * @param index is the {@link #getChildIndex(UiAbstractMenuEntry) index} where to insert the new {@link UiMenuItem}.
    * @return the created and added {@link UiMenuItem}.
    */
   default UiMenuItem addItem(UiAction action) {

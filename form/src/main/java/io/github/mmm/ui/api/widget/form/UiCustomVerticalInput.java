@@ -5,20 +5,20 @@ package io.github.mmm.ui.api.widget.form;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 
 /**
- * {@link UiCustomCompositeInput} that is a {@link UiHorizontalInput}.
+ * {@link UiCustomCompositeInput} that is a {@link UiVerticalInput}.
  *
  * @param <V> type of the {@link #getValue() value}.
  * @since 1.0.0
  */
-public class UiCustomHorizontalInput<V> extends UiCustomCompositeInput<V, UiHorizontalInput<V>>
-    implements UiHorizontalInput<V> {
+public class UiCustomVerticalInput<V> extends UiCustomCompositeInput<V, UiVerticalInput<V>>
+    implements UiVerticalInput<V> {
 
   /**
    * The constructor.
    */
-  public UiCustomHorizontalInput() {
+  public UiCustomVerticalInput() {
 
-    super(UiWidgetFactoryNative.get().create(UiHorizontalInput.class));
+    super(UiWidgetFactoryNative.get().create(UiVerticalInput.class));
   }
 
   /**
@@ -26,7 +26,7 @@ public class UiCustomHorizontalInput<V> extends UiCustomCompositeInput<V, UiHori
    *
    * @param delegate the {@link UiHorizontalInput}.
    */
-  public UiCustomHorizontalInput(UiHorizontalInput<V> delegate) {
+  public UiCustomVerticalInput(UiVerticalInput<V> delegate) {
 
     super(delegate);
   }

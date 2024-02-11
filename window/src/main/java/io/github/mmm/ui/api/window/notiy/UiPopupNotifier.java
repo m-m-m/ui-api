@@ -36,8 +36,6 @@ public interface UiPopupNotifier extends UiNotifier {
    * flexible but also the most inconvenient {@code showPopup} method variant.
    *
    * @param notification the {@link UiNotification} to show.
-   * @param actions are the {@link UiAction}s for the buttons to close (answer, confirm, or cancel) the popup. Has to be
-   *        at least one {@link UiAction}.
    * @return the {@link UiPopup}.
    */
   default UiPopup createPopupOk(UiNotification notification) {

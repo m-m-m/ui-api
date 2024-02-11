@@ -67,7 +67,6 @@ public abstract interface UiAbstractDataTable<R> extends UiAbstractDataWidget<R>
   /**
    * @param <V> type of the cell values of the {@link UiColumn}.
    * @param property the {@link PropertyPath property} of the row data.
-   * @param index the index where to add the new column.
    * @return the new {@link UiColumn}.
    * @throws RuntimeException if the given {@code property} does not belong to the data model of this data widget.
    */

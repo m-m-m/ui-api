@@ -2,7 +2,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0 */
 package io.github.mmm.ui.api.widget.form;
 
-import io.github.mmm.ui.api.attribute.AttributeWriteValueForUser;
 import io.github.mmm.ui.api.binding.UiValueBinding;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryNative;
 import io.github.mmm.ui.api.widget.UiNativeWidget;
@@ -34,7 +33,6 @@ public interface UiFormPanel<V> extends UiValuedComposite<UiAbstractInput<?>, V>
 
   /**
    * @param <V> type of the {@link #getValue() value}.
-   * @param binding the {@link AttributeWriteValueForUser} defining how to read and write the value.
    * @param children the {@link UiAbstractInput}s to add as children.
    * @return the new {@link UiFormPanel}.
    */

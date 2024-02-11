@@ -56,7 +56,7 @@ public interface UiController<V extends UiRegularWidget>
 
   /**
    * The ID of a controller should only contain ASCII letters, Latin digits, hyphens or underscores. It may also contain
-   * slashes ('/') or the hash sign ('#'). It must not contain '?', '&', '=', ':', ';', '\\' or ' '.
+   * slashes ('/') or the hash sign ('#'). It must not contain '?', '{@literal &}', '=', ':', ';', '\\' or ' '.
    *
    * @see #ID_ROOT
    * @see #ID_PAGE
