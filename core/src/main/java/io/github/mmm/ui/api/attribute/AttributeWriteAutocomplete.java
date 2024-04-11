@@ -196,6 +196,9 @@ public abstract interface AttributeWriteAutocomplete {
   /**
    * @return the autocompletion configuration of this object (e.g.
    *         {@link io.github.mmm.ui.api.widget.input.UiTextualInput}).
+   * @see #AUTOCOMPLETE_EMAIL
+   * @see #AUTOCOMPLETE_USERNAME
+   * @see #AUTOCOMPLETE_OFF
    */
   String getAutocomplete();
 
