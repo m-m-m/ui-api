@@ -3,7 +3,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 /**
- * Provides the API for binding of UI with properties and beans.
+ * Provides the API for media related UI.
  */
 module io.github.mmm.ui.api.media {
 

@@ -9,7 +9,7 @@ import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.UiLabel;
 import io.github.mmm.ui.api.widget.UiRegularWidget;
 import io.github.mmm.ui.api.widget.value.UiValuedWidget;
-import io.github.mmm.value.ReadableTypedValue;
+import io.github.mmm.value.ReadableValue;
 
 /**
  * {@link UiValuedWidget} for an {@link UiRegularWidget regular} input field.
@@ -73,25 +73,25 @@ public abstract interface UiInput<V>
   }
 
   /**
-   * @param <V> type of the {@link ReadableTypedValue property}.
-   * @param property the {@link Class} reflecting the {@link ReadableTypedValue property}.
+   * @param <V> type of the {@link ReadableValue property}.
+   * @param property the {@link Class} reflecting the {@link ReadableValue property}.
    * @return the {@link UiInput} for the given {@code property}.
    */
-  static <V> UiInput<V> of(ReadableTypedValue<V> property) {
+  static <V> UiInput<V> of(ReadableValue<V> property) {
 
     return of(property, true);
   }
 
   /**
-   * @param <V> type of the {@link ReadableTypedValue property}.
-   * @param property the {@link Class} reflecting the {@link ReadableTypedValue property}.
+   * @param <V> type of the {@link ReadableValue property}.
+   * @param property the {@link Class} reflecting the {@link ReadableValue property}.
    * @param required {@code true} if a {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty} or
    *        {@link io.github.mmm.ui.api.factory.UiSingleWidgetFactoryDatatype} has to be registered for the given
    *        {@code property}, {@code false} otherwise.
    * @return the {@link UiInput} for the given {@code property}. May be {@code null} if {@code required} is
    *         {@code false}.
    */
-  static <V> UiInput<V> of(ReadableTypedValue<V> property, boolean required) {
+  static <V> UiInput<V> of(ReadableValue<V> property, boolean required) {
 
     UiInput<V> input = UiWidgetFactoryProperty.get().create(property, false);
     if (input == null) {

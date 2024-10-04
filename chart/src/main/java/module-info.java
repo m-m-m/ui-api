@@ -3,7 +3,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 /**
- * Provides the API for chart widgets.
+ * Provides the API for chart related UI.
  */
 module io.github.mmm.ui.api.chart {
 

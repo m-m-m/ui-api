@@ -32,7 +32,7 @@
     <module>menu</module>
     <module>number</module>
     <module>tab</module>
-    <module>temporal</module>
+    <module>time</module>
     <module>window</module>
   </modules>
 
@@ -113,7 +113,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>mmm-ui-api-temporal</artifactId>
+        <artifactId>mmm-ui-api-time</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

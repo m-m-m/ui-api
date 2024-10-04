@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description>Aggregates all API modules for user-interface.</description>
-  
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -59,7 +59,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>mmm-ui-api-temporal</artifactId>
+      <artifactId>mmm-ui-api-time</artifactId>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>

@@ -7,7 +7,7 @@ import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryDatatype;
 import io.github.mmm.ui.api.factory.UiWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.value.ReadableTypedValue;
+import io.github.mmm.value.ReadableValue;
 
 /**
  * Implementation of {@link UiWidgetFactoryProperty}.
@@ -41,9 +41,9 @@ public class UiWidgetFactoryPropertyImpl extends AbstractUiWidgetFactory<UiSingl
 
   @SuppressWarnings("unchecked")
   @Override
-  public <V> UiInput<V> create(ReadableTypedValue<V> property, boolean required) {
+  public <V> UiInput<V> create(ReadableValue<V> property, boolean required) {
 
-    Class<? extends ReadableTypedValue<V>> propertyType = (Class<? extends ReadableTypedValue<V>>) property.getClass();
+    Class<? extends ReadableValue<V>> propertyType = (Class<? extends ReadableValue<V>>) property.getClass();
     UiSingleWidgetFactoryProperty<V> factory = (UiSingleWidgetFactoryProperty<V>) getForType(propertyType);
     UiInput<V> input = null;
     if (factory != null) {

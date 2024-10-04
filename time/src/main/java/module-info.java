@@ -3,12 +3,12 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 /**
- * Provides the API for binding of UI with properties and beans.
+ * Provides the API for java.time related UI.
  */
-module io.github.mmm.ui.api.temporal {
+module io.github.mmm.ui.api.time {
 
   requires transitive io.github.mmm.ui.api.core;
 
-  exports io.github.mmm.ui.api.widget.temporal;
+  exports io.github.mmm.ui.api.widget.time;
 
 }

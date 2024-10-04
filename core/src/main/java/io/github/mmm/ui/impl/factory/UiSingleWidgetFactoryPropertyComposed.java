@@ -9,19 +9,18 @@ import io.github.mmm.base.exception.DuplicateObjectException;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactory;
 import io.github.mmm.ui.api.factory.UiSingleWidgetFactoryProperty;
 import io.github.mmm.ui.api.widget.input.UiInput;
-import io.github.mmm.value.ReadableTypedValue;
+import io.github.mmm.value.ReadableValue;
 
 /**
  * Implementation of {@link UiSingleWidgetFactoryProperty} to compose multiple {@link UiSingleWidgetFactoryProperty}s
  * for the same {@link #getType() type}.
  *
- * @param <V> type of the {@link #getType() properties} {@link ReadableTypedValue#get() value}
- *        {@link ReadableTypedValue#getValueClass() type}.
+ * @param <V> the {@link #getType() value type}.
  * @since 1.0.0
  */
 public class UiSingleWidgetFactoryPropertyComposed<V> implements UiSingleWidgetFactoryProperty<V> {
 
-  private final Class<? extends ReadableTypedValue<V>> type;
+  private final Class<? extends ReadableValue<V>> type;
 
   private final List<UiSingleWidgetFactoryProperty<V>> customFactories;
 
@@ -57,13 +56,13 @@ public class UiSingleWidgetFactoryPropertyComposed<V> implements UiSingleWidgetF
   }
 
   @Override
-  public Class<? extends ReadableTypedValue<V>> getType() {
+  public Class<? extends ReadableValue<V>> getType() {
 
     return this.type;
   }
 
   @Override
-  public UiInput<V> create(ReadableTypedValue<V> property) {
+  public UiInput<V> create(ReadableValue<V> property) {
 
     for (UiSingleWidgetFactoryProperty<V> factory : this.customFactories) {
       if (factory.isResponsible(property)) {
@@ -83,8 +82,7 @@ public class UiSingleWidgetFactoryPropertyComposed<V> implements UiSingleWidgetF
   }
 
   /**
-   * @param <V> type of the {@link #getType() properties} {@link ReadableTypedValue#get() value}
-   *        {@link ReadableTypedValue#getValueClass() type}.
+   * @param <V> the {@link #getType() value type}.
    * @param factory the {@link UiSingleWidgetFactoryProperty} to compose.
    * @return the {@link UiSingleWidgetFactoryPropertyComposed}.
    */

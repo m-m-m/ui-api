@@ -3,7 +3,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 /**
- * Provides the API for data widgets.
+ * Provides the API for data related UI.
  */
 module io.github.mmm.ui.api.data {
 
