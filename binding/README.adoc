@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-binding
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-binding.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-binding/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-binding]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-binding/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-binding]
 
 The module `mmm-ui-api-binding` provides powerful databinding and generic form creation for `mmm-property` and `mmm-bean`. It save you from lots of work and boost your productivity to sky-rocket development.
 See the JavaDoc link for further details.

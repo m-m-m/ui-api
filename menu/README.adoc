@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-menu
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-menu.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-menu/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-menu]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-menu/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-menu]
 
 The module `mmm-ui-api-menu` provides widgets like `UiMenuBar` to offer a menu bar for quick access to central functionality.
 See the JavaDoc link for further details.

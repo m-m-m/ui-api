@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-data
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-data.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-data/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-data]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-data/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-data]
 
 The module `mmm-ui-api-data` provides complex and advanced data-widgets such as `UiDataTable`, `UiDataTree`, and `UiDataTreeTable` to display and navigate on larger sets of data.
 See the JavaDoc link for further details.

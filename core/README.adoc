@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-core
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-core.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-core/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-core]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-core/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-core]
 
 The module `mmm-ui-api-core` is the core part of the UI API and will always be required. It contains central interfaces like `UiWidget`, `UiScreen`, `UiNotifier`, etc.
 You will typically also need `mmm-ui-api-window` together with `mmm-ui-api-core` but all other API modules are optional.

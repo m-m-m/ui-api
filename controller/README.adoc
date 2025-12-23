@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-controller
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-controller.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-controller/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-controller]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-controller/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-controller]
 
 The module `mmm-ui-api-controller` provides support for navigation (routing) via a simple but powerful MVC approach.
 You only need to implement a minimal controler per view to make your client modular, maintainable, and flexible.

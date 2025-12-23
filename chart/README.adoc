@@ -6,7 +6,7 @@ image:https://github.com/m-m-m/ui-api/actions/workflows/build.yml/badge.svg["Bui
 == mmm-ui-api-chart
 
 image:https://img.shields.io/maven-central/v/io.github.m-m-m/mmm-ui-api-chart.svg?label=Maven%20Central["Maven Central",link=https://search.maven.org/search?q=g:io.github.m-m-m%20a:mmm-ui-api*]
-image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-chart/javadoc.svg["base JavaDoc", link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-chart]
+image:https://javadoc.io/badge2/io.github.m-m-m/mmm-ui-api-chart/javadoc.svg["JavaDoc",link=https://javadoc.io/doc/io.github.m-m-m/mmm-ui-api-chart]
 
 The module `mmm-ui-api-chart` provides support for charts like `UiBarChart`, `UiPieChart`, etc. to enrich your UI with powerful data visualization.
 Presenting datasets has never been easier.
