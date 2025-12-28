@@ -16,10 +16,10 @@ public class InverseBitFlagTest extends Assertions {
   @Test
   public void testAny() {
 
-    // given
+    // arrange
     InverseBitFlag any = InverseBitFlag.ANY;
 
-    // when+then
+    // act + assert
     assertThat(any.getFlag(0)).isTrue();
     assertThat(any.getFlag(1)).isFalse();
     assertThat(any.getFlag(2)).isFalse();
@@ -38,10 +38,10 @@ public class InverseBitFlagTest extends Assertions {
   @Test
   public void testAll() {
 
-    // given
+    // arrange
     InverseBitFlag all = InverseBitFlag.ALL;
 
-    // when+then
+    // act + assert
     assertThat(all.getFlag(0)).isTrue();
     assertThat(all.getFlag(1)).isTrue();
     assertThat(all.getFlag(2)).isTrue();
@@ -61,10 +61,10 @@ public class InverseBitFlagTest extends Assertions {
   @Test
   public void testB01() {
 
-    // given
+    // arrange
     InverseBitFlag b01 = InverseBitFlag.B01;
 
-    // when+then
+    // act + assert
     assertThat(InverseBitFlag.ofLsb(1)).isSameAs(b01);
 
     assertThat(b01.getFlag(0)).isTrue().isEqualTo(b01.getValue(0) == 0);

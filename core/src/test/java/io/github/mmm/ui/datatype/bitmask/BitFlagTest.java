@@ -16,10 +16,10 @@ public class BitFlagTest extends Assertions {
   @Test
   public void testAny() {
 
-    // given
+    // arrange
     BitFlag any = BitFlag.ANY;
 
-    // when+then
+    // act + assert
     assertThat(any.getFlag(0)).isFalse();
     assertThat(any.getFlag(1)).isTrue();
     assertThat(any.getFlag(2)).isTrue();
@@ -38,10 +38,10 @@ public class BitFlagTest extends Assertions {
   @Test
   public void testAll() {
 
-    // given
+    // arrange
     BitFlag all = BitFlag.ALL;
 
-    // when+then
+    // act + assert
     assertThat(all.getFlag(0)).isFalse();
     assertThat(all.getFlag(1)).isFalse();
     assertThat(all.getFlag(2)).isFalse();
@@ -61,10 +61,10 @@ public class BitFlagTest extends Assertions {
   @Test
   public void testB01() {
 
-    // given
+    // arrange
     BitFlag b01 = BitFlag.B01;
 
-    // when+then
+    // act + assert
     assertThat(BitFlag.ofLsb(1)).isSameAs(b01);
 
     assertThat(b01.getFlag(0)).isFalse().isEqualTo(b01.getValue(0) == 1);

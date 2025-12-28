@@ -158,17 +158,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleWhite() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.RGB;
     Red red = new Red(1.0);
     Green green = new Green(1.0);
     Blue blue = new Blue(1.0);
     Alpha alpha = new Alpha(1.0);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(red, green, blue, alpha);
 
-    // then
+    // assert
     assertThat(GenericColor.of("white")).isEqualTo(color);
     assertThat(GenericColor.of("#FFFFFF")).isEqualTo(color);
     checkColor(color, red, green, blue, new Hue(0.0), new Saturation(0.0), new Saturation(0.0), new Brightness(1.0),
@@ -181,17 +181,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleGray() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.RGB;
     Red red = new Red(0.5);
     Green green = new Green(0.5);
     Blue blue = new Blue(0.5);
     Alpha alpha = new Alpha(1.0);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(red, green, blue, alpha);
 
-    // then
+    // assert
     assertThat(color.toColor().toString()).isEqualTo("#7F7F7F");
     assertThat(GenericColor.of("rgb(0.5, 0.5, 0.5)")).isEqualTo(color);
     checkColor(color, red, green, blue, new Hue(0.0), new Saturation(0.0), new Saturation(0.0), new Brightness(0.5),
@@ -204,17 +204,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleBlack() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.RGB;
     Red red = new Red(0.0);
     Green green = new Green(0.0);
     Blue blue = new Blue(0.0);
     Alpha alpha = new Alpha(1.0);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(red, green, blue, alpha);
 
-    // then
+    // assert
     assertThat(GenericColor.of("BLACK")).isEqualTo(color);
     assertThat(GenericColor.of("#000000")).isEqualTo(color);
     assertThat(GenericColor.of("rgb(0, 0, 0)")).isEqualTo(color);
@@ -228,17 +228,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleRed() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.RGB;
     Red red = new Red(1.0);
     Green green = new Green(0.0);
     Blue blue = new Blue(0.0);
     Alpha alpha = new Alpha(1.0);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(red, green, blue, alpha);
 
-    // then
+    // assert
     assertThat(color.toColor().toString()).isEqualTo("#FF0000");
     assertThat(GenericColor.of("rEd")).isEqualTo(color);
     checkColor(color, red, green, blue, new Hue(0.0), new Saturation(1.0), new Saturation(1.0), new Brightness(1.0),
@@ -251,17 +251,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHsl7E7EB8() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSL;
     Hue hue = new Hue(240.5);
     Saturation saturationHsl = new Saturation(0.290);
     Lightness lightness = new Lightness(0.607);
     Alpha alpha = new Alpha(0.625);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsl, lightness, alpha);
 
-    // then
+    // assert
     checkColor(color, new Red(0.4949295), new Green(0.4930299), new Blue(0.72097), hue, new Saturation(0.3161574),
         saturationHsl, new Brightness(0.72097), lightness, new Chroma(0.22794), alpha, false, model);
   }
@@ -272,17 +272,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHslA0A424() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSL;
     Hue hue = new Hue(61.8);
     Saturation saturationHsl = new Saturation(0.638);
     Lightness lightness = new Lightness(0.393);
     Alpha alpha = new Alpha(0.125);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsl, lightness, alpha);
 
-    // then
+    // assert
     checkColor(color, new Red(0.62869), new Green(0.643734), new Blue(0.142266), hue, new Saturation(0.778998779),
         saturationHsl, new Brightness(0.643734), lightness, new Chroma(0.501468), alpha, false, model);
   }
@@ -293,17 +293,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHsl19CB97() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSL;
     Hue hue = new Hue(162.4);
     Saturation saturationHsl = new Saturation(0.779);
     Lightness lightness = new Lightness(0.447);
     Alpha alpha = new Alpha(0.3333);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsl, lightness, alpha);
 
-    // then
+    // assert
     checkColor(color, new Red(0.098787), new Green(0.795213), new Blue(0.590928), hue, new Saturation(0.875773),
         saturationHsl, new Brightness(0.795213), lightness, new Chroma(0.696426), alpha, false, model);
   }
@@ -314,17 +314,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHsbED7651() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSB;
     Hue hue = new Hue(14.3);
     Saturation saturationHsb = new Saturation(0.661);
     Brightness brightness = new Brightness(0.931);
     Alpha alpha = new Alpha(0.625);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsb, brightness, alpha);
 
-    // then
+    // assert
     Red red = new Red(0.931);
     Green green = new Green(0.462277188);
     Blue blue = new Blue(0.315609);
@@ -347,17 +347,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHsb80FFFF() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSB;
     Hue hue = new Hue(180.0);
     Saturation saturationHsb = new Saturation(0.500);
     Brightness brightness = new Brightness(1.000);
     Alpha alpha = new Alpha(0.9991);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsb, brightness, alpha);
 
-    // then
+    // assert
     Red red = new Red(0.500);
     Green green = new Green(1.000);
     Blue blue = new Blue(1.000);
@@ -380,17 +380,17 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testExampleHslBF40BF() {
 
-    // given
+    // arrange
     ColorModel model = ColorModel.HSL;
     Hue hue = new Hue(300.0);
     Saturation saturationHsl = new Saturation(0.500);
     Lightness lightness = new Lightness(0.500);
     Alpha alpha = new Alpha(0.12345);
 
-    // when
+    // act
     GenericColor color = GenericColor.of(hue, saturationHsl, lightness, alpha);
 
-    // then
+    // assert
     Red red = new Red(0.750);
     Green green = new Green(0.250); // will not match exactly due to poor precision of double
     Blue blue = new Blue(0.750);
@@ -435,7 +435,7 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testLighten() {
 
-    // given
+    // arrange
     GenericColor grey = GenericColor.of(new Red(0.5), new Green(0.5), new Blue(0.5), Alpha.OPAQUE);
     GenericColor black = GenericColor.of(Color.BLACK);
     GenericColor white = GenericColor.of(Color.WHITE);
@@ -444,7 +444,7 @@ public class GenericColorTest extends Assertions {
     ColorFactor full = new ColorFactor(1.0);
     ColorFactor none = new ColorFactor(0.0);
 
-    // then
+    // assert
     // lighten black
     assertThat(black.lighten(half)).isEqualTo(grey);
     assertThat(black.lighten(full)).isEqualTo(white);
@@ -466,7 +466,7 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testDarken() {
 
-    // given
+    // arrange
     GenericColor grey = GenericColor.of(new Red(0.5), new Green(0.5), new Blue(0.5), Alpha.OPAQUE);
     GenericColor black = GenericColor.of(Color.BLACK);
     GenericColor white = GenericColor.of(Color.WHITE);
@@ -475,7 +475,7 @@ public class GenericColorTest extends Assertions {
     ColorFactor full = new ColorFactor(1.0);
     ColorFactor none = new ColorFactor(0.0);
 
-    // then
+    // assert
     // lighten black
     assertThat(white.darken(half)).isEqualTo(grey);
     assertThat(white.darken(full)).isEqualTo(black);
@@ -497,10 +497,10 @@ public class GenericColorTest extends Assertions {
   @Test
   public void testEquals() {
 
-    // given
+    // arrange
     GenericColor color = GenericColor.of(Color.NAVY);
 
-    // then
+    // assert
     assertThat(color).isEqualTo(color).isNotEqualTo(null).isNotEqualTo("navy");
     Red red = color.getRed();
     Green green = color.getGreen();
