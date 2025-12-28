@@ -10,11 +10,11 @@ import io.github.mmm.ui.api.datatype.bitmask.InverseBitFlag;
 /**
  * Test of {@link InverseBitFlag}.
  */
-public class InverseBitFlagTest extends Assertions {
+class InverseBitFlagTest extends Assertions {
 
   /** Test of {@link InverseBitFlag#ANY}. */
   @Test
-  public void testAny() {
+  void testAny() {
 
     // arrange
     InverseBitFlag any = InverseBitFlag.ANY;
@@ -36,7 +36,7 @@ public class InverseBitFlagTest extends Assertions {
 
   /** Test of {@link InverseBitFlag#ALL}. */
   @Test
-  public void testAll() {
+  void testAll() {
 
     // arrange
     InverseBitFlag all = InverseBitFlag.ALL;
@@ -59,7 +59,7 @@ public class InverseBitFlagTest extends Assertions {
 
   /** Test of {@link InverseBitFlag#B01}. */
   @Test
-  public void testB01() {
+  void testB01() {
 
     // arrange
     InverseBitFlag b01 = InverseBitFlag.B01;
@@ -88,7 +88,7 @@ public class InverseBitFlagTest extends Assertions {
 
   /** Test of {@link InverseBitFlag#ofLsb(int)}. */
   @Test
-  public void testOfLsb() {
+  void testOfLsb() {
 
     int bitMask = 1;
     for (int i = 0; i < 32; i++) {

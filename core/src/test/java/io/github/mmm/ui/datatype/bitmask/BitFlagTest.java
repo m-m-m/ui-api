@@ -10,11 +10,11 @@ import io.github.mmm.ui.api.datatype.bitmask.BitFlag;
 /**
  * Test of {@link BitFlag}.
  */
-public class BitFlagTest extends Assertions {
+class BitFlagTest extends Assertions {
 
   /** Test of {@link BitFlag#ANY}. */
   @Test
-  public void testAny() {
+  void testAny() {
 
     // arrange
     BitFlag any = BitFlag.ANY;
@@ -36,7 +36,7 @@ public class BitFlagTest extends Assertions {
 
   /** Test of {@link BitFlag#ALL}. */
   @Test
-  public void testAll() {
+  void testAll() {
 
     // arrange
     BitFlag all = BitFlag.ALL;
@@ -59,7 +59,7 @@ public class BitFlagTest extends Assertions {
 
   /** Test of {@link BitFlag#B01}. */
   @Test
-  public void testB01() {
+  void testB01() {
 
     // arrange
     BitFlag b01 = BitFlag.B01;
@@ -88,7 +88,7 @@ public class BitFlagTest extends Assertions {
 
   /** Test of {@link BitFlag#ofLsb(int)}. */
   @Test
-  public void testOfLsb() {
+  void testOfLsb() {
 
     int bitMask = 1;
     for (int i = 0; i < 32; i++) {

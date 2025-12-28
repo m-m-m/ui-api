@@ -12,13 +12,13 @@ import io.github.mmm.ui.api.datatype.color.Color;
 /**
  * Test of {@link Color}.
  */
-public class ColorTest extends Assertions {
+class ColorTest extends Assertions {
 
   /**
    * Positive tests of {@link Color} for legal RGB values.
    */
   @Test
-  public void testRgbColor() {
+  void testRgbColor() {
 
     // int step = 1;
     // for speed and performance increase step...
@@ -44,7 +44,7 @@ public class ColorTest extends Assertions {
    * Positive tests of {@link Color} for legal RGBA values.
    */
   @Test
-  public void testRgbaColor() {
+  void testRgbaColor() {
 
     for (int i = 0; i <= 0xFF; i++) {
       int rgba = (i << 24) | 0x1F2F3F;

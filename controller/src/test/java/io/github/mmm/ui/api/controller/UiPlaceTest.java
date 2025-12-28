@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 /**
  * Test of {@link UiPlace}.
  */
-public class UiPlaceTest extends Assertions {
+class UiPlaceTest extends Assertions {
 
   /**
    * Test of {@link UiPlace#parse(String)} without parameters.
    */
   @Test
-  public void testParseWithoutParams() {
+  void testParseWithoutParams() {
 
     String id = "my/dialog/id";
     UiPlace place = UiPlace.parse(id);
@@ -33,7 +33,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#parse(String)} with parameters.
    */
   @Test
-  public void testParseWithParams() {
+  void testParseWithParams() {
 
     String id = "myDialogId";
     String placeString = id + "?key1=value1&key2=&key3&key4=value4";
@@ -54,7 +54,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#of(String)}.
    */
   @Test
-  public void testOfWithoutParams() {
+  void testOfWithoutParams() {
 
     String id = "myDialogId";
     UiPlace place = UiPlace.of(id);
@@ -71,7 +71,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#of(String, String, Object)}.
    */
   @Test
-  public void testOfWith1Params() {
+  void testOfWith1Params() {
 
     String id = "myDialogId";
     UiPlace place = UiPlace.of(id, "name", null);
@@ -92,7 +92,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#of(String, String, Object, String, Object)}.
    */
   @Test
-  public void testOfWith2Params() {
+  void testOfWith2Params() {
 
     String id = "placeId";
     UiPlace place = UiPlace.of(id, "key1", null, "key2", null);
@@ -115,7 +115,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#of(String, String, Object, String, Object, String, Object)}.
    */
   @Test
-  public void testOfWith3Params() {
+  void testOfWith3Params() {
 
     String id = "placeId";
     assertThat(UiPlace.of(id, "key1", null, "key2", null, "key3", null).toString()).isEqualTo(id);
@@ -139,7 +139,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#getInt(String)}.
    */
   @Test
-  public void testGetIntWithoutDefault() {
+  void testGetIntWithoutDefault() {
 
     String id = "myDialogId";
     UiPlace place = UiPlace.of(id, "key1", Integer.valueOf(42), "key2", "two");
@@ -156,7 +156,7 @@ public class UiPlaceTest extends Assertions {
    * Test of {@link UiPlace#getInt(String, int)}.
    */
   @Test
-  public void testGetIntWithDefault() {
+  void testGetIntWithDefault() {
 
     String id = "myDialogId";
     UiPlace place = UiPlace.of(id, "key1", Integer.valueOf(42), "key2", "two");

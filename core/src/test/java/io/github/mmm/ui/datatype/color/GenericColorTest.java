@@ -30,7 +30,7 @@ import io.github.mmm.ui.api.datatype.color.Saturation;
  * @author Joerg Hohwiller (hohwille at users.sourceforge.net)
  * @since 1.0.0
  */
-public class GenericColorTest extends Assertions {
+class GenericColorTest extends Assertions {
 
   /** The precision for an exact match. */
   private static final Offset<Double> EPSYLON = Offset.offset(Double.valueOf(0.0000001D));
@@ -156,7 +156,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for {@link Color#WHITE white}.
    */
   @Test
-  public void testExampleWhite() {
+  void testExampleWhite() {
 
     // arrange
     ColorModel model = ColorModel.RGB;
@@ -179,7 +179,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for medium (0.5) gray.
    */
   @Test
-  public void testExampleGray() {
+  void testExampleGray() {
 
     // arrange
     ColorModel model = ColorModel.RGB;
@@ -202,7 +202,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for {@link Color#BLACK black}.
    */
   @Test
-  public void testExampleBlack() {
+  void testExampleBlack() {
 
     // arrange
     ColorModel model = ColorModel.RGB;
@@ -226,7 +226,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for {@link Color#RED red}.
    */
   @Test
-  public void testExampleRed() {
+  void testExampleRed() {
 
     // arrange
     ColorModel model = ColorModel.RGB;
@@ -249,7 +249,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSL}.
    */
   @Test
-  public void testExampleHsl7E7EB8() {
+  void testExampleHsl7E7EB8() {
 
     // arrange
     ColorModel model = ColorModel.HSL;
@@ -270,7 +270,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSL}.
    */
   @Test
-  public void testExampleHslA0A424() {
+  void testExampleHslA0A424() {
 
     // arrange
     ColorModel model = ColorModel.HSL;
@@ -291,7 +291,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSL}.
    */
   @Test
-  public void testExampleHsl19CB97() {
+  void testExampleHsl19CB97() {
 
     // arrange
     ColorModel model = ColorModel.HSL;
@@ -312,7 +312,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSB}.
    */
   @Test
-  public void testExampleHsbED7651() {
+  void testExampleHsbED7651() {
 
     // arrange
     ColorModel model = ColorModel.HSB;
@@ -345,7 +345,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSB}.
    */
   @Test
-  public void testExampleHsb80FFFF() {
+  void testExampleHsb80FFFF() {
 
     // arrange
     ColorModel model = ColorModel.HSB;
@@ -378,7 +378,7 @@ public class GenericColorTest extends Assertions {
    * Tests of {@link GenericColor} for special color created with {@link ColorModel#HSL}.
    */
   @Test
-  public void testExampleHslBF40BF() {
+  void testExampleHslBF40BF() {
 
     // arrange
     ColorModel model = ColorModel.HSL;
@@ -411,7 +411,7 @@ public class GenericColorTest extends Assertions {
    * Test of {@link GenericColor#invert(ColorModel)}.
    */
   @Test
-  public void testInvert() {
+  void testInvert() {
 
     checkInvert(GenericColor.of(Color.WHITE), GenericColor.of(Color.BLACK));
     checkInvert(GenericColor.of(Color.RED), GenericColor.of(Color.CYAN));
@@ -433,7 +433,7 @@ public class GenericColorTest extends Assertions {
    * Test of {@link GenericColor#lighten(ColorFactor)}
    */
   @Test
-  public void testLighten() {
+  void testLighten() {
 
     // arrange
     GenericColor grey = GenericColor.of(new Red(0.5), new Green(0.5), new Blue(0.5), Alpha.OPAQUE);
@@ -464,7 +464,7 @@ public class GenericColorTest extends Assertions {
    * Test of {@link GenericColor#darken(ColorFactor)}
    */
   @Test
-  public void testDarken() {
+  void testDarken() {
 
     // arrange
     GenericColor grey = GenericColor.of(new Red(0.5), new Green(0.5), new Blue(0.5), Alpha.OPAQUE);
@@ -495,7 +495,7 @@ public class GenericColorTest extends Assertions {
    * Tests {@link GenericColor#equals(Object)}.
    */
   @Test
-  public void testEquals() {
+  void testEquals() {
 
     // arrange
     GenericColor color = GenericColor.of(Color.NAVY);
@@ -516,7 +516,7 @@ public class GenericColorTest extends Assertions {
    * Tests {@link GenericColor#of(String)} with various invalid {@link String}s.
    */
   @Test
-  public void testInvalidStrings() {
+  void testInvalidStrings() {
 
     assertThrows(NullPointerException.class, () -> GenericColor.of((String) null));
     assertThrows(IllegalArgumentException.class, () -> GenericColor.of(""));
@@ -528,7 +528,7 @@ public class GenericColorTest extends Assertions {
    * Tests {@link GenericColor#getSegment(ColorSegmentType)} with an invalid segment ({@code null}).
    */
   @Test
-  public void testInvalidSegment() {
+  void testInvalidSegment() {
 
     assertThrows(NullPointerException.class, () -> GenericColor.of(Color.WHITE).getSegment(null));
   }
